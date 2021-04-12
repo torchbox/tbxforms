@@ -1,0 +1,61 @@
+{% load i18n crispy_forms_field tbxforms %}
+
+{% if field.is_hidden %}
+  {{ field }}
+{% else %}
+  {% if max_characters or max_words %}<div class="govuk-character-count" data-module="govuk-character-count"{% if max_characters %} data-maxlength="{{ max_characters }}"{% else %} data-maxwords="{{ max_words }}"{% endif %}{% if threshold %} data-threshold="{{ threshold }}"{% endif %}>{% endif %}
+  <{% if tag %}{{ tag }}{% else %}div{% endif %} id="div_{{ field.auto_id }}" class="govuk-form-group{% if form_show_errors%}{% if field.errors %} govuk-form-group--error{% endif %}{% endif %}{% if wrapper_class %} {{ wrapper_class }}{% endif %}{% if field.css_classes %} {{ field.css_classes }}{% endif %}">
+
+    {% if field|is_checkboxes %}
+      {% include 'tbx/layout/checkboxes.html' %}
+    {% endif %}
+
+    {% if field|is_radios %}
+      {% include 'tbx/layout/radios.html' %}
+    {% endif %}
+
+    {% if field|is_multivalue %}
+      {% include 'tbx/layout/multifield.html' %}
+    {% endif %}
+
+    {% if not field|is_checkboxes and not field|is_radios and not field|is_multivalue %}
+
+      {% if field.label and not field|is_checkbox and form_show_labels %}
+        {% if label_tag %}<{{ label_tag }} class="govuk-label-wrapper">{% endif %}
+        <label for="{{ field.id_for_label }}" class="govuk-label{% if label_size %} {{ label_size }}{% endif %}">
+          {{ field.label|safe }}
+        </label>
+        {% if label_tag %}</{{ label_tag }}>{% endif %}
+      {% endif %}
+
+      {% if field|is_checkbox and form_show_labels %}
+        {% include 'tbx/layout/help_text_and_errors.html' %}
+        <div class="govuk-checkboxes{% if checkboxes_small %} govuk-checkboxes--small{% endif %}">
+          <div class="govuk-checkboxes__item">
+            {% crispy_gds_field field %}
+            <label class="govuk-label govuk-checkboxes__label" for="{{ field.id_for_label }}">
+              {{ field.label|safe }}
+            </label>
+          </div>
+        </div>
+      {% else %}
+        {% include 'tbx/layout/help_text_and_errors.html' %}
+        {% crispy_gds_field field %}
+        {% if max_characters or max_words %}
+          <span id="{{ field.id_for_label }}-info" class="govuk-hint govuk-character-count__message" aria-live="polite">
+            {% if max_characters %}
+              {% blocktrans %}
+              You can enter up to {{ max_characters }} characters
+              {% endblocktrans %}
+            {% else %}
+              {% blocktrans %}
+              You can enter up to {{ max_words }} words
+              {% endblocktrans %}
+            {% endif %}
+          </span>
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  </{% if tag %}{{ tag }}{% else %}div{% endif %}>
+  {% if max_characters or max_words %}</div>{% endif %}
+{% endif %}
