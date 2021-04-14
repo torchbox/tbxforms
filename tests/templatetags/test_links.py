@@ -33,15 +33,3 @@ def test_button_start():
     html = button_start("http://www.example.com/", "Start now")
     assert isinstance(html, SafeString)
     assert parse_html(html) == parse_contents(RESULT_DIR, "button_start.html")
-
-
-def test_breadcrumbs():
-    links = [
-        ("Home", "/"),
-        ("Previous", "/previous/"),
-        ("Current", None),
-    ]
-    template = '{% include "tbx/layout/breadcrumbs.html" %}'
-    assert parse_template(template, crumbs=links) == parse_contents(
-        RESULT_DIR, "breadcrumbs.html"
-    )
