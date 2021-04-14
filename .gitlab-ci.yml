@@ -148,8 +148,3 @@ build_and_publish_python_package:
     paths:
       - dist
     expire_in: 100 yrs
-#   artifacts:
-#     name: 'node-js-package-$CI_JOB_ID'
-#     paths:
-#       - dist
-#     expire_in: 100 yrs
