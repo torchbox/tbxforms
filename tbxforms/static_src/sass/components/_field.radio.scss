@@ -1,0 +1,48 @@
+// custom radio styles
+.field input[type='radio'] {
+    opacity: 0;
+
+    + label {
+        cursor: pointer;
+        position: relative;
+        line-height: 1.2;
+        padding-left: 5px;
+
+        // surrounding circle
+        &::before {
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 0;
+            border-radius: 50%;
+            border: 1px solid;
+            width: 20px;
+            height: 20px;
+        }
+
+        // inner circle
+        &::after {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 4px;
+            border-radius: 50%;
+            width: 12px;
+            height: 12px;
+            transition: background-color $transition;
+        }
+    }
+
+    &:checked {
+        + label::after {
+            background-color: $color--primary;
+        }
+    }
+
+    // keep focus styles
+    &:focus {
+        + label::before {
+            box-shadow: 0 0 0 1px rgb(59, 153, 252), 0 0 8px rgb(59, 153, 252);
+        }
+    }
+}

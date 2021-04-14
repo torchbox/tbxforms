@@ -24,8 +24,7 @@ static:
   image: node:12
   stage: build
   script:
-    - mkdir -p ./tbxforms/static
-    - cp -r ./tbxforms/static_src/images ./tbxforms/static/
+    - mkdir -p ./tbxforms/tests/static
     - npm ci --no-optional --no-audit --progress=false
     - npm run build
   # Saving the job result as an artifact means that the files can be used by
@@ -34,7 +33,7 @@ static:
     name: 'static-$CI_JOB_ID'
     paths:
       # TODO: Cache too large, causes jobs to fail!
-      - ./tbxforms/static
+      - ./tbxforms/tests/static
     expire_in: 30 mins
 
 flake8:

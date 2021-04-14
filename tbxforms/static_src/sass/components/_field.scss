@@ -1,0 +1,77 @@
+.field {
+    $root: &;
+    margin-bottom: 20px;
+
+    &--errors {
+        padding: 20px;
+        margin-bottom: 20px;
+        border: 1px dotted $color--red;
+    }
+
+    /* stylelint-disable selector-class-pattern  */
+    &--radio-select,
+    &--checkbox-input,
+    &--checkbox-select-multiple {
+        #{$root}__radio-checkbox {
+            display: flex;
+            align-items: center;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        #{$root}__label {
+            margin: 0 0 0 10px;
+            font-weight: $weight--normal;
+        }
+
+        #{$root}__label--multiple {
+            margin: 0 0 5px;
+            font-weight: $weight--bold;
+        }
+    }
+
+    &--hidden_input {
+        display: none;
+    }
+    /* stylelint-enable */
+
+    &__required {
+        color: $color--red;
+    }
+
+    &__label,
+    &__label--multiple {
+        @include font-size(m);
+        display: block;
+        margin-bottom: 5px;
+        font-weight: $weight--bold;
+    }
+
+    &__errors {
+        @include font-size(s);
+        margin-bottom: 10px;
+        font-weight: $weight--bold;
+        color: $color--red;
+    }
+
+    &__help {
+        @include font-size(s);
+        margin-top: 5px;
+        color: rgba($color--default, 0.6);
+    }
+
+    &__fieldset {
+        border: 0;
+        padding: 0;
+        margin: 0;
+    }
+
+    // stylelint-disable-next-line selector-max-specificity
+    input:not([type='checkbox']):not([type='radio']):not([type='submit']),
+    textarea,
+    select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid $color--default;
+    }
+}
