@@ -2,7 +2,7 @@ from django.template.loader import render_to_string
 from django.utils.text import slugify
 
 from crispy_forms import layout as crispy_forms_layout
-from crispy_forms.utils import TEMPLATE_PACK, flatatt, render_field
+from crispy_forms.utils import TEMPLATE_PACK, flatatt
 
 from tbxforms.layout import Size
 
@@ -43,130 +43,6 @@ class Div(crispy_forms_layout.Div):
     """
 
     pass
-
-
-class Accordion(Div):
-    """
-    .. _Accordion: https://design-system.service.gov.uk/components/accordion/
-
-    A layout object for displaying an `Accordion`_ component.
-
-    Accordion is the parent object to which you add an ``AccordionSection`` for
-    each of the panels you want to display.
-
-    Examples::
-
-        Accordion(
-            AccordionSection("title_1", "form_field_1", "form_field_2"),
-            AccordionSection("title_2", "form_field_3")
-        )
-
-        Accordion(
-            AccordionSection("title", "form_field_1", "form_field_2"),
-            css_id="accordion-1"
-        )
-
-    Arguments:
-        css_id (str, optional): an unique identifier for the accordion. The
-            default is "accordion". You will need to set this if you have more
-            than one accordion on a page.
-
-        css_class (str, optional): the names of one or more CSS classes that
-            will be added to the parent <div>. The basic Design System CSS
-            classes will be added automatically. This parameter is for any
-            extra styling you want to apply.
-
-        template (str, optional): the path to a template that overrides the
-            one normally used the accordion.
-
-        *fields: a list of AccordionSection objects that are the panels
-            that make up this accordion.
-
-        **kwargs: any additional attributes you want to add to the parent
-            <div>.
-
-    """
-
-    template = "%s/accordion.html"
-
-    def __init__(self, *fields, **kwargs):
-        super().__init__(*fields, **kwargs)
-        if not self.css_id:
-            self.css_id = "accordion"
-
-    def render(self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs):
-        content = ""
-        for index, group in enumerate(self.fields, start=1):
-            context["index"] = index
-            context["parent"] = self.css_id
-            content += render_field(
-                group, form, form_style, context, template_pack=template_pack, **kwargs
-            )
-        template = self.get_template_name(template_pack)
-        context.update({"accordion": self, "content": content})
-        return render_to_string(template, context.flatten())
-
-
-class AccordionSection(Div):
-    """
-    .. _Accordion: https://design-system.service.gov.uk/components/accordion/
-
-    A layout object for displaying a action in an `Accordion`_ component.
-
-    Examples::
-
-        AccordionSection("title", "form_field_1", "form_field_2")
-
-        AccordionSection(
-            "title",
-            "form_field_1",
-            summary="A short description of the contents"
-        )
-
-    Arguments:
-        name (str): the title of the section.
-
-        summary (str, optional): a short description of the section's contents.
-
-        css_id (str, optional): an unique identifier for the section. This is
-            included as an AccordionSection is just a specialised Div. It is
-            a basic LayoutObject param and should never have to set it.
-
-        css_class (str, optional): the names of one or more CSS classes that
-            will be added to the section <div>. The basic Design System CSS
-            classes will be added automatically. This parameter is for any
-            extra styling you want to apply.
-
-        template (str, optional): the path to a template that overrides the
-            one used to render a section.
-
-        *fields: a list of layout objects objects that make up the section
-            contents.
-
-        **kwargs:  any additional attributes you want to add to the section
-            <div>.
-
-    """
-
-    template = "%s/accordion-group.html"
-
-    def __init__(self, name, *fields, summary=None, **kwargs):
-        super().__init__(*fields, **kwargs)
-        self.name = name
-        self.summary = summary
-        self.index = None
-        self.parent = None
-
-    def __contains__(self, field_name):
-        """
-        check if field_name is contained within tab.
-        """
-        return field_name in map(lambda pointer: pointer[1], self.get_field_names())
-
-    def render(self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs):
-        self.index = context.get("index", None)
-        self.parent = context.get("parent")
-        return super().render(form, form_style, context, template_pack)
 
 
 class Fieldset(crispy_forms_layout.LayoutObject):

@@ -3,15 +3,7 @@ from django import forms
 from tbxforms.choices import Choice
 from tbxforms.fields import DateInputField
 from tbxforms.helper import FormHelper
-from tbxforms.layout import (
-    HTML,
-    Accordion,
-    AccordionSection,
-    Fieldset,
-    Layout,
-    TabPanel,
-    Tabs,
-)
+from tbxforms.layout import HTML, Fieldset, Layout, TabPanel, Tabs
 
 
 class BaseForm(forms.Form):
@@ -184,22 +176,3 @@ class FieldsetForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(Fieldset("name", "email", legend="Contact"))
-
-
-class AccordionForm(forms.Form):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.layout = Layout(
-            Accordion(
-                AccordionSection(
-                    "First section",
-                    HTML("<p>First section contents.</p>"),
-                    summary="A summary of the first section",
-                ),
-                AccordionSection(
-                    "Second section",
-                    HTML("<p>Second section contents.</p>"),
-                ),
-            )
-        )
