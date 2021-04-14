@@ -1,7 +1,6 @@
 from django import forms, template
 from django.conf import settings
 from django.utils.html import format_html
-from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms.utils import TEMPLATE_PACK
 
@@ -25,28 +24,6 @@ def breadcrumbs(crumbs):
 
     """
     return {"crumbs": crumbs}
-
-
-@register.simple_tag
-def back_link(url, title=None):
-    """
-    Template tag that returns the HTML needed to display a URL as a Back link component.
-
-    Examples::
-
-        {% load tbxforms %}
-        ...
-        {% url "home" as home_url %}
-        {% back_link home_url %}
-
-    Args:
-        url (str): the URL for the link.
-        title (str, optional): the title if the default "Back" is not suitable.
-
-    """
-    if title is None:
-        title = _("Back")
-    return format_html('<a href="{}" class="govuk-back-link">{}</a>', url, title)
 
 
 @register.simple_tag
