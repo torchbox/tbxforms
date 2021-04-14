@@ -50,29 +50,6 @@ def back_link(url, title=None):
 
 
 @register.simple_tag
-def button_link(url, title):
-    """
-    Template tag that returns the HTML needed to display a link as a Button component.
-
-    Examples::
-
-        {% load tbxforms %}
-        ...
-        {% button_link url title %}
-
-    Args:
-        url (str): the URL for the link.
-        title (str): the title of the button.
-
-    """
-    return format_html(
-        '<a href="{}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">{}</a>',  # noqa
-        url,
-        title,
-    )
-
-
-@register.simple_tag
 def button_start(url, title):
     """
     Template tag that returns the HTML needed to display a Start button.
