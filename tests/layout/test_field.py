@@ -4,7 +4,12 @@ Tests to verify that Field objects are configured correctly.
 """
 import pytest
 
-from tbxforms.layout import Field, Fixed, Fluid, Size
+from tbxforms.layout import (
+    Field,
+    Fixed,
+    Fluid,
+    Size,
+)
 
 
 def test_text_field_defaults():
@@ -53,6 +58,8 @@ def test_text_invalid_fluid_width():
 
 
 def test_text_new_fluid_width():
-    field = Field("name", css_class=Fluid.for_input("one-fifth", validate=False))
+    field = Field(
+        "name", css_class=Fluid.for_input("one-fifth", validate=False)
+    )
     assert field.attrs["class"] == "govuk-!-width-one-fifth"
     assert field.context == {}

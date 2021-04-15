@@ -1,4 +1,7 @@
-from django.template import Context, Template
+from django.template import (
+    Context,
+    Template,
+)
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
@@ -84,7 +87,9 @@ class HTML(crispy_forms_layout.HTML):
 
     @classmethod
     def heading(cls, tag, size, content):
-        snippet = '<{0} class="govuk-heading-{1}">{2}</{0}>'.format(tag, size, content)
+        snippet = '<{0} class="govuk-heading-{1}">{2}</{0}>'.format(
+            tag, size, content
+        )
         return HTML(snippet)
 
     @classmethod

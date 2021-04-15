@@ -51,21 +51,29 @@ class DateInputField(forms.MultiValueField):
             forms.CharField(
                 label=_("Day"),
                 error_messages={"incomplete": _("Enter the day of the month")},
-                validators=[RegexValidator(r"^[0-9]+$", _("Enter a valid date"))],
+                validators=[
+                    RegexValidator(r"^[0-9]+$", _("Enter a valid date"))
+                ],
             ),
             forms.CharField(
                 label=_("Month"),
                 error_messages={"incomplete": _("Enter the month")},
-                validators=[RegexValidator(r"^[0-9]+$", _("Enter a valid month"))],
+                validators=[
+                    RegexValidator(r"^[0-9]+$", _("Enter a valid month"))
+                ],
             ),
             forms.CharField(
                 label=_("Year"),
                 error_messages={"incomplete": _("Enter the year")},
-                validators=[RegexValidator(r"^[0-9]+$", _("Enter a valid year"))],
+                validators=[
+                    RegexValidator(r"^[0-9]+$", _("Enter a valid year"))
+                ],
             ),
         )
 
-        super().__init__(error_messages=error_messages, fields=fields, **kwargs)
+        super().__init__(
+            error_messages=error_messages, fields=fields, **kwargs
+        )
 
     def clean(self, value):
         """
@@ -99,7 +107,9 @@ class DateInputField(forms.MultiValueField):
         if self.disabled and not isinstance(value, list):
             value = self.widget.decompress(value)
         if not value or isinstance(value, (list, tuple)):
-            if not value or not [v for v in value if v not in self.empty_values]:
+            if not value or not [
+                v for v in value if v not in self.empty_values
+            ]:
                 if self.required:
                     raise ValidationError(
                         self.error_messages["required"], code="required"
@@ -107,7 +117,9 @@ class DateInputField(forms.MultiValueField):
                 else:
                     return self.compress([])
         else:
-            raise ValidationError(self.error_messages["invalid"], code="invalid")
+            raise ValidationError(
+                self.error_messages["invalid"], code="invalid"
+            )
         for i, field in enumerate(self.fields):
             field.widget.errors = []
             try:
@@ -128,7 +140,9 @@ class DateInputField(forms.MultiValueField):
                     # field is empty.
                     if field.error_messages["incomplete"] not in errors:
                         errors.append(field.error_messages["incomplete"])
-                        field.widget.errors.append(field.error_messages["incomplete"])
+                        field.widget.errors.append(
+                            field.error_messages["incomplete"]
+                        )
                     continue
             try:
                 clean_data.append(field.clean(field_value))

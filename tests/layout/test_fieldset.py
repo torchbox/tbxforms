@@ -5,9 +5,17 @@ Tests to verify fieldsets are rendered correctly.
 import os
 
 from tbxforms.helper import FormHelper
-from tbxforms.layout import Fieldset, Layout, Size
+from tbxforms.layout import (
+    Fieldset,
+    Layout,
+    Size,
+)
 from tests.forms import FieldsetForm
-from tests.utils import TEST_DIR, parse_contents, parse_form
+from tests.utils import (
+    TEST_DIR,
+    parse_contents,
+    parse_form,
+)
 
 RESULT_DIR = os.path.join(TEST_DIR, "layout", "results", "fieldset")
 
@@ -25,7 +33,9 @@ def test_show_legend_as_heading():
     form.helper.layout = Layout(
         Fieldset("name", "email", legend="Contact", legend_tag="h1")
     )
-    assert parse_form(form) == parse_contents(RESULT_DIR, "legend_heading.html")
+    assert parse_form(form) == parse_contents(
+        RESULT_DIR, "legend_heading.html"
+    )
 
 
 def test_change_legend_size():

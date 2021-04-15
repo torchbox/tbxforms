@@ -6,7 +6,11 @@ import datetime
 import os
 
 from tests.forms import DateInputForm
-from tests.utils import TEST_DIR, parse_contents, parse_form
+from tests.utils import (
+    TEST_DIR,
+    parse_contents,
+    parse_form,
+)
 
 RESULT_DIR = os.path.join(TEST_DIR, "layout", "results", "date_input")
 
@@ -18,7 +22,9 @@ RESULT_DIR = os.path.join(TEST_DIR, "layout", "results", "date_input")
 
 def test_initial_attributes():
     """Verify all the gds attributes are displayed."""
-    form = DateInputForm(initial={"date": datetime.date(year=2007, month=11, day=12)})
+    form = DateInputForm(
+        initial={"date": datetime.date(year=2007, month=11, day=12)}
+    )
     assert parse_form(form) == parse_contents(RESULT_DIR, "initial.html")
 
 
@@ -33,4 +39,6 @@ def test_subfield_error_attributes():
     """Verify the error messages for the individual fields are displayed correctly."""
     form = DateInputForm(data={"date_0": "a", "date_1": "11", "date_2": ""})
     assert not form.is_valid()
-    assert parse_form(form) == parse_contents(RESULT_DIR, "subfield_errors.html")
+    assert parse_form(form) == parse_contents(
+        RESULT_DIR, "subfield_errors.html"
+    )

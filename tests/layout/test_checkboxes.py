@@ -5,9 +5,20 @@ Tests to verify checkboxes are rendered correctly.
 import os
 
 from tbxforms.helper import FormHelper
-from tbxforms.layout import Field, Layout, Size
-from tests.forms import CheckboxesChoiceForm, CheckboxesForm
-from tests.utils import TEST_DIR, parse_contents, parse_form
+from tbxforms.layout import (
+    Field,
+    Layout,
+    Size,
+)
+from tests.forms import (
+    CheckboxesChoiceForm,
+    CheckboxesForm,
+)
+from tests.utils import (
+    TEST_DIR,
+    parse_contents,
+    parse_form,
+)
 
 RESULT_DIR = os.path.join(TEST_DIR, "layout", "results", "checkboxes")
 
@@ -24,7 +35,9 @@ def test_validation_error_attributes():
     """Verify all the gds error attributes are displayed."""
     form = CheckboxesForm(data={"method": ""})
     assert not form.is_valid()
-    assert parse_form(form) == parse_contents(RESULT_DIR, "validation_errors.html")
+    assert parse_form(form) == parse_contents(
+        RESULT_DIR, "validation_errors.html"
+    )
 
 
 def test_choices():
@@ -39,7 +52,9 @@ def test_checkbox_size():
     """Verify size of the checkbox can be changed from the default."""
     form = CheckboxesForm()
     form.helper = FormHelper()
-    form.helper.layout = Layout(Field("method", context={"checkboxes_small": True}))
+    form.helper.layout = Layout(
+        Field("method", context={"checkboxes_small": True})
+    )
     assert parse_form(form) == parse_contents(RESULT_DIR, "checkbox_size.html")
 
 
@@ -48,7 +63,9 @@ def test_show_legend_as_heading():
     form = CheckboxesForm()
     form.helper = FormHelper()
     form.helper.layout = Layout(Field("method", context={"legend_tag": "h1"}))
-    assert parse_form(form) == parse_contents(RESULT_DIR, "legend_heading.html")
+    assert parse_form(form) == parse_contents(
+        RESULT_DIR, "legend_heading.html"
+    )
 
 
 def test_change_legend_size():
@@ -79,4 +96,6 @@ def test_no_help_text_errors():
     """Verify all the gds error attributes are displayed if no help text is given."""
     form = CheckboxesForm(data={"method": ""})
     form.fields["method"].help_text = ""
-    assert parse_form(form) == parse_contents(RESULT_DIR, "no_help_text_errors.html")
+    assert parse_form(form) == parse_contents(
+        RESULT_DIR, "no_help_text_errors.html"
+    )

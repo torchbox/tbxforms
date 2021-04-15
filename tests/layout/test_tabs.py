@@ -5,9 +5,17 @@ Tests to verify tabs are rendered correctly.
 import os
 
 from tbxforms.helper import FormHelper
-from tbxforms.layout import Layout, TabPanel, Tabs
+from tbxforms.layout import (
+    Layout,
+    TabPanel,
+    Tabs,
+)
 from tests.forms import TabsForm
-from tests.utils import TEST_DIR, parse_contents, parse_form
+from tests.utils import (
+    TEST_DIR,
+    parse_contents,
+    parse_form,
+)
 
 RESULT_DIR = os.path.join(TEST_DIR, "layout", "results", "tabs")
 
@@ -51,8 +59,12 @@ def test_panel_css_class():
     """Verify an extra CSS class can be added to a tab panel."""
     form = TabsForm()
     form.helper = FormHelper()
-    form.helper.layout = Layout(Tabs(TabPanel("Title", css_class="extra-css-class")))
-    assert parse_form(form) == parse_contents(RESULT_DIR, "panel_css_class.html")
+    form.helper.layout = Layout(
+        Tabs(TabPanel("Title", css_class="extra-css-class"))
+    )
+    assert parse_form(form) == parse_contents(
+        RESULT_DIR, "panel_css_class.html"
+    )
 
 
 def test_panel_css_id():
@@ -68,4 +80,6 @@ def test_panel_attribute():
     form = TabsForm()
     form.helper = FormHelper()
     form.helper.layout = Layout(Tabs(TabPanel("Title", key="value")))
-    assert parse_form(form) == parse_contents(RESULT_DIR, "panel_attributes.html")
+    assert parse_form(form) == parse_contents(
+        RESULT_DIR, "panel_attributes.html"
+    )

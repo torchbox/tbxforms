@@ -2,8 +2,12 @@ import io
 import os
 
 import django
+
 from django.conf import settings as django_settings
-from django.template import Context, Template
+from django.template import (
+    Context,
+    Template,
+)
 from django.test.html import parse_html
 
 from . import settings

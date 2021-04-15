@@ -1,4 +1,7 @@
-from django.template import Context, Template
+from django.template import (
+    Context,
+    Template,
+)
 
 from tbxforms.choices import Choice
 
@@ -6,7 +9,9 @@ from tbxforms.choices import Choice
 def test_item_index_lookup():
     """Verify choice item supporting indexing in template."""
     choices = (Choice("email", "Email", hint="Your email address"),)
-    template = "{% for choice in choices %}{{ choice.0 }} {{ choice.1 }}{% endfor %}"
+    template = (
+        "{% for choice in choices %}{{ choice.0 }} {{ choice.1 }}{% endfor %}"
+    )
     result = Template(template).render(Context({"choices": choices}))
     assert result == "email Email"
 
@@ -30,7 +35,9 @@ def test_item_divider_lookup():
 def test_tuple_index_lookup():
     """Verify index lookup - this exists in Django and is included for symmetry."""
     choices = (("email", "Email"),)
-    template = "{% for choice in choices %}{{ choice.0 }} {{ choice.1 }}{% endfor %}"
+    template = (
+        "{% for choice in choices %}{{ choice.0 }} {{ choice.1 }}{% endfor %}"
+    )
     result = Template(template).render(Context({"choices": choices}))
     assert result == "email Email"
 

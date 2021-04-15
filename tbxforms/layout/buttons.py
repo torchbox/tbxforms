@@ -72,7 +72,11 @@ class Button(BaseInput):
     def warning(cls, name, value, disabled=False, **kwargs):
         """Create a warning button."""
         return Button(
-            name, value, disabled=disabled, css_class="govuk-button--warning", **kwargs
+            name,
+            value,
+            disabled=disabled,
+            css_class="govuk-button--warning",
+            **kwargs,
         )
 
     def __init__(self, name, value, disabled=False, **kwargs):

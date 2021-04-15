@@ -5,9 +5,17 @@ Tests to verify text fields are rendered correctly.
 import os
 
 from tbxforms.helper import FormHelper
-from tbxforms.layout import Field, Layout, Size
+from tbxforms.layout import (
+    Field,
+    Layout,
+    Size,
+)
 from tests.forms import TextInputForm
-from tests.utils import TEST_DIR, parse_contents, parse_form
+from tests.utils import (
+    TEST_DIR,
+    parse_contents,
+    parse_form,
+)
 
 RESULT_DIR = os.path.join(TEST_DIR, "layout", "results", "text_input")
 
@@ -22,7 +30,9 @@ def test_validation_error_attributes():
     """Verify all the gds error attributes are displayed."""
     form = TextInputForm(data={"name": ""})
     assert not form.is_valid()
-    assert parse_form(form) == parse_contents(RESULT_DIR, "validation_errors.html")
+    assert parse_form(form) == parse_contents(
+        RESULT_DIR, "validation_errors.html"
+    )
 
 
 def test_show_label_as_heading():
@@ -62,4 +72,6 @@ def test_no_help_text_errors():
     form = TextInputForm(data={"name": ""})
     form.fields["name"].help_text = ""
     assert not form.is_valid()
-    assert parse_form(form) == parse_contents(RESULT_DIR, "no_help_text_errors.html")
+    assert parse_form(form) == parse_contents(
+        RESULT_DIR, "no_help_text_errors.html"
+    )

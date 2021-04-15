@@ -7,9 +7,21 @@ import os
 from django.test.html import parse_html
 
 from tbxforms.helper import FormHelper
-from tbxforms.layout import Field, Layout, Size
-from tests.forms import CheckboxesForm, TextInputForm
-from tests.utils import TEST_DIR, parse_contents, parse_form, render_template
+from tbxforms.layout import (
+    Field,
+    Layout,
+    Size,
+)
+from tests.forms import (
+    CheckboxesForm,
+    TextInputForm,
+)
+from tests.utils import (
+    TEST_DIR,
+    parse_contents,
+    parse_form,
+    render_template,
+)
 
 RESULT_DIR = os.path.join(TEST_DIR, "helpers", "results")
 
@@ -45,7 +57,9 @@ def test_override_default_label_size():
     form.helper = FormHelper()
     form.helper.label_size = Size.MEDIUM
     form.helper.layout = Layout(Field.text("name", label_size=Size.LARGE))
-    assert parse_form(form) == parse_contents(RESULT_DIR, "override_label_size.html")
+    assert parse_form(form) == parse_contents(
+        RESULT_DIR, "override_label_size.html"
+    )
 
 
 def test_default_legend_size():
@@ -61,5 +75,9 @@ def test_override_default_legend_size():
     form = CheckboxesForm()
     form.helper = FormHelper()
     form.helper.legend_size = Size.MEDIUM
-    form.helper.layout = Layout(Field.checkboxes("method", legend_size=Size.LARGE))
-    assert parse_form(form) == parse_contents(RESULT_DIR, "override_legend_size.html")
+    form.helper.layout = Layout(
+        Field.checkboxes("method", legend_size=Size.LARGE)
+    )
+    assert parse_form(form) == parse_contents(
+        RESULT_DIR, "override_legend_size.html"
+    )

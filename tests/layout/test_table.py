@@ -8,7 +8,11 @@ import pytest
 
 from tbxforms.layout import HTML
 from tests.forms import TableForm
-from tests.utils import TEST_DIR, parse_contents, parse_form
+from tests.utils import (
+    TEST_DIR,
+    parse_contents,
+    parse_form,
+)
 
 RESULT_DIR = os.path.join(TEST_DIR, "layout", "results", "table")
 
@@ -22,7 +26,13 @@ def test_basic_layout():
 @pytest.mark.parametrize(
     "headers,rows,caption,header_css,row_css",
     [
-        (["Title"], [["Cell"]], "Caption", ["header-css-class"], ["row-css-class"]),
+        (
+            ["Title"],
+            [["Cell"]],
+            "Caption",
+            ["header-css-class"],
+            ["row-css-class"],
+        ),
         ([], [["Cell"]], "Caption", ["header-css-class"], ["row-css-class"]),
         (["Title"], [[]], "Caption", ["header-css-class"], ["row-css-class"]),
         (["Title"], [["Cell"]], "", ["header-css-class"], ["row-css-class"]),

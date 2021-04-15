@@ -3,7 +3,13 @@ from django import forms
 from tbxforms.choices import Choice
 from tbxforms.fields import DateInputField
 from tbxforms.helper import FormHelper
-from tbxforms.layout import HTML, Fieldset, Layout, TabPanel, Tabs
+from tbxforms.layout import (
+    HTML,
+    Fieldset,
+    Layout,
+    TabPanel,
+    Tabs,
+)
 
 
 class BaseForm(forms.Form):
@@ -24,7 +30,11 @@ class CheckboxForm(BaseForm):
 class CheckboxesForm(BaseForm):
 
     method = forms.ChoiceField(
-        choices=(("email", "Email"), ("phone", "Phone"), ("text", "Text message")),
+        choices=(
+            ("email", "Email"),
+            ("phone", "Phone"),
+            ("text", "Text message"),
+        ),
         widget=forms.CheckboxSelectMultiple,
         label="How would you like to be contacted?",
         help_text="Select all options that are relevant to you.",
@@ -76,7 +86,11 @@ class FileUploadForm(BaseForm):
 class RadiosForm(BaseForm):
 
     method = forms.ChoiceField(
-        choices=(("email", "Email"), ("phone", "Phone"), ("text", "Text message")),
+        choices=(
+            ("email", "Email"),
+            ("phone", "Phone"),
+            ("text", "Text message"),
+        ),
         widget=forms.RadioSelect,
         label="How would you like to be contacted?",
         help_text="Select the most convenient way to contact you.",
@@ -150,7 +164,11 @@ class TableForm(forms.Form):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             HTML.table(
-                header, rows, caption="Caption", header_css=header_css, row_css=row_css
+                header,
+                rows,
+                caption="Caption",
+                header_css=header_css,
+                row_css=row_css,
             )
         )
 
@@ -175,4 +193,6 @@ class FieldsetForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.layout = Layout(Fieldset("name", "email", legend="Contact"))
+        self.helper.layout = Layout(
+            Fieldset("name", "email", legend="Contact")
+        )

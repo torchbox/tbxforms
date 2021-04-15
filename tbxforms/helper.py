@@ -80,4 +80,6 @@ class FormHelper(crispy_forms_helper.FormHelper):
         if self.legend_size:
             context["legend_size"] = Size.for_legend(self.legend_size)
 
-        return super().render_layout(form, context, template_pack=template_pack)
+        return super().render_layout(
+            form, context, template_pack=template_pack
+        )

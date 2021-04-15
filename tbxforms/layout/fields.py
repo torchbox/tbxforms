@@ -3,7 +3,11 @@ from django.utils.html import conditional_escape
 from crispy_forms import layout as crispy_forms_layout
 from crispy_forms.utils import TEMPLATE_PACK
 
-from tbxforms.layout import Fixed, Fluid, Size
+from tbxforms.layout import (
+    Fixed,
+    Fluid,
+    Size,
+)
 
 
 class Field(crispy_forms_layout.LayoutObject):
@@ -188,7 +192,9 @@ class Field(crispy_forms_layout.LayoutObject):
         return Field(field, context=context, **kwargs)
 
     @classmethod
-    def text(cls, field, label_size=None, label_tag=None, field_width=None, **kwargs):
+    def text(
+        cls, field, label_size=None, label_tag=None, field_width=None, **kwargs
+    ):
         """
         Create a field for displaying a Text input.
 
@@ -304,7 +310,9 @@ class Field(crispy_forms_layout.LayoutObject):
 
         return Field(field, context=context, **kwargs)
 
-    def __init__(self, *fields, css_class=None, context=None, template=None, **kwargs):
+    def __init__(
+        self, *fields, css_class=None, context=None, template=None, **kwargs
+    ):
         self.fields = list(fields)
 
         if hasattr(self, "attrs"):
@@ -384,10 +392,15 @@ class Field(crispy_forms_layout.LayoutObject):
 
         """
         self.attrs.update(
-            {k.replace("_", "-"): conditional_escape(v) for k, v in kwargs.items()}
+            {
+                k.replace("_", "-"): conditional_escape(v)
+                for k, v in kwargs.items()
+            }
         )
 
-    def render(self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs):
+    def render(
+        self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs
+    ):
         template = self.get_template_name(template_pack)
         return self.get_rendered_fields(
             form,

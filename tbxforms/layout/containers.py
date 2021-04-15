@@ -2,7 +2,10 @@ from django.template.loader import render_to_string
 from django.utils.text import slugify
 
 from crispy_forms import layout as crispy_forms_layout
-from crispy_forms.utils import TEMPLATE_PACK, flatatt
+from crispy_forms.utils import (
+    TEMPLATE_PACK,
+    flatatt,
+)
 
 from tbxforms.layout import Size
 
@@ -112,7 +115,9 @@ class Fieldset(crispy_forms_layout.LayoutObject):
         self.template = kwargs.pop("template", self.template)
         self.flat_attrs = flatatt(kwargs)
 
-    def render(self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs):
+    def render(
+        self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs
+    ):
         fields = self.get_rendered_fields(
             form, form_style, context, template_pack, **kwargs
         )
@@ -161,8 +166,12 @@ class Tabs(Div):
 
     template = "%s/layout/tabs.html"
 
-    def render(self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs):
-        content = self.get_rendered_fields(form, form_style, context, template_pack)
+    def render(
+        self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs
+    ):
+        content = self.get_rendered_fields(
+            form, form_style, context, template_pack
+        )
         links = "".join(tab.render_link(template_pack) for tab in self.fields)
         context.update({"tabs": self, "links": links, "content": content})
         template = self.get_template_name(template_pack)
