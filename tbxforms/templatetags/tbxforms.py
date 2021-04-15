@@ -3,34 +3,10 @@ from django import (
     template,
 )
 from django.conf import settings
-from django.utils.html import format_html
 
 from crispy_forms.utils import TEMPLATE_PACK
 
 register = template.Library()
-
-
-@register.simple_tag
-def button_link(url, title):
-    """
-    Template tag that returns the HTML needed to display a link as a Button component.
-
-    Examples::
-
-        {% load tbxforms %}
-        ...
-        {% button_link url title %}
-
-    Args:
-        url (str): the URL for the link.
-        title (str): the title of the button.
-
-    """
-    return format_html(
-        '<a href="{}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">{}</a>',  # noqa
-        url,
-        title,
-    )
 
 
 @register.inclusion_tag("tbx/layout/error_summary.html")
