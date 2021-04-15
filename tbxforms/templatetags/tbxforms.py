@@ -1,7 +1,9 @@
-from django import forms, template
+from django import (
+    forms,
+    template,
+)
 from django.conf import settings
 from django.utils.html import format_html
-from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms.utils import TEMPLATE_PACK
 
@@ -25,28 +27,6 @@ def breadcrumbs(crumbs):
 
     """
     return {"crumbs": crumbs}
-
-
-@register.simple_tag
-def back_link(url, title=None):
-    """
-    Template tag that returns the HTML needed to display a URL as a Back link component.
-
-    Examples::
-
-        {% load tbxforms %}
-        ...
-        {% url "home" as home_url %}
-        {% back_link home_url %}
-
-    Args:
-        url (str): the URL for the link.
-        title (str, optional): the title if the default "Back" is not suitable.
-
-    """
-    if title is None:
-        title = _("Back")
-    return format_html('<a href="{}" class="govuk-back-link">{}</a>', url, title)
 
 
 @register.simple_tag
@@ -225,7 +205,8 @@ class CrispyGDSFieldNode(template.Node):
             if is_multivalue(field):
                 error_widgets = [field.widget for field in field.field.fields]
                 error_count = sum(
-                    len(getattr(widget, "errors", [])) for widget in error_widgets
+                    len(getattr(widget, "errors", []))
+                    for widget in error_widgets
                 )
             else:
                 error_widgets = None
@@ -285,11 +266,16 @@ class CrispyGDSFieldNode(template.Node):
                 # However this is being left in for now until the "conflict" is better
                 # understood - it might be useful to somebody at some point.
 
-                if hasattr(widget, "input_type") and "input_type" in widget.attrs:
+                if (
+                    hasattr(widget, "input_type")
+                    and "input_type" in widget.attrs
+                ):
                     widget.input_type = widget.attrs.pop("input_type")
 
                 if field.help_text and not is_multivalue(field):
-                    widget.attrs["aria-describedby"] = "%s_hint" % field.auto_id
+                    widget.attrs["aria-describedby"] = (
+                        "%s_hint" % field.auto_id
+                    )
 
                 if (
                     "class" in widget.attrs
@@ -301,33 +287,51 @@ class CrispyGDSFieldNode(template.Node):
                     # won't work.
 
                     if widget.attrs["aria-describedby"]:
-                        widget.attrs["aria-describedby"] += " %s-info" % field.auto_id
+                        widget.attrs["aria-describedby"] += (
+                            " %s-info" % field.auto_id
+                        )
                     else:
-                        widget.attrs["aria-describedby"] = "%s-info" % field.auto_id
+                        widget.attrs["aria-describedby"] = (
+                            "%s-info" % field.auto_id
+                        )
 
                 if field.errors:
 
                     widget_class_name = widget.__class__.__name__
 
-                    if widget_class_name in ["Select", "TextInput", "Textarea"]:
+                    if widget_class_name in [
+                        "Select",
+                        "TextInput",
+                        "Textarea",
+                    ]:
                         if is_multivalue(field):
                             if error_count == 0:
                                 css_class += " govuk-input--error"
-                            elif getattr(error_widgets[widget_idx], "errors", None):
+                            elif getattr(
+                                error_widgets[widget_idx], "errors", None
+                            ):
                                 css_class += " govuk-input--error"
                         else:
                             css_class += " govuk-input--error"
-                    elif widget_class_name in ["FileInput", "ClearableFileInput"]:
+                    elif widget_class_name in [
+                        "FileInput",
+                        "ClearableFileInput",
+                    ]:
                         css_class += " govuk-file-upload--error"
 
                     if not field.help_text:
                         widget.attrs["aria-describedby"] = ""
 
                     for error_idx, error in enumerate(field.errors, start=1):
-                        css_error_class = "%s_%d_error" % (field.auto_id, error_idx)
+                        css_error_class = "%s_%d_error" % (
+                            field.auto_id,
+                            error_idx,
+                        )
 
                         if is_multivalue(field):
-                            if getattr(error_widgets[widget_idx], "errors", None):
+                            if getattr(
+                                error_widgets[widget_idx], "errors", None
+                            ):
                                 if error in error_widgets[widget_idx].errors:
                                     if "aria-describedby" not in widget.attrs:
                                         widget.attrs["aria-describedby"] = ""
@@ -335,7 +339,9 @@ class CrispyGDSFieldNode(template.Node):
                                     if widget.attrs["aria-describedby"]:
                                         widget.attrs["aria-describedby"] += " "
 
-                                    widget.attrs["aria-describedby"] += css_error_class
+                                    widget.attrs[
+                                        "aria-describedby"
+                                    ] += css_error_class
                         else:
                             if "aria-describedby" not in widget.attrs:
                                 widget.attrs["aria-describedby"] = ""
@@ -357,16 +363,18 @@ class CrispyGDSFieldNode(template.Node):
                     widget.attrs["required"] = "required"
 
             for attribute_name, attribute in attr.items():
-                attribute_name = template.Variable(attribute_name).resolve(context)
+                attribute_name = template.Variable(attribute_name).resolve(
+                    context
+                )
 
                 if attribute_name in widget.attrs:
                     widget.attrs[attribute_name] += " " + template.Variable(
                         attribute
                     ).resolve(context)
                 else:
-                    widget.attrs[attribute_name] = template.Variable(attribute).resolve(
-                        context
-                    )
+                    widget.attrs[attribute_name] = template.Variable(
+                        attribute
+                    ).resolve(context)
 
         return str(field)
 
