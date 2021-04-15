@@ -43,25 +43,25 @@ class DateInputField(forms.MultiValueField):
     def __init__(self, **kwargs):
         # Define one message for all fields.
         error_messages = {
-            "required": "Enter the day, month and year",
-            "incomplete": "Enter the day, month and year",
+            "required": _("Enter the day, month and year"),
+            "incomplete": _("Enter the day, month and year"),
         }
         # Or define a different message for each field.
         fields = (
             forms.CharField(
                 label=_("Day"),
-                error_messages={"incomplete": "Enter the day of the month"},
-                validators=[RegexValidator(r"^[0-9]+$", "Enter a valid date")],
+                error_messages={"incomplete": _("Enter the day of the month")},
+                validators=[RegexValidator(r"^[0-9]+$", _("Enter a valid date"))],
             ),
             forms.CharField(
                 label=_("Month"),
-                error_messages={"incomplete": "Enter the month"},
-                validators=[RegexValidator(r"^[0-9]+$", "Enter a valid month")],
+                error_messages={"incomplete": _("Enter the month")},
+                validators=[RegexValidator(r"^[0-9]+$", _("Enter a valid month"))],
             ),
             forms.CharField(
                 label=_("Year"),
-                error_messages={"incomplete": "Enter the year"},
-                validators=[RegexValidator(r"^[0-9]+$", "Enter a valid year")],
+                error_messages={"incomplete": _("Enter the year")},
+                validators=[RegexValidator(r"^[0-9]+$", _("Enter a valid year"))],
             ),
         )
 

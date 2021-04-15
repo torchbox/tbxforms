@@ -1,5 +1,6 @@
 from django.template import Context, Template
 from django.utils.safestring import mark_safe
+from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms import layout as crispy_forms_layout
 
@@ -298,11 +299,12 @@ class HTML(crispy_forms_layout.HTML):
             <div class="govuk-warning-text">
               <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
               <strong class="govuk-warning-text__text">
-                <span class="govuk-warning-text__assistive">Warning</span>
-                %s
+                <span class="govuk-warning-text__assistive">%(label)s</span>
+                %(content)s
               </strong>
             </div>
-        """ % (
-            mark_safe(content),
-        )
+        """ % {
+            "label": _("Warning"),
+            "content": mark_safe(content),
+        }
         return HTML(snippet)
