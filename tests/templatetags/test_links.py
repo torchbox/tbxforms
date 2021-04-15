@@ -11,7 +11,6 @@ from tbxforms.templatetags.tbxforms import button_link
 from tests.utils import (
     TEST_DIR,
     parse_contents,
-    parse_template,
 )
 
 RESULT_DIR = os.path.join(TEST_DIR, "templatetags", "results")
@@ -21,15 +20,3 @@ def test_button_link():
     html = button_link("http://www.example.com/", "Link")
     assert isinstance(html, SafeString)
     assert parse_html(html) == parse_contents(RESULT_DIR, "button_link.html")
-
-
-def test_breadcrumbs():
-    links = [
-        ("Home", "/"),
-        ("Previous", "/previous/"),
-        ("Current", None),
-    ]
-    template = '{% include "tbx/layout/breadcrumbs.html" %}'
-    assert parse_template(template, crumbs=links) == parse_contents(
-        RESULT_DIR, "breadcrumbs.html"
-    )
