@@ -3,7 +3,7 @@ from django.utils.html import conditional_escape
 from crispy_forms import layout as crispy_forms_layout
 from crispy_forms.utils import TEMPLATE_PACK
 
-from tbxforms.layout import (
+from tbxforms.tbxforms.layout import (
     Fixed,
     Fluid,
     Size,

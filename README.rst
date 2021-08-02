@@ -40,8 +40,8 @@ Build a regular crispy form using layout objects from ``tbxforms``::
 
     from django import forms
 
-    from tbxforms.helper import FormHelper
-    from tbxforms.layout import Submit
+    from tbxforms.tbxforms.helper import FormHelper
+    from tbxforms.tbxforms.layout import Submit
 
 
     class TextInputForm(forms.Form):

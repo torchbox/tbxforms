@@ -8,7 +8,7 @@ from django.core.exceptions import ValidationError
 
 import pytest
 
-from tbxforms.fields import DateInputField
+from tbxforms.tbxforms.fields import DateInputField
 
 
 def test_compress_valid_fields():

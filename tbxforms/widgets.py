@@ -25,18 +25,24 @@ class DateInputWidget(forms.MultiWidget):
                 attrs={
                     "class": "govuk-input govuk-date-input__input govuk-input--width-2",
                     "label": _("Day"),
+                    "pattern": "[0-9]*",
+                    "inputmode": "numeric",
                 }
             ),
             forms.TextInput(
                 attrs={
                     "class": "govuk-input govuk-date-input__input govuk-input--width-2",
                     "label": _("Month"),
+                    "pattern": "[0-9]*",
+                    "inputmode": "numeric",
                 }
             ),
             forms.TextInput(
                 attrs={
                     "class": "govuk-input govuk-date-input__input govuk-input--width-4",
                     "label": _("Year"),
+                    "pattern": "[0-9]*",
+                    "inputmode": "numeric",
                 }
             ),
         ]

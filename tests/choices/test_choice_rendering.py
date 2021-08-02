@@ -3,7 +3,7 @@ from django.template import (
     Template,
 )
 
-from tbxforms.choices import Choice
+from tbxforms.tbxforms.choices import Choice
 
 
 def test_item_index_lookup():

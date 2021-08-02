@@ -1,14 +1,12 @@
 from django import forms
 
-from tbxforms.choices import Choice
-from tbxforms.fields import DateInputField
-from tbxforms.helper import FormHelper
-from tbxforms.layout import (
+from tbxforms.tbxforms.choices import Choice
+from tbxforms.tbxforms.fields import DateInputField
+from tbxforms.tbxforms.helper import FormHelper
+from tbxforms.tbxforms.layout import (
     HTML,
     Fieldset,
     Layout,
-    TabPanel,
-    Tabs,
 )
 
 
@@ -169,18 +167,6 @@ class TableForm(forms.Form):
                 caption="Caption",
                 header_css=header_css,
                 row_css=row_css,
-            )
-        )
-
-
-class TabsForm(forms.Form):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.layout = Layout(
-            Tabs(
-                TabPanel("First Tab", HTML("<p>First panel</p>")),
-                TabPanel("Second Tab", HTML("<p>Second panel</p>")),
             )
         )
 

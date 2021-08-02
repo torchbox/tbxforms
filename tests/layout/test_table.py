@@ -6,7 +6,7 @@ import os
 
 import pytest
 
-from tbxforms.layout import HTML
+from tbxforms.tbxforms.layout import HTML
 from tests.forms import TableForm
 from tests.utils import (
     TEST_DIR,

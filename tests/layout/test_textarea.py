@@ -6,8 +6,8 @@ import os
 
 import pytest
 
-from tbxforms.helper import FormHelper
-from tbxforms.layout import (
+from tbxforms.tbxforms.helper import FormHelper
+from tbxforms.tbxforms.layout import (
     Field,
     Layout,
     Size,

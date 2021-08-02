@@ -1,14 +1,15 @@
-{% load crispy_forms_utils %}
+{% if form_tag %}
+    <form {{ flat_attrs|safe }} method="{{ form_method }}" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+{% endif %}
 
-{% specialspaceless %}
-{% if form_tag %}<form {{ flat_attrs|safe }} method="{{ form_method }}" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% endif %}
-  {% if form_method|lower == 'post' and not disable_csrf %}
-    {% csrf_token %}
-  {% endif %}
+    {% if form_method|lower == 'post' and not disable_csrf %}
+        {% csrf_token %}
+    {% endif %}
 
-  {% include "tbx/display_form.html" %}
+    {% include "tbx/display_form.html" %}
 
-  {% include "tbx/inputs.html" %}
+    {% include "tbx/inputs.html" %}
 
-{% if form_tag %}</form>{% endif %}
-{% endspecialspaceless %}
+{% if form_tag %}
+    </form>
+{% endif %}

@@ -4,8 +4,8 @@ Tests to verify a single (boolean) checkbox is rendered correctly.
 """
 import os
 
-from tbxforms.helper import FormHelper
-from tbxforms.layout import (
+from tbxforms.tbxforms.helper import FormHelper
+from tbxforms.tbxforms.layout import (
     Field,
     Layout,
 )
