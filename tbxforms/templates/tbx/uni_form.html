@@ -1,11 +1,7 @@
-{% load crispy_forms_utils %}
+{% if include_media %}{{ form.media }}{% endif %}
 
-{% specialspaceless %}
-  {% if include_media %}{{ form.media }}{% endif %}
-  {% if form_show_errors %}
-    {% include "tbx/errors.html" %}
-  {% endif %}
-  {% for field in form %}
+{% include "tbx/errors.html" %}
+
+{% for field in form %}
     {% include field_template %}
-  {% endfor %}
-{% endspecialspaceless %}
+{% endfor %}

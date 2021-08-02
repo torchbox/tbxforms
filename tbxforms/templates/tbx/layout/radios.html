@@ -1,47 +1,57 @@
-{% load l10n tbxforms %}
-<fieldset class="govuk-fieldset"{% if field.help_text or field.errors %} aria-describedby="{% if field.help_text %}{{ field.auto_id }}_hint{% endif %}{% for error in field.errors %} {{ field.auto_id }}_{{ forloop.counter }}_error{% endfor %}"{% endif %}>
+{% load i18n l10n tbxforms %}
 
-  {% if field.label %}
-    <legend class="govuk-fieldset__legend{% if legend_size %} {{ legend_size }}{% endif %}">
-      {% if legend_tag %}<{{ legend_tag }} class="govuk-fieldset__heading">{% endif %}
-      {{ field.label|safe }}
-      {% if legend_tag %}</{{ legend_tag }}>{% endif %}
-    </legend>
-  {% endif %}
+<fieldset
+    class="govuk-fieldset"
+    {% if field.help_text or field.errors %}
+        aria-describedby="{% if field.help_text %}{{ field.auto_id }}_hint{% endif %}{% for error in field.errors %} {{ field.auto_id }}_{{ forloop.counter }}_error{% endfor %}"
+    {% endif %}
+>
 
-  {% include 'tbx/layout/help_text_and_errors.html' %}
+    {% if field.label %}
+        <legend class="govuk-fieldset__legend{% if legend_size %} {{ legend_size }}{% endif %}">
+            {% if legend_tag %}<{{ legend_tag }} class="govuk-fieldset__heading">{% endif %}
+            {{ field.label|safe }}
+            {% if not field|show_as_required %} <span>{% trans "(optional)" %}</span>{% endif %}
+            {% if legend_tag %}</{{ legend_tag }}>{% endif %}
+        </legend>
+    {% endif %}
 
-  <div class="govuk-radios{% if radios_inline %}--inline{% endif %}{% if radios_small %} govuk-radios--small{% endif %}">
-    {% for choice in field.field.choices %}
-      <div class="govuk-radios__item">
+    {% include 'tbx/layout/help_text_and_errors.html' %}
 
-        <input
-          type="radio"
-          name="{{ field.html_name }}"
-          class="govuk-radios__input"
-          id="id_{{ field.html_name }}_{{ forloop.counter }}"
-          value="{{ choice.0|unlocalize }}"
-          {% if choice.0 in field.value or choice.0|stringformat:"s" in field.value or choice.0|stringformat:"s" == field.value|stringformat:"s" %}
-            checked="checked"
-          {% endif %}
-          {% if choice.hint %}
-             aria-describedby="id_{{ field.html_name }}_{{ forloop.counter }}_hint"
-          {% endif %}
-        >
+    <div class="govuk-radios{% if radios_inline %}--inline{% endif %}{% if radios_small %} govuk-radios--small{% endif %}">
+        {% for choice in field.field.choices %}
+            <div class="govuk-radios__item">
+                <input
+                    type="radio"
+                    name="{{ field.html_name }}"
+                    class="govuk-radios__input"
+                    id="id_{{ field.html_name }}_{{ forloop.counter }}"
+                    value="{{ choice.0|unlocalize }}"
 
-        <label class="govuk-label govuk-radios__label" for="id_{{ field.html_name }}_{{ forloop.counter }}">
-          {{ choice.1|unlocalize }}
-        </label>
-        {% if choice.hint %}
-          <span id="id_{{ field.html_name }}_{{ forloop.counter }}_hint" class="govuk-hint govuk-radios__hint">
-            {{ choice.hint }}
-          </span>
-        {% endif %}
-      </div>
-      {% if choice.divider %}
-        <div class="govuk-radios__divider">{{ choice.divider }}</div>
-      {% endif %}
-    {% endfor %}
-  </div>
+                    {% if choice.0 in field.value or choice.0|stringformat:"s" in field.value or choice.0|stringformat:"s" == field.value|stringformat:"s" %}
+                        checked="checked"
+                    {% endif %}
+
+                    {% if choice.hint %}
+                        aria-describedby="id_{{ field.html_name }}_{{ forloop.counter }}_hint"
+                    {% endif %}
+                >
+
+                <label class="govuk-label govuk-radios__label" for="id_{{ field.html_name }}_{{ forloop.counter }}">
+                    {{ choice.1|unlocalize }}
+                </label>
+
+                {% if choice.hint %}
+                    <span id="id_{{ field.html_name }}_{{ forloop.counter }}_hint" class="govuk-hint govuk-radios__hint">
+                        {{ choice.hint }}
+                    </span>
+                {% endif %}
+            </div>
+
+            {% if choice.divider %}
+                <div class="govuk-radios__divider">{{ choice.divider }}</div>
+            {% endif %}
+        {% endfor %}
+    </div>
 
 </fieldset>

@@ -11,8 +11,6 @@ from .constants import (
 from .containers import (
     Div,
     Fieldset,
-    TabPanel,
-    Tabs,
 )
 from .content import (
     HTML,
@@ -36,6 +34,4 @@ __all__ = [
     "Layout",
     "Size",
     "Submit",
-    "TabPanel",
-    "Tabs",
 ]

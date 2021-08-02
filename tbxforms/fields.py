@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.utils.translation import ugettext_lazy as _
 
-from tbxforms.widgets import DateInputWidget
+from tbxforms.tbxforms.widgets import DateInputWidget
 
 
 class DateInputField(forms.MultiValueField):
@@ -43,8 +43,8 @@ class DateInputField(forms.MultiValueField):
     def __init__(self, **kwargs):
         # Define one message for all fields.
         error_messages = {
-            "required": _("Enter the day, month and year"),
-            "incomplete": _("Enter the day, month and year"),
+            "required": _("Enter the day, month, and year."),
+            "incomplete": _("Enter the day, month, and year."),
         }
         # Or define a different message for each field.
         fields = (
@@ -70,6 +70,9 @@ class DateInputField(forms.MultiValueField):
                 ],
             ),
         )
+
+        if "help_text" not in kwargs:
+            kwargs["help_text"] = "For example, 24 12 2020"
 
         super().__init__(
             error_messages=error_messages, fields=fields, **kwargs

@@ -1,4 +1,4 @@
-from tbxforms.choices import Choice
+from tbxforms.tbxforms.choices import Choice
 
 
 def test_set_attribute():

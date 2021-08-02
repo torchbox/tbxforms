@@ -1,5 +1,6 @@
+import json
+
 from django.template.loader import render_to_string
-from django.utils.text import slugify
 
 from crispy_forms import layout as crispy_forms_layout
 from crispy_forms.utils import (
@@ -7,7 +8,7 @@ from crispy_forms.utils import (
     flatatt,
 )
 
-from tbxforms.layout import Size
+from tbxforms.tbxforms.layout import Size
 
 
 class Div(crispy_forms_layout.Div):
@@ -45,7 +46,16 @@ class Div(crispy_forms_layout.Div):
 
     """
 
-    pass
+    def __init__(self, *fields, **kwargs):
+        if "data_conditional" in kwargs:
+            conditional_attrs = kwargs.pop("data_conditional")
+            kwargs["data_conditional_field_name"] = conditional_attrs[
+                "field_name"
+            ]
+            kwargs["data_conditional_field_values"] = json.dumps(
+                conditional_attrs["values"]
+            )
+        super().__init__(*fields, **kwargs)
 
 
 class Fieldset(crispy_forms_layout.LayoutObject):
@@ -111,6 +121,15 @@ class Fieldset(crispy_forms_layout.LayoutObject):
         if not hasattr(self, "css_class"):
             self.css_class = kwargs.pop("css_class", None)
 
+        if "data_conditional" in kwargs:
+            conditional_attrs = kwargs.pop("data_conditional")
+            kwargs["data_conditional_field_name"] = conditional_attrs[
+                "field_name"
+            ]
+            kwargs["data_conditional_field_values"] = json.dumps(
+                conditional_attrs["values"]
+            )
+
         self.css_id = kwargs.pop("css_id", None)
         self.template = kwargs.pop("template", self.template)
         self.flat_attrs = flatatt(kwargs)
@@ -129,98 +148,3 @@ class Fieldset(crispy_forms_layout.LayoutObject):
         context.update(self.context)
         template = self.get_template_name(template_pack)
         return render_to_string(template, context)
-
-
-class Tabs(Div):
-    """
-    A layout object for displaying a set of tabs.
-
-    ``Tabs`` contains a list of ``TabPanels`` which in turn contains the
-    list of fields and other layout objects which make up the content of
-    each tab.
-
-    Examples::
-
-        Tabs(
-            TabPane('tab_name_1', 'form_field_1', 'form_field_2'),
-            TabPane('tab_name_2', 'form_field_3')
-        )
-
-    Arguments:
-        css_id (str, optional): an unique identifier for the parent <div>.
-
-        css_class (str, optional): the names of one or more CSS classes that
-            will be added to the parent <div>. The basic Design System CSS
-            classes will be added automatically. This parameter is for any
-            extra styling you want to apply.
-
-        template (str, optional): the path to a template that overrides the
-            one provided by the template pack.
-
-        *fields: a list of TabPanel objects that make up the set of tabs.
-
-        **kwargs:  any additional attributes you want to add to the parent
-            <div>.
-
-    """
-
-    template = "%s/layout/tabs.html"
-
-    def render(
-        self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs
-    ):
-        content = self.get_rendered_fields(
-            form, form_style, context, template_pack
-        )
-        links = "".join(tab.render_link(template_pack) for tab in self.fields)
-        context.update({"tabs": self, "links": links, "content": content})
-        template = self.get_template_name(template_pack)
-        return render_to_string(template, context.flatten())
-
-
-class TabPanel(Div):
-    """
-    A layout object that displays the contents of each pane in a set of tabs.
-
-    Examples::
-
-        TabPanel('tab_name', 'form_field_1', 'form_field_2', 'form_field_3')
-
-    Arguments:
-        name (str): the title of the panel.
-
-        css_id (str, optional): an unique identifier for the parent <div>.
-            If you don't set this then the slugified title is used for the
-            id attribute. You must set this if you have more than one set
-            of tabs on a page with the same set of titles.
-
-        css_class (str, optional): the names of one or more CSS classes that
-            will be added to the parent <div>. The basic Design System CSS
-            classes will be added automatically. This parameter is for any
-            extra styling you want to apply.
-
-        template (str, optional): the path to a template that overrides the
-            one provided by the template pack.
-
-
-        *fields: a list of layout objects that make up the contents of the panel.
-
-        **kwargs:  any additional attributes you want to add to the <div>
-            element used for create the tab panel.
-
-    """
-
-    css_class = "govuk-tabs__panel"
-    link_template = "%s/layout/tab-link.html"
-
-    def __init__(self, name, *fields, **kwargs):
-        super().__init__(*fields, **kwargs)
-        self.name = name
-        if "css_id" in kwargs:
-            self.css_id = kwargs["css_id"]
-        if not self.css_id:
-            self.css_id = slugify(self.name)
-
-    def render_link(self, template_pack=TEMPLATE_PACK):
-        link_template = self.link_template % template_pack
-        return render_to_string(link_template, {"link": self})

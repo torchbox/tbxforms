@@ -1,3 +1,7 @@
+import ast
+import html
+import json
+
 from django import (
     forms,
     template,
@@ -9,20 +13,23 @@ from crispy_forms.utils import TEMPLATE_PACK
 register = template.Library()
 
 
-@register.inclusion_tag("tbx/layout/error_summary.html")
-def error_summary(form):
-    """
-    Template tag that renders the list of errors from a form.
-    """
-    return {"form": form}
-
-
 @register.filter
-def dict_lookup(d, value):
+def show_as_required(boundfield):
     """
-    Template filter that looks up a value from a dict.
+    Shows fields that are conditionally required (i.e. fields that do not have
+    the HTML 'required' flag, as they become 'required' via the clean method
+    due to another action, such as selecting "Other" on a series of radio
+    buttons) as required.
     """
-    return d.get(value)
+    if any(
+        [
+            boundfield.field.required,
+            boundfield.name
+            in boundfield.form.conditional_fields_to_show_as_required(),
+        ]
+    ):
+        return True
+    return False
 
 
 @register.filter
@@ -122,7 +129,6 @@ def pairwise(iterable):
 class CrispyGDSFieldNode(template.Node):
     """
     The TemplateNode used for rendering a field from the template pack.
-
     """
 
     def __init__(self, field, attrs):
@@ -158,7 +164,7 @@ class CrispyGDSFieldNode(template.Node):
             [getattr(field.field.widget, "widget", field.field.widget)],
         )
 
-        if template_pack == "gds":
+        if template_pack == "tbx":
             if is_multivalue(field):
                 error_widgets = [field.widget for field in field.field.fields]
                 error_count = sum(
@@ -175,9 +181,14 @@ class CrispyGDSFieldNode(template.Node):
         converters = {
             "checkboxinput": "govuk-checkboxes__input",
             "select": "govuk-select",
-            "textinput": "govuk-input",
+            "lazyselect": "govuk-select",
             "textarea": "govuk-textarea",
             "clearablefileinput": "govuk-file-upload",
+            "textinput": "govuk-input govuk-input--text",
+            "urlinput": "govuk-input govuk-input--url",
+            "numberinput": "govuk-input govuk-input--number",
+            "emailinput": "govuk-input govuk-input--email",
+            "passwordinput": "govuk-input govuk-input--password",
         }
         converters.update(getattr(settings, "CRISPY_CLASS_CONVERTERS", {}))
 
@@ -196,26 +207,7 @@ class CrispyGDSFieldNode(template.Node):
 
             css_class = " ".join(css_class)
 
-            if (
-                template_pack == "bootstrap3"
-                and not is_checkbox(field)
-                and not is_file(field)
-                and not is_multivalue(field)
-            ):
-                css_class += " form-control"
-                if field.errors:
-                    css_class += " form-control-danger"
-
-            if template_pack == "bootstrap4" and not is_multivalue(field):
-                if not is_checkbox(field):
-                    css_class += " form-control"
-                    if is_file(field):
-                        css_class += "-file"
-                if field.errors:
-                    css_class += " is-invalid"
-
-            if template_pack == "gds":
-
+            if template_pack == "tbx":
                 # The ability to override input_type was added to avoid having to
                 # create new widgets. However, as a result, the browser validates
                 # the field and displays a red border with no feedback to the user.
@@ -253,7 +245,6 @@ class CrispyGDSFieldNode(template.Node):
                         )
 
                 if field.errors:
-
                     widget_class_name = widget.__class__.__name__
 
                     if widget_class_name in [
@@ -310,6 +301,18 @@ class CrispyGDSFieldNode(template.Node):
 
             widget.attrs["class"] = css_class
 
+            # Convert conditional dict to two separate JS-friendly variables.
+            if "data-conditional" in widget.attrs:
+                conditional_attrs = ast.literal_eval(
+                    html.unescape(widget.attrs.pop("data-conditional"))
+                )
+                widget.attrs[
+                    "data-conditional-field-name"
+                ] = conditional_attrs["field_name"]
+                widget.attrs["data-conditional-field-values"] = json.dumps(
+                    conditional_attrs["values"]
+                )
+
             # HTML5 required attribute
             if (
                 html5_required
@@ -336,14 +339,14 @@ class CrispyGDSFieldNode(template.Node):
         return str(field)
 
 
-@register.tag(name="crispy_gds_field")
-def crispy_gds_field(parser, token):
+@register.tag(name="crispy_tbx_field")
+def crispy_tbx_field(parser, token):
     """
     The template tag used to render fields from the template pack.
 
     Examples: ::
 
-        {% crispy_gds_field field attrs %}
+        {% crispy_tbx_field field attrs %}
 
     The code was copied over verbatim from ``django-crispy-forms``. Any additions
     are clearly marked with a check to see if the 'gds' template pack is being

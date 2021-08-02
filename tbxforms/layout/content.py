@@ -7,7 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms import layout as crispy_forms_layout
 
-from tbxforms.layout.constants import Colour
+from tbxforms.tbxforms.layout.constants import Colour
 
 
 class HTML(crispy_forms_layout.HTML):

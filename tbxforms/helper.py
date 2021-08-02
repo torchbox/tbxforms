@@ -1,7 +1,7 @@
 from crispy_forms import helper as crispy_forms_helper
 from crispy_forms.utils import TEMPLATE_PACK
 
-from tbxforms.layout import Size
+from tbxforms.tbxforms.layout import Size
 
 
 class FormHelper(crispy_forms_helper.FormHelper):

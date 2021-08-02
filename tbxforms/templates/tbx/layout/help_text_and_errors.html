@@ -1,13 +1,2 @@
-{% if help_text_inline and not error_text_inline %}
-    {% include 'tbx/layout/help_text.html' %}
-{% endif %}
-
-{% if not help_text_inline %}
-    {% include 'tbx/layout/help_text.html' %}
-{% endif %}
-
-{% if error_text_inline %}
-    {% include 'tbx/layout/field_errors.html' %}
-{% else %}
-    {% include 'tbx/layout/field_errors_block.html' %}
-{% endif %}
+{% include 'tbx/layout/field_errors.html' %}
+{% include 'tbx/layout/help_text.html' %}

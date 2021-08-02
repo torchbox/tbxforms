@@ -1,9 +1,0 @@
-<div class="govuk-tabs{% if tabs.css_class %} {{ tabs.css_class }}{% endif %}" data-module="govuk-tabs" {% if tabs.css_id%} id="{{ tabs.css_id }}"{% endif %} {{ tabs.flat_attrs|safe }}>
-  <h2 class="govuk-tabs__title">
-    Contents
-  </h2>
-  <ul class="govuk-tabs__list">
-      {{ links|safe }}
-  </ul>
-  {{ content|safe }}
-</div>
