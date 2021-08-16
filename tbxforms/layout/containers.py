@@ -23,7 +23,7 @@ class Div(crispy_forms_layout.Div):
 
     Examples::
 
-        Div("name", "email", "phone", css_class="govuk-!-margin-bottom-5")
+        Div("name", "email", "phone", css_class="tbxforms-!-margin-bottom-5")
         Div("street", "city", "post_code")
 
     Arguments:
@@ -98,7 +98,7 @@ class Fieldset(crispy_forms_layout.LayoutObject):
 
     """
 
-    css_class = "govuk-fieldset"
+    css_class = "tbxforms-fieldset"
     template = "%s/layout/fieldset.html"
 
     def __init__(

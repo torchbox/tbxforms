@@ -1,0 +1,62 @@
+// --------------------------------- Colors ------------------------------------
+
+$tbxforms-error-colour: #d4351c !default;
+$tbxforms-text-colour: #0b0c0c !default;
+$tbxforms-print-text-colour: #000 !default;
+$tbxforms-secondary-text-colour: #505a5f !default;
+$tbxforms-border-colour-conditional: #b1b4b6 !default;
+$tbxforms-input-border-colour: $tbxforms-text-colour !default;
+$tbxforms-hover-colour: #b1b4b6 !default;
+$tbxforms-focus-colour: #ffbf47 !default;
+$tbxforms-active-bg: #444 !default;
+$tbxforms-active-colour: #fff !default;
+
+// --------------------------------- Sizing ------------------------------------
+
+$tbxforms-base-font-size: 16px !default;
+$tbxforms-base-line-height: 25px !default;
+
+$tbxforms-font-sizes: () !default;
+$tbxforms-font-sizes: map-merge(
+    (
+        default: $tbxforms-base-font-size,
+        xl: 28px,
+        l: 21px,
+        m: 18px,
+        s: 15px
+    ),
+    $font-sizes
+);
+
+// --------------------------------- Misc --------------------------------------
+
+$tbxforms-weight--bold: 700 !default;
+$tbxforms-weight--normal: 400 !default;
+
+$tbxforms-grid: 20px !default;
+$tbxforms-spacer: $tbxforms-grid !default;
+$tbxforms-in-field-spacer: ($tbxforms-grid / 2) !default;
+$tbxforms-form-group-spacer: ($tbxforms-grid * 1.5) !default;
+
+$tbxforms-border-width: 4px !default;
+$tbxforms-border-width-narrow: 2px !default;
+$tbxforms-border-width-form-element: $tbxforms-border-width-narrow !default;
+$tbxforms-border-width-form-element-error: $tbxforms-border-width-narrow !default;
+$tbxforms-border-width-form-group: $tbxforms-border-width !default;
+$tbxforms-border-width-conditional: $tbxforms-border-width !default;
+
+$tbxforms-hover-width: 10px !default;
+$tbxforms-focus-width: 3px !default;
+// When the default focus width is used on a curved edge it looks visually smaller.
+// So for the circular radios we bump the default to make it look visually consistent.
+$tbxforms-radios-focus-width: $tbxforms-focus-width + 1px !default;
+
+$tbxforms-touch-target-size: 44px !default;
+
+$tbxforms-checkboxes-size: 40px !default;
+$tbxforms-small-checkboxes-size: 24px !default;
+$tbxforms-checkboxes-label-padding-left-right: $tbxforms-in-field-spacer !default;
+
+$tbxforms-radios-size: 40px !default;
+$tbxforms-small-radios-size: 24px !default;
+$tbxforms-radios-label-padding-left-right: $tbxforms-in-field-spacer !default;

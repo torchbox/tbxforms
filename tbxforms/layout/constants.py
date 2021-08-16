@@ -82,7 +82,7 @@ class Colour:
         """
         if validate and not cls.is_valid(value):
             raise ValueError("Unexpected colour", value)
-        return "govuk-tag--%s" % value
+        return "tbxforms-tag--%s" % value
 
 
 class Size:
@@ -152,7 +152,7 @@ class Size:
         """
         if validate and not cls.is_valid(value):
             raise ValueError("Unexpected size", value)
-        return "govuk-label--%s" % value
+        return "tbxforms-label--%s" % value
 
     @classmethod
     def for_legend(cls, value, validate=True):
@@ -173,7 +173,7 @@ class Size:
         """
         if validate and not cls.is_valid(value):
             raise ValueError("Unexpected size", value)
-        return "govuk-fieldset__legend--%s" % value
+        return "tbxforms-fieldset__legend--%s" % value
 
 
 class Fixed:
@@ -242,7 +242,7 @@ class Fixed:
         """
         if validate and not cls.is_valid(value):
             raise ValueError("Unexpected fixed width", value)
-        return "govuk-input--width-%d" % value
+        return "tbxforms-input--width-%d" % value
 
 
 class Fluid:
@@ -315,4 +315,4 @@ class Fluid:
         """
         if validate and not cls.is_valid(value):
             raise ValueError("Unexpected fluid width", value)
-        return "govuk-!-width-%s" % value
+        return "tbxforms-!-width-%s" % value

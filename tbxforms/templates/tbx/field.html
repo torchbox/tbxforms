@@ -4,10 +4,10 @@
     {{ field }}
 {% else %}
     {% if max_characters or max_words %}
-        <div class="govuk-character-count" data-module="govuk-character-count"{% if max_characters %} data-maxlength="{{ max_characters }}"{% else %} data-maxwords="{{ max_words }}"{% endif %}{% if threshold %} data-threshold="{{ threshold }}"{% endif %}>
+        <div class="tbxforms-character-count" data-module="tbxforms-character-count"{% if max_characters %} data-maxlength="{{ max_characters }}"{% else %} data-maxwords="{{ max_words }}"{% endif %}{% if threshold %} data-threshold="{{ threshold }}"{% endif %}>
     {% endif %}
 
-    <{% if tag %}{{ tag }}{% else %}div{% endif %} id="div_{{ field.auto_id }}" class="govuk-form-group{% if field.errors %} govuk-form-group--error{% endif %}{% if wrapper_class %} {{ wrapper_class }}{% endif %}{% if field.css_classes %} {{ field.css_classes }}{% endif %}">
+    <{% if tag %}{{ tag }}{% else %}div{% endif %} id="div_{{ field.auto_id }}" class="tbxforms-form-group{% if field.errors %} tbxforms-form-group--error{% endif %}{% if wrapper_class %} {{ wrapper_class }}{% endif %}{% if field.css_classes %} {{ field.css_classes }}{% endif %}">
 
     {% if field|is_checkboxes %}
         {% include 'tbx/layout/checkboxes.html' %}
@@ -23,8 +23,8 @@
 
     {% if not field|is_checkboxes and not field|is_radios and not field|is_multivalue %}
         {% if field.label and not field|is_checkbox and form_show_labels %}
-            {% if label_tag %}<{{ label_tag }} class="govuk-label-wrapper">{% endif %}
-            <label for="{{ field.id_for_label }}" class="govuk-label{% if label_size %} {{ label_size }}{% endif %}">
+            {% if label_tag %}<{{ label_tag }} class="tbxforms-label-wrapper">{% endif %}
+            <label for="{{ field.id_for_label }}" class="tbxforms-label{% if label_size %} {{ label_size }}{% endif %}">
                 {{ field.label|safe }}
                 {% if not field|show_as_required %} <span>{% trans "(optional)" %}</span>{% endif %}
             </label>
@@ -33,10 +33,10 @@
 
         {% if field|is_checkbox and form_show_labels %}
             {% include 'tbx/layout/help_text_and_errors.html' %}
-            <div class="govuk-checkboxes{% if checkboxes_small %} govuk-checkboxes--small{% endif %}">
-                <div class="govuk-checkboxes__item">
+            <div class="tbxforms-checkboxes{% if checkboxes_small %} tbxforms-checkboxes--small{% endif %}">
+                <div class="tbxforms-checkboxes__item">
                     {% crispy_tbx_field field %}
-                    <label class="govuk-label govuk-checkboxes__label" for="{{ field.id_for_label }}">
+                    <label class="tbxforms-label tbxforms-checkboxes__label" for="{{ field.id_for_label }}">
                         {{ field.label|safe }}
                     </label>
                 </div>
@@ -45,7 +45,7 @@
             {% include 'tbx/layout/help_text_and_errors.html' %}
             {% crispy_tbx_field field %}
             {% if max_characters or max_words %}
-                <span id="{{ field.id_for_label }}-info" class="govuk-hint govuk-character-count__message" aria-live="polite">
+                <span id="{{ field.id_for_label }}-info" class="tbxforms-hint tbxforms-character-count__message" aria-live="polite">
                     {% if max_characters %}
                         {% blocktrans %}
                             You can enter up to {{ max_characters }} characters

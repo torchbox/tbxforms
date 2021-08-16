@@ -1,0 +1,55 @@
+{
+  "name": "tbxforms",
+  "version": "0.0.0",
+  "main": "./dist/tbxforms.umd.js",
+  "module": "./dist/tbxforms.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/tbxforms.es.js",
+      "require": "./dist/tbxforms.umd.js"
+    }
+  },
+  "files": [
+    "dist/*.js"
+  ],
+  "description": "A Torchbox-flavoured template pack for django-crispy-forms, based on crispy-forms-gds",
+  "author": "Kyle Bayliss",
+  "license": "MIT",
+  "homepage": "https://github.com/torchbox/tbxforms",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/torchbox/tbxforms.git"
+  },
+  "bugs": {
+    "url": "https://github.com/torchbox/tbxforms/issues"
+  },
+  "keywords": [
+    "crispy",
+    "django",
+    "django crispy forms",
+    "django-crispy-forms",
+    "forms",
+    "gds",
+    "tbxforms",
+    "wagtail"
+  ],
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.23.0",
+    "@typescript-eslint/parser": "^4.23.0",
+    "autoprefixer": "^10.2.5",
+    "eslint": "^7.26.0",
+    "prettier": "2.3.2",
+    "tailwindcss": "^2.1.2",
+    "tailwindcss-rtl": "^0.7.3",
+    "typescript": "^4.2.3",
+    "vite": "^2.2.3"
+  },
+  "scripts": {
+    "start": "vite",
+    "build": "tsc && vite build && vite build --mode lib",
+    "prepare": "./.githooks/deploy.sh",
+    "lint": "prettier --check '**/?(.)*.{md,mdx,css,scss,js,json,json5,yaml,yml}' && eslint . --ext .js,.ts",
+    "format": "prettier --write '**/?(.)*.{md,mdx,css,scss,js,json,json5,yaml,yml}'",
+    "report:package": "npm pack --loglevel notice 2>&1 >/dev/null | sed -e 's/^npm notice //' && rm *.tgz"
+  }
+}

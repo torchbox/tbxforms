@@ -1,0 +1,52 @@
+.tbxforms-label {
+    @include tbxforms-font($size: 'm');
+    @include tbxforms-text-colour();
+
+    display: block;
+    margin-bottom: $tbxforms-in-field-spacer;
+
+    + .tbxforms-error-message,
+    + .tbxforms-hint {
+        margin-top: -$tbxforms-in-field-spacer;
+    }
+}
+
+// Modifiers that make labels look more like their equivalent headings
+
+.tbxforms-label--xl {
+    @include tbxforms-font($size: 'xl', $weight: bold);
+    margin-bottom: ($tbxforms-spacer * 1.5);
+
+    + .tbxforms-error-message,
+    + .tbxforms-hint {
+        margin-top: -($tbxforms-spacer * 1.5);
+    }
+}
+
+.tbxforms-label--l {
+    @include tbxforms-font($size: 'l', $weight: bold);
+    margin-bottom: ($tbxforms-spacer * 1.25);
+
+    + .tbxforms-error-message,
+    + .tbxforms-hint {
+        margin-top: -($tbxforms-spacer * 1.25);
+    }
+}
+
+.tbxforms-label--m {
+    @include tbxforms-font($size: 'm', $weight: bold);
+}
+
+.tbxforms-label--s {
+    @include tbxforms-font($size: 'default', $weight: bold);
+}
+
+// When the label is nested inside a heading, override the heading so that it
+// does not have a margin. Effectively we want to be able to treat the heading
+// as if it is not there.
+//
+// This breaks BEM conventions because it exists as a parent of the 'block',
+// so we can't really consider an element.
+.tbxforms-label-wrapper {
+    margin: 0;
+}

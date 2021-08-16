@@ -12,8 +12,8 @@ class Button(BaseInput):
     Examples: ::
 
         Button('add', 'Add contact')
-        Button('cancel', 'Cancel', css_class="govuk-button--secondary")
-        Button('delete', 'Delete account', css_class="govuk-button--warning")
+        Button('cancel', 'Cancel', css_class="tbxforms-button--secondary")
+        Button('delete', 'Delete account', css_class="tbxforms-button--warning")
 
     To save some typing there are class methods which save you the trouble of setting
     the css class: ::
@@ -39,7 +39,7 @@ class Button(BaseInput):
 
         css_class (str, optional): the names of one or more CSS classes that
             will be added to the <button>. The basic Design System CSS class,
-            ``govuk-button`` is added automatically. This parameter is for any
+            ``tbxforms-button`` is added automatically. This parameter is for any
             extra styling you want to apply.
 
         template (str, optional): the path to a template that overrides the
@@ -50,7 +50,7 @@ class Button(BaseInput):
     """
 
     template = "%s/layout/button.html"
-    field_classes = "govuk-button"
+    field_classes = "tbxforms-button"
 
     @classmethod
     def primary(cls, name, value, disabled=False, **kwargs):
@@ -64,7 +64,7 @@ class Button(BaseInput):
             name,
             value,
             disabled=disabled,
-            css_class="govuk-button--secondary",
+            css_class="tbxforms-button--secondary",
             **kwargs,
         )
 
@@ -75,7 +75,7 @@ class Button(BaseInput):
             name,
             value,
             disabled=disabled,
-            css_class="govuk-button--warning",
+            css_class="tbxforms-button--warning",
             **kwargs,
         )
 

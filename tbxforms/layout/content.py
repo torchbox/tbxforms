@@ -44,11 +44,11 @@ class HTML(crispy_forms_layout.HTML):
 
     to the actual layout::
 
-        HTML('<details class="govuk-details" data-module="govuk-details">
-              <summary class="govuk-details__summary">
-                <span class="govuk-details__summary-text">Help with nationality</span>
+        HTML('<details class="tbxforms-details" data-module="tbxforms-details">
+              <summary class="tbxforms-details__summary">
+                <span class="tbxforms-details__summary-text">Help with nationality</span>
               </summary>
-              <div class="govuk-details__text">
+              <div class="tbxforms-details__text">
                   We need to know your nationality so we can work out which
                   elections you’re entitled to vote in.
               </div>
@@ -73,11 +73,11 @@ class HTML(crispy_forms_layout.HTML):
 
         """
         snippet = """
-            <details class="govuk-details" data-module="govuk-details">
-              <summary class="govuk-details__summary">
-                <span class="govuk-details__summary-text">%s</span>
+            <details class="tbxforms-details" data-module="tbxforms-details">
+              <summary class="tbxforms-details__summary">
+                <span class="tbxforms-details__summary-text">%s</span>
               </summary>
-              <div class="govuk-details__text">%s</div>
+              <div class="tbxforms-details__text">%s</div>
             </details>
             """ % (
             mark_safe(title),
@@ -87,7 +87,7 @@ class HTML(crispy_forms_layout.HTML):
 
     @classmethod
     def heading(cls, tag, size, content):
-        snippet = '<{0} class="govuk-heading-{1}">{2}</{0}>'.format(
+        snippet = '<{0} class="tbxforms-heading-{1}">{2}</{0}>'.format(
             tag, size, content
         )
         return HTML(snippet)
@@ -147,7 +147,9 @@ class HTML(crispy_forms_layout.HTML):
             content: the text to be displayed.
 
         """
-        snippet = '<div class="govuk-inset-text">%s</div>' % mark_safe(content)
+        snippet = '<div class="tbxforms-inset-text">%s</div>' % mark_safe(
+            content
+        )
         return HTML(snippet)
 
     @classmethod
@@ -159,7 +161,7 @@ class HTML(crispy_forms_layout.HTML):
             content: the text to be displayed.
 
         """
-        snippet = '<p class="govuk-body">%s</p>' % mark_safe(content)
+        snippet = '<p class="tbxforms-body">%s</p>' % mark_safe(content)
         return HTML(snippet)
 
     @classmethod
@@ -175,9 +177,9 @@ class HTML(crispy_forms_layout.HTML):
 
         """
         snippet = """
-            <div class="govuk-panel govuk-panel--confirmation">
-              <h1 class="govuk-panel__title">%s</h1>
-              <div class="govuk-panel__body">%s</div>
+            <div class="tbxforms-panel tbxforms-panel--confirmation">
+              <h1 class="tbxforms-panel__title">%s</h1>
+              <div class="tbxforms-panel__body">%s</div>
             </div>
             """ % (
             mark_safe(title),
@@ -198,8 +200,8 @@ class HTML(crispy_forms_layout.HTML):
             headers = ["Date", "Amount"]
 
             header_css = [
-                "govuk-!width-one-half",
-                "govuk-table__header--numeric govuk-!width-one-half"
+                "tbxforms-!width-one-half",
+                "tbxforms-table__header--numeric tbxforms-!width-one-half"
             ]
 
             rows = [
@@ -208,7 +210,7 @@ class HTML(crispy_forms_layout.HTML):
                 [Total estimated pay", "£4,282.20"]
             ]
 
-            row_css = ["". "govuk-table__cell--numeric"]
+            row_css = ["". "tbxforms-table__cell--numeric"]
 
             self.helper.layout = Layout(
                 HTML.table(headers, rows, caption, header_css, row_css)
@@ -241,24 +243,24 @@ class HTML(crispy_forms_layout.HTML):
 
         context = Context(dict(caption=caption, headers=headers, rows=rows))
         template = """
-            <table class="govuk-table">
+            <table class="tbxforms-table">
             {% if caption %}
-              <caption class="govuk-table__caption">{{ caption }}</caption>
+              <caption class="tbxforms-table__caption">{{ caption }}</caption>
             {% endif %}
             {% if headers %}
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
+            <thead class="tbxforms-table__head">
+              <tr class="tbxforms-table__row">
                 {% for col in headers %}
-                  <th scope="col" class="govuk-table__header{% if col.1 %} {{ col.1 }}{% endif %}">{{ col.0 }}</th>
+                  <th scope="col" class="tbxforms-table__header{% if col.1 %} {{ col.1 }}{% endif %}">{{ col.0 }}</th>
                 {% endfor %}
               </tr>
             </thead>
             {% endif %}
-            <tbody class="govuk-table__body">
+            <tbody class="tbxforms-table__body">
               {% for row in rows %}
-                <tr class="govuk-table__row">
+                <tr class="tbxforms-table__row">
                   {% for col in row %}
-                    <td class="govuk-table__cell{% if col.1 %} {{ col.1 }}{% endif %}">{{ col.0 }}</td>
+                    <td class="tbxforms-table__cell{% if col.1 %} {{ col.1 }}{% endif %}">{{ col.0 }}</td>
                   {% endfor %}
                 </tr>
               {% endfor %}
@@ -283,7 +285,7 @@ class HTML(crispy_forms_layout.HTML):
             colour: the name of the background colour used in the tag.
 
         """
-        snippet = '<strong class="govuk-tag %s">%s</strong>' % (
+        snippet = '<strong class="tbxforms-tag %s">%s</strong>' % (
             Colour.for_tag(colour, validate=False),
             mark_safe(title),
         )
@@ -301,10 +303,10 @@ class HTML(crispy_forms_layout.HTML):
 
         """
         snippet = """
-            <div class="govuk-warning-text">
-              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-              <strong class="govuk-warning-text__text">
-                <span class="govuk-warning-text__assistive">%(label)s</span>
+            <div class="tbxforms-warning-text">
+              <span class="tbxforms-warning-text__icon" aria-hidden="true">!</span>
+              <strong class="tbxforms-warning-text__text">
+                <span class="tbxforms-warning-text__assistive">%(label)s</span>
                 %(content)s
               </strong>
             </div>

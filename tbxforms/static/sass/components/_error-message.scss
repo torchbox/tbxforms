@@ -1,0 +1,11 @@
+.tbxforms-error-message {
+    @include tbxforms-font($size: 'default', $weight: bold);
+    display: block;
+    margin-bottom: $tbxforms-in-field-spacer;
+    clear: both;
+    color: $tbxforms-error-colour;
+
+    + .tbxforms-hint {
+        margin-top: -$tbxforms-in-field-spacer;
+    }
+}

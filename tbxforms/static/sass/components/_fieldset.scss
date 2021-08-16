@@ -1,0 +1,80 @@
+.tbxforms-fieldset {
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    @include tbxforms-clearfix();
+
+    &:not(.tbxforms-form-group) {
+        margin: 0;
+    }
+}
+
+// // Fix for Firefox < 53
+// // https://bugzilla.mozilla.org/show_bug.cgi?id=504622
+// @supports not (caret-color: auto) {
+//     .tbxforms-fieldset,
+//     x:-moz-any-link {
+//         // stylelint-disable-line selector-type-no-unknown
+//         display: table-cell;
+//     }
+// }
+
+.tbxforms-fieldset__legend {
+    @include tbxforms-font($size: 'l', $weight: bold);
+    @include tbxforms-text-colour();
+
+    // Fix legend text wrapping in Edge and IE
+    // 1. IE9-11 & Edge 12-13
+    // 2. IE8-11
+    box-sizing: border-box; // 1
+    display: table; // 2
+    max-width: 100%; // 1
+    margin-bottom: $tbxforms-in-field-spacer;
+    padding: 0;
+
+    white-space: normal; // 1
+
+    + .tbxforms-error-message,
+    + .tbxforms-hint {
+        margin-top: -$tbxforms-in-field-spacer;
+    }
+}
+
+// Modifiers that make legends look more like their equivalent headings
+
+.tbxforms-fieldset__legend--xl {
+    @include tbxforms-font($size: 'xl', $weight: bold);
+    margin-bottom: ($tbxforms-spacer * 1.5);
+
+    + .tbxforms-error-message,
+    + .tbxforms-hint {
+        margin-top: -($tbxforms-spacer * 1.5);
+    }
+}
+
+.tbxforms-fieldset__legend--l {
+    @include tbxforms-font($size: 'l', $weight: bold);
+    margin-bottom: ($tbxforms-spacer * 1.25);
+
+    + .tbxforms-error-message,
+    + .tbxforms-hint {
+        margin-top: -($tbxforms-spacer * 1.25);
+    }
+}
+
+.tbxforms-fieldset__legend--m {
+    @include tbxforms-font($size: 'm', $weight: bold);
+}
+
+.tbxforms-fieldset__legend--s {
+    @include tbxforms-font($size: 'default', $weight: bold);
+}
+
+// When the legend contains an H1, we want the H1 to inherit all styles from
+// the legend. Effectively we want to be able to treat the heading as if it is
+// not there.
+.tbxforms-fieldset__heading {
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+}

@@ -179,16 +179,16 @@ class CrispyGDSFieldNode(template.Node):
             attrs = [attrs] * len(widgets)
 
         converters = {
-            "checkboxinput": "govuk-checkboxes__input",
-            "select": "govuk-select",
-            "lazyselect": "govuk-select",
-            "textarea": "govuk-textarea",
-            "clearablefileinput": "govuk-file-upload",
-            "textinput": "govuk-input govuk-input--text",
-            "urlinput": "govuk-input govuk-input--url",
-            "numberinput": "govuk-input govuk-input--number",
-            "emailinput": "govuk-input govuk-input--email",
-            "passwordinput": "govuk-input govuk-input--password",
+            "checkboxinput": "tbxforms-checkboxes__input",
+            "select": "tbxforms-select",
+            "lazyselect": "tbxforms-select",
+            "textarea": "tbxforms-textarea",
+            "clearablefileinput": "tbxforms-file-upload",
+            "textinput": "tbxforms-input tbxforms-input--text",
+            "urlinput": "tbxforms-input tbxforms-input--url",
+            "numberinput": "tbxforms-input tbxforms-input--number",
+            "emailinput": "tbxforms-input tbxforms-input--email",
+            "passwordinput": "tbxforms-input tbxforms-input--password",
         }
         converters.update(getattr(settings, "CRISPY_CLASS_CONVERTERS", {}))
 
@@ -228,7 +228,7 @@ class CrispyGDSFieldNode(template.Node):
 
                 if (
                     "class" in widget.attrs
-                    and "govuk-js-character-count" in widget.attrs["class"]
+                    and "tbxforms-js-character-count" in widget.attrs["class"]
                 ):
 
                     # The javascript that updates the span containing character count
@@ -254,18 +254,18 @@ class CrispyGDSFieldNode(template.Node):
                     ]:
                         if is_multivalue(field):
                             if error_count == 0:
-                                css_class += " govuk-input--error"
+                                css_class += " tbxforms-input--error"
                             elif getattr(
                                 error_widgets[widget_idx], "errors", None
                             ):
-                                css_class += " govuk-input--error"
+                                css_class += " tbxforms-input--error"
                         else:
-                            css_class += " govuk-input--error"
+                            css_class += " tbxforms-input--error"
                     elif widget_class_name in [
                         "FileInput",
                         "ClearableFileInput",
                     ]:
-                        css_class += " govuk-file-upload--error"
+                        css_class += " tbxforms-file-upload--error"
 
                     if not field.help_text:
                         widget.attrs["aria-describedby"] = ""

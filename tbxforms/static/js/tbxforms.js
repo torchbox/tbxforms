@@ -1,6 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
-    const cls_hidden = "govuk-conditional--hidden";
-    const cls_visible = "govuk-conditional--visible";
+    const cls_hidden = "tbxforms-conditional--hidden";
+    const cls_visible = "tbxforms-conditional--visible";
 
     function clearInput(node) {
         /*
@@ -45,16 +45,16 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    document.querySelectorAll('form.govuk-form').forEach((form) => {
+    document.querySelectorAll('form.tbxforms-form').forEach((form) => {
         // Loop through all elements within forms (e.g. inputs, divs, fieldsets).
         form.querySelectorAll('*').forEach((node) => {
 
             // If this element has conditional logic...
             if (node.dataset.conditionalFieldName && node.dataset.conditionalFieldValues) {
-                const container = (node.closest(".govuk-form-group")) ? node.closest(".govuk-form-group") : node;
+                const container = (node.closest(".tbxforms-form-group")) ? node.closest(".tbxforms-form-group") : node;
                 const drivingFieldNodeList = document.getElementsByName(node.dataset.conditionalFieldName);
 
-                container.classList.add("govuk-conditional");
+                container.classList.add("tbxforms-conditional");
 
                 if (drivingFieldNodeList.length > 1) {
                     // We're dealing with radios or checkboxes.

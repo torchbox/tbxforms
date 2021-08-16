@@ -1,12 +1,12 @@
 <fieldset
     {% if fieldset.css_id %}id="{{ fieldset.css_id }}"{% endif %}
-    class="govuk-form-group{% if fieldset.css_class %} {{ fieldset.css_class }}{% endif %}{% if form_style %} {{ form_style }}{% endif %}"
+    class="tbxforms-form-group{% if fieldset.css_class %} {{ fieldset.css_class }}{% endif %}{% if form_style %} {{ form_style }}{% endif %}"
     {{ fieldset.flat_attrs|safe }}
   >
 
     {% if legend %}
-        <legend class="govuk-fieldset__legend{% if legend_size %} {{ legend_size }}{% endif %}">
-            {% if legend_tag %}<{{ legend_tag }} class="govuk-fieldset__heading">{% endif %}
+        <legend class="tbxforms-fieldset__legend{% if legend_size %} {{ legend_size }}{% endif %}">
+            {% if legend_tag %}<{{ legend_tag }} class="tbxforms-fieldset__heading">{% endif %}
             {{ legend|safe }}
             {% if legend_tag %}</{{ legend_tag }}>{% endif %}
         </legend>
