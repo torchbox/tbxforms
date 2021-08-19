@@ -1,0 +1,23 @@
+.tbxforms-date-input {
+    @include tbxforms-clearfix();
+    font-size: 0; // removes whitespace caused by inline-block
+    margin-top: -$tbxforms-in-field-spacer;
+}
+
+.tbxforms-date-input__item {
+    display: inline-block;
+    margin-right: $tbxforms-in-field-spacer;
+    margin-bottom: 0;
+
+    .tbxforms-form-group {
+        margin-bottom: 0;
+    }
+}
+
+.tbxforms-date-input__label {
+    display: block;
+}
+
+.tbxforms-date-input__input {
+    margin-bottom: 0;
+}

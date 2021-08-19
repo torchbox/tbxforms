@@ -1,149 +1,134 @@
 variables:
-  PIP_CACHE_DIR: '$CI_PROJECT_DIR/.cache/pip'
+    PIP_CACHE_DIR: '$CI_PROJECT_DIR/.cache/pip'
 
 cache:
-  paths:
-    - .cache/pip
-    - .tox
+    paths:
+        - .cache/pip
+        - .tox
 
 before_script:
-  - pip install tox
+    - pip install tox
 
 stages:
-  - build
-  - lint
-  - test
-  - build_packages
-  - deploy
-  - docs
-  - storybook
+    - build
+    - lint
+    - test
+    - build_packages
+    - deploy
+    - storybook
 
 # Test if static assets can be built succesfully.
 static:
-  before_script: []
-  image: node:12
-  stage: build
-  script:
-    - mkdir -p ./tbxforms/tests/static
-    - npm ci --no-optional --no-audit --progress=false
-    - npm run build
-  # Saving the job result as an artifact means that the files can be used by
-  # other jobs.
-  artifacts:
-    name: 'static-$CI_JOB_ID'
-    paths:
-      # TODO: Cache too large, causes jobs to fail!
-      - ./tbxforms/tests/static
-    expire_in: 30 mins
+    before_script: []
+    image: node:12
+    stage: build
+    script:
+        - mkdir -p ./tbxforms/tests/static
+        - npm ci --no-optional --no-audit --progress=false
+        - npm run build
+    # Saving the job result as an artifact means that the files can be used by
+    # other jobs.
+    artifacts:
+        name: 'static-$CI_JOB_ID'
+        paths:
+            # TODO: Cache too large, causes jobs to fail!
+            - ./tbxforms/tests/static
+        expire_in: 30 mins
 
 flake8:
-  image: python:3.8
-  stage: lint
-  variables:
-    TOXENV: flake8
-  script:
-    - tox
+    image: python:3.8
+    stage: lint
+    variables:
+        TOXENV: flake8
+    script:
+        - tox
 
 frontend:
-  before_script: []
-  image: node:12
-  stage: lint
-  dependencies:
-    - static
-  script:
-    # TODO: Remove this when the node_modules caching issue has been resolved
-    - npm ci --no-optional --no-audit --progress=false
-    - npm run lint
+    before_script: []
+    image: node:12
+    stage: lint
+    dependencies:
+        - static
+    script:
+        # TODO: Remove this when the node_modules caching issue has been resolved
+        - npm ci --no-optional --no-audit --progress=false
+        - npm run lint
 
 isort:
-  image: python:3.8
-  stage: lint
-  variables:
-    TOXENV: isort
-  script:
-    - tox
+    image: python:3.8
+    stage: lint
+    variables:
+        TOXENV: isort
+    script:
+        - tox
 
 black:
-  image: python:3.8
-  stage: lint
-  variables:
-    TOXENV: black
-  script:
-    - tox
+    image: python:3.8
+    stage: lint
+    variables:
+        TOXENV: black
+    script:
+        - tox
 
 py38-dj30:
-  image: python:3.8
-  stage: test
-  dependencies:
-    - static
-  variables:
-    TOXENV: py38-dj30
-  script:
-    - tox
+    image: python:3.8
+    stage: test
+    dependencies:
+        - static
+    variables:
+        TOXENV: py38-dj30
+    script:
+        - tox
 
 py38-dj22:
-  image: python:3.8
-  stage: test
-  dependencies:
-    - static
-  variables:
-    TOXENV: py38-dj22
-  script:
-    - tox
+    image: python:3.8
+    stage: test
+    dependencies:
+        - static
+    variables:
+        TOXENV: py38-dj22
+    script:
+        - tox
 
 py38-dj32:
-  image: python:3.8
-  stage: test
-  dependencies:
-    - static
-  variables:
-    TOXENV: py38-dj32
-  script:
-    - tox
+    image: python:3.8
+    stage: test
+    dependencies:
+        - static
+    variables:
+        TOXENV: py38-dj32
+    script:
+        - tox
 
 test_js:
-  image: node:12
-  stage: test
-  before_script: []
-  dependencies:
-    - static
-  script:
-    # TODO: Remove this when the node_modules caching issue has been resolved
-    - npm ci --no-optional --no-audit --progress=false
-    # Run front-end tests
-    - npm run test:coverage
-
-build_docs:
-  image: python:3.8
-  stage: docs
-  only:
-    refs:
-      - master
-  script:
-    - pip install .[docs]
-    - mkdocs build
-    - mv site/ public
-  artifacts:
-    paths:
-      - public
+    image: node:12
+    stage: test
+    before_script: []
+    dependencies:
+        - static
+    script:
+        # TODO: Remove this when the node_modules caching issue has been resolved
+        - npm ci --no-optional --no-audit --progress=false
+        # Run front-end tests
+        - npm run test:coverage
 
 build_and_publish_python_package:
-  only:
-    refs:
-      - /^v.*$/
-      - main
-  image: python:3.8
-  stage: deploy
-  before_script:
-    - set -xe
-    - pip install twine
-    # Set tag for non-tags
-    - '[ -z "$CI_COMMIT_TAG" ] && export TBXFORMS_DEV_TAG=$(date --date=@$(git show -s --format=%ct $CI_COMMIT_SHA) +"%Y%m%d%H%M%S") || true'
-  script:
-    - python setup.py bdist_wheel sdist
-    - twine upload dist/*
-  artifacts:
-    name: 'python-package-$CI_JOB_ID'
-    paths:
-      - dist
-    expire_in: 100 yrs
+    only:
+        refs:
+            - /^v.*$/
+            - main
+    image: python:3.8
+    stage: deploy
+    before_script:
+        - set -xe
+        - pip install twine
+        # Set tag for non-tags
+        - '[ -z "$CI_COMMIT_TAG" ] && export TBXFORMS_DEV_TAG=$(date --date=@$(git show -s --format=%ct $CI_COMMIT_SHA) +"%Y%m%d%H%M%S") || true'
+    script:
+        - python setup.py bdist_wheel sdist
+        - twine upload dist/*
+    artifacts:
+        name: 'python-package-$CI_JOB_ID'
+        paths:
+            - dist
+        expire_in: 100 yrs

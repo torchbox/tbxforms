@@ -21,13 +21,13 @@ class Field(crispy_forms_layout.LayoutObject):
 
         Field(
             "name",
-            context={'label_size': 'govuk-label--m'},
-            css_class="govuk-!-width-one-half"
+            context={'label_size': 'tbxforms-label--m'},
+            css_class="tbxforms-!-width-one-half"
         )
 
         Field(
             'age',
-            css_class="govuk-input-width-5",
+            css_class="tbxforms-input-width-5",
             style="color: #333;"
         )
 
@@ -303,7 +303,7 @@ class Field(crispy_forms_layout.LayoutObject):
             context["max_words"] = max_words
 
         if max_characters or max_words:
-            kwargs["css_class"] = "govuk-js-character-count"
+            kwargs["css_class"] = "tbxforms-js-character-count"
 
             if threshold:
                 context["threshold"] = threshold

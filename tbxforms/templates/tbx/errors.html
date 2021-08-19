@@ -1,8 +1,8 @@
 {% load i18n %}
 
 {% if form.errors or formset.errors %}
-    <div class="govuk-error-summary" aria-labelledby="{% if form.prefix %}{{ form.prefix }}-{% endif %}{% if formset.prefix %}{{ formset.prefix }}-{% endif %}error-summary-title" role="alert" tabindex="-1">
-        <h2 class="govuk-error-summary__title" id="{% if form.prefix %}{{ form.prefix }}-{% endif %}{% if formset.prefix %}{{ formset.prefix }}-{% endif %}error-summary-title">
+    <div class="tbxforms-error-summary" aria-labelledby="{% if form.prefix %}{{ form.prefix }}-{% endif %}{% if formset.prefix %}{{ formset.prefix }}-{% endif %}error-summary-title" role="alert" tabindex="-1">
+        <h2 class="tbxforms-error-summary__title" id="{% if form.prefix %}{{ form.prefix }}-{% endif %}{% if formset.prefix %}{{ formset.prefix }}-{% endif %}error-summary-title">
             {% if form_error_title %}
                 {{ form_error_title }}
             {% else %}
@@ -10,8 +10,8 @@
             {% endif %}
         </h2>
 
-        <div class="govuk-error-summary__body">
-            <ul class="govuk-list govuk-error-summary__list">
+        <div class="tbxforms-error-summary__body">
+            <ul class="tbxforms-list tbxforms-error-summary__list">
                 {% for error in form.non_field_errors %}
                     <li>{{ error|striptags }}</li>
                 {% endfor %}

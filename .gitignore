@@ -6,14 +6,6 @@ __pycache__/
 # Editor temp files
 *~
 
-# Ignore dot files except those required for the project
-.*
-!.gitignore
-!.gitkeep
-!.editorconfig
-!.travis.yml
-!.readthedocs.yml
-
 # Development artefacts
 build
 dist

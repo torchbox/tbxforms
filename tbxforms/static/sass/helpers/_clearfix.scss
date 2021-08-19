@@ -1,0 +1,7 @@
+@mixin tbxforms-clearfix {
+    &::after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+}

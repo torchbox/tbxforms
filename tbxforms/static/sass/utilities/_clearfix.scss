@@ -1,0 +1,5 @@
+@import 'tbxforms/helpers/clearfix';
+
+.tbxforms-clearfix {
+    @include tbxforms-clearfix();
+}

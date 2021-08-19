@@ -14,12 +14,6 @@ class FormHelper(crispy_forms_helper.FormHelper):
     adding the following attributes to control how the form is rendered.
 
     Attributes:
-        show_non_field_errors (bool): display non-field errors at the top of
-            the form. The default is ``False`` as the Design System mandates
-            that all form errors are displayed in an Error Summary at the top
-            of the page (above the page title and outside the <form>). Only
-            set this to ``True`` if you are not using an Error Summary.
-
         label_size (:obj:`str`, optional): set the default size used for all
             field labels. The default value of None renders labels with the
             same font size as body text. To change the font size and weight
@@ -59,7 +53,6 @@ class FormHelper(crispy_forms_helper.FormHelper):
 
     """
 
-    show_non_field_errors = False
     label_size = ""
     legend_size = ""
 

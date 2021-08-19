@@ -1,15 +1,15 @@
 {% load i18n l10n tbxforms %}
 
 <fieldset
-    class="govuk-fieldset"
+    class="tbxforms-fieldset"
     {% if field.help_text or field.errors %}
         aria-describedby="{% if field.help_text %}{{ field.auto_id }}_hint{% endif %}{% for error in field.errors %} {{ field.auto_id }}_{{ forloop.counter }}_error{% endfor %}"
     {% endif %}
 >
 
     {% if field.label %}
-        <legend class="govuk-fieldset__legend{% if legend_size %} {{ legend_size }}{% endif %}">
-            {% if legend_tag %}<{{ legend_tag }} class="govuk-fieldset__heading">{% endif %}
+        <legend class="tbxforms-fieldset__legend{% if legend_size %} {{ legend_size }}{% endif %}">
+            {% if legend_tag %}<{{ legend_tag }} class="tbxforms-fieldset__heading">{% endif %}
             {{ field.label|safe }}
             {% if not field|show_as_required %} <span>{% trans "(optional)" %}</span>{% endif %}
             {% if legend_tag %}</{{ legend_tag }}>{% endif %}

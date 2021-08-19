@@ -1,0 +1,40 @@
+.tbxforms-error-summary {
+    @include tbxforms-text-colour();
+    padding: $tbxforms-in-field-spacer;
+    margin-bottom: $tbxforms-form-group-spacer;
+    border: $tbxforms-border-width solid $tbxforms-error-colour;
+
+    &:focus {
+        outline: $tbxforms-focus-width solid $tbxforms-focus-colour;
+    }
+}
+
+.tbxforms-error-summary__title {
+    @include tbxforms-font($size: 'l', $weight: bold);
+    margin-top: 0;
+}
+
+.tbxforms-error-summary__body {
+    @include tbxforms-font($size: 'default');
+
+    .tbxforms-error-summary__list {
+        margin-top: 0;
+        margin-bottom: 0;
+
+        li,
+        a {
+            @include tbxforms-font($size: 'm', $weight: bold);
+            color: $tbxforms-error-colour;
+        }
+
+        a {
+            text-decoration: underline;
+
+            &:hover,
+            &:active,
+            &:focus {
+                text-decoration-thickness: ($tbxforms-focus-width - 1px);
+            }
+        }
+    }
+}

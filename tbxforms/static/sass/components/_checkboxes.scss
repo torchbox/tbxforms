@@ -1,0 +1,248 @@
+.tbxforms-checkboxes__item {
+    @include tbxforms-font($size: 'default');
+
+    display: block;
+    position: relative;
+
+    min-height: $tbxforms-checkboxes-size;
+
+    margin-bottom: $tbxforms-in-field-spacer;
+    padding-left: $tbxforms-checkboxes-size;
+
+    clear: left;
+}
+
+.tbxforms-checkboxes__item:last-child,
+.tbxforms-checkboxes__item:last-of-type {
+    margin-bottom: 0;
+}
+
+.tbxforms-checkboxes__input {
+    $input-offset: ($tbxforms-touch-target-size - $tbxforms-checkboxes-size) / 2;
+
+    cursor: pointer;
+
+    position: absolute;
+
+    z-index: 1;
+    top: $input-offset * -1;
+    left: $input-offset * -1;
+
+    width: $tbxforms-touch-target-size;
+    height: $tbxforms-touch-target-size;
+    margin: 0;
+
+    opacity: 0;
+}
+
+.tbxforms-label.tbxforms-checkboxes__label {
+    display: inline-block;
+    margin-bottom: 0;
+    padding: (
+        8px $tbxforms-checkboxes-label-padding-left-right $tbxforms-in-field-spacer
+    );
+    cursor: pointer;
+    // remove 300ms pause on mobile
+    touch-action: manipulation;
+}
+
+// [ ] Check box
+.tbxforms-label.tbxforms-checkboxes__label::before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $tbxforms-checkboxes-size;
+    height: $tbxforms-checkboxes-size;
+    border: $tbxforms-border-width-form-element solid currentColor;
+    background: transparent;
+}
+
+// ✔ Check mark
+//
+// The check mark is a box with a border on the left and bottom side (└──),
+// rotated 45 degrees
+.tbxforms-label.tbxforms-checkboxes__label::after {
+    content: '';
+    box-sizing: border-box;
+
+    position: absolute;
+    top: 11px;
+    left: 9px;
+    width: 23px;
+    height: 12px;
+
+    transform: rotate(-45deg);
+    border: solid;
+    border-width: 0 0 5px 5px;
+    // Fix bug in IE11 caused by transform rotate (-45deg).
+    // See: alphagov/govuk_elements/issues/518
+    border-top-color: transparent;
+
+    opacity: 0;
+
+    background: transparent;
+}
+
+.tbxforms-hint.tbxforms-checkboxes__hint {
+    display: block;
+    padding-right: $tbxforms-checkboxes-label-padding-left-right;
+    padding-left: $tbxforms-checkboxes-label-padding-left-right;
+    margin-bottom: 0;
+}
+
+// Focused state
+.tbxforms-checkboxes__input:focus + .tbxforms-label.tbxforms-checkboxes__label::before {
+    border-width: $tbxforms-focus-width;
+    box-shadow: 0 0 0 $tbxforms-focus-width $tbxforms-focus-colour;
+}
+
+// Selected state
+.tbxforms-checkboxes__input:checked + .tbxforms-label.tbxforms-checkboxes__label::after {
+    opacity: 1;
+}
+
+// Disabled state
+.tbxforms-checkboxes__input:disabled,
+.tbxforms-checkboxes__input:disabled + .tbxforms-label.tbxforms-checkboxes__label {
+    cursor: default;
+}
+
+.tbxforms-checkboxes__input:disabled + .tbxforms-label.tbxforms-checkboxes__label {
+    opacity: 0.5;
+}
+
+// =========================================================
+// Dividers ('or')
+// =========================================================
+
+.tbxforms-checkboxes__divider {
+    $tbxforms-divider-size: $tbxforms-checkboxes-size !default;
+    @include tbxforms-font($size: 'default');
+    @include tbxforms-text-colour();
+    width: $tbxforms-divider-size;
+    margin-bottom: $tbxforms-in-field-spacer;
+    text-align: center;
+}
+
+// =========================================================
+// Small checkboxes
+// =========================================================
+
+.tbxforms-checkboxes--small {
+    $input-offset: ($tbxforms-touch-target-size - $tbxforms-small-checkboxes-size) / 2;
+    $label-offset: $tbxforms-touch-target-size - $input-offset;
+
+    .tbxforms-checkboxes__item {
+        @include tbxforms-clearfix();
+        min-height: 0;
+        margin-bottom: 0;
+        padding-left: $label-offset;
+        float: left;
+    }
+
+    // Shift the touch target into the left margin so that the visible edge of
+    // the control is aligned
+    //
+    //   ┆What colours do you like?
+    //  ┌┆───┐
+    //  │┆[] │ Purple
+    //  └┆▲──┘
+    //  ▲┆└─ Check box pseudo element, aligned with margin
+    //  └─── Touch target (invisible input), shifted into the margin
+    .tbxforms-checkboxes__input {
+        left: $input-offset * -1;
+    }
+
+    // Adjust the size and position of the label.
+    //
+    // Unlike larger checkboxes, we also have to float the label in order to
+    // 'shrink' it, preventing the hover state from kicking in across the full
+    // width of the parent element.
+    .tbxforms-label.tbxforms-checkboxes__label {
+        margin-top: -2px;
+        padding: 13px $tbxforms-spacer 13px 1px;
+        float: left;
+    }
+
+    // [ ] Check box
+    //
+    // Reduce the size of the check box [1], vertically center it within the
+    // touch target [2]
+    .tbxforms-label.tbxforms-checkboxes__label::before {
+        top: $input-offset - $tbxforms-border-width-form-element; // 2
+        width: $tbxforms-small-checkboxes-size; // 1
+        height: $tbxforms-small-checkboxes-size; // 1
+    }
+
+    // ✔ Check mark
+    //
+    // Reduce the size of the check mark and re-align within the checkbox
+    .tbxforms-label.tbxforms-checkboxes__label::after {
+        top: 15px;
+        left: 6px;
+        width: 12px;
+        height: 6.5px;
+        border-width: 0 0 3px 3px;
+    }
+
+    // Fix position of hint with small checkboxes
+    //
+    // Do not use hints with small checkboxes – because they're within the input
+    // wrapper they trigger the hover state, but clicking them doesn't actually
+    // activate the control.
+    //
+    // (If you do use them, they won't look completely broken... but seriously,
+    // don't use them)
+    .tbxforms-hint.tbxforms-checkboxes__hint {
+        padding: 0;
+        clear: both;
+    }
+
+    // Hover state for small checkboxes.
+    //
+    // We use a hover state for small checkboxes because the touch target size
+    // is so much larger than their visible size, and so we need to provide
+    // feedback to the user as to which checkbox they will select when their
+    // cursor is outside of the visible area.
+    .tbxforms-checkboxes__item:hover
+        .tbxforms-checkboxes__input:not(:disabled)
+        + .tbxforms-label.tbxforms-checkboxes__label::before {
+        box-shadow: 0 0 0 $tbxforms-hover-width $tbxforms-hover-colour;
+    }
+
+    // Because we've overridden the border-shadow provided by the focus state,
+    // we need to redefine that too.
+    //
+    // We use two box shadows, one that restores the original focus state [1]
+    // and another that then applies the hover state [2].
+    .tbxforms-checkboxes__item:hover
+        .tbxforms-checkboxes__input:focus
+        + .tbxforms-label.tbxforms-checkboxes__label::before {
+        box-shadow: (
+            0 0 0 $tbxforms-focus-width $tbxforms-focus-colour,
+            0 0 0 $tbxforms-hover-width $tbxforms-hover-colour
+        );
+    }
+
+    // For devices that explicitly don't support hover, don't provide a hover
+    // state (e.g. on touch devices like iOS).
+    //
+    // We can't use `@media (hover: hover)` because we wouldn't get the hover
+    // state in browsers that don't support `@media (hover)` (like Internet
+    // Explorer) – so we have to 'undo' the hover state instead.
+    @media (hover: none), (pointer: coarse) {
+        .tbxforms-checkboxes__item:hover
+            .tbxforms-checkboxes__input:not(:disabled)
+            + .tbxforms-label.tbxforms-checkboxes__label::before {
+            box-shadow: initial;
+        }
+
+        .tbxforms-checkboxes__item:hover
+            .tbxforms-checkboxes__input:focus
+            + .tbxforms-label.tbxforms-checkboxes__label::before {
+            box-shadow: 0 0 0 $tbxforms-focus-width $tbxforms-focus-colour;
+        }
+    }
+}

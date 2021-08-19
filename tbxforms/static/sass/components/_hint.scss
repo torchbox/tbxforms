@@ -1,0 +1,27 @@
+.tbxforms-hint {
+    @include tbxforms-font($size: 'default');
+
+    display: block;
+    margin-bottom: $tbxforms-in-field-spacer;
+    color: $tbxforms-secondary-text-colour;
+}
+
+// Reduces visual spacing of label/legend when there is a hint.
+.tbxforms-label:not(.tbxforms-checkboxes__label):not(.tbxforms-radios__label),
+.tbxforms-fieldset__legend {
+    + .tbxforms-hint {
+        margin-top: -$tbxforms-in-field-spacer;
+    }
+}
+.tbxforms-label--xl:not(.tbxforms-checkboxes__label):not(.tbxforms-radios__label),
+.tbxforms-fieldset__legend--xl {
+    + .tbxforms-hint {
+        margin-top: -($tbxforms-spacer * 1.5);
+    }
+}
+.tbxforms-label--l:not(.tbxforms-checkboxes__label):not(.tbxforms-radios__label),
+.tbxforms-fieldset__legend--l {
+    + .tbxforms-hint {
+        margin-top: -($tbxforms-spacer * 1.25);
+    }
+}

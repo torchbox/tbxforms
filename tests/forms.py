@@ -154,10 +154,10 @@ class TableForm(forms.Form):
         header = ["Case worker", "Number of cases closed"]
         rows = [["David Francis", 3], ["Paul Farmer", 1]]
         header_css = [
-            "govuk-!-width-one-half",
-            "govuk-!-width-one-half govuk-table__header--numeric",
+            "tbxforms-!-width-one-half",
+            "tbxforms-!-width-one-half tbxforms-table__header--numeric",
         ]
-        row_css = ["", "govuk-table__cell--numeric"]
+        row_css = ["", "tbxforms-table__cell--numeric"]
 
         self.helper = FormHelper()
         self.helper.layout = Layout(

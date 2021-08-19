@@ -1,0 +1,55 @@
+{
+    "name": "tbxforms",
+    "version": "0.0.0",
+    "author": "Kyle Bayliss",
+    "private": false,
+    "license": "UNLICENSED",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/torchbox/tbxforms.git"
+    },
+    "bugs": {
+        "url": "https://github.com/torchbox/tbxforms/issues"
+    },
+    "keywords": [
+        "crispy",
+        "django",
+        "django crispy forms",
+        "forms",
+        "gds",
+        "tbxforms",
+        "wagtail"
+    ],
+    "config": {
+        "src_css": "./tbxforms/static_src/sass",
+        "dest_js": "./tbxforms/static_compiled/js",
+        "dest_css": "./tbxforms/static_compiled/css",
+        "dist": "./tbxforms/static_compiled"
+    },
+    "scripts": {
+        "//[ Webpack build ]//": "",
+        "compile:prod": "webpack --mode production",
+        "compile:dev": "webpack --mode development --progress",
+        "compile:watch": "npm run compile:dev -- --watch",
+        "//[ Linting & formatting ]//": "",
+        "lint:css": "stylelint $npm_package_config_src_css'/**/**' && stylelint --report-needless-disables $npm_package_config_src_css'/**/**'",
+        "lint:js": "eslint --report-unused-disable-directives .",
+        "lint:format": "prettier --check '**/?(.)*.{md,css,scss,js,json,yaml,yml}'",
+        "lint": "npm-run-all -p lint:format lint:js lint:css",
+        "format": "prettier --write '**/?(.)*.{md,css,scss,js,json,yaml,yml}'",
+        "//[ Tasks ]//": "",
+        "build": "npm-run-all clean compile:dev",
+        "build:prod": "npm-run-all clean compile:prod",
+        "start": "npm-run-all clean compile:dev -p compile:watch watch serve --silent"
+    },
+    "devDependencies": {
+        "eslint": "^6.8.0",
+        "eslint-config-airbnb": "^18.0.1",
+        "eslint-config-prettier": "^6.9.0",
+        "eslint-config-torchbox": "^0.3.2",
+        "eslint-plugin-jsx-a11y": "^6.2.3",
+        "prettier": "^2.0.5",
+        "stylelint": "^10.1.0",
+        "stylelint-config-torchbox": "^0.5.0"
+    }
+}
