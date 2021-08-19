@@ -1,0 +1,57 @@
+default_language_version:
+    node: system
+    python: python3
+
+repos:
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v3.1.0
+      hooks:
+          - id: check-yaml
+          - id: check-toml
+          - id: trailing-whitespace
+          - id: check-merge-conflict
+          - id: check-byte-order-marker
+          - id: check-case-conflict
+          - id: check-json
+          - id: debug-statements
+          - id: detect-private-key
+    - repo: https://github.com/timothycrosley/isort
+      rev: 5.6.4
+      hooks:
+          - id: isort
+    - repo: https://gitlab.com/pycqa/flake8
+      rev: 3.8.4
+      hooks:
+          - id: flake8
+    - repo: https://github.com/python/black
+      rev: 20.8b1
+      hooks:
+          - id: black
+    - repo: https://github.com/pre-commit/mirrors-eslint
+      rev: v6.5.1
+      hooks:
+          - id: eslint
+            additional_dependencies:
+                - eslint@6.8.0
+                - eslint-config-airbnb@18.0.1
+                - eslint-config-prettier@6.9.0
+                - eslint-config-torchbox@0.3.2
+                - eslint-plugin-import@2.22.1
+                - eslint-plugin-jsx-a11y@6.2.3
+                - eslint-plugin-react@7.17.0
+                - eslint-plugin-react-hooks@1.7.0
+                - '@babel/core@7.10.3'
+                - '@babel/preset-env@7.10.3'
+                - '@babel/preset-react@7.10.1'
+                - babel-eslint@10.0.3
+    - repo: https://github.com/pre-commit/mirrors-prettier
+      rev: v2.3.0
+      hooks:
+          - id: prettier
+    - repo: https://github.com/awebdeveloper/pre-commit-stylelint
+      rev: 0.0.2 # pragma: allowlist secret
+      hooks:
+          - id: stylelint
+            additional_dependencies:
+                - stylelint@10.1.0
+                - stylelint-config-torchbox@0.5.0

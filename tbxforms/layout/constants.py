@@ -1,90 +1,3 @@
-class Colour:
-    """
-    .. include:: ../conf.rst
-
-    A set of constants defining the names for colours.
-
-        :colour-blue:`BLUE`
-
-        :colour-green:`GREEN`
-
-        :colour-grey:`GREY`
-
-        :colour-orange:`ORANGE`
-
-        :colour-pink:`PINK`
-
-        :colour-purple:`PURPLE`
-
-        :colour-red:`RED`
-
-        :colour-turquoise:`TURQUOISE`
-
-        :colour-yellow:`YELLOW`
-
-    Examples:
-        You pass the colour in the class method for generating a tag: ::
-
-            HTML.tag("Pending", Colour.BLUE)
-
-        If a new class is added but is has not been added to the template
-        pack, then just pass the name: ::
-
-            HTML.tag("Pending", 'lilac')
-
-    """
-
-    # Don't define the attribute here as you'll be forced to add the
-    # type which makes the documentation a lot less readable
-
-    BLUE = "blue"
-    GREEN = "green"
-    GREY = "grey"
-    ORANGE = "orange"
-    PINK = "pink"
-    PURPLE = "purple"
-    RED = "red"
-    TURQUOISE = "turquoise"
-    YELLOW = "yellow"
-
-    _values = (BLUE, GREEN, GREY, ORANGE, PINK, PURPLE, RED, TURQUOISE, YELLOW)
-
-    @classmethod
-    def is_valid(cls, value):
-        """Check whether a value is one of the pre-defined colours.
-
-        Args:
-            value (str): the name of the colour.
-
-        Returns:
-            True if the value equals one of the constants, False otherwise.
-
-        """
-        return value in cls._values
-
-    @classmethod
-    def for_tag(cls, value, validate=True):
-        """
-        Convert the colour name into a CSS class that can be added to a Tag
-        component.
-
-        Args:
-            value: the colour.
-            validate: check whether the colour is one of the pre-defined
-                values. Defaults to True.
-
-        Raises:
-            ValueError: if validate is True and the colour is invalid.
-
-        Returns:
-            str: the CSS class used to set the tag colour.
-
-        """
-        if validate and not cls.is_valid(value):
-            raise ValueError("Unexpected colour", value)
-        return "tbxforms-tag--%s" % value
-
-
 class Size:
     """
     .. include:: ../conf.rst
@@ -254,14 +167,17 @@ class Fluid:
         ONE_THIRD: Set the Text input to be 33% of the width of the parent.
         ONE_HALF: Set the Text input to be 50% of the width of the parent.
         TWO_THIRDS: Set the Text input to be 66% of the width of the parent.
-        THREE_QUARTERS: Set the Text input to be 75% of the width of the parent.
+        THREE_QUARTERS: Set the Text input to be 75% of the width of the
+            parent.
         FULL: Set the Text input to be 100% of the width of the parent.
 
     Examples:
         ::
 
             Field.text("name", field_width=Fluid.TWO_THIRDS),
-            Field.text("email", css_class=Fluid.for_input('one-fifth', validate=False)),
+            Field.text(
+                "email", css_class=Fluid.for_input('one-fifth', validate=False
+            )),
 
     """
 

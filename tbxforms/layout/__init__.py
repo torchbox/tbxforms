@@ -12,10 +12,7 @@ from .containers import (
     Div,
     Fieldset,
 )
-from .content import (
-    HTML,
-    Colour,
-)
+from .content import HTML
 from .fields import (
     Field,
     Hidden,
@@ -23,7 +20,6 @@ from .fields import (
 
 __all__ = [
     "Button",
-    "Colour",
     "Div",
     "Field",
     "Fixed",
