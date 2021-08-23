@@ -39,8 +39,8 @@ TODO.
 
 Include instructions for:
 
-- SCSS
-- JS
+-   SCSS
+-   JS
 
 ## Usage
 
@@ -79,14 +79,14 @@ class ExampleModelForm(TbxFormsBaseForm, forms.ModelForm):
 ### Creating a Wagtail form
 
 Two parts are required for this to work:
-    1. Add a `helper` property to the Wagtail form
-    2. Instruct a Wagtail Page model to use the newly created form
+
+1. Add a `helper` property to the Wagtail form
+2. Instruct a Wagtail Page model to use the newly created form
 
 #### Add a `helper` property to the Wagtail form
 
 ```python
 from wagtail.contrib.forms.forms import BaseForm as WagtailBaseForm
-
 
 class ExampleWagtailForm(WagtailBaseForm):
     @property
@@ -109,7 +109,6 @@ class ExampleWagtailForm(WagtailBaseForm):
 #### Instruct a Wagtail Page model to use the newly created form
 
 ```python
-
 # in your forms definitions (e.g. forms.py)
 
 from tbxforms.forms import BaseWagtailFormBuilder as TbxFormsWagtailFormBuilder
@@ -126,10 +125,7 @@ class ExampleFormPage(YourPageAncestors):
     ...
     form_builder = WagtailFormBuilder
     ...
-
-
 ```
-
 
 ### Rendering a form on the frontend
 
@@ -138,20 +134,17 @@ Simply pass your form to the `{% crispy .. %}` template tag using the Context.
 e.g. (where `name_of_your_form_variable` is the key you've chosen to add your form to the Context):
 
 ```html
-{% load crispy_forms_tags %}
-
-{% crispy name_of_your_form_variable %}
+{% load crispy_forms_tags %} {% crispy name_of_your_form_variable %}
 ```
 
-Further reading
-===============
+# Further reading
 
-* Download the `PyPi package`_
-* Download the `NPM package`_
-* Learn more about `Django Crispy Forms`_
-* Learn more about `Crispy Forms GDS`_
+-   Download the `PyPi package`\_
+-   Download the `NPM package`\_
+-   Learn more about `Django Crispy Forms`\_
+-   Learn more about `Crispy Forms GDS`\_
 
-.. _PyPi package: http://pypi.python.org/pypi/tbxforms
-.. _NPM package: https://www.npmjs.com/package/tbxforms
-.. _Django Crispy Forms: https://django-crispy-forms.readthedocs.io/en/latest/
-.. _Crispy Forms GDS: https://github.com/wildfish/crispy-forms-gds
+.. \_PyPi package: http://pypi.python.org/pypi/tbxforms
+.. \_NPM package: https://www.npmjs.com/package/tbxforms
+.. \_Django Crispy Forms: https://django-crispy-forms.readthedocs.io/en/latest/
+.. \_Crispy Forms GDS: https://github.com/wildfish/crispy-forms-gds

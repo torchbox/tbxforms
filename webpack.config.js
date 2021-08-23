@@ -24,7 +24,7 @@ const options = {
         rules: [
             {
                 // tells webpack how to handle js and jsx files
-                test: /\.(js|jsx)$/,
+                test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
