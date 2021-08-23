@@ -1,5 +1,5 @@
 @mixin tbxforms-font($size, $weight: regular, $line-height: false) {
-    $font-size: map-get($font-sizes, $size);
+    $font-size: map-get($tbxforms-font-sizes, $size);
 
     @if $weight == regular {
         font-weight: $tbxforms-weight--normal;

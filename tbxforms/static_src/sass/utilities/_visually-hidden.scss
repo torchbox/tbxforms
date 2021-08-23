@@ -1,4 +1,4 @@
-@import 'tbxforms/helpers/visually-hidden';
+@import '../helpers/visually-hidden';
 
 .tbxforms-visually-hidden {
     @include tbxforms-visually-hidden();

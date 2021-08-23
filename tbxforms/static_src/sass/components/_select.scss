@@ -1,16 +1,12 @@
-.tbxforms-textarea {
+.tbxforms-select {
     @include tbxforms-font($size: 'default', $line-height: 1.25);
 
     box-sizing: border-box; // should this be global?
-    display: block;
-    width: 100%;
+    max-width: 100%;
     min-height: 40px;
     padding: $tbxforms-in-field-spacer;
-    resize: vertical;
-    border: $tbxforms-border-width-form-element solid $tbxforms-input-border-colour;
-    border-radius: 0;
-
-    // -webkit-appearance: none; // TODO: Review if this was needed.
+    border: $tbxforms-border-width-form-element solid
+        $tbxforms-input-border-colour;
 
     &:focus {
         outline: $tbxforms-focus-width solid $tbxforms-focus-colour;
@@ -23,8 +19,16 @@
     }
 }
 
-.tbxforms-textarea--error {
-    border: $tbxforms-border-width-form-element-error solid $tbxforms-error-colour;
+.tbxforms-select option:active,
+.tbxforms-select option:checked,
+.tbxforms-select:focus::-ms-value {
+    color: $tbxforms-active-colour;
+    background-color: $tbxforms-active-bg;
+}
+
+.tbxforms-select--error {
+    border: $tbxforms-border-width-form-element-error solid
+        $tbxforms-error-colour;
 
     &:focus {
         border-color: $tbxforms-input-border-colour;

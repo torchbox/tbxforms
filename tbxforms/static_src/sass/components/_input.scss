@@ -8,7 +8,8 @@
     padding: $tbxforms-in-field-spacer;
     // setting any background-color makes text invisible when changing colours to dark backgrounds in Firefox (https://bugzilla.mozilla.org/show_bug.cgi?id=1335476)
     // as background-color and color need to always be set together, color should not be set either
-    border: $tbxforms-border-width-form-element solid $tbxforms-input-border-colour;
+    border: $tbxforms-border-width-form-element solid
+        $tbxforms-input-border-colour;
     border-radius: 0;
 
     // Disable inner shadow and remove rounded corners
@@ -37,7 +38,8 @@
 // }
 
 .tbxforms-input--error {
-    border: $tbxforms-border-width-form-element-error solid $tbxforms-error-colour;
+    border: $tbxforms-border-width-form-element-error solid
+        $tbxforms-error-colour;
 
     &:focus {
         border-color: $tbxforms-input-border-colour;

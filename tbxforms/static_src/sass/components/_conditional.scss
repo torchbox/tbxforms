@@ -1,6 +1,7 @@
 .tbxforms-conditional {
     border-left: (
-        $tbxforms-border-width-conditional solid $tbxforms-border-colour-conditional
+        $tbxforms-border-width-conditional solid
+            $tbxforms-border-colour-conditional
     );
     padding-left: $tbxforms-spacer;
 

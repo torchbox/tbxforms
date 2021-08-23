@@ -11,6 +11,7 @@ build
 dist
 reports
 venv
+node_modules
 
 # Any local makefiles
 *.mk

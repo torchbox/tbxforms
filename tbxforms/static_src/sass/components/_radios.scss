@@ -18,7 +18,10 @@
 }
 
 .tbxforms-radios__input {
-    $input-offset: ($tbxforms-touch-target-size - $tbxforms-radios-size) / 2;
+    $input-offset: math.div(
+        $tbxforms-touch-target-size - $tbxforms-radios-size,
+        2
+    );
 
     cursor: pointer;
 
@@ -38,7 +41,8 @@
 .tbxforms-label.tbxforms-radios__label {
     display: inline-block;
     margin-bottom: 0;
-    padding: 8px $tbxforms-radios-label-padding-left-right $tbxforms-in-field-spacer;
+    padding: 8px $tbxforms-radios-label-padding-left-right
+        $tbxforms-in-field-spacer;
     cursor: pointer;
     // remove 300ms pause on mobile
     touch-action: manipulation;
@@ -94,7 +98,8 @@
 }
 
 // Selected state
-.tbxforms-radios__input:checked + .tbxforms-label.tbxforms-radios__label::after {
+.tbxforms-radios__input:checked
+    + .tbxforms-label.tbxforms-radios__label::after {
     opacity: 1;
 }
 
@@ -142,7 +147,10 @@
 // =========================================================
 
 .tbxforms-radios--small {
-    $input-offset: ($tbxforms-touch-target-size - $tbxforms-small-radios-size) / 2;
+    $input-offset: math.div(
+        $tbxforms-touch-target-size - $tbxforms-small-radios-size,
+        2
+    );
     $label-offset: $tbxforms-touch-target-size - $input-offset;
 
     .tbxforms-radios__item {
@@ -261,7 +269,8 @@
         .tbxforms-radios__item:hover
             .tbxforms-radios__input:focus
             + .tbxforms-label.tbxforms-radios__label::before {
-            box-shadow: 0 0 0 $tbxforms-radios-focus-width $tbxforms-focus-colour;
+            box-shadow: 0 0 0 $tbxforms-radios-focus-width
+                $tbxforms-focus-colour;
         }
     }
 }

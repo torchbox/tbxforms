@@ -1,3 +1,5 @@
+import '../sass/tbxforms.scss';
+
 class TbxForms {
     static selector() {
         return 'form.tbxforms-form';

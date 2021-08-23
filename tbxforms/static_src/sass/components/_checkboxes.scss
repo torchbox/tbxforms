@@ -18,7 +18,10 @@
 }
 
 .tbxforms-checkboxes__input {
-    $input-offset: ($tbxforms-touch-target-size - $tbxforms-checkboxes-size) / 2;
+    $input-offset: math.div(
+        $tbxforms-touch-target-size - $tbxforms-checkboxes-size,
+        2
+    );
 
     cursor: pointer;
 
@@ -39,7 +42,8 @@
     display: inline-block;
     margin-bottom: 0;
     padding: (
-        8px $tbxforms-checkboxes-label-padding-left-right $tbxforms-in-field-spacer
+        8px $tbxforms-checkboxes-label-padding-left-right
+            $tbxforms-in-field-spacer
     );
     cursor: pointer;
     // remove 300ms pause on mobile
@@ -93,23 +97,27 @@
 }
 
 // Focused state
-.tbxforms-checkboxes__input:focus + .tbxforms-label.tbxforms-checkboxes__label::before {
+.tbxforms-checkboxes__input:focus
+    + .tbxforms-label.tbxforms-checkboxes__label::before {
     border-width: $tbxforms-focus-width;
     box-shadow: 0 0 0 $tbxforms-focus-width $tbxforms-focus-colour;
 }
 
 // Selected state
-.tbxforms-checkboxes__input:checked + .tbxforms-label.tbxforms-checkboxes__label::after {
+.tbxforms-checkboxes__input:checked
+    + .tbxforms-label.tbxforms-checkboxes__label::after {
     opacity: 1;
 }
 
 // Disabled state
 .tbxforms-checkboxes__input:disabled,
-.tbxforms-checkboxes__input:disabled + .tbxforms-label.tbxforms-checkboxes__label {
+.tbxforms-checkboxes__input:disabled
+    + .tbxforms-label.tbxforms-checkboxes__label {
     cursor: default;
 }
 
-.tbxforms-checkboxes__input:disabled + .tbxforms-label.tbxforms-checkboxes__label {
+.tbxforms-checkboxes__input:disabled
+    + .tbxforms-label.tbxforms-checkboxes__label {
     opacity: 0.5;
 }
 
@@ -131,7 +139,10 @@
 // =========================================================
 
 .tbxforms-checkboxes--small {
-    $input-offset: ($tbxforms-touch-target-size - $tbxforms-small-checkboxes-size) / 2;
+    $input-offset: math.div(
+        $tbxforms-touch-target-size - $tbxforms-small-checkboxes-size,
+        2
+    );
     $label-offset: $tbxforms-touch-target-size - $input-offset;
 
     .tbxforms-checkboxes__item {
