@@ -17,9 +17,10 @@ A Torchbox-flavoured template pack for [django-crispy-forms](https://github.com/
     -   [Usage](#usage)
         -   [Creating a Django form](#creating-a-django-form)
         -   [Creating a Wagtail form](#creating-a-wagtail-form)
-            -   [Add a `helper` property to the Wagtail form](#add-a--helper--property-to-the-wagtail-form)
+            -   [Add a `helper` property to the Wagtail form](#add-a-helper-property-to-the-wagtail-form)
             -   [Instruct a Wagtail Page model to use the newly created form](#instruct-a-wagtail-page-model-to-use-the-newly-created-form)
         -   [Render a form](#render-a-form)
+        -   [Conditionally-required fields](#conditionally-required-fields)
         -   [Customising form styles](#customising-form-styles)
 -   [Further reading](#further-reading)
 
@@ -123,8 +124,9 @@ Two parts are required for this to work:
 
 ```python
 from wagtail.contrib.forms.forms import BaseForm as WagtailBaseForm
+from tbxforms.forms import BaseForm as TbxFormsBaseForm
 
-class ExampleWagtailForm(WagtailBaseForm):
+class ExampleWagtailForm(TbxFormsBaseForm, WagtailBaseForm):
     @property
     def helper(self):
         fh = super().helper
@@ -147,10 +149,10 @@ class ExampleWagtailForm(WagtailBaseForm):
 ```python
 # in your forms definitions (e.g. forms.py)
 
-from tbxforms.forms import BaseWagtailFormBuilder as TbxFormsWagtailFormBuilder
+from tbxforms.forms import BaseWagtailFormBuilder as TbxFormsBaseWagtailFormBuilder
 from path.to.your.forms import ExampleWagtailForm
 
-class WagtailFormBuilder(TbxFormsWagtailFormBuilder):
+class WagtailFormBuilder(TbxFormsBaseWagtailFormBuilder):
     def get_form_class(self):
         return type(str("WagtailForm"), (ExampleWagtailForm,), self.formfields)
 
@@ -158,7 +160,7 @@ class WagtailFormBuilder(TbxFormsWagtailFormBuilder):
 
 from path.to.your.forms import WagtailFormBuilder
 
-class ExampleFormPage(YourPageAncestors):
+class ExampleFormPage(...):
     ...
     form_builder = WagtailFormBuilder
     ...
@@ -167,12 +169,16 @@ class ExampleFormPage(YourPageAncestors):
 ### Render a form
 
 Just like Django Crispy Forms, you need to pass your form object to the
-`{% crispy .. %}` template tag, e.g.:
+`{% crispy ... %}` template tag, e.g.:
 
 ```
 {% load crispy_forms_tags %}
 {% crispy your_form %}
 ```
+
+### Conditionally-required fields
+
+TODO: add instructions.
 
 ### Customising form styles
 
@@ -181,7 +187,7 @@ Out of the box, forms created with `tbxforms` will look like the
 variables can be customised.
 
 To customise a variable, define it in your project.
-See `tbxforms/static/sass/abstracts/_variables.scss` for options.
+See [tbxforms/static/sass/abstracts/\_variables.scss](https://github.com/kbayliss/tbxforms/blob/main/tbxforms/static/sass/abstracts/_variables.scss) for options.
 
 # Further reading
 
