@@ -21,7 +21,7 @@ class BaseForm:
         js = ("js/tbxforms.js",)
 
     @property
-    def helper(self):
+    def helper(self) -> FormHelper:
         fh = FormHelper(self)
         fh.form_class = "tbxforms"  # Must include `tbxforms`.
         return fh
@@ -32,10 +32,12 @@ class BaseWagtailFormBuilder(FormBuilder):
     Override some fields to use tbxforms functionality/variants.
     """
 
-    def create_date_field(self, field, options):
+    def create_date_field(self, field, options) -> DateInputField:
         return DateInputField(**options)
 
-    def create_multiselect_field(self, field, options):
+    def create_multiselect_field(
+        self, field, options
+    ) -> django_forms.MultipleChoiceField:
         # Multiselects are difficult to use, so let's revert to checkboxes.
         options["choices"] = map(
             lambda x: (x.strip(), x.strip()), field.choices.split(",")

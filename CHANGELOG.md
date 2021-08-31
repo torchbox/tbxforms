@@ -6,7 +6,7 @@
 
 ---
 
-## [vx.y.z](https://github.com/torchbox/tbxforms/releases/tag/x.y.z) (Template: https://keepachangelog.com/en/1.0.0/)
+## [vx.y.z](https://github.com/kbayliss/tbxforms/releases/tag/x.y.z) (Template: https://keepachangelog.com/en/1.0.0/)
 
 ### Added
 

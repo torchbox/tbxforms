@@ -4,7 +4,6 @@ from tbxforms.tbxforms.choices import Choice
 from tbxforms.tbxforms.fields import DateInputField
 from tbxforms.tbxforms.helper import FormHelper
 from tbxforms.tbxforms.layout import (
-    HTML,
     Fieldset,
     Layout,
 )
@@ -146,29 +145,6 @@ class TextareaForm(BaseForm):
         help_text="Help text",
         error_messages={"required": "Required error message"},
     )
-
-
-class TableForm(forms.Form):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        header = ["Case worker", "Number of cases closed"]
-        rows = [["David Francis", 3], ["Paul Farmer", 1]]
-        header_css = [
-            "tbxforms-!-width-one-half",
-            "tbxforms-!-width-one-half tbxforms-table__header--numeric",
-        ]
-        row_css = ["", "tbxforms-table__cell--numeric"]
-
-        self.helper = FormHelper()
-        self.helper.layout = Layout(
-            HTML.table(
-                header,
-                rows,
-                caption="Caption",
-                header_css=header_css,
-                row_css=row_css,
-            )
-        )
 
 
 class FieldsetForm(forms.Form):

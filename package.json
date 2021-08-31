@@ -1,16 +1,24 @@
 {
     "name": "tbxforms",
     "version": "0.0.0",
+    "main": "./dist/tbxforms.umd.js",
+    "module": "./dist/tbxforms.es.js",
+    "files": [
+        "dist/*.js",
+        "dist/*.css"
+    ],
+    "description": "A Torchbox-flavoured template pack for django-crispy-forms, adapted from crispy-forms-gds",
     "author": "Kyle Bayliss",
     "private": false,
     "license": "UNLICENSED",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/torchbox/tbxforms.git"
+        "url": "https://github.com/kbayliss/tbxforms.git"
     },
     "bugs": {
-        "url": "https://github.com/torchbox/tbxforms/issues"
+        "url": "https://github.com/kbayliss/tbxforms/issues"
     },
+    "homepage": "https://github.com/kbayliss/tbxforms",
     "keywords": [
         "crispy",
         "django",
@@ -20,54 +28,18 @@
         "tbxforms",
         "wagtail"
     ],
-    "config": {
-        "src_css": "./tbxforms/static_src/sass",
-        "dest_js": "./tbxforms/static_compiled/js",
-        "dest_css": "./tbxforms/static_compiled/css",
-        "dist": "./tbxforms/static_compiled"
+    "devDependencies": {
+        "autoprefixer": "^10.2.5",
+        "eslint": "^7.26.0",
+        "prettier": "2.3.2",
+        "vite": "^2.2.3"
     },
     "scripts": {
-        "//[ Utility ]//": "",
-        "clean": "rm -rf $npm_package_config_dist/*",
-        "//[ Webpack build ]//": "",
-        "compile:prod": "webpack --mode production",
-        "compile:dev": "webpack --mode development --progress",
-        "compile:watch": "npm run compile:dev -- --watch",
-        "//[ Linting & formatting ]//": "",
-        "lint:css": "stylelint $npm_package_config_src_css'/**/**' && stylelint --report-needless-disables $npm_package_config_src_css'/**/**'",
-        "lint:js": "eslint --report-unused-disable-directives .",
-        "lint:format": "prettier --check '**/?(.)*.{md,css,scss,js,json,yaml,yml}'",
-        "lint": "npm-run-all -p lint:format lint:js lint:css",
-        "format": "prettier --write '**/?(.)*.{md,css,scss,js,json,yaml,yml}'",
-        "//[ Tasks ]//": "",
-        "build": "npm-run-all clean compile:dev",
-        "build:prod": "npm-run-all clean compile:prod",
-        "start": "npm-run-all clean compile:dev -p compile:watch watch serve --silent"
+        "format": "prettier --write '**/?(.)*.{md,mdx,css,scss,js,json,json5,yaml,yml}'",
+        "build": "npm run-script format && vite build",
+        "report:package": "npm pack --loglevel notice 2>&1 >/dev/null | sed -e 's/^npm notice //' && rm *.tgz"
     },
-    "devDependencies": {
-        "autoprefixer": "^10.3.2",
-        "babel-eslint": "^10.0.3",
-        "babel-loader": "^8.2.2",
-        "css-loader": "^6.2.0",
-        "cssnano": "^5.0.8",
-        "eslint": "^6.8.0",
-        "eslint-config-airbnb": "^18.0.1",
-        "eslint-config-prettier": "^6.9.0",
-        "eslint-config-torchbox": "^0.3.2",
-        "eslint-plugin-import": "^2.20.0",
-        "eslint-plugin-jsx-a11y": "^6.2.3",
-        "eslint-plugin-react": "^7.17.0",
-        "eslint-plugin-react-hooks": "^1.7.0",
-        "mini-css-extract-plugin": "^2.2.0",
-        "npm-run-all": "^4.1.5",
-        "postcss-custom-properties": "^11.0.0",
-        "postcss-loader": "^6.1.1",
-        "prettier": "^2.0.5",
-        "sass": "^1.38.0",
-        "sass-loader": "^12.1.0",
-        "stylelint": "^10.1.0",
-        "stylelint-config-torchbox": "^0.5.0",
-        "webpack": "^5.51.1",
-        "webpack-cli": "^4.8.0"
+    "dependencies": {
+        "sass": "^1.38.2"
     }
 }

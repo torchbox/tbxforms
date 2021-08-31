@@ -1,12 +1,31 @@
+[![PyPI](https://img.shields.io/pypi/v/tbxforms.svg)](https://pypi.org/project/tbxforms/)
+[![npm](https://img.shields.io/npm/v/tbxforms.svg)](https://www.npmjs.com/package/tbxforms) [![PyPI downloads](https://img.shields.io/pypi/dm/tbxforms.svg)](https://pypi.org/project/tbxforms/)
+[![Build status](https://github.com/kbayliss/tbxforms/workflows/CI/badge.svg)](https://github.com/kbayliss/tbxforms/actions)
+[![Coverage Status](https://coveralls.io/repos/github/kbayliss/tbxforms/badge.svg?branch=main)](https://coveralls.io/github/kbayliss/tbxforms?branch=main)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/kbayliss/tbxforms.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/kbayliss/tbxforms/alerts/)
+
 # Torchbox Forms
 
-[![PyPI](https://img.shields.io/pypi/v/tbxforms.svg)](https://pypi.org/project/tbxforms/) [![npm](https://img.shields.io/npm/v/tbxforms.svg)](https://www.npmjs.com/package/tbxforms) [![PyPI downloads](https://img.shields.io/pypi/dm/tbxforms.svg)](https://pypi.org/project/tbxforms/) [![Build status](https://github.com/torchbox/tbxforms/workflows/CI/badge.svg)](https://github.com/torchbox/tbxforms/actions) [![Coverage Status](https://coveralls.io/repos/github/torchbox/tbxforms/badge.svg?branch=main)](https://coveralls.io/github/torchbox/tbxforms?branch=main) [![Total alerts](https://img.shields.io/lgtm/alerts/g/torchbox/tbxforms.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/torchbox/tbxforms/alerts/)
+A Torchbox-flavoured template pack for [django-crispy-forms](https://github.com/django-crispy-forms/django-crispy-forms), adapted from [crispy-forms-gds](https://github.com/wildfish/crispy-forms-gds).
 
-A Torchbox-flavoured template pack for [django-crispy-forms](https://github.com/django-crispy-forms/django-crispy-forms), based on [crispy-forms-gds](https://github.com/wildfish/crispy-forms-gds).
+## Contents
+
+-   [Torchbox Forms](#torchbox-forms)
+    -   [Installation](#installation)
+        -   [Install the Python package](#install-the-python-package)
+        -   [Install the NPM package](#install-the-npm-package)
+    -   [Usage](#usage)
+        -   [Creating a Django form](#creating-a-django-form)
+        -   [Creating a Wagtail form](#creating-a-wagtail-form)
+            -   [Add a `helper` property to the Wagtail form](#add-a--helper--property-to-the-wagtail-form)
+            -   [Instruct a Wagtail Page model to use the newly created form](#instruct-a-wagtail-page-model-to-use-the-newly-created-form)
+        -   [Render a form](#render-a-form)
+        -   [Customising form styles](#customising-form-styles)
+-   [Further reading](#further-reading)
 
 ## Installation
 
-Use of this package requires you to install both a Python package and an NPM package.
+You must install both a Python package and an NPM package.
 
 ### Install the Python package
 
@@ -35,12 +54,29 @@ CRISPY_TEMPLATE_PACK = "tbx"
 
 ### Install the NPM package
 
-TODO.
+Install using NPM:
 
-Include instructions for:
+```bash
+npm install tbxforms
+```
 
--   SCSS
--   JS
+Instantiate your forms:
+
+```javascript
+import TbxForms from '@tbxforms/tbxforms';
+
+document.addEventListener('DOMContentLoaded', () => {
+    for (const form of document.querySelectorAll(TbxForms.selector())) {
+        new TbxForms(form);
+    }
+});
+```
+
+Import the styles into your project:
+
+```sass
+@import 'node_modules/@tbxforms/tbxforms/static/sass/tbxforms';
+```
 
 ## Usage
 
@@ -112,6 +148,7 @@ class ExampleWagtailForm(WagtailBaseForm):
 # in your forms definitions (e.g. forms.py)
 
 from tbxforms.forms import BaseWagtailFormBuilder as TbxFormsWagtailFormBuilder
+from path.to.your.forms import ExampleWagtailForm
 
 class WagtailFormBuilder(TbxFormsWagtailFormBuilder):
     def get_form_class(self):
@@ -127,24 +164,29 @@ class ExampleFormPage(YourPageAncestors):
     ...
 ```
 
-### Rendering a form on the frontend
+### Render a form
 
-Simply pass your form to the `{% crispy .. %}` template tag using the Context.
+Just like Django Crispy Forms, you need to pass your form object to the
+`{% crispy .. %}` template tag, e.g.:
 
-e.g. (where `name_of_your_form_variable` is the key you've chosen to add your form to the Context):
-
-```html
-{% load crispy_forms_tags %} {% crispy name_of_your_form_variable %}
 ```
+{% load crispy_forms_tags %}
+{% crispy your_form %}
+```
+
+### Customising form styles
+
+Out of the box, forms created with `tbxforms` will look like the
+[GOV.UK Design System](https://design-system.service.gov.uk/), though many
+variables can be customised.
+
+To customise a variable, define it in your project.
+See `tbxforms/static/sass/abstracts/_variables.scss` for options.
 
 # Further reading
 
--   Download the `PyPi package`\_
--   Download the `NPM package`\_
--   Learn more about `Django Crispy Forms`\_
--   Learn more about `Crispy Forms GDS`\_
-
-.. \_PyPi package: http://pypi.python.org/pypi/tbxforms
-.. \_NPM package: https://www.npmjs.com/package/tbxforms
-.. \_Django Crispy Forms: https://django-crispy-forms.readthedocs.io/en/latest/
-.. \_Crispy Forms GDS: https://github.com/wildfish/crispy-forms-gds
+-   Download the [PyPi package](http://pypi.python.org/pypi/tbxforms)
+-   Download the [NPM package](https://www.npmjs.com/package/tbxforms)
+-   Learn more about [Django Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/)
+-   Learn more about [Crispy Forms GDS](https://github.com/wildfish/crispy-forms-gds)
+-   Learn more about [GOV.UK Design System](https://design-system.service.gov.uk/)

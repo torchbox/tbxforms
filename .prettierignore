@@ -1,8 +1,5 @@
-static_compiled
-*.html
-coverage
-venv
-.git
-media
-static
 node_modules
+.tox
+*.html
+dist
+tests

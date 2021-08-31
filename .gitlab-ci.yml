@@ -16,7 +16,7 @@ stages:
     - build_packages
     - deploy
 
-# Test if static assets can be built succesfully.
+# Test if static assets can be built successfully.
 static:
     before_script: []
     image: node:12
