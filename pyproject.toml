@@ -54,13 +54,14 @@ keywords = [
 python = "^3.7"
 Django = ">=2.2,<4.0"
 django-crispy-forms = ">1.10,<1.12"
-django-vite = "^1.1.0"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "~2.0"
 beautifulsoup4 = "^4.8"
 coverage = "^4.5"
 pymdown-extensions = "^8.0"
+twine = "^3.4.2"
+django-vite = "^1.1.0"
 
 # Linters etc.
 black = "21.7b0"
