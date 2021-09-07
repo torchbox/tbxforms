@@ -10,7 +10,7 @@
     "description": "A Torchbox-flavoured template pack for django-crispy-forms, adapted from crispy-forms-gds",
     "author": "Kyle Bayliss",
     "private": false,
-    "license": "UNLICENSED",
+    "license": "BSD-2-Clause",
     "repository": {
         "type": "git",
         "url": "https://github.com/kbayliss/tbxforms.git"
