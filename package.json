@@ -5,7 +5,8 @@
     "module": "./dist/tbxforms.es.js",
     "files": [
         "dist/*.js",
-        "dist/*.css"
+        "dist/*.css",
+        "dist/**/*.scss"
     ],
     "description": "A Torchbox-flavoured template pack for django-crispy-forms, adapted from crispy-forms-gds",
     "author": "Kyle Bayliss",
@@ -37,7 +38,7 @@
     },
     "scripts": {
         "format": "prettier --write '**/?(.)*.{md,mdx,css,scss,js,json,json5,yaml,yml}'",
-        "build": "npm run-script format && vite build",
+        "build": "npm run-script format && vite build && cp -R tbxforms/static/sass/* dist/",
         "report:package": "npm pack --loglevel notice 2>&1 >/dev/null | sed -e 's/^npm notice //' && rm *.tgz"
     }
 }
