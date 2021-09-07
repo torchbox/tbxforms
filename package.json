@@ -38,7 +38,8 @@
     },
     "scripts": {
         "format": "prettier --write '**/?(.)*.{md,mdx,css,scss,js,json,json5,yaml,yml}'",
-        "build": "npm run-script format && vite build && cp -R tbxforms/static/sass/* dist/",
+        "build": "vite build && cp -R tbxforms/static/sass/* dist/",
+        "prepublishOnly": "npm run build -s",
         "report:package": "npm pack --loglevel notice 2>&1 >/dev/null | sed -e 's/^npm notice //' && rm *.tgz"
     }
 }
