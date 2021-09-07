@@ -64,7 +64,7 @@ npm install tbxforms
 Instantiate your forms:
 
 ```javascript
-import TbxForms from '@tbxforms/tbxforms';
+import TbxForms from 'tbxforms';
 
 document.addEventListener('DOMContentLoaded', () => {
     for (const form of document.querySelectorAll(TbxForms.selector())) {
@@ -73,10 +73,21 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
-Import the styles into your project:
+Import the styles into your project, either as CSS:
 
-```sass
-@import 'node_modules/@tbxforms/tbxforms/static/sass/tbxforms';
+```scss
+// Either as CSS without any customisations:
+@use 'node_modules/tbxforms/style.css';
+```
+
+Or as Sass, to customise variables:
+
+```scss
+// Or as Sass, with variables to customise:
+@use 'node_modules/tbxforms/tbxforms.scss' with (
+    $tbxforms-error-colour: #f00,
+    $tbxforms-text-colour: #000,
+);
 ```
 
 ## Usage
