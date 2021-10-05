@@ -4,6 +4,7 @@ from wagtail.contrib.forms.forms import FormBuilder
 
 from tbxforms.fields import DateInputField
 from tbxforms.helper import FormHelper
+from tbxforms.tbxforms.layout import Size
 
 
 class BaseForm:
@@ -24,6 +25,11 @@ class BaseForm:
     def helper(self) -> FormHelper:
         fh = FormHelper(self)
         fh.form_class = "tbxforms"  # Must include `tbxforms`.
+
+        # Define some likely defaults.
+        fh.html5_required = True
+        fh.label_size = Size.MEDIUM
+        fh.legend_size = Size.MEDIUM
         return fh
 
 

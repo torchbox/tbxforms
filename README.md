@@ -81,6 +81,41 @@ Import the styles into your project:
 
 ## Usage
 
+### Customising the form helper
+
+By default, every form that inherits from `TbxFormsBaseForm` will have the following
+attributes set:
+
+-   `html5_required = True`
+-   `label_size = Size.MEDIUM`
+-   `legend_size = Size.MEDIUM`
+-   `form_error_title = _("There is a problem with your submission")`
+-   Plus everything from [django-crispy-forms' default attributes](https://django-crispy-forms.readthedocs.io/en/latest/form_helper.html).
+
+These can be overridden (and/or additional attributes from the above list defined)
+just like you would do with any other inherited class, e.g.:
+
+```python
+
+class YourSexyForm(TbxFormsBaseForm, forms.Form):
+
+    @property
+    def helper(self):
+        fh = super().helper
+        fh.html5_required = False
+        fh.label_size = Size.SMALL
+        fh.form_error_title = _("Something's wrong, yo.")
+        return fh
+
+```
+
+#### Possible values for the `label_size` and `legend_size`:
+
+1. `SMALL`
+2. `MEDIUM` (default)
+3. `LARGE`
+4. `EXTRA_LARGE`
+
 ### Creating a Django form
 
 ```python
@@ -89,28 +124,10 @@ from tbxforms.forms import BaseForm as TbxFormsBaseForm
 class ExampleForm(TbxFormsBaseForm, forms.Form):
     # < Your field definitions >
 
-    # Although not required, it is recommended to add a helper:
-    @property
-    def helper(self):
-        fh = super().helper
-        fh.html5_required = True
-        fh.label_size = Size.MEDIUM
-        fh.legend_size = Size.MEDIUM
-        fh.form_error_title = _("There is a problem with your submission")
-        return fh
 
 class ExampleModelForm(TbxFormsBaseForm, forms.ModelForm):
     # < Your field definitions and ModelForm config >
 
-    # Although not required, it is recommended to add a helper:
-    @property
-    def helper(self):
-        fh = super().helper
-        fh.html5_required = True
-        fh.label_size = Size.MEDIUM
-        fh.legend_size = Size.MEDIUM
-        fh.form_error_title = _("There is a problem with your submission")
-        return fh
 ```
 
 ### Creating a Wagtail form
@@ -127,13 +144,11 @@ from wagtail.contrib.forms.forms import BaseForm as WagtailBaseForm
 from tbxforms.forms import BaseForm as TbxFormsBaseForm
 
 class ExampleWagtailForm(TbxFormsBaseForm, WagtailBaseForm):
+
+    # Extend the `TbxFormsBaseForm.helper()` to add a submit button.
     @property
     def helper(self):
         fh = super().helper
-        fh.html5_required = True
-        fh.label_size = Size.MEDIUM
-        fh.legend_size = Size.MEDIUM
-        fh.form_error_title = _("There is a problem with your submission")
         fh.add_input(
             Button.primary(
                 name="submit",
@@ -147,6 +162,7 @@ class ExampleWagtailForm(TbxFormsBaseForm, WagtailBaseForm):
 #### Instruct a Wagtail Page model to use the newly created form
 
 ```python
+# -----------------------------------------------------------------------------
 # in your forms definitions (e.g. forms.py)
 
 from tbxforms.forms import BaseWagtailFormBuilder as TbxFormsBaseWagtailFormBuilder
@@ -156,6 +172,7 @@ class WagtailFormBuilder(TbxFormsBaseWagtailFormBuilder):
     def get_form_class(self):
         return type(str("WagtailForm"), (ExampleWagtailForm,), self.formfields)
 
+# -----------------------------------------------------------------------------
 # in your page models (e.g. models.py)
 
 from path.to.your.forms import WagtailFormBuilder
