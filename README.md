@@ -270,14 +270,19 @@ class ExampleForm(TbxFormsBaseForm, forms.Form):
         newsletter_signup = cleaned_data.get("newsletter_signup")
         email = cleaned_data.get("email")
 
-        # Conditionally-required fields should also be validated as part of the
-        # form clean process to ensure data validity.
+        # Assuming `form.helper.html5_required == True`, tbxforms will toggle the
+        # html5 'required' attribute when a conditionally-required field is shown,
+        # though it is recommended to also check the value in your clean() method.
         if newsletter_signup == "yes" and not email:
             raise ValidationError(
                 {
                     "email": _("This field is required."),
                 }
             )
+        # The tbxforms JS will attempt to clear any redundant data upon submission,
+        # though it is recommended to also handle this in your clean() method.
+        elif newsletter_signup == "no" and email:
+            del cleaned_data['email']
 
         return cleaned_data
 
