@@ -5,7 +5,7 @@ description = "A Torchbox-flavoured template pack for django-crispy-forms, adapt
 authors = [
     "Kyle Bayliss <kyle.bayliss@torchbox.com>"
 ]
-license = "BSD-3-Clause"
+license = "BSD-2-Clause"
 readme = "README.md"
 homepage = ""
 repository = "https://github.com/kbayliss/tbxforms/"
@@ -17,7 +17,6 @@ classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.6",
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
