@@ -7,8 +7,6 @@ class TbxForms {
 
     constructor(node) {
         this.form = node;
-        this.cls_hidden = 'tbxforms-conditional--hidden';
-        this.cls_visible = 'tbxforms-conditional--visible';
 
         // Loop through all elements within the given form (e.g. inputs, divs, fieldsets).
         this.form.querySelectorAll('*').forEach((form_element) => {
@@ -40,15 +38,13 @@ class TbxForms {
                                     'aria-expanded',
                                     'true',
                                 );
-                                container.classList.remove(this.cls_hidden);
-                                container.classList.add(this.cls_visible);
+                                container.hidden = false;
                             } else {
                                 option_node.setAttribute(
                                     'aria-expanded',
                                     'false',
                                 );
-                                container.classList.remove(this.cls_visible);
-                                container.classList.add(this.cls_hidden);
+                                container.hidden = true;
                             }
                         });
 
@@ -69,12 +65,10 @@ class TbxForms {
                             ).includes(Number(drivingField.value))
                         ) {
                             drivingField.setAttribute('aria-expanded', 'true');
-                            container.classList.remove(this.cls_hidden);
-                            container.classList.add(this.cls_visible);
+                            container.hidden = false;
                         } else {
                             drivingField.setAttribute('aria-expanded', 'false');
-                            container.classList.remove(this.cls_visible);
-                            container.classList.add(this.cls_hidden);
+                            container.hidden = true;
                         }
                     });
 
@@ -87,7 +81,7 @@ class TbxForms {
         // Clear any values for fields that are conditionally hidden.
         this.form.addEventListener('submit', () => {
             this.form
-                .querySelectorAll(`.${this.cls_hidden}`)
+                .querySelectorAll('[hidden=true]')
                 .forEach((hidden_form_element) => {
                     this.clearInput(hidden_form_element);
                 });
