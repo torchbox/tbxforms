@@ -8,6 +8,10 @@
 
 A Torchbox-flavoured template pack for [django-crispy-forms](https://github.com/django-crispy-forms/django-crispy-forms), adapted from [crispy-forms-gds](https://github.com/wildfish/crispy-forms-gds).
 
+Out of the box, forms created with `tbxforms` will look like the
+[GOV.UK Design System](https://design-system.service.gov.uk/), though many
+variables can be customised.
+
 ## Contents
 
 -   [Torchbox Forms](#torchbox-forms)
@@ -15,13 +19,14 @@ A Torchbox-flavoured template pack for [django-crispy-forms](https://github.com/
         -   [Install the Python package](#install-the-python-package)
         -   [Install the NPM package](#install-the-npm-package)
     -   [Usage](#usage)
-        -   [Creating a Django form](#creating-a-django-form)
-        -   [Creating a Wagtail form](#creating-a-wagtail-form)
-            -   [Add a `helper` property to the Wagtail form](#add-a-helper-property-to-the-wagtail-form)
+        -   [Create a Django form](#creating-a-django-form)
+        -   [Create a Wagtail form](#creating-a-wagtail-form)
+            -   [Add a `helper` property to the Wagtail form](#add-a--helper--property-to-the-wagtail-form)
             -   [Instruct a Wagtail Page model to use the newly created form](#instruct-a-wagtail-page-model-to-use-the-newly-created-form)
         -   [Render a form](#render-a-form)
+        -   [Customise a form's attributes (via the `helper` property)](#customising-a-form-s-attributes--via-the--helper--property-)
+            -   [Possible values for the `label_size` and `legend_size`:](#possible-values-for-the--label-size--and--legend-size--)
         -   [Conditionally-required fields](#conditionally-required-fields)
-        -   [Customising form styles](#customising-form-styles)
 -   [Further reading](#further-reading)
 
 ## Installation
@@ -90,44 +95,13 @@ Or as Sass, to customise variables:
 );
 ```
 
+Variables can also be defined in a centralised variables SCSS file, too.
+
+See [tbxforms/static/sass/abstracts/\_variables.scss](https://github.com/kbayliss/tbxforms/blob/main/tbxforms/static/sass/abstracts/_variables.scss) for customisable variables.
+
 ## Usage
 
-### Customising the form helper
-
-By default, every form that inherits from `TbxFormsBaseForm` will have the following
-attributes set:
-
--   `html5_required = True`
--   `label_size = Size.MEDIUM`
--   `legend_size = Size.MEDIUM`
--   `form_error_title = _("There is a problem with your submission")`
--   Plus everything from [django-crispy-forms' default attributes](https://django-crispy-forms.readthedocs.io/en/latest/form_helper.html).
-
-These can be overridden (and/or additional attributes from the above list defined)
-just like you would do with any other inherited class, e.g.:
-
-```python
-
-class YourSexyForm(TbxFormsBaseForm, forms.Form):
-
-    @property
-    def helper(self):
-        fh = super().helper
-        fh.html5_required = False
-        fh.label_size = Size.SMALL
-        fh.form_error_title = _("Something's wrong, yo.")
-        return fh
-
-```
-
-#### Possible values for the `label_size` and `legend_size`:
-
-1. `SMALL`
-2. `MEDIUM` (default)
-3. `LARGE`
-4. `EXTRA_LARGE`
-
-### Creating a Django form
+### Create a Django form
 
 ```python
 from tbxforms.forms import BaseForm as TbxFormsBaseForm
@@ -141,7 +115,7 @@ class ExampleModelForm(TbxFormsBaseForm, forms.ModelForm):
 
 ```
 
-### Creating a Wagtail form
+### Create a Wagtail form
 
 Two parts are required for this to work:
 
@@ -204,18 +178,110 @@ Just like Django Crispy Forms, you need to pass your form object to the
 {% crispy your_form %}
 ```
 
+### Customise a form's attributes (via the `helper` property)
+
+By default, every form that inherits from `TbxFormsBaseForm` will have the following
+attributes set:
+
+-   `html5_required = True`
+-   `label_size = Size.MEDIUM`
+-   `legend_size = Size.MEDIUM`
+-   `form_error_title = _("There is a problem with your submission")`
+-   Plus everything from [django-crispy-forms' default attributes](https://django-crispy-forms.readthedocs.io/en/latest/form_helper.html).
+
+These can be overridden (and/or additional attributes from the above list defined)
+just like you would do with any other inherited class, e.g.:
+
+```python
+
+class YourSexyForm(TbxFormsBaseForm, forms.Form):
+
+    @property
+    def helper(self):
+        fh = super().helper
+        fh.html5_required = False
+        fh.label_size = Size.SMALL
+        fh.form_error_title = _("Something's wrong, yo.")
+        return fh
+
+```
+
+#### Possible values for the `label_size` and `legend_size`:
+
+1. `SMALL`
+2. `MEDIUM` (default)
+3. `LARGE`
+4. `EXTRA_LARGE`
+
 ### Conditionally-required fields
 
-TODO: add instructions.
+`tbxforms` supports hiding/showing of fields or elements (e.g. div or fieldset)
+based on the values of a given input field.
 
-### Customising form styles
+Example:
 
-Out of the box, forms created with `tbxforms` will look like the
-[GOV.UK Design System](https://design-system.service.gov.uk/), though many
-variables can be customised.
+```python
+class ExampleForm(TbxFormsBaseForm, forms.Form):
+    NEWSLETTER_CHOICES = (
+        Choice("yes", "Yes please", hint="Receive occasional email newsletters."),
+        Choice("no", "No thanks"),
+    )
 
-To customise a variable, define it in your project.
-See [tbxforms/static/sass/abstracts/\_variables.scss](https://github.com/kbayliss/tbxforms/blob/main/tbxforms/static/sass/abstracts/_variables.scss) for options.
+    newsletter_signup = forms.ChoiceField(
+        choices=NEWSLETTER_CHOICES
+    )
+
+    email = forms.EmailField(
+        widget=forms.EmailInput(required=False)
+    )
+
+    @staticmethod
+    def conditional_fields_to_show_as_required() -> [str]:
+        return [
+            "email", # Include any fields that should show as required to the user.
+        ]
+
+    @property
+    def helper(self):
+        fh = super().helper
+
+        # Override what is rendered for this form.
+        fh.layout = Layout(
+
+            # Add our newsletter sign-up field.
+            Field("newsletter_signup"),
+
+            # Add our email field, and define the conditional 'show' logic.
+            Field(
+                "email",
+                data_conditional={
+                    "field_name": "newsletter_signup", # Field to inspect.
+                    "values": ["yes"], # Value(s) to cause this field to show.
+                },
+            ),
+
+        )
+
+        return fh
+
+
+    def clean(self):
+        cleaned_data = super().clean()
+        newsletter_signup = cleaned_data.get("newsletter_signup")
+        email = cleaned_data.get("email")
+
+        # Conditionally-required fields should also be validated as part of the
+        # form clean process to ensure data validity.
+        if newsletter_signup == "yes" and not email:
+            raise ValidationError(
+                {
+                    "email": _("This field is required."),
+                }
+            )
+
+        return cleaned_data
+
+```
 
 # Further reading
 
