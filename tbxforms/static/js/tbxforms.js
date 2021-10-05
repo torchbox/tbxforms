@@ -18,9 +18,18 @@ class TbxForms {
                 const container = form_element.closest('.tbxforms-form-group')
                     ? form_element.closest('.tbxforms-form-group')
                     : form_element;
-                const drivingFieldNodeList = document.getElementsByName(
-                    form_element.dataset.conditionalFieldName,
+                const drivingFieldNodeList = document.querySelectorAll(
+                    `${this.form} [name="${form_element.dataset.conditionalFieldName}"]`,
                 );
+
+                // Try to parse the JSON and log an error if there's a problem.
+                try {
+                    const conditional_values_for_element = JSON.parse(
+                        form_element.dataset.conditionalFieldValues,
+                    );
+                } catch (e) {
+                    throw 'Invalid JSON: ' + e;
+                }
 
                 container.classList.add('tbxforms-conditional');
 
@@ -30,9 +39,9 @@ class TbxForms {
                         option_node.addEventListener('change', () => {
                             if (
                                 option_node.checked &&
-                                JSON.parse(
-                                    form_element.dataset.conditionalFieldValues,
-                                ).includes(option_node.value)
+                                conditional_values_for_element.includes(
+                                    option_node.value,
+                                )
                             ) {
                                 option_node.setAttribute(
                                     'aria-expanded',
@@ -57,12 +66,12 @@ class TbxForms {
 
                     drivingField.addEventListener('change', () => {
                         if (
-                            JSON.parse(
-                                form_element.dataset.conditionalFieldValues,
-                            ).includes(drivingField.value) ||
-                            JSON.parse(
-                                form_element.dataset.conditionalFieldValues,
-                            ).includes(Number(drivingField.value))
+                            conditional_values_for_element.includes(
+                                drivingField.value,
+                            ) ||
+                            conditional_values_for_element.includes(
+                                Number(drivingField.value),
+                            )
                         ) {
                             drivingField.setAttribute('aria-expanded', 'true');
                             container.hidden = false;
