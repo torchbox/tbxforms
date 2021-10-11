@@ -9,23 +9,24 @@ class TbxForms {
         this.form = node;
 
         // Loop through all elements within the given form (e.g. inputs, divs, fieldsets).
-        this.form.querySelectorAll('*').forEach((form_element) => {
+        this.form.querySelectorAll('*').forEach((formElement) => {
             // If this element has conditional logic...
             if (
-                form_element.dataset.conditionalFieldName &&
-                form_element.dataset.conditionalFieldValues
+                formElement.dataset.conditionalFieldName &&
+                formElement.dataset.conditionalFieldValues
             ) {
-                const container = form_element.closest('.tbxforms-form-group')
-                    ? form_element.closest('.tbxforms-form-group')
-                    : form_element;
+                const container = formElement.closest('.tbxforms-form-group')
+                    ? formElement.closest('.tbxforms-form-group')
+                    : formElement;
                 const drivingFieldNodeList = document.querySelectorAll(
-                    `${this.form} [name="${form_element.dataset.conditionalFieldName}"]`,
+                    `${this.form} [name="${formElement.dataset.conditionalFieldName}"]`,
                 );
+                let conditionalValuesForElement;
 
                 // Try to parse the JSON and log an error if there's a problem.
                 try {
-                    const conditional_values_for_element = JSON.parse(
-                        form_element.dataset.conditionalFieldValues,
+                    conditionalValuesForElement = JSON.parse(
+                        formElement.dataset.conditionalFieldValues,
                     );
                 } catch (e) {
                     throw 'Invalid JSON: ' + e;
@@ -39,7 +40,7 @@ class TbxForms {
                         option_node.addEventListener('change', () => {
                             if (
                                 option_node.checked &&
-                                conditional_values_for_element.includes(
+                                conditionalValuesForElement.includes(
                                     option_node.value,
                                 )
                             ) {
@@ -66,10 +67,10 @@ class TbxForms {
 
                     drivingField.addEventListener('change', () => {
                         if (
-                            conditional_values_for_element.includes(
+                            conditionalValuesForElement.includes(
                                 drivingField.value,
                             ) ||
-                            conditional_values_for_element.includes(
+                            conditionalValuesForElement.includes(
                                 Number(drivingField.value),
                             )
                         ) {
@@ -92,8 +93,8 @@ class TbxForms {
         this.form.addEventListener('submit', () => {
             this.form
                 .querySelectorAll('[hidden=true]')
-                .forEach((hidden_form_element) => {
-                    this.clearInput(hidden_form_element);
+                .forEach((hiddenFormElement) => {
+                    this.clearInput(hiddenFormElement);
                 });
         });
     }
@@ -135,8 +136,8 @@ class TbxForms {
                 node.selectedIndex = -1;
                 break;
             default:
-                node.querySelectorAll('*').forEach((form_element) => {
-                    this.clearInput(form_element);
+                node.querySelectorAll('*').forEach((formElement) => {
+                    this.clearInput(formElement);
                 });
         }
     }
