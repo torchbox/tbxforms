@@ -6,8 +6,8 @@ import os
 
 import pytest
 
-from tbxforms.tbxforms.helper import FormHelper
-from tbxforms.tbxforms.layout import (
+from tbxforms.helper import FormHelper
+from tbxforms.layout import (
     Field,
     Layout,
     Size,
@@ -72,7 +72,9 @@ def test_no_help_text():
 
 
 def test_no_help_text_errors():
-    """Verify all the gds error attributes are displayed if no help text is given."""
+    """
+    Verify all the gds error attributes are displayed if no help text is given.
+    """
     form = TextareaForm(data={"description": ""})
     form.fields["description"].help_text = ""
     assert parse_form(form) == parse_contents(
@@ -93,13 +95,17 @@ def test_character_count():
 
 
 def test_character_and_word_count():
-    """Verify an exception is raise if the character and words count is given."""
+    """
+    Verify an exception is raise if the character and words count is given.
+    """
     with pytest.raises(ValueError):
         Field.textarea("description", max_characters=100, max_words=50)
 
 
 def test_threshold():
-    """Verify info is shown after a certain number of words has been entered."""
+    """
+    Verify info is shown after a certain number of words has been entered.
+    """
     form = TextareaForm(initial={"description": "Field value"})
     form.helper = FormHelper()
     form.helper.layout = Layout(

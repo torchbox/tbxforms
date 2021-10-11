@@ -4,8 +4,8 @@ Tests to verify text fields are rendered correctly.
 """
 import os
 
-from tbxforms.tbxforms.helper import FormHelper
-from tbxforms.tbxforms.layout import (
+from tbxforms.helper import FormHelper
+from tbxforms.layout import (
     Field,
     Layout,
     Size,
@@ -68,7 +68,9 @@ def test_no_help_text():
 
 
 def test_no_help_text_errors():
-    """Verify all the gds error attributes are displayed if no help text is given."""
+    """
+    Verify all the gds error attributes are displayed if no help text is given.
+    """
     form = TextInputForm(data={"name": ""})
     form.fields["name"].help_text = ""
     assert not form.is_valid()

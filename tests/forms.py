@@ -1,9 +1,9 @@
 from django import forms
 
-from tbxforms.tbxforms.choices import Choice
-from tbxforms.tbxforms.fields import DateInputField
-from tbxforms.tbxforms.helper import FormHelper
-from tbxforms.tbxforms.layout import (
+from tbxforms.choices import Choice
+from tbxforms.fields import DateInputField
+from tbxforms.helper import FormHelper
+from tbxforms.layout import (
     Fieldset,
     Layout,
 )

@@ -1,4 +1,4 @@
-from tbxforms.tbxforms.choices import Choice
+from tbxforms.choices import Choice
 
 
 def test_set_attribute():
@@ -16,7 +16,9 @@ def test_item_index():
 
 
 def test_iterator_unpacking():
-    """Verify iterating over and unpacking a Choice returns the key and value."""
+    """
+    Verify iterating over and unpacking a Choice returns the key and value.
+    """
     choices = (Choice("email", "Email", hint="Your email address"),)
     for k, v in choices:
         assert k == "email"

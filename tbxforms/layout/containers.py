@@ -8,7 +8,7 @@ from crispy_forms.utils import (
     flatatt,
 )
 
-from tbxforms.tbxforms.layout import Size
+from tbxforms.layout import Size
 
 
 class Div(crispy_forms_layout.Div):
@@ -62,25 +62,31 @@ class Fieldset(crispy_forms_layout.LayoutObject):
     """
     A layout object for displaying groups of fields.
 
-    The contents of a Fieldset are be one or more LayoutObjects: fields, buttons,
-    composed layouts, etc. You can give the <fieldset> a <legend> title, set the size
-    of the font used and wrap the <legend> in a heading tag if necessary.
+    The contents of a Fieldset are be one or more LayoutObjects: fields,
+    buttons, composed layouts, etc. You can give the <fieldset> a <legend>
+    title, set the size of the font used and wrap the <legend> in a heading
+    tag if necessary.
 
     Examples::
 
         Fieldset('form_field_1', 'form_field_2')
         Fieldset('form_field_1', 'form_field_2', legend="title")
-        Fieldset('form_field_1', 'form_field_2', legend="title", legend_tag="h1")
-        Fieldset('form_field_1', 'form_field_2', legend="title", legend_size="xl")
+        Fieldset(
+            'form_field_1', 'form_field_2', legend="title", legend_tag="h1"
+        )
+        Fieldset(
+            'form_field_1', 'form_field_2', legend="title", legend_size="xl"
+        )
 
     Arguments:
         legend (str, optional): the title displayed in a <legend>.
 
         legend_size (str, optional): the size of the title: 's', 'm', 'l' or
-            'xl'. It's more readable if you use the contants on the ``Size`` class.
+            'xl'. It's more readable if you use the contants on the ``Size``
+            class.
 
-        legend_tag (str, optional): an HTML tag that wraps the <legend>. Typically
-            this is 'h1' so the <legend> also acts as the page title.
+        legend_tag (str, optional): an HTML tag that wraps the <legend>.
+            Typically this is 'h1' so the <legend> also acts as the page title.
 
         css_id (str, optional): an unique identifier for the fieldset.
 
@@ -92,7 +98,8 @@ class Fieldset(crispy_forms_layout.LayoutObject):
         template (str, optional): the path to a template that overrides the
             one provided by the template pack.
 
-        *fields: a list of LayoutObjects objects that make up the Fieldset contents.
+        *fields: a list of LayoutObjects objects that make up the Fieldset
+            contents.
 
         **kwargs:  any additional attributes you want to add to the <fieldset>.
 

@@ -8,7 +8,7 @@ from django.core.exceptions import ValidationError
 
 import pytest
 
-from tbxforms.tbxforms.fields import DateInputField
+from tbxforms.fields import DateInputField
 
 
 def test_compress_valid_fields():
@@ -20,7 +20,9 @@ def test_compress_valid_fields():
 
 
 def test_compress_optional_fields_empty():
-    """Verify compress returns None if the values are not required and not set."""
+    """
+    Verify compress returns None if the values are not required and not set.
+    """
     field = DateInputField()
     field.require_all_fields = False
     value = field.compress(["", "", ""])
@@ -36,7 +38,9 @@ def test_cleaned_valid_value():
 
 
 def test_required_day_field():
-    """Verify a parent field required error is not recorded on the day widget."""
+    """
+    Verify a parent field required error is not recorded on the day widget.
+    """
     field = DateInputField()
     with pytest.raises(ValidationError) as err:
         field.clean(["", "12", "2007"])
@@ -64,7 +68,9 @@ def test_invalid_day_field():
 
 
 def test_required_month_field():
-    """Verify a parent field required error is not recorded on the month widget."""
+    """
+    Verify a parent field required error is not recorded on the month widget.
+    """
     field = DateInputField()
     with pytest.raises(ValidationError) as err:
         field.clean(["11", "", "2007"])
@@ -92,7 +98,9 @@ def test_invalid_month_field():
 
 
 def test_required_year_field():
-    """Verify a parent field required error is not recorded on the year widget."""
+    """
+    Verify a parent field required error is not recorded on the year widget.
+    """
     field = DateInputField()
     with pytest.raises(ValidationError) as err:
         field.clean(["11", "12", ""])

@@ -4,7 +4,7 @@ from wagtail.contrib.forms.forms import FormBuilder
 
 from tbxforms.fields import DateInputField
 from tbxforms.helper import FormHelper
-from tbxforms.tbxforms.layout import Size
+from tbxforms.layout import Size
 
 
 class BaseForm:

@@ -4,7 +4,7 @@ Tests to verify buttons are rendered correctly.
 """
 import os
 
-from tbxforms.tbxforms.layout import Button
+from tbxforms.layout import Button
 from tests.utils import (
     TEST_DIR,
     parse_contents,

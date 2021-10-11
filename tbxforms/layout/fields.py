@@ -3,7 +3,7 @@ from django.utils.html import conditional_escape
 from crispy_forms import layout as crispy_forms_layout
 from crispy_forms.utils import TEMPLATE_PACK
 
-from tbxforms.tbxforms.layout import (
+from tbxforms.layout import (
     Fixed,
     Fluid,
     Size,
@@ -45,26 +45,28 @@ class Field(crispy_forms_layout.LayoutObject):
     Field is a copy of the Crispy Forms Field class but with more well-defined
     interface. The ability to set template variables was added and the template
     keyword argument was made explicit - before it was just another kwarg. The
-    one incompatibility is the wrapper_class keyword argument, which was removed.
-    You can still add it via the context since it was used as a template variable.
+    one incompatibility is the wrapper_class keyword argument, which was
+    removed. You can still add it via the context since it was used as a
+    template variable.
 
     Args:
-        css_class (str, optional): the css classes that will be added to the widget.
+        css_class (str, optional): the css classes that will be added to the
+            widget.
 
-        context (dict, optional): the list of values that will be added to the template
-            context when the field is rendered.
+        context (dict, optional): the list of values that will be added to the
+            template context when the field is rendered.
 
-        template (str, optional): the template used to render this field, overriding the
-            one defined on the class.
+        template (str, optional): the template used to render this field,
+            overriding the one defined on the class.
 
         *fields: the names of the fields to display.
 
-        **kwargs (str): the list of attributes that will be added to the widget. Use '_'
-            instead of '-' in the attribute name. It will be converted to '-'.
+        **kwargs (str): the list of attributes that will be added to the
+            widget. Use '_' instead of '-' in the attribute name. It will be
+            converted to '-'.
 
     The variables defined in the context are only in scope while the field is
     being rendered. The original template context is then restored.
-
     """
 
     template = "%s/field.html"
@@ -79,9 +81,8 @@ class Field(crispy_forms_layout.LayoutObject):
 
             small (bool): Display small checkboxes. Default is False.
 
-            **kwargs: Attributes to add to the <input> element when the field is
-                rendered.
-
+            **kwargs: Attributes to add to the <input> element when the field
+                is rendered.
         """
         return Field(field, context={"checkboxes_small": small}, **kwargs)
 
@@ -93,20 +94,20 @@ class Field(crispy_forms_layout.LayoutObject):
         Create a field for displaying a set of checkboxes.
 
         Args:
-            field (str): the name of the field. The field's label will be used as
-                the title of the <legend>.
+            field (str): the name of the field. The field's label will be used
+                as the title of the <legend>.
 
-            legend_size (str): the size of the legend. The default is None in which
-                case the legend will be rendered at the same size as regular text.
+            legend_size (str): the size of the legend. The default is None in
+                which case the legend will be rendered at the same size as
+                regular text.
 
             legend_tag (str): Wrap the field legend with this HTML tag.
                 Default is None.
 
             small (bool): Display small checkboxes. Default is False.
 
-            **kwargs: Attributes to add to the <input> element when the field is
-                rendered.
-
+            **kwargs: Attributes to add to the <input> element when the field
+                is rendered.
         """
         context = {}
 
@@ -136,19 +137,20 @@ class Field(crispy_forms_layout.LayoutObject):
         Args:
             field (str): the name of the field.
 
-            legend_size (str): the size of the legend. The default is None in which
-                case the legend will be rendered at the same size as regular text.
+            legend_size (str): the size of the legend. The default is None in
+                which case the legend will be rendered at the same size as
+                regular text.
 
             legend_tag (str): Wrap the field legend with this HTML tag.
                 Default is None.
 
             small (bool): Display small radio buttons. Default is False.
 
-            inline (bool): Display the radio buttons in a row. Default is False.
+            inline (bool): Display the radio buttons in a row. Default is
+                False.
 
-            **kwargs: Attributes to add to the <input> element when the field is
-                rendered.
-
+            **kwargs: Attributes to add to the <input> element when the field
+                is rendered.
         """
         context = {}
 
@@ -171,14 +173,15 @@ class Field(crispy_forms_layout.LayoutObject):
         Args:
             field (str): the name of the field.
 
-            legend_size (str): the size of the legend. The default is None in which
-                case the legend will be rendered at the same size as regular text.
+            legend_size (str): the size of the legend. The default is None in
+                which case the legend will be rendered at the same size as
+                regular text.
 
             legend_tag (str): Wrap the field legend with this HTML tag.
                 Default is None.
 
-            **kwargs: Attributes to add to the <select> element when the field is
-                rendered.
+            **kwargs: Attributes to add to the <select> element when the field
+                is rendered.
 
         """
         context = {}
@@ -201,18 +204,19 @@ class Field(crispy_forms_layout.LayoutObject):
         Args:
             field (str): the name of the field.
 
-            label_size (str): the size of the label. The default is None in which
-                case the label will be rendered at the same size as regular text.
+            label_size (str): the size of the label. The default is None in
+                which case the label will be rendered at the same size as
+                regular text.
 
             label_tag (str): Wrap the field label with this HTML tag.
                 Default is None.
 
-            field_width (int, str): the width of the field - fixed or fluid. The
-                default is None in which case the field will be rendered full width.
+            field_width (int, str): the width of the field - fixed or fluid.
+                The default is None in which case the field will be rendered
+                full width.
 
-            **kwargs: Attributes to add to the <input> element when the field is
-                rendered.
-
+            **kwargs: Attributes to add to the <input> element when the field
+                is rendered.
         """
         context = {}
 
@@ -250,29 +254,32 @@ class Field(crispy_forms_layout.LayoutObject):
         Args:
             field (str): the name of the field.
 
-            label_size (str): the size of the label. The default is None in which
-                case the label will be rendered at the same size as regular text.
+            label_size (str): the size of the label. The default is None in
+                which case the label will be rendered at the same size as
+                regular text.
 
             label_tag (str): Wrap the field label with this HTML tag.
                 Default is None.
 
-            rows (int): the number of rows to display. If not specified then Django's
-                default of 10 will be used (the default used by most browsers is 2).
+            rows (int): the number of rows to display. If not specified then
+                Django's default of 10 will be used (the default used by most
+                browsers is 2).
 
-            max_characters (int, optional): the maximum number of characters that
-                should be entered. Default is None.
+            max_characters (int, optional): the maximum number of characters
+                that should be entered. Default is None.
 
-            max_words (int, optional): the maximum number of words that should be
-                entered. Default is None.
+            max_words (int, optional): the maximum number of words that should
+                be entered. Default is None.
 
             threshold (int, optional): the percentage of the count that has to
                 be reached before the limit is shown. Default is None.
 
-            **kwargs: Attributes to add to the <textarea> element when the field is
-                rendered.
+            **kwargs: Attributes to add to the <textarea> element when the
+                field is rendered.
 
         Raises:
-            ValueError: if you set max_characters and max_words at the same time.
+            ValueError: if you set max_characters and max_words at the same
+                time.
 
         """
         context = {}
@@ -373,7 +380,8 @@ class Field(crispy_forms_layout.LayoutObject):
         that the original template context will be restored.
 
         Args:
-            **kwargs: keyword arguments that will be added as template variables.
+            **kwargs: keyword arguments that will be added as template
+                variables.
 
         """
         self.context.update(kwargs)
@@ -382,8 +390,8 @@ class Field(crispy_forms_layout.LayoutObject):
         """
         Add one or more HTML attributes to the field.
 
-        Underscores in names are converted to hyphens, e.g. data_id='test' is converted
-        to data-id='test'.
+        Underscores in names are converted to hyphens, e.g. data_id='test' is
+        converted to data-id='test'.
 
         Args:
             **kwargs: keyword arguments that will be added as HTML attributes.
@@ -440,10 +448,9 @@ class Hidden(crispy_forms_layout.Hidden):
     The class is simply imported from ``django-crispy-forms``. It's included
     so all the imports, when using the template pack come from the same source.
 
-    Generally the ``css_id``, ``css_class``, ``template`` and remaining keywords
-    arguments are of limited use in this case. They are present as they are
-    common to all fields.
-
+    Generally the ``css_id``, ``css_class``, ``template`` and remaining
+    keywords arguments are of limited use in this case. They are present as
+    they are common to all fields.
     """
 
     pass

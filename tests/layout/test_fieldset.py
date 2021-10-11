@@ -4,8 +4,8 @@ Tests to verify fieldsets are rendered correctly.
 """
 import os
 
-from tbxforms.tbxforms.helper import FormHelper
-from tbxforms.tbxforms.layout import (
+from tbxforms.helper import FormHelper
+from tbxforms.layout import (
     Fieldset,
     Layout,
     Size,

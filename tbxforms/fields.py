@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.utils.translation import ugettext_lazy as _
 
-from tbxforms.tbxforms.widgets import DateInputWidget
+from tbxforms.widgets import DateInputWidget
 
 
 class DateInputField(forms.MultiValueField):
@@ -87,19 +87,21 @@ class DateInputField(forms.MultiValueField):
 
         Normally, all errors are reported at the level of the MultiValueField.
         However the Design System requires that the Error Summary has links to
-        tie an error to a specific field. To make that work the ValidationErrors
-        for each field (day, month and year) are added to a list on the respective
-        widgets as well as the error list on the (bound) field. This was the easiest
-        way to get access to the errors for a specific field when the DateInputWidget
-        on the MultiValueField is rendered.
+        tie an error to a specific field. To make that work the
+        ValidationErrors for each field (day, month and year) are added to a
+        list on the respective widgets as well as the error list on the (bound)
+        field. This was the easiest way to get access to the errors for a
+        specific field when the DateInputWidget on the MultiValueField is
+        rendered.
 
         Args:
-            value (list, tuple): the values entered into each field. The values are
-                in the order the fields are added to the ``fields`` attribute.
+            value (list, tuple): the values entered into each field. The values
+                are in the order the fields are added to the ``fields``
+                attribute.
 
         Raises:
-            ValidationError: if any of the values fails the validation checks performed
-                at the widget level or in this method.
+            ValidationError: if any of the values fails the validation checks
+                performed at the widget level or in this method.
 
         Returns:
              the value converted to a ``date``.
@@ -173,8 +175,8 @@ class DateInputField(forms.MultiValueField):
             data_list (tuple): a 3-tuple the of values entered into the fields.
 
         Returns:
-            the ``date`` for the values entered in the day, month and year fields.
-                If any of the field are blank then None is returned.
+            the ``date`` for the values entered in the day, month and year
+                fields. If any of the field are blank then None is returned.
 
         """
         day, month, year = data_list

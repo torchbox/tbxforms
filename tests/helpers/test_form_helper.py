@@ -4,10 +4,8 @@ Tests to verify text fields are rendered correctly.
 """
 import os
 
-from django.test.html import parse_html
-
-from tbxforms.tbxforms.helper import FormHelper
-from tbxforms.tbxforms.layout import (
+from tbxforms.helper import FormHelper
+from tbxforms.layout import (
     Field,
     Layout,
     Size,
@@ -20,7 +18,6 @@ from tests.utils import (
     TEST_DIR,
     parse_contents,
     parse_form,
-    render_template,
 )
 
 RESULT_DIR = os.path.join(TEST_DIR, "helpers", "results")

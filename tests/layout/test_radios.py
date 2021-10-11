@@ -4,8 +4,8 @@ Tests to verify radio buttons are rendered correctly.
 """
 import os
 
-from tbxforms.tbxforms.helper import FormHelper
-from tbxforms.tbxforms.layout import (
+from tbxforms.helper import FormHelper
+from tbxforms.layout import (
     Field,
     Layout,
     Size,
@@ -105,7 +105,9 @@ def test_no_help_text():
 
 
 def test_no_help_text_errors():
-    """Verify all the gds error attributes are displayed if no help text is given."""
+    """
+    Verify all the gds error attributes are displayed if no help text is given.
+    """
     form = RadiosForm(data={"method": ""})
     form.fields["method"].help_text = ""
     assert parse_form(form) == parse_contents(
