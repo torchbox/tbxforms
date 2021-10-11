@@ -215,10 +215,10 @@ class YourSexyForm(TbxFormsBaseForm, forms.Form):
 
 ### Conditionally-required fields
 
-`tbxforms` supports hiding/showing of fields or elements (e.g. div or fieldset)
+`tbxforms` supports hiding/showing of fields and/or `div`/`fieldset` elements
 based on the values of a given input field.
 
-Example:
+**Field example:**
 
 ```python
 class ExampleForm(TbxFormsBaseForm, forms.Form):
@@ -285,6 +285,25 @@ class ExampleForm(TbxFormsBaseForm, forms.Form):
             del cleaned_data['email']
 
         return cleaned_data
+
+```
+
+**Container example:**
+
+When you have multiple fields/elements that you want to show/hide together, you
+can use the exact same `data_conditional` definition as above but on a `div` or
+`fieldset` element, e.g.:
+
+```python
+Div(
+    HTML("<p>Some relevant text.</p>"),
+    Field("some_other_field"),
+    Field("email"),
+    data_conditional={
+        "field_name": "newsletter_signup",
+        "values": ["yes"],
+    },
+),
 
 ```
 
