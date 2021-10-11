@@ -88,6 +88,7 @@ class TbxForms {
         });
 
         // Clear any values for fields that are conditionally hidden.
+        // NB. We don't use `this.form.elements.('[hidden=true]')` to include divs.
         this.form.addEventListener('submit', () => {
             this.form
                 .querySelectorAll('[hidden=true]')
