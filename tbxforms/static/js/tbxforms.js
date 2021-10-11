@@ -123,6 +123,7 @@ class TbxForms {
             case 'range':
             case 'reset':
             case 'search':
+            // case 'select': // Requires different logic (see below).
             case 'submit':
             case 'tel':
             case 'text':
@@ -135,10 +136,14 @@ class TbxForms {
             case 'select':
                 node.selectedIndex = -1;
                 break;
-            default:
+            // If this is a container element run again for child elements.
+            // NB. maybe a `default` case would be better here.
+            case 'div':
+            case 'fieldset':
                 node.querySelectorAll('*').forEach((formElement) => {
                     this.clearInput(formElement);
                 });
+                break;
         }
     }
 }
