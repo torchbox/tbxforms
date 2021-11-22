@@ -31,15 +31,17 @@ variables can be customised.
 
 ## Installation
 
-You must install both a Python package and an NPM package.
+You must install both the Python package and the NPM package.
 
 ### Install the Python package
 
-Install using pip:
+#### Install using pip
 
 ```bash
 pip install tbxforms
 ```
+
+#### Update/define settings
 
 Add `django-crispy-forms` and `tbxforms` to your installed apps:
 
@@ -51,7 +53,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-Now add the following settings to tell `django-crispy-forms` to use this theme:
+Now add the following settings to tell `django-crispy-forms` to use `tbxforms`:
 
 ```python
 CRISPY_ALLOWED_TEMPLATE_PACKS = ["tbx"]
@@ -60,13 +62,13 @@ CRISPY_TEMPLATE_PACK = "tbx"
 
 ### Install the NPM package
 
-Install using NPM:
+#### Install using NPM
 
 ```bash
 npm install tbxforms
 ```
 
-Instantiate your forms:
+#### Instantiate your forms
 
 ```javascript
 import TbxForms from 'tbxforms';
@@ -78,88 +80,90 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
-Import the styles into your project, either as CSS:
+#### Import the styles into your project
+
+...Either as CSS without any customisations:
 
 ```scss
-// Either as CSS without any customisations:
 @use 'node_modules/tbxforms/style.css';
 ```
 
-Or as Sass, to customise variables:
+...Or as Sass to customise variables:
 
 ```scss
-// Or as Sass, with variables to customise:
 @use 'node_modules/tbxforms/tbxforms.scss' with (
     $tbxforms-error-colour: #f00,
     $tbxforms-text-colour: #000,
 );
 ```
 
-Variables can also be defined in a centralised variables SCSS file, too.
+Alternatively, variables can be defined in a centralised variables SCSS
+such as [tbxforms/static/sass/abstracts/\_variables.scss](https://github.com/kbayliss/tbxforms/blob/main/tbxforms/static/sass/abstracts/_variables.scss).
 
-See [tbxforms/static/sass/abstracts/\_variables.scss](https://github.com/kbayliss/tbxforms/blob/main/tbxforms/static/sass/abstracts/_variables.scss) for customisable variables.
+#### Add button styles
+
+`tbxforms` provides out-of-the-box GOV.UK Design System styles for everything
+except buttons, as styles for these probably exist in your project.
+
+You will need to write button styles for the following classes:
+
+1. `.tbxforms-button`
+2. `.tbxforms-button.tbxforms-button--primary`
+3. `.tbxforms-button.tbxforms-button--secondary`
+4. `.tbxforms-button.tbxforms-button--warning`
 
 ## Usage
 
-### Create a Django form
+`tbxforms` supports Django and Wagtail forms.
+
+### Django forms
+
+All forms must inherit from `TbxFormsBaseForm` and whichever Django base form class.
 
 ```python
+from django import forms
 from tbxforms.forms import BaseForm as TbxFormsBaseForm
 
 class ExampleForm(TbxFormsBaseForm, forms.Form):
-    # < Your field definitions >
+    # < Your field definitions and helper property >
 
 
 class ExampleModelForm(TbxFormsBaseForm, forms.ModelForm):
-    # < Your field definitions and ModelForm config >
+    # < Your field definitions, ModelForm config, and helper property >
 
 ```
 
-### Create a Wagtail form
+### Wagtail forms
 
-Two parts are required for this to work:
+#### Create or update a Wagtail form
 
-1. Add a `helper` property to the Wagtail form
-2. Instruct a Wagtail Page model to use the newly created form
-
-#### Add a `helper` property to the Wagtail form
+Wagtail forms must inheirt from `TbxFormsBaseForm` and `WagtailBaseForm`.
 
 ```python
 from wagtail.contrib.forms.forms import BaseForm as WagtailBaseForm
 from tbxforms.forms import BaseForm as TbxFormsBaseForm
 
 class ExampleWagtailForm(TbxFormsBaseForm, WagtailBaseForm):
+    # < Your helper property >
 
-    # Extend the `TbxFormsBaseForm.helper()` to add a submit button.
-    @property
-    def helper(self):
-        fh = super().helper
-        fh.add_input(
-            Button.primary(
-                name="submit",
-                type="submit",
-                value=_("Submit"),
-            )
-        )
-        return fh
 ```
 
-#### Instruct a Wagtail Page model to use the newly created form
+#### Instruct a Wagtail Page model to use your form
+
+**In your form definitions** (e.g. forms.py):
 
 ```python
-# -----------------------------------------------------------------------------
-# in your forms definitions (e.g. forms.py)
-
 from tbxforms.forms import BaseWagtailFormBuilder as TbxFormsBaseWagtailFormBuilder
 from path.to.your.forms import ExampleWagtailForm
 
 class WagtailFormBuilder(TbxFormsBaseWagtailFormBuilder):
     def get_form_class(self):
         return type(str("WagtailForm"), (ExampleWagtailForm,), self.formfields)
+```
 
-# -----------------------------------------------------------------------------
-# in your page models (e.g. models.py)
+**And in your form page models** (e.g. models.py):
 
+```python
 from path.to.your.forms import WagtailFormBuilder
 
 class ExampleFormPage(...):
@@ -173,14 +177,21 @@ class ExampleFormPage(...):
 Just like Django Crispy Forms, you need to pass your form object to the
 `{% crispy ... %}` template tag, e.g.:
 
-```
+```html
 {% load crispy_forms_tags %}
-{% crispy your_form %}
+<html>
+    <body>
+        {% crispy your_form %}
+    </body>
+</html>
 ```
 
-### Customise a form's attributes (via the `helper` property)
+### Add a submit button and customise the form via the `helper` property
 
-By default, every form that inherits from `TbxFormsBaseForm` will have the following
+Submit buttons are not automatically added - you will need to do this by
+extending the form helper's `layout` (example below).
+
+Every form that inherits from `TbxFormsBaseForm` will have the following
 attributes set:
 
 -   `html5_required = True`
@@ -193,20 +204,37 @@ These can be overridden (and/or additional attributes from the above list define
 just like you would do with any other inherited class, e.g.:
 
 ```python
+from django import forms
+from wagtail.contrib.forms.forms import BaseForm as WagtailBaseForm
+from tbxforms.forms import BaseForm as TbxFormsBaseForm
+from tbxforms.layout import Button, Size
 
 class YourSexyForm(TbxFormsBaseForm, forms.Form):
 
     @property
     def helper(self):
         fh = super().helper
+
+        # Override some settings
         fh.html5_required = False
         fh.label_size = Size.SMALL
         fh.form_error_title = _("Something's wrong, yo.")
+
+        # Add a submit button
+        fh.layout.extend([
+            Button.primary(
+                name="submit",
+                type="submit",
+                value="Submit",
+            )
+        ])
         return fh
 
 ```
 
-#### Possible values for the `label_size` and `legend_size`:
+#### Change the label and legend classes
+
+Possible values for the `label_size` and `legend_size`:
 
 1. `SMALL`
 2. `MEDIUM` (default)
@@ -215,12 +243,24 @@ class YourSexyForm(TbxFormsBaseForm, forms.Form):
 
 ### Conditionally-required fields
 
-`tbxforms` supports hiding/showing of fields and/or `div`/`fieldset` elements
-based on the values of a given input field.
+`tbxforms` can show/hide parts of the `layout` depending on a given value. For
+example, you could show (and require) an email address field only when the user
+chooses to sign up to a newsletter (examples below).
+
+You can apply this logic to `field`, `div`, and `fieldset` elements.
+
+Note: any field names included within the
+`conditional_fields_to_show_as_required()` method will appear on the frontend
+as required, though will technically be `required=False`.
 
 **Field example:**
 
 ```python
+from django import forms
+from tbxforms.choices import Choice
+from tbxforms.forms import BaseForm as TbxFormsBaseForm
+from tbxforms.layout import Field, Layout
+
 class ExampleForm(TbxFormsBaseForm, forms.Form):
     NEWSLETTER_CHOICES = (
         Choice("yes", "Yes please", hint="Receive occasional email newsletters."),
@@ -237,8 +277,9 @@ class ExampleForm(TbxFormsBaseForm, forms.Form):
 
     @staticmethod
     def conditional_fields_to_show_as_required() -> [str]:
+        # Non-required fields that should show as required to the user.
         return [
-            "email", # Include any fields that should show as required to the user.
+            "email",
         ]
 
     @property
@@ -251,7 +292,7 @@ class ExampleForm(TbxFormsBaseForm, forms.Form):
             # Add our newsletter sign-up field.
             Field("newsletter_signup"),
 
-            # Add our email field, and define the conditional 'show' logic.
+            # Add our email field and define the conditional logic.
             Field(
                 "email",
                 data_conditional={
@@ -270,9 +311,10 @@ class ExampleForm(TbxFormsBaseForm, forms.Form):
         newsletter_signup = cleaned_data.get("newsletter_signup")
         email = cleaned_data.get("email")
 
-        # Assuming `form.helper.html5_required == True`, tbxforms will toggle the
-        # html5 'required' attribute when a conditionally-required field is shown,
-        # though it is recommended to also check the value in your clean() method.
+        # Fields included within `conditional_fields_to_show_as_required()` will
+        # be shown as required but not enforced - i.e. they will not have the
+        # HTML5 `required` attribute set.
+        # Thus we need to write our own check to enforce the value exists.
         if newsletter_signup == "yes" and not email:
             raise ValidationError(
                 {
@@ -295,16 +337,19 @@ can use the exact same `data_conditional` definition as above but on a `div` or
 `fieldset` element, e.g.:
 
 ```python
-Div(
-    HTML("<p>Some relevant text.</p>"),
-    Field("some_other_field"),
-    Field("email"),
-    data_conditional={
-        "field_name": "newsletter_signup",
-        "values": ["yes"],
-    },
-),
+from tbxforms.layout import HTML, Div, Field
 
+Layout(
+    Div(
+        HTML("<p>Some relevant text.</p>"),
+        Field("some_other_field"),
+        Field("email"),
+        data_conditional={
+            "field_name": "newsletter_signup",
+            "values": ["yes"],
+        },
+    ),
+)
 ```
 
 # Further reading

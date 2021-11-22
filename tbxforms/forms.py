@@ -26,7 +26,7 @@ class BaseForm:
         fh = FormHelper(self)
         fh.form_class = "tbxforms"  # Must include `tbxforms`.
 
-        # Define some likely defaults.
+        # Define some defaults.
         fh.html5_required = True
         fh.label_size = Size.MEDIUM
         fh.legend_size = Size.MEDIUM

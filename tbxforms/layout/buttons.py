@@ -52,42 +52,47 @@ class Button(BaseInput):
     """
 
     template = "%s/layout/button.html"
-    field_classes = "tbxforms-button"
 
     @classmethod
-    def primary(cls, name, value, disabled=False, **kwargs):
+    def primary(cls, name, value, disabled=False, css_class="", **kwargs):
         """Create a primary button."""
         return Button(
             name,
             value,
             disabled=disabled,
-            css_class="tbxforms-button--primary",
+            css_class=(
+                f"{css_class} tbxforms-button tbxforms-button--primary"
+            ),
             **kwargs,
         )
 
     @classmethod
-    def secondary(cls, name, value, disabled=False, **kwargs):
+    def secondary(cls, name, value, disabled=False, css_class="", **kwargs):
         """Create a secondary button."""
         return Button(
             name,
             value,
             disabled=disabled,
-            css_class="tbxforms-button--secondary",
+            css_class=(
+                f"{css_class} tbxforms-button tbxforms-button--secondary"
+            ),
             **kwargs,
         )
 
     @classmethod
-    def warning(cls, name, value, disabled=False, **kwargs):
+    def warning(cls, name, value, disabled=False, css_class="", **kwargs):
         """Create a warning button."""
         return Button(
             name,
             value,
             disabled=disabled,
-            css_class="tbxforms-button--warning",
+            css_class=(
+                f"{css_class} tbxforms-button tbxforms-button--warning"
+            ),
             **kwargs,
         )
 
-    def __init__(self, name, value, disabled=False, **kwargs):
+    def __init__(self, name, value, disabled=False, css_class="", **kwargs):
         if disabled:
             kwargs["disabled"] = "disabled"
             kwargs["aria-disabled"] = "true"
@@ -96,8 +101,8 @@ class Button(BaseInput):
 
 
 class Submit(BaseInput):
-    def __init__(self, name, value, disabled=False, **kwargs):
+    def __init__(self, name, value, disabled=False, css_class="", **kwargs):
         raise NotImplementedError(
-            "'Submit' is not used in TBX forms in favour of a 'Button'. "
-            "See 'project_styleguide.forms.ExampleForm' for usage."
+            "'Submit' is not used in tbxforms in favour of a 'Button'. "
+            "See README for an example."
         )
