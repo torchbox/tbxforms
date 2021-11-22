@@ -25,4 +25,5 @@ npm run build
 2. `pre-commit`
 3. Bump project version in pyproject.toml (do not update package.json as `np` will do this automatically)
 4. `np --no-tests`
-5. `poetry publish -u {username}`
+5. `poetry build`
+6. `poetry publish -u {username}`
