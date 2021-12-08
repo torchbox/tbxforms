@@ -1,6 +1,6 @@
 {
     "name": "tbxforms",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "main": "./dist/tbxforms.umd.js",
     "module": "./dist/tbxforms.es.js",
     "files": [
@@ -39,7 +39,6 @@
     "scripts": {
         "format": "prettier --write '**/?(.)*.{md,mdx,css,scss,js,json,json5,yaml,yml}'",
         "build": "vite build && cp -R tbxforms/static/sass/* dist/",
-        "prepublishOnly": "npm run build -s",
         "report:package": "npm pack --loglevel notice 2>&1 >/dev/null | sed -e 's/^npm notice //' && rm *.tgz"
     }
 }

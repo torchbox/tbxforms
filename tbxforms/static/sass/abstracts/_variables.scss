@@ -35,7 +35,7 @@ $tbxforms-weight--normal: 400 !default;
 
 $tbxforms-grid: 20px !default;
 $tbxforms-spacer: $tbxforms-grid !default;
-$tbxforms-in-field-spacer: ($tbxforms-grid / 2) !default;
+$tbxforms-in-field-spacer: math.div($tbxforms-grid, 2) !default;
 $tbxforms-form-group-spacer: ($tbxforms-grid * 1.5) !default;
 
 $tbxforms-border-width: 4px !default;

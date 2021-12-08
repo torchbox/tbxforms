@@ -23,7 +23,7 @@ class TbxForms {
                 );
                 let conditionalValuesForElement;
 
-                // Try to parse the JSON and log an error if there's a problem.
+                // Try to parse the JSON containing required field mapping.
                 try {
                     conditionalValuesForElement = JSON.parse(
                         formElement.dataset.conditionalFieldValues,
@@ -36,6 +36,7 @@ class TbxForms {
 
                 if (drivingFieldNodeList.length > 1) {
                     // We're dealing with radios or checkboxes.
+
                     drivingFieldNodeList.forEach((option_node) => {
                         option_node.addEventListener('change', () => {
                             if (
@@ -58,11 +59,12 @@ class TbxForms {
                             }
                         });
 
-                        // Trigger the event listener.
+                        // Trigger above event listener to correct presentation.
                         option_node.dispatchEvent(new Event('change'));
                     });
                 } else {
                     // We're dealing with a single field.
+
                     const drivingField = drivingFieldNodeList.item(0);
 
                     drivingField.addEventListener('change', () => {
@@ -82,7 +84,7 @@ class TbxForms {
                         }
                     });
 
-                    // Trigger the event listener.
+                    // Trigger above event listener to correct presentation.
                     drivingField.dispatchEvent(new Event('change'));
                 }
             }

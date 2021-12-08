@@ -3,6 +3,4 @@
     class="{% if input.css_class %}{{ input.css_class }}{% else %}tbxforms-button tbxforms-button--primary{% endif %}"
     id="{% if input.id %}{{ input.id }}{% else %}id_{{ input.name|slugify }}{% endif %}"
     {{ input.flat_attrs|safe }}
->
-    {{ input.value|safe }}
-</button>
+>{{ input.value|safe }}</button>
