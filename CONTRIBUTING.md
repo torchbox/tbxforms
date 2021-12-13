@@ -24,7 +24,9 @@ npm run build
 1. `npm run format` - run FE linters
 2. `pre-commit` - run BE linters (and some FE ones)
 3. Bump project version in pyproject.toml and package.json
-4. `npm run build` - build NPM package
-5. `poetry build` - build python package
-6. `npm publish` - publish package to npmjs.com
-7. `poetry publish` - publish package to pypi.org
+4. `poetry lock` - Lock python packages
+5. `npm update` - Lock JS packages
+6. `npm run build` - build NPM package
+7. `poetry build` - build python package
+8. `npm publish` - publish package to npmjs.com
+9. `poetry publish` - publish package to pypi.org

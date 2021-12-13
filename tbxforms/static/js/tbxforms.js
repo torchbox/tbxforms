@@ -2,7 +2,7 @@ import '../sass/tbxforms.scss';
 
 class TbxForms {
     static selector() {
-        return 'form.tbxforms-form';
+        return 'form.tbxforms';
     }
 
     constructor(node) {
@@ -18,8 +18,8 @@ class TbxForms {
                 const container = formElement.closest('.tbxforms-form-group')
                     ? formElement.closest('.tbxforms-form-group')
                     : formElement;
-                const drivingFieldNodeList = document.querySelectorAll(
-                    `${this.form} [name="${formElement.dataset.conditionalFieldName}"]`,
+                const drivingFieldNodeList = this.form.querySelectorAll(
+                    `[name="${formElement.dataset.conditionalFieldName}"]`,
                 );
                 let conditionalValuesForElement;
 
