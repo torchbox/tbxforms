@@ -1,6 +1,6 @@
 {
     "name": "tbxforms",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "main": "./dist/tbxforms.umd.js",
     "module": "./dist/tbxforms.es.js",
     "files": [
@@ -33,7 +33,7 @@
         "autoprefixer": "^10.2.5",
         "eslint": "^7.26.0",
         "prettier": "2.3.2",
-        "sass": "^1.39.0",
+        "sass": "1.26.5",
         "vite": "^2.2.3"
     },
     "scripts": {

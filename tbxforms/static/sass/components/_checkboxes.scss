@@ -18,9 +18,7 @@
 }
 
 .tbxforms-checkboxes__input {
-    $input-offset: (
-        math.div($tbxforms-touch-target-size - $tbxforms-checkboxes-size, 2)
-    );
+    $input-offset: ($tbxforms-touch-target-size - $tbxforms-checkboxes-size) / 2;
 
     cursor: pointer;
 
@@ -139,10 +137,7 @@
 
 .tbxforms-checkboxes--small {
     $input-offset: (
-        math.div(
-            $tbxforms-touch-target-size - $tbxforms-small-checkboxes-size,
-            2
-        )
+        ($tbxforms-touch-target-size - $tbxforms-small-checkboxes-size) / 2
     );
     $label-offset: $tbxforms-touch-target-size - $input-offset;
 

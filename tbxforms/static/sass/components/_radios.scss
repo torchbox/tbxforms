@@ -18,10 +18,7 @@
 }
 
 .tbxforms-radios__input {
-    $input-offset: math.div(
-        $tbxforms-touch-target-size - $tbxforms-radios-size,
-        2
-    );
+    $input-offset: ($tbxforms-touch-target-size - $tbxforms-radios-size) / 2;
 
     cursor: pointer;
 
@@ -147,9 +144,8 @@
 // =========================================================
 
 .tbxforms-radios--small {
-    $input-offset: (
-        math.div($tbxforms-touch-target-size - $tbxforms-small-radios-size, 2)
-    );
+    $input-offset: ($tbxforms-touch-target-size - $tbxforms-small-radios-size) /
+        2;
     $label-offset: $tbxforms-touch-target-size - $input-offset;
 
     .tbxforms-radios__item {

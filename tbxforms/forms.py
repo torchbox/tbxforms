@@ -18,9 +18,6 @@ class BaseForm:
         """
         return []
 
-    class Media:
-        js = ("js/tbxforms.js",)
-
     @property
     def helper(self) -> FormHelper:
         fh = FormHelper(self)
