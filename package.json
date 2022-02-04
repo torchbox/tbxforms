@@ -1,6 +1,6 @@
 {
     "name": "tbxforms",
-    "version": "1.0.10",
+    "version": "1.0.11",
     "main": "./dist/tbxforms.umd.js",
     "module": "./dist/tbxforms.es.js",
     "files": [
