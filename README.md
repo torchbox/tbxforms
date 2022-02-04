@@ -1,8 +1,8 @@
 [![PyPI](https://img.shields.io/pypi/v/tbxforms.svg)](https://pypi.org/project/tbxforms/)
 [![npm](https://img.shields.io/npm/v/tbxforms.svg)](https://www.npmjs.com/package/tbxforms) [![PyPI downloads](https://img.shields.io/pypi/dm/tbxforms.svg)](https://pypi.org/project/tbxforms/)
-[![Build status](https://github.com/kbayliss/tbxforms/workflows/CI/badge.svg)](https://github.com/kbayliss/tbxforms/actions)
-[![Coverage Status](https://coveralls.io/repos/github/kbayliss/tbxforms/badge.svg?branch=main)](https://coveralls.io/github/kbayliss/tbxforms?branch=main)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/kbayliss/tbxforms.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/kbayliss/tbxforms/alerts/)
+[![Build status](https://github.com/torchbox/tbxforms/workflows/CI/badge.svg)](https://github.com/torchbox/tbxforms/actions)
+[![Coverage Status](https://coveralls.io/repos/github/torchbox/tbxforms/badge.svg?branch=main)](https://coveralls.io/github/torchbox/tbxforms?branch=main)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/torchbox/tbxforms.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/torchbox/tbxforms/alerts/)
 
 # Torchbox Forms
 
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
 ```
 
 Alternatively, variables can be defined in a centralised variables SCSS
-such as [tbxforms/static/sass/abstracts/\_variables.scss](https://github.com/kbayliss/tbxforms/blob/main/tbxforms/static/sass/abstracts/_variables.scss).
+such as [tbxforms/static/sass/abstracts/\_variables.scss](https://github.com/torchbox/tbxforms/blob/main/tbxforms/static/sass/abstracts/_variables.scss).
 
 #### Add button styles
 

@@ -11,7 +11,7 @@ We welcome all support, whether on bug reports, code, design, reviews, tests, do
 With Python 3.7 or up, Node 16, and [pre-commit](https://pre-commit.com/),
 
 ```bash
-git clone git@github.com:kbayliss/tbxforms.git
+git clone git@github.com:torchbox/tbxforms.git
 cd tbxforms/
 poetry install
 pre-commit install

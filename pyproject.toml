@@ -8,7 +8,7 @@ authors = [
 license = "BSD-2-Clause"
 readme = "README.md"
 homepage = ""
-repository = "https://github.com/kbayliss/tbxforms/"
+repository = "https://github.com/torchbox/tbxforms/"
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
     "Environment :: Web Environment",
