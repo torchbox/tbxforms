@@ -66,6 +66,8 @@ detect-secrets = "~0.13"
 flake8 = "3.9.2"
 isort = "5.9.3"
 pylint = "2.6.0"
+pytest = "^7.0.0"
+pytest-icdiff = "^0.5"
 
 [tool.isort]
 known_first_party = "tbxforms"
