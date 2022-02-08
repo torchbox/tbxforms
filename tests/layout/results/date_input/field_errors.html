@@ -1,14 +1,27 @@
 <form method="post">
+  <div aria-labelledby="error-summary-title" class="tbxforms-error-summary" role="alert" tabindex="-1">
+    <h2 class="tbxforms-error-summary__title" id="error-summary-title">
+      There is a problem with your submission
+    </h2><div class="tbxforms-error-summary__body">
+      <ul class="tbxforms-error-summary__list tbxforms-list">
+	<li>
+	  <a href="#div_id_date" title="Jump to the 'When was your passport issued?' field">
+	    When was your passport issued?: Enter the day, month, and year.
+	  </a>
+	</li>
+      </ul>
+    </div>
+  </div>
   <div class="tbxforms-form-group tbxforms-form-group--error" id="div_id_date">
     <fieldset class="tbxforms-fieldset" aria-describedby="id_date_hint id_date_1_error">
       <legend class="tbxforms-fieldset__legend">
         When was your passport issued?
       </legend>
-      <div id="id_date_hint" class="tbxforms-hint">
-        For example, 12 11 2007
-      </div>
       <span id="id_date_1_error" class="tbxforms-error-message"> <span class="tbxforms-visually-hidden">Error:</span>
-        Enter the day, month and year
+        Enter the day, month, and year.
+      </span>
+      <span id="id_date_hint" class="tbxforms-hint">
+        For example, 12 11 2007
       </span>
       <div class="tbxforms-date-input" id="id_date">
         <div class="tbxforms-date-input__item">
@@ -16,7 +29,7 @@
             <label class="tbxforms-label tbxforms-date-input__label" for="id_date_0">
               Day
             </label>
-            <input class="tbxforms-input tbxforms-date-input__input tbxforms-input--error tbxforms-input--width-2" id="id_date_0" name="date_0" type="text">
+            <input class="tbxforms-input tbxforms-date-input__input tbxforms-input--error tbxforms-input--text tbxforms-input--width-2" id="id_date_0" name="date_0" type="text" inputmode="numeric" pattern="[0-9]*">
           </div>
         </div>
         <div class="tbxforms-date-input__item">
@@ -24,7 +37,7 @@
             <label class="tbxforms-label tbxforms-date-input__label" for="id_date_1">
               Month
             </label>
-            <input class="tbxforms-input tbxforms-date-input__input tbxforms-input--error tbxforms-input--width-2" id="id_date_1" name="date_1" type="text">
+            <input class="tbxforms-input tbxforms-date-input__input tbxforms-input--error tbxforms-input--text tbxforms-input--width-2" id="id_date_1" name="date_1" type="text" inputmode="numeric" pattern="[0-9]*">
           </div>
         </div>
         <div class="tbxforms-date-input__item">
@@ -32,7 +45,7 @@
             <label class="tbxforms-label tbxforms-date-input__label" for="id_date_2">
               Year
             </label>
-            <input class="tbxforms-input tbxforms-date-input__input tbxforms-input--error tbxforms-input--width-4" id="id_date_2" name="date_2" type="text">
+            <input class="tbxforms-input tbxforms-date-input__input tbxforms-input--error tbxforms-input--text tbxforms-input--width-4" id="id_date_2" name="date_2" type="text" inputmode="numeric" pattern="[0-9]*">
           </div>
         </div>
       </div>

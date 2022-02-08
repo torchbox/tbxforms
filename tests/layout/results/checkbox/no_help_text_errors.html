@@ -1,4 +1,17 @@
 <form method="post">
+  <div aria-labelledby="error-summary-title" class="tbxforms-error-summary" role="alert" tabindex="-1">
+    <h2 class="tbxforms-error-summary__title" id="error-summary-title">
+      There is a problem with your submission
+    </h2><div class="tbxforms-error-summary__body">
+      <ul class="tbxforms-error-summary__list tbxforms-list">
+	<li>
+	  <a href="#div_id_accept" title="Jump to the 'I accept the terms of service' field">
+	    I accept the terms of service: You must accept our terms of service
+	  </a>
+	</li>
+      </ul>
+    </div>
+  </div>
   <div class="tbxforms-form-group tbxforms-form-group--error" id="div_id_accept">
 
     <span id="id_accept_1_error" class="tbxforms-error-message">
@@ -9,9 +22,9 @@
 
       <div class="tbxforms-checkboxes__item">
         <input type="checkbox" name="accept"
-               aria-describedby="id_accept_1_error"
-               class="tbxforms-checkboxes__input"
-               id="id_accept">
+          aria-describedby="id_accept_1_error"
+          class="tbxforms-checkboxes__input"
+          id="id_accept">
         <label class="tbxforms-label tbxforms-checkboxes__label" for="id_accept">
           I accept the terms of service
         </label>
