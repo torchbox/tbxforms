@@ -68,7 +68,8 @@ def field_errors(bound_field):
 @register.filter
 def is_checkbox(field):
     """
-    Template filter that returns True if the field is a checkbox, False otherwise.
+    Template filter that returns True if the field is a checkbox,
+    False otherwise.
     """
     return isinstance(field.field.widget, forms.CheckboxInput)
 
@@ -157,7 +158,8 @@ class CrispyGDSFieldNode(template.Node):
         template_pack = context.get("template_pack", TEMPLATE_PACK)
 
         # There are special django widgets that wrap actual widgets,
-        # such as forms.widgets.MultiWidget, admin.widgets.RelatedFieldWidgetWrapper
+        # such as forms.widgets.MultiWidget,
+        # admin.widgets.RelatedFieldWidgetWrapper
         widgets = getattr(
             field.field.widget,
             "widgets",
@@ -208,12 +210,14 @@ class CrispyGDSFieldNode(template.Node):
             css_class = " ".join(css_class)
 
             if template_pack == "tbx":
-                # The ability to override input_type was added to avoid having to
-                # create new widgets. However, as a result, the browser validates
-                # the field and displays a red border with no feedback to the user.
-                # That is at odds with with the way the Design System reports errors.
-                # However this is being left in for now until the "conflict" is better
-                # understood - it might be useful to somebody at some point.
+                # The ability to override input_type was added to
+                # avoid having to create new widgets. However, as a
+                # result, the browser validates the field and displays
+                # a red border with no feedback to the user.  That is
+                # at odds with with the way the Design System reports
+                # errors.  However this is being left in for now until
+                # the "conflict" is better understood - it might be
+                # useful to somebody at some point.
 
                 if (
                     hasattr(widget, "input_type")
@@ -231,9 +235,9 @@ class CrispyGDSFieldNode(template.Node):
                     and "tbxforms-js-character-count" in widget.attrs["class"]
                 ):
 
-                    # The javascript that updates the span containing character count
-                    # as the user types expects the id to end in '-info'. Anything else
-                    # won't work.
+                    # The javascript that updates the span containing
+                    # character count as the user types expects the id
+                    # to end in '-info'. Anything else won't work.
 
                     if widget.attrs["aria-describedby"]:
                         widget.attrs["aria-describedby"] += (
@@ -348,13 +352,13 @@ def crispy_tbx_field(parser, token):
 
         {% crispy_tbx_field field attrs %}
 
-    The code was copied over verbatim from ``django-crispy-forms``. Any additions
-    are clearly marked with a check to see if the 'gds' template pack is being
-    used.
+    The code was copied over verbatim from
+    ``django-crispy-forms``. Any additions are clearly marked with a
+    check to see if the 'gds' template pack is being used.
 
-    This template tag is only used within the tbx/field.html template and you
-    almost certainly will not have to deal with it, even if you are laying out a
-    form explicitly.
+    This template tag is only used within the tbx/field.html template
+    and you almost certainly will not have to deal with it, even if
+    you are laying out a form explicitly.
 
     """
     token = token.split_contents()
