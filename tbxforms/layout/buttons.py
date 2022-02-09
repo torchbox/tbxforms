@@ -97,6 +97,7 @@ class Button(BaseInput):
             kwargs["disabled"] = "disabled"
             kwargs["aria-disabled"] = "true"
 
+        self.css_class = css_class
         super().__init__(name, value, **kwargs)
 
 
