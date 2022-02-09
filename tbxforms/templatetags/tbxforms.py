@@ -71,7 +71,10 @@ def is_checkbox(field):
     Template filter that returns True if the field is a checkbox,
     False otherwise.
     """
-    return isinstance(field.field.widget, forms.CheckboxInput)
+    return (
+        isinstance(field.field.widget, forms.CheckboxInput)
+        and field.field.widget.input_type == "checkbox"
+    )
 
 
 @register.filter
@@ -80,7 +83,10 @@ def is_radios(field):
     Template filter that returns True if the field is a set of radio
     buttons field, False otherwise.
     """
-    return isinstance(field.field.widget, forms.RadioSelect)
+    return (
+        isinstance(field.field.widget, forms.RadioSelect)
+        and field.field.widget.input_type == "radio"
+    )
 
 
 @register.filter
