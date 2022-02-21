@@ -1,5 +1,5 @@
 from django import forms
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 
 class DateInputWidget(forms.MultiWidget):
@@ -7,13 +7,14 @@ class DateInputWidget(forms.MultiWidget):
     A DateInputWidget defines the styling of the set of fields for displaying
     the value for a DateInputField.
 
-    A custom widget was needed for two reasons. First the CSS classes needed to
-    style the fields and set their width reduces the code need to add a Date input
-    component to a form. Second, the Design System requires labels for the individual
-    fields. That's not supported out of the box by a MultiValueField so the labels
-    are added as a custom attribute and rendered with the correct markup in the
-    template. The template also pops the label from the widget so it does not also
-    get added as an attribute.
+    A custom widget was needed for two reasons. First the CSS classes
+    needed to style the fields and set their width reduces the code
+    need to add a Date input component to a form. Second, the Design
+    System requires labels for the individual fields. That's not
+    supported out of the box by a MultiValueField so the labels are
+    added as a custom attribute and rendered with the correct markup
+    in the template. The template also pops the label from the widget
+    so it does not also get added as an attribute.
 
     """
 
@@ -23,7 +24,10 @@ class DateInputWidget(forms.MultiWidget):
         widgets = [
             forms.TextInput(
                 attrs={
-                    "class": "tbxforms-input tbxforms-date-input__input tbxforms-input--width-2",
+                    "class": (
+                        "tbxforms-input tbxforms-date-input__input "
+                        "tbxforms-input--width-2"
+                    ),
                     "label": _("Day"),
                     "pattern": "[0-9]*",
                     "inputmode": "numeric",
@@ -31,7 +35,10 @@ class DateInputWidget(forms.MultiWidget):
             ),
             forms.TextInput(
                 attrs={
-                    "class": "tbxforms-input tbxforms-date-input__input tbxforms-input--width-2",
+                    "class": (
+                        "tbxforms-input tbxforms-date-input__input "
+                        "tbxforms-input--width-2"
+                    ),
                     "label": _("Month"),
                     "pattern": "[0-9]*",
                     "inputmode": "numeric",
@@ -39,7 +46,10 @@ class DateInputWidget(forms.MultiWidget):
             ),
             forms.TextInput(
                 attrs={
-                    "class": "tbxforms-input tbxforms-date-input__input tbxforms-input--width-4",
+                    "class": (
+                        "tbxforms-input tbxforms-date-input__input "
+                        "tbxforms-input--width-4"
+                    ),
                     "label": _("Year"),
                     "pattern": "[0-9]*",
                     "inputmode": "numeric",
@@ -56,8 +66,8 @@ class DateInputWidget(forms.MultiWidget):
         Args:
             value (date): the date to be displayed
 
-        Returns:
-            a 3-tuple containing the day, month and year components of the date.
+        Returns: a 3-tuple containing the day, month and year
+            components of the date.
 
         """
         if value:
