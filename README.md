@@ -10,23 +10,6 @@ Out of the box, forms created with `tbxforms` will look like the
 [GOV.UK Design System](https://design-system.service.gov.uk/), though many
 variables can be customised.
 
-## Contents
-
--   [Torchbox Forms](#torchbox-forms)
-    -   [Installation](#installation)
-        -   [Install the Python package](#install-the-python-package)
-        -   [Install the NPM package](#install-the-npm-package)
-    -   [Usage](#usage)
-        -   [Create a Django form](#creating-a-django-form)
-        -   [Create a Wagtail form](#creating-a-wagtail-form)
-            -   [Add a `helper` property to the Wagtail form](#add-a--helper--property-to-the-wagtail-form)
-            -   [Instruct a Wagtail Page model to use the newly created form](#instruct-a-wagtail-page-model-to-use-the-newly-created-form)
-        -   [Render a form](#render-a-form)
-        -   [Customise a form's attributes (via the `helper` property)](#customising-a-form-s-attributes--via-the--helper--property-)
-            -   [Possible values for the `label_size` and `legend_size`:](#possible-values-for-the--label-size--and--legend-size--)
-        -   [Conditionally-required fields](#conditionally-required-fields)
--   [Further reading](#further-reading)
-
 ## Installation
 
 You must install both the Python package and the NPM package.
