@@ -72,8 +72,8 @@ isort = "5.9.3"
 pylint = "2.6.0"
 
 # Testing
-pytest = "^7.0.0"
-pytest-icdiff = "^0.5"
+pytest = "7.0.0"
+pytest-icdiff = "0.5"
 
 [tool.isort]
 known_first_party = "tbxforms"
@@ -92,5 +92,5 @@ line_length = 79
 line-length = 79
 
 [build-system]
-requires = ["poetry==1.1.7"]
+requires = ["poetry==1.1.13"]
 build-backend = "poetry.masonry.api"

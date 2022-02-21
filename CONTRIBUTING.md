@@ -8,24 +8,24 @@ We welcome all support, whether on bug reports, code, design, reviews, tests, do
 
 ### Installation
 
-With Python 3.7 or up, Node 16, and [pre-commit](https://pre-commit.com/),
+With Python 3.8 or up, Node 16, and [pre-commit](https://pre-commit.com/),
 
 ```bash
 git clone git@github.com:torchbox/tbxforms.git
 cd tbxforms/
+pip install poetry==1.1.13
 poetry install
 pre-commit install
 npm install
-npm run build
 ```
 
 ### Publishing
 
-1. `npm run format` - run FE linters
-2. `pre-commit` - run BE linters (and some FE ones)
+1. `pre-commit` - run linters
+2. `pytest` - run backend tests
 3. Bump project version in pyproject.toml and package.json
-4. `poetry lock` - Lock python packages
-5. `npm update` - Lock JS packages
+4. `poetry lock --no-update` - Lock python packages
+5. `npm i --package-lock-only` - Lock javascript packages
 6. `npm run build` - build NPM package
 7. `poetry build` - build python package
 8. `npm publish` - publish package to npmjs.com
