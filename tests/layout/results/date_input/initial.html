@@ -4,16 +4,16 @@
       <legend class="tbxforms-fieldset__legend">
         When was your passport issued?
       </legend>
-      <div id="id_date_hint" class="tbxforms-hint">
+      <span id="id_date_hint" class="tbxforms-hint">
         For example, 12 11 2007
-      </div>
+      </span>
       <div class="tbxforms-date-input" id="id_date">
         <div class="tbxforms-date-input__item">
           <div class="tbxforms-form-group">
             <label class="tbxforms-label tbxforms-date-input__label" for="id_date_0">
               Day
             </label>
-            <input class="tbxforms-input tbxforms-date-input__input tbxforms-input--width-2" id="id_date_0" name="date_0" type="text" value="12">
+            <input class="tbxforms-input tbxforms-date-input__input tbxforms-input--text tbxforms-input--width-2" id="id_date_0" name="date_0" type="text" value="12" inputmode="numeric" pattern="[0-9]*">
           </div>
         </div>
         <div class="tbxforms-date-input__item">
@@ -21,7 +21,7 @@
             <label class="tbxforms-label tbxforms-date-input__label" for="id_date_1">
               Month
             </label>
-            <input class="tbxforms-input tbxforms-date-input__input tbxforms-input--width-2" id="id_date_1" name="date_1" type="text" value="11">
+            <input class="tbxforms-input tbxforms-date-input__input tbxforms-input--text tbxforms-input--width-2" id="id_date_1" name="date_1" type="text" value="11" inputmode="numeric" pattern="[0-9]*">
           </div>
         </div>
         <div class="tbxforms-date-input__item">
@@ -29,7 +29,7 @@
             <label class="tbxforms-label tbxforms-date-input__label" for="id_date_2">
               Year
             </label>
-            <input class="tbxforms-input tbxforms-date-input__input tbxforms-input--width-4" id="id_date_2" name="date_2" type="text" value="2007">
+            <input class="tbxforms-input tbxforms-date-input__input tbxforms-input--text tbxforms-input--width-4" id="id_date_2" name="date_2" type="text" value="2007" inputmode="numeric" pattern="[0-9]*">
           </div>
         </div>
       </div>

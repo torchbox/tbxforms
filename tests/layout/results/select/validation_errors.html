@@ -1,15 +1,27 @@
 <form method="post">
+  <div aria-labelledby="error-summary-title" class="tbxforms-error-summary" role="alert" tabindex="-1">
+    <h2 class="tbxforms-error-summary__title" id="error-summary-title">
+      There is a problem with your submission
+    </h2><div class="tbxforms-error-summary__body">
+      <ul class="tbxforms-error-summary__list tbxforms-list">
+	<li>
+	  <a href="#div_id_method" title="Jump to the 'How would you like to be contacted?' field">
+	    How would you like to be contacted?: Enter the best way to contact you
+	  </a>
+	</li>
+      </ul>
+    </div>
+  </div>
   <div class="tbxforms-form-group tbxforms-form-group--error" id="div_id_method">
     <label for="id_method" class="tbxforms-label">
       How would you like to be contacted?
     </label>
 
-    <div id="id_method_hint" class="tbxforms-hint">
-      Select the most convenient way to contact you.
-    </div>
-
     <span id="id_method_1_error" class="tbxforms-error-message">
       <span class="tbxforms-visually-hidden">Error:</span> Enter the best way to contact you
+    </span>
+    <span id="id_method_hint" class="tbxforms-hint">
+      Select the most convenient way to contact you.
     </span>
 
     <select class="tbxforms-select tbxforms-input--error" name="method" id="id_method" aria-describedby="id_method_hint id_method_1_error">
