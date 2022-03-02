@@ -1,6 +1,6 @@
 [![PyPI](https://img.shields.io/pypi/v/tbxforms.svg)](https://pypi.org/project/tbxforms/)
 [![npm](https://img.shields.io/npm/v/tbxforms.svg)](https://www.npmjs.com/package/tbxforms) [![PyPI downloads](https://img.shields.io/pypi/dm/tbxforms.svg)](https://pypi.org/project/tbxforms/)
-[![LGTM](https://img.shields.io/lgtm/alerts/g/torchbox/tbxforms.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/torchbox/tbxforms/alerts/)
+[![LGTM](https://img.shields.io/lgtm/alerts/g/torchbox/tbxforms.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/torchbox/tbxforms/alerts/) [![CI](https://github.com/torchbox/tbxforms/actions/workflows/test.yml/badge.svg)](https://github.com/torchbox/tbxforms/actions/workflows/test.yml)
 
 # Torchbox Forms
 
