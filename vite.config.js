@@ -8,8 +8,5 @@ module.exports = defineConfig({
       name: 'TbxForms',
       fileName: (format) => `tbxforms.${format}.js`,
     },
-    rollupOptions: {
-      external: ['sass'],
-    },
   },
 });
