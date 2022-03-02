@@ -5,4 +5,5 @@ module.exports = {
     browser: true,
     node: true,
   },
+  ignorePatterns: ['dist/'],
 };
