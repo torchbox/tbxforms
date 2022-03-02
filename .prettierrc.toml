@@ -6,5 +6,4 @@ quoteProps = 'consistent'
 trailingComma = 'all'
 arrowParens = 'always'
 proseWrap = 'preserve'
-tabWidth = 4
 bracketSpacing = true
