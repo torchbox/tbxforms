@@ -1,3 +1,8 @@
 module.exports = {
-    parser: 'babel-eslint',
+    extends: 'eslint:recommended',
+    parserOptions: { ecmaVersion: 10, sourceType: 'module' },
+    env: {
+        browser: true,
+        node: true,
+    },
 };
