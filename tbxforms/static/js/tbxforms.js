@@ -126,6 +126,7 @@ class TbxForms {
             case 'reset':
             case 'search':
             // case 'select': // Requires different logic (see below).
+            // eslint-disable-next-line no-fallthrough
             case 'submit':
             case 'tel':
             case 'text':
