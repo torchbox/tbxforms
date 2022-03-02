@@ -335,7 +335,7 @@ Layout(
 
 # Further reading
 
--   Download the [PyPi package](http://pypi.python.org/pypi/tbxforms)
+-   Download the [PyPI package](http://pypi.python.org/pypi/tbxforms)
 -   Download the [NPM package](https://www.npmjs.com/package/tbxforms)
 -   Learn more about [Django Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/)
 -   Learn more about [Crispy Forms GDS](https://github.com/wildfish/crispy-forms-gds)
