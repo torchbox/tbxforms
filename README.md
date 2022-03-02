@@ -48,6 +48,8 @@ CRISPY_TEMPLATE_PACK = "tbx"
 npm install tbxforms
 ```
 
+This package uses the `Element.closest`, `NodeList.forEach`, and `Array.includes` APIs. You will additionally need to install and configure polyfills for legacy browser support.
+
 #### Instantiate your forms
 
 ```javascript
