@@ -1,3 +1,3 @@
 module.exports = {
-    extends: 'stylelint-config-torchbox',
+  extends: 'stylelint-config-torchbox',
 };
