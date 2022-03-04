@@ -89,13 +89,13 @@ class TbxForms {
     });
   }
 
+  /**
+   * Reset the value of a given input, or if we're given a container
+   * (e.g. div, fieldset, etc.) then reset the fields within the container
+   * instead.
+   */
   clearInput(node) {
     /* eslint-disable no-fallthrough */
-    /*
-            Reset the value of a given input, or if we're given a container
-            (e.g. div, fieldset, etc.) then reset the fields within the container
-            instead.
-        */
     switch (node.type) {
       // Taken from https://www.w3schools.com/html/html_form_input_types.asp
       case 'button':
