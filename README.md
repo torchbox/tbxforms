@@ -1,6 +1,5 @@
 [![PyPI](https://img.shields.io/pypi/v/tbxforms.svg)](https://pypi.org/project/tbxforms/)
-[![npm](https://img.shields.io/npm/v/tbxforms.svg)](https://www.npmjs.com/package/tbxforms) [![PyPI downloads](https://img.shields.io/pypi/dm/tbxforms.svg)](https://pypi.org/project/tbxforms/)
-[![LGTM](https://img.shields.io/lgtm/alerts/g/torchbox/tbxforms.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/torchbox/tbxforms/alerts/)
+[![npm](https://img.shields.io/npm/v/tbxforms.svg)](https://www.npmjs.com/package/tbxforms) [![PyPI downloads](https://img.shields.io/pypi/dm/tbxforms.svg)](https://pypi.org/project/tbxforms/) [![CI](https://github.com/torchbox/tbxforms/actions/workflows/test.yml/badge.svg)](https://github.com/torchbox/tbxforms/actions/workflows/test.yml) [![LGTM](https://img.shields.io/lgtm/alerts/g/torchbox/tbxforms.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/torchbox/tbxforms/alerts/)
 
 # Torchbox Forms
 
@@ -48,6 +47,8 @@ CRISPY_TEMPLATE_PACK = "tbx"
 ```bash
 npm install tbxforms
 ```
+
+This package uses the `Element.closest`, `NodeList.forEach`, and `Array.includes` APIs. You will additionally need to install and configure polyfills for legacy browser support.
 
 #### Instantiate your forms
 
@@ -335,7 +336,7 @@ Layout(
 
 # Further reading
 
--   Download the [PyPi package](http://pypi.python.org/pypi/tbxforms)
+-   Download the [PyPI package](http://pypi.python.org/pypi/tbxforms)
 -   Download the [NPM package](https://www.npmjs.com/package/tbxforms)
 -   Learn more about [Django Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/)
 -   Learn more about [Crispy Forms GDS](https://github.com/wildfish/crispy-forms-gds)

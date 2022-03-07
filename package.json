@@ -1,43 +1,47 @@
 {
-    "name": "tbxforms",
-    "version": "1.0.12",
-    "main": "./dist/tbxforms.umd.js",
-    "module": "./dist/tbxforms.es.js",
-    "files": [
-        "dist/*.js",
-        "dist/*.css",
-        "dist/**/*.scss"
-    ],
-    "description": "A Torchbox-flavoured template pack for django-crispy-forms, adapted from crispy-forms-gds",
-    "author": "Kyle Bayliss",
-    "private": false,
-    "license": "BSD-2-Clause",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/torchbox/tbxforms.git"
-    },
-    "bugs": {
-        "url": "https://github.com/torchbox/tbxforms/issues"
-    },
-    "homepage": "https://github.com/torchbox/tbxforms",
-    "keywords": [
-        "crispy",
-        "django",
-        "django crispy forms",
-        "forms",
-        "gds",
-        "tbxforms",
-        "wagtail"
-    ],
-    "devDependencies": {
-        "autoprefixer": "^10.2.5",
-        "eslint": "^7.26.0",
-        "prettier": "2.3.2",
-        "sass": "1.26.5",
-        "vite": "^2.2.3"
-    },
-    "scripts": {
-        "build": "vite build && cp -R tbxforms/static/sass/* dist/",
-        "report:package": "npm pack --loglevel notice 2>&1 >/dev/null | sed -e 's/^npm notice //' && rm *.tgz"
-    }
+  "name": "tbxforms",
+  "version": "1.0.12",
+  "main": "./dist/tbxforms.umd.js",
+  "module": "./dist/tbxforms.es.js",
+  "files": [
+    "dist/*.js",
+    "dist/*.css",
+    "dist/**/*.scss"
+  ],
+  "description": "A Torchbox-flavoured template pack for django-crispy-forms, adapted from crispy-forms-gds",
+  "author": "Kyle Bayliss",
+  "private": false,
+  "license": "BSD-2-Clause",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/torchbox/tbxforms.git"
+  },
+  "bugs": {
+    "url": "https://github.com/torchbox/tbxforms/issues"
+  },
+  "homepage": "https://github.com/torchbox/tbxforms",
+  "keywords": [
+    "crispy",
+    "django",
+    "django crispy forms",
+    "forms",
+    "gds",
+    "tbxforms",
+    "wagtail"
+  ],
+  "devDependencies": {
+    "autoprefixer": "^10.2.5",
+    "eslint": "^7.26.0",
+    "prettier": "2.3.2",
+    "sass": "1.26.5",
+    "vite": "^2.2.3"
+  },
+  "scripts": {
+    "lint:js": "eslint --report-unused-disable-directives .",
+    "lint:format": "prettier --check '**/?(.)*.{css,scss,js,ts,tsx,json,yaml,yml,md}'",
+    "lint": "npm run lint:js && npm run lint:format",
+    "format": "prettier --write '**/?(.)*.{css,scss,js,ts,tsx,json,yaml,yml,md}'",
+    "build": "vite build && cp -R tbxforms/static/sass/* dist/",
+    "report:package": "npm pack --loglevel notice 2>&1 >/dev/null | sed -e 's/^npm notice //' && rm *.tgz"
+  }
 }

@@ -13,17 +13,17 @@ $tbxforms-active-colour: #fff !default;
 
 // --------------------------------- Sizing ------------------------------------
 
-$tbxforms-base-font-size: 16px !default;
-$tbxforms-base-line-height: 25px !default;
+$tbxforms-base-font-size: 1rem !default;
+$tbxforms-base-line-height: 1.5625 !default;
 
 $tbxforms-font-sizes: () !default;
 $tbxforms-font-sizes: map-merge(
     (
         default: $tbxforms-base-font-size,
-        xl: 28px,
-        l: 21px,
-        m: 18px,
-        s: 15px,
+        xl: 1.75rem,
+        l: 1.3125rem,
+        m: 1.125rem,
+        s: 0.9375rem,
     ),
     $tbxforms-font-sizes
 );
