@@ -3,7 +3,7 @@
 printWidth = 80
 singleQuote = true
 quoteProps = 'consistent'
-trailingComma = 'all'
+trailingComma = 'es5'
 arrowParens = 'always'
 proseWrap = 'preserve'
 bracketSpacing = true
