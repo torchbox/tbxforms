@@ -14,7 +14,7 @@ import '../sass/tbxforms.scss';
       event,
       params.bubbles,
       params.cancelable,
-      params.detail,
+      params.detail
     );
     return evt;
   }
@@ -38,14 +38,14 @@ function TbxForms(form) {
         ? formElement.closest('.tbxforms-form-group')
         : formElement;
       const drivingFieldNodeList = form.querySelectorAll(
-        '[name="' + formElement.dataset.conditionalFieldName + '"]',
+        '[name="' + formElement.dataset.conditionalFieldName + '"]'
       );
       let conditionalValuesForElement;
 
       // Try to parse the JSON containing required field mapping.
       try {
         conditionalValuesForElement = JSON.parse(
-          formElement.dataset.conditionalFieldValues,
+          formElement.dataset.conditionalFieldValues
         );
       } catch (e) {
         throw 'Invalid JSON: ' + e;
@@ -147,7 +147,7 @@ TbxForms.prototype.clearInput = function (node) {
           console.error(
             "Unexpected node.type '" +
               node.type +
-              "' found while trying to clearInput.",
+              "' found while trying to clearInput."
           );
       }
       break;
@@ -173,7 +173,7 @@ TbxForms.prototype.clearInput = function (node) {
       console.error(
         "Unexpected node.tagName '" +
           node.tagName +
-          "' found while trying to clearInput.",
+          "' found while trying to clearInput."
       );
   }
 };
