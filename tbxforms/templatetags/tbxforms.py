@@ -231,28 +231,7 @@ class CrispyGDSFieldNode(template.Node):
                 ):
                     widget.input_type = widget.attrs.pop("input_type")
 
-                if field.help_text and not is_multivalue(field):
-                    widget.attrs["aria-describedby"] = (
-                        "%s_hint" % field.auto_id
-                    )
-
-                if (
-                    "class" in widget.attrs
-                    and "tbxforms-js-character-count" in widget.attrs["class"]
-                ):
-
-                    # The javascript that updates the span containing
-                    # character count as the user types expects the id
-                    # to end in '-info'. Anything else won't work.
-
-                    if widget.attrs["aria-describedby"]:
-                        widget.attrs["aria-describedby"] += (
-                            " %s-info" % field.auto_id
-                        )
-                    else:
-                        widget.attrs["aria-describedby"] = (
-                            "%s-info" % field.auto_id
-                        )
+                aria_describedby = []
 
                 if field.errors:
                     widget_class_name = widget.__class__.__name__
@@ -277,9 +256,6 @@ class CrispyGDSFieldNode(template.Node):
                     ]:
                         css_class += " tbxforms-file-upload--error"
 
-                    if not field.help_text:
-                        widget.attrs["aria-describedby"] = ""
-
                     for error_idx, error in enumerate(field.errors, start=1):
                         css_error_class = "%s_%d_error" % (
                             field.auto_id,
@@ -291,23 +267,27 @@ class CrispyGDSFieldNode(template.Node):
                                 error_widgets[widget_idx], "errors", None
                             ):
                                 if error in error_widgets[widget_idx].errors:
-                                    if "aria-describedby" not in widget.attrs:
-                                        widget.attrs["aria-describedby"] = ""
-
-                                    if widget.attrs["aria-describedby"]:
-                                        widget.attrs["aria-describedby"] += " "
-
-                                    widget.attrs[
-                                        "aria-describedby"
-                                    ] += css_error_class
+                                    aria_describedby.append(css_error_class)
                         else:
-                            if "aria-describedby" not in widget.attrs:
-                                widget.attrs["aria-describedby"] = ""
+                            aria_describedby.append(css_error_class)
 
-                            if widget.attrs["aria-describedby"]:
-                                widget.attrs["aria-describedby"] += " "
+                if field.help_text and not is_multivalue(field):
+                    aria_describedby.append(f"{field.auto_id}_hint")
 
-                            widget.attrs["aria-describedby"] += css_error_class
+                if (
+                    "class" in widget.attrs
+                    and "tbxforms-js-character-count" in widget.attrs["class"]
+                ):
+
+                    # The javascript that updates the span containing
+                    # character count as the user types expects the id
+                    # to end in '-info'. Anything else won't work.
+                    aria_describedby.append(f"{field.auto_id}-info")
+
+                if aria_describedby:
+                    widget.attrs["aria-describedby"] = " ".join(
+                        aria_describedby
+                    )
 
             widget.attrs["class"] = css_class
 
