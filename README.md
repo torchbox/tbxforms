@@ -29,7 +29,7 @@ Add `django-crispy-forms` and `tbxforms` to your installed apps:
 INSTALLED_APPS = [
   ...
   'crispy_forms',  # django-crispy-forms
-  'tbxforms',
+  'tbxforms', # must appear after `wagtail.contrib.forms` if you are using Wagtail forms.
 ]
 ```
 
@@ -96,9 +96,11 @@ You will need to write button styles for the following classes:
 
 ## Usage
 
-`tbxforms` supports Django and Wagtail forms.
+`tbxforms` supports Django (`>=2.2,<=4.0`) and Wagtail (`>=2.15`) forms.
 
 ### Django forms
+
+`django>=2.2,<=4.0` is supported.
 
 All forms must inherit from `TbxFormsBaseForm` and whichever Django base form class.
 
@@ -116,6 +118,8 @@ class ExampleModelForm(TbxFormsBaseForm, forms.ModelForm):
 ```
 
 ### Wagtail forms
+
+`wagtail>=2.15` is supported.
 
 #### Create or update a Wagtail form
 

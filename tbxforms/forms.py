@@ -1,10 +1,12 @@
 from django import forms as django_forms
-
-from wagtail.contrib.forms.forms import FormBuilder
+from django.apps import apps
 
 from tbxforms.fields import DateInputField
 from tbxforms.helper import FormHelper
 from tbxforms.layout import Size
+
+if apps.is_installed("wagtail.contrib.forms"):
+    from wagtail.contrib.forms.forms import FormBuilder
 
 
 class BaseForm:
@@ -30,21 +32,23 @@ class BaseForm:
         return fh
 
 
-class BaseWagtailFormBuilder(FormBuilder):
-    """
-    Override some fields to use tbxforms functionality/variants.
-    """
+if "FormBuilder" in locals():
 
-    def create_date_field(self, field, options) -> DateInputField:
-        return DateInputField(**options)
+    class BaseWagtailFormBuilder(FormBuilder):
+        """
+        Override some fields to use tbxforms functionality/variants.
+        """
 
-    def create_multiselect_field(
-        self, field, options
-    ) -> django_forms.MultipleChoiceField:
-        # Multiselects are difficult to use, so let's revert to checkboxes.
-        options["choices"] = map(
-            lambda x: (x.strip(), x.strip()), field.choices.split(",")
-        )
-        return django_forms.MultipleChoiceField(
-            widget=django_forms.CheckboxSelectMultiple, **options
-        )
+        def create_date_field(self, field, options) -> DateInputField:
+            return DateInputField(**options)
+
+        def create_multiselect_field(
+            self, field, options
+        ) -> django_forms.MultipleChoiceField:
+            # Multiselects are difficult to use, so let's revert to checkboxes.
+            options["choices"] = map(
+                lambda x: (x.strip(), x.strip()), field.choices.split(",")
+            )
+            return django_forms.MultipleChoiceField(
+                widget=django_forms.CheckboxSelectMultiple, **options
+            )
