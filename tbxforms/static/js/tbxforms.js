@@ -79,13 +79,11 @@ class TbxForms {
     });
 
     // Clear any values for fields that are conditionally hidden.
-    // NB. We don't use `this.form.elements.('[hidden=true]')` to include divs.
+    // NB. We don't use `this.form.elements.('[hidden]')` to include divs.
     this.form.addEventListener('submit', () => {
-      this.form
-        .querySelectorAll('[hidden=true]')
-        .forEach((hiddenFormElement) => {
-          this.clearInput(hiddenFormElement);
-        });
+      this.form.querySelectorAll('[hidden]').forEach((hiddenFormElement) => {
+        this.clearInput(hiddenFormElement);
+      });
     });
   }
 
@@ -99,7 +97,6 @@ class TbxForms {
     switch (node.type) {
       // Taken from https://www.w3schools.com/html/html_form_input_types.asp
       case 'button':
-      case 'checkbox':
       case 'color':
       case 'date':
       case 'datetime-local':
@@ -110,11 +107,9 @@ class TbxForms {
       case 'month':
       case 'number':
       case 'password':
-      case 'radio':
       case 'range':
       case 'reset':
       case 'search':
-      // case 'select': // Requires different logic (see below).
       case 'submit':
       case 'tel':
       case 'text':
@@ -124,7 +119,13 @@ class TbxForms {
       case 'week':
         node.value = '';
         break;
+      case 'radio':
+      case 'checkbox':
+        node.checked = false;
+        break;
       case 'select':
+      case 'select-one':
+      case 'select-multiple':
         node.selectedIndex = -1;
         break;
       // If this is a container element run again for child elements.
@@ -135,6 +136,8 @@ class TbxForms {
           this.clearInput(formElement);
         });
         break;
+      default:
+        throw `Unexpected type '${node.type}' found while trying to clearInput.`;
     }
   }
 }
