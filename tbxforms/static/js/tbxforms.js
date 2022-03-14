@@ -93,51 +93,63 @@ class TbxForms {
    * instead.
    */
   clearInput(node) {
-    /* eslint-disable no-fallthrough */
-    switch (node.type) {
-      // Taken from https://www.w3schools.com/html/html_form_input_types.asp
-      case 'button':
-      case 'color':
-      case 'date':
-      case 'datetime-local':
-      case 'email':
-      case 'file':
-      case 'hidden':
-      case 'image':
-      case 'month':
-      case 'number':
-      case 'password':
-      case 'range':
-      case 'reset':
-      case 'search':
-      case 'submit':
-      case 'tel':
-      case 'text':
-      case 'textarea':
-      case 'time':
-      case 'url':
-      case 'week':
+    switch (node.tagName) {
+      case 'INPUT':
+        switch (node.type) {
+          case 'color':
+          case 'date':
+          case 'datetime-local':
+          case 'email':
+          case 'file':
+          case 'hidden':
+          case 'image':
+          case 'month':
+          case 'number':
+          case 'password':
+          case 'range':
+          case 'reset':
+          case 'search':
+          case 'tel':
+          case 'text':
+          case 'time':
+          case 'url':
+          case 'week':
+            node.value = '';
+            break;
+
+          case 'radio':
+          case 'checkbox':
+            node.checked = false;
+            break;
+
+          default:
+            console.error(
+              `Unexpected node.type '${node.type}' found while trying to clearInput.`,
+            );
+        }
+        break;
+
+      case 'TEXTAREA':
         node.value = '';
         break;
-      case 'radio':
-      case 'checkbox':
-        node.checked = false;
-        break;
-      case 'select':
-      case 'select-one':
-      case 'select-multiple':
+
+      case 'SELECT':
         node.selectedIndex = -1;
         break;
+
       // If this is a container element run again for child elements.
       // NB. maybe a `default` case would be better here.
-      case 'div':
-      case 'fieldset':
+      case 'DIV':
+      case 'FIELDSET':
         node.querySelectorAll('*').forEach((formElement) => {
           this.clearInput(formElement);
         });
         break;
+
       default:
-        throw `Unexpected type '${node.type}' found while trying to clearInput.`;
+        console.error(
+          `Unexpected node.tagName '${node.tagName}' found while trying to clearInput.`,
+        );
     }
   }
 }
