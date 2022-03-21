@@ -40,6 +40,15 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = ["tbx"]
 CRISPY_TEMPLATE_PACK = "tbx"
 ```
 
+There are two optional settings which will either allow or prevent HTML from
+being used in a form's `label` or `help_text` - the default is set to `False`,
+which prevents HTML from being used:
+
+```python
+TBXFORMS_ALLOW_HTML_LABEL = False
+TBXFORMS_ALLOW_HTML_HELP_TEXT = False
+```
+
 ### Install the NPM package
 
 #### Install using NPM
