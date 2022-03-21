@@ -38,9 +38,22 @@ class BaseForm:
 
         # Escape HTML in `label` and `help_text` unless it's set to allow.
         for field_name, field in self.fields.items():
-            if not getattr(settings, "TBXFORMS_ALLOW_HTML_LABEL", False):
+            if all(
+                [
+                    field.label,
+                    not getattr(settings, "TBXFORMS_ALLOW_HTML_LABEL", False),
+                ]
+            ):
                 field.label = conditional_escape(field.label)
-            if not getattr(settings, "TBXFORMS_ALLOW_HTML_HELP_TEXT", False):
+
+            if all(
+                [
+                    field.help_text,
+                    not getattr(
+                        settings, "TBXFORMS_ALLOW_HTML_HELP_TEXT", False
+                    ),
+                ]
+            ):
                 field.help_text = conditional_escape(field.help_text)
 
 
