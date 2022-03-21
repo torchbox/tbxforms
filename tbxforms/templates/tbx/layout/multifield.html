@@ -3,7 +3,7 @@
 <fieldset
     class="tbxforms-fieldset"
     {% if field.help_text or field.errors %}
-        aria-describedby="{% if field.help_text %}{{ field.auto_id }}_hint{% endif %}{% for error in field.errors %} {{ field.auto_id }}_{{ forloop.counter }}_error{% endfor %}"
+        aria-describedby="{% for error in field.errors %}{{ field.auto_id }}_{{ forloop.counter }}_error {% endfor %}{% if field.help_text %}{{ field.auto_id }}_hint{% endif %}"
     {% endif %}
 >
 
