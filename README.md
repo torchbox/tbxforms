@@ -40,6 +40,15 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = ["tbx"]
 CRISPY_TEMPLATE_PACK = "tbx"
 ```
 
+There are two optional settings which will control whether HTML is rendered for
+a field's `label` and `help_text`. The defaults are set to `False`
+(which escapes the HTML and prevents it from being rendered):
+
+```python
+TBXFORMS_ALLOW_HTML_LABEL = False
+TBXFORMS_ALLOW_HTML_HELP_TEXT = False
+```
+
 ### Install the NPM package
 
 #### Install using NPM

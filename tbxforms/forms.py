@@ -1,5 +1,7 @@
 from django import forms as django_forms
 from django.apps import apps
+from django.conf import settings
+from django.utils.html import conditional_escape
 
 from tbxforms.fields import DateInputField
 from tbxforms.helper import FormHelper
@@ -30,6 +32,16 @@ class BaseForm:
         fh.label_size = Size.MEDIUM
         fh.legend_size = Size.MEDIUM
         return fh
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Escape HTML in `label` and `help_text` unless it's set to allow.
+        for field_name, field in self.fields.items():
+            if not getattr(settings, "TBXFORMS_ALLOW_HTML_LABEL", False):
+                field.label = conditional_escape(field.label)
+            if not getattr(settings, "TBXFORMS_ALLOW_HTML_HELP_TEXT", False):
+                field.help_text = conditional_escape(field.help_text)
 
 
 if "FormBuilder" in locals():
