@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tbxforms"
-version = "1.0.14"
+version = "1.0.15"
 description = "A Torchbox-flavoured template pack for django-crispy-forms, adapted from crispy-forms-gds"
 authors = [
     "Kyle Bayliss <kyle.bayliss@torchbox.com>"
@@ -10,7 +10,7 @@ readme = "README.md"
 homepage = ""
 repository = "https://github.com/torchbox/tbxforms/"
 classifiers = [
-    "Development Status :: 2 - Pre-Alpha",
+    "Development Status :: 3 - Alpha",
     "Environment :: Web Environment",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: BSD License",
