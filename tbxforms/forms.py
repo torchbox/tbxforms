@@ -36,7 +36,8 @@ class BaseForm:
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # Escape HTML in `label` and `help_text` unless it's set to allow.
+        # Escape HTML within `label` and `help_text` unless it's set to allow.
+        # NB. Also see https://github.com/torchbox/tbxforms/blob/main/tbxforms/layout/buttons.py#L102  # noqa: E501
         for field_name, field in self.fields.items():
             if all(
                 [

@@ -29,7 +29,7 @@ Add `django-crispy-forms` and `tbxforms` to your installed apps:
 INSTALLED_APPS = [
   ...
   'crispy_forms',  # django-crispy-forms
-  'tbxforms', # must appear after `wagtail.contrib.forms` if you are using Wagtail forms.
+  'tbxforms',
 ]
 ```
 
@@ -47,6 +47,7 @@ a field's `label` and `help_text`. The defaults are set to `False`
 ```python
 TBXFORMS_ALLOW_HTML_LABEL = False
 TBXFORMS_ALLOW_HTML_HELP_TEXT = False
+TBXFORMS_ALLOW_HTML_BUTTON = False
 ```
 
 ### Install the NPM package
