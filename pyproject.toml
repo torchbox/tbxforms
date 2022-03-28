@@ -69,7 +69,6 @@ black = "22.1.0"
 detect-secrets = "~0.13"
 flake8 = "4.0.1"
 isort = "5.10.1"
-pylint = "2.13.2"
 
 # Testing
 pytest = "7.0.0"
