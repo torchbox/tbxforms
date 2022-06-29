@@ -6,5 +6,5 @@
         class="{{ input.css_class }}"
         id="{% if input.id %}{{ input.id }}{% else %}{{ input.input_type }}-id-{{ input.name|slugify }}{% endif %}"
     {% endif %}
-    {{ input.flat_attrs|safe }}
+    {{ input.flat_attrs }}
 />

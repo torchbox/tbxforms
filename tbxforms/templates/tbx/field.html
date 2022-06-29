@@ -25,7 +25,7 @@
         {% if field.label and not field|is_checkbox and form_show_labels %}
             {% if label_tag %}<{{ label_tag }} class="tbxforms-label-wrapper">{% endif %}
             <label for="{{ field.id_for_label }}" class="tbxforms-label{% if label_size %} {{ label_size }}{% endif %}">
-                {{ field.label|safe }}
+                {{ field.label }}
                 {% if not field|show_as_required %} <span>{% trans "(optional)" %}</span>{% endif %}
             </label>
             {% if label_tag %}</{{ label_tag }}>{% endif %}
@@ -37,7 +37,7 @@
                 <div class="tbxforms-checkboxes__item">
                     {% crispy_tbx_field field %}
                     <label class="tbxforms-label tbxforms-checkboxes__label" for="{{ field.id_for_label }}">
-                        {{ field.label|safe }}
+                        {{ field.label }}
                     </label>
                 </div>
             </div>

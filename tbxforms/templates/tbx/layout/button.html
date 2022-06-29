@@ -2,5 +2,5 @@
     name="{% if input.name|wordcount > 1 %}{{ input.name|slugify }}{% else %}{{ input.name }}{% endif %}"
     class="{% if input.css_class %}{{ input.css_class }}{% else %}tbxforms-button tbxforms-button--primary{% endif %}"
     id="{% if input.id %}{{ input.id }}{% else %}id_{{ input.name|slugify }}{% endif %}"
-    {{ input.flat_attrs|safe }}
->{{ input.value|safe }}</button>
+    {{ input.flat_attrs }}
+>{{ input.value }}</button>

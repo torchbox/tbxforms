@@ -47,8 +47,17 @@ a field's `label` and `help_text`. The defaults are set to `False`
 ```python
 TBXFORMS_ALLOW_HTML_LABEL = False
 TBXFORMS_ALLOW_HTML_HELP_TEXT = False
-TBXFORMS_ALLOW_HTML_BUTTON = False
 ```
+
+The reason why these two specifically is because `label`s are usually generated
+automatically and the `help_text`s are usually defined as static strings on model fields,
+i.e. there can be no user supplied variables.
+When enabled `tbxforms` applies `mark_safe` to these automatically,
+so there's no need to use `|safe` even in this case.
+
+Whenever a string containg html is not rendered as html never add `|safe` in a template,
+instead apply `mark_safe`, `format_html_join`, etc,
+while making sure user supplied values are never rendered as html.
 
 ### Install the NPM package
 

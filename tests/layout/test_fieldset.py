@@ -4,6 +4,8 @@ Tests to verify fieldsets are rendered correctly.
 """
 import os
 
+from django.utils.html import mark_safe
+
 from tbxforms.helper import FormHelper
 from tbxforms.layout import (
     Fieldset,
@@ -31,9 +33,27 @@ def test_show_legend_as_heading():
     form = FieldsetForm()
     form.helper = FormHelper()
     form.helper.layout = Layout(
-        Fieldset("name", "email", legend="Contact", legend_tag="h1")
+        Fieldset(
+            "name", "email", legend=mark_safe("Contact<br>"), legend_tag="h1"
+        )
     )
     assert parse_form(form) == parse_contents(
+        RESULT_DIR, "legend_heading.html"
+    )
+
+
+def test_show_legend_as_heading_incorrect_escaping():
+    """
+    Without mark_safe the result shouldn't be equal, see
+    test_show_legend_as_heading for the correct test case using the same
+    template.
+    """
+    form = FieldsetForm()
+    form.helper = FormHelper()
+    form.helper.layout = Layout(
+        Fieldset("name", "email", legend="Contact<br>", legend_tag="h1")
+    )
+    assert parse_form(form) != parse_contents(
         RESULT_DIR, "legend_heading.html"
     )
 

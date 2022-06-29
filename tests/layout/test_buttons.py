@@ -4,6 +4,8 @@ Tests to verify buttons are rendered correctly.
 """
 import os
 
+from django.utils.html import mark_safe
+
 from tbxforms.layout import Button
 from tests.utils import (
     TEST_DIR,
@@ -16,8 +18,17 @@ TEMPLATE = '{% include "tbx/layout/button.html" %}'
 
 
 def test_primary_button():
-    button = Button.primary("name", "Title")
+    button = Button.primary("name", mark_safe("Title<br>"))
     assert parse_template(TEMPLATE, input=button) == parse_contents(
+        RESULT_DIR, "primary.html"
+    )
+
+
+def test_primary_button_incorrect_escaping():
+    """Without mark_safe the result shouldn't be equal, see test_primary_button
+    for the correct test case using the same template."""
+    button = Button.primary("name", "Title<br>")
+    assert parse_template(TEMPLATE, input=button) != parse_contents(
         RESULT_DIR, "primary.html"
     )
 
