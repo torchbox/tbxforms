@@ -37,7 +37,6 @@ def test_validation_error_attributes():
 def test_checkbox_size():
     """Verify size of the checkbox can be changed from the default."""
     form = CheckboxForm()
-    form.helper = FormHelper()
     form.helper.layout = Layout(
         Field("accept", context={"checkboxes_small": True})
     )

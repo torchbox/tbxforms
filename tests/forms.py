@@ -8,11 +8,11 @@ from tbxforms.layout import (
     Layout,
 )
 
+from tbxforms.forms import BaseForm as TbxFormsBaseForm
 
-class BaseForm(forms.Form):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper(self)
+
+class BaseForm(TbxFormsBaseForm, forms.Form):
+    pass
 
 
 class CheckboxForm(BaseForm):

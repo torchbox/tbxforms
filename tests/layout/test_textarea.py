@@ -40,7 +40,6 @@ def test_validation_error_attributes():
 def test_show_label_as_heading():
     """Verify the field label can be displayed as the page heading."""
     form = TextareaForm()
-    form.helper = FormHelper()
     form.helper.layout = Layout(
         Field("description", context={"label_tag": "h1"})
     )
@@ -50,7 +49,6 @@ def test_show_label_as_heading():
 def test_change_label_size():
     """Verify size of the field label can be changed from the default."""
     form = TextareaForm()
-    form.helper = FormHelper()
     form.helper.layout = Layout(
         Field("description", context={"label_size": Size.for_label("l")})
     )
@@ -85,7 +83,6 @@ def test_no_help_text_errors():
 def test_character_count():
     """Verify the field can show the maximum number of characters allowed."""
     form = TextareaForm(initial={"description": "Field value"})
-    form.helper = FormHelper()
     form.helper.layout = Layout(
         Field.textarea("description", max_characters=100)
     )
@@ -107,7 +104,6 @@ def test_threshold():
     Verify info is shown after a certain number of words has been entered.
     """
     form = TextareaForm(initial={"description": "Field value"})
-    form.helper = FormHelper()
     form.helper.layout = Layout(
         Field.textarea("description", max_words=100, threshold=50)
     )

@@ -7,9 +7,6 @@ from tbxforms.fields import DateInputField
 from tbxforms.helper import FormHelper
 from tbxforms.layout import Size
 
-if apps.is_installed("wagtail.contrib.forms"):
-    from wagtail.contrib.forms.forms import FormBuilder
-
 
 class BaseForm:
     @staticmethod
@@ -45,7 +42,8 @@ class BaseForm:
                 field.help_text = mark_safe(field.help_text)
 
 
-if "FormBuilder" in locals():
+if apps.is_installed("wagtail.contrib.forms"):
+    from wagtail.contrib.forms.forms import FormBuilder
 
     class BaseWagtailFormBuilder(FormBuilder):
         """

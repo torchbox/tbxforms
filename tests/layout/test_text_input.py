@@ -38,7 +38,6 @@ def test_validation_error_attributes():
 def test_show_label_as_heading():
     """Verify the field label can be displayed as the page heading."""
     form = TextInputForm()
-    form.helper = FormHelper()
     form.helper.layout = Layout(Field("name", context={"label_tag": "h1"}))
     assert parse_form(form) == parse_contents(RESULT_DIR, "label_heading.html")
 
@@ -46,7 +45,6 @@ def test_show_label_as_heading():
 def test_change_label_size():
     """Verify size of the field label can be changed from the default."""
     form = TextInputForm()
-    form.helper = FormHelper()
     form.helper.layout = Layout(
         Field("name", context={"label_size": Size.for_label("l")})
     )

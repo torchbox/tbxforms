@@ -26,7 +26,6 @@ RESULT_DIR = os.path.join(TEST_DIR, "layout", "results", "radios")
 def test_initial_attributes():
     """Verify all the gds attributes are displayed."""
     form = RadiosForm(initial={"method": "email"})
-    form.helper = FormHelper()
     form.helper.layout = Layout(Field.radios("method"))
     assert parse_form(form) == parse_contents(RESULT_DIR, "initial.html")
 
@@ -43,7 +42,6 @@ def test_validation_error_attributes():
 def test_choices():
     """Verify hints and dividers are displayed."""
     form = RadiosChoiceForm(initial={"method": "email"})
-    form.helper = FormHelper()
     form.helper.layout = Layout(Field.radios("method"))
     assert parse_form(form) == parse_contents(RESULT_DIR, "choices.html")
 
@@ -51,7 +49,6 @@ def test_choices():
 def test_small():
     """Verify size of the radio buttons can be changed."""
     form = RadiosForm()
-    form.helper = FormHelper()
     form.helper.layout = Layout(
         Field("method", context={"radios_small": True})
     )
@@ -61,7 +58,6 @@ def test_small():
 def test_inline():
     """Verify radio buttons can be displayed in a row."""
     form = RadiosForm()
-    form.helper = FormHelper()
     form.helper.layout = Layout(
         Field("method", context={"radios_inline": True})
     )
@@ -73,7 +69,6 @@ def test_inline():
 def test_show_legend_as_heading():
     """Verify the field legend can be displayed as the page heading."""
     form = RadiosForm()
-    form.helper = FormHelper()
     form.helper.layout = Layout(Field("method", context={"legend_tag": "h1"}))
     assert parse_form(form) == parse_contents(
         RESULT_DIR, "legend_heading.html"
@@ -83,7 +78,6 @@ def test_show_legend_as_heading():
 def test_change_legend_size():
     """Verify size of the field legend can be changed from the default."""
     form = RadiosForm()
-    form.helper = FormHelper()
     form.helper.layout = Layout(
         Field("method", context={"legend_size": Size.for_legend("l")})
     )
