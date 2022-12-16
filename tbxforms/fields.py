@@ -58,12 +58,8 @@ class DateInputField(forms.MultiValueField):
                 error_messages={"incomplete": _("Enter the day of the month")},
                 validators=[
                     RegexValidator(r"^[0-9]+$", _("Enter a valid date")),
-                    StringMinValueValidator(
-                        1, _("Enter a value greater than 1")
-                    ),
-                    StringMaxValueValidator(
-                        31, _("Enter a value less than 31")
-                    ),
+                    StringMinValueValidator(1, _("Day must be 1 or more")),
+                    StringMaxValueValidator(31, _("Day must be 31 or less")),
                 ],
             ),
             forms.CharField(
@@ -71,12 +67,8 @@ class DateInputField(forms.MultiValueField):
                 error_messages={"incomplete": _("Enter the month")},
                 validators=[
                     RegexValidator(r"^[0-9]+$", _("Enter a valid month")),
-                    StringMinValueValidator(
-                        1, _("Enter a value greater than 1")
-                    ),
-                    StringMaxValueValidator(
-                        12, _("Enter a value less than 12")
-                    ),
+                    StringMinValueValidator(1, _("Month must be 1 or more")),
+                    StringMaxValueValidator(12, _("Month must be 12 or less")),
                 ],
             ),
             forms.CharField(
@@ -87,14 +79,14 @@ class DateInputField(forms.MultiValueField):
                     StringMinValueValidator(
                         datetime.MINYEAR,
                         _(
-                            "Enter a value greater than %(min_year)d"
+                            "Year must be %(min_year)d or more"
                             % {"min_year": datetime.MINYEAR}
                         ),
                     ),
                     StringMaxValueValidator(
                         datetime.MAXYEAR,
                         _(
-                            "Enter a value less than %(max_year)d"
+                            "Year must be %(max_year)d or less"
                             % {"max_year": datetime.MAXYEAR}
                         ),
                     ),
@@ -198,7 +190,7 @@ class DateInputField(forms.MultiValueField):
             days_in_month = calendar.monthrange(year, month)[1]
             if day > days_in_month:
                 error = _(
-                    "Enter a day between 1 and %(dim)s for the month and year "
+                    "Enter a day between 1 to %(dim)s for the month and year "
                     "you entered"
                 ) % {"dim": days_in_month}
                 errors.append(error)
