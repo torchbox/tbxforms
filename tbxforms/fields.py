@@ -1,3 +1,4 @@
+import calendar
 import datetime
 
 from django import forms
@@ -10,21 +11,6 @@ from tbxforms.validators import (
     StringMinValueValidator,
 )
 from tbxforms.widgets import DateInputWidget
-
-# The following code is adapted from the Python standard library datetime
-_DAYS_IN_MONTH = [-1, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-
-
-def _is_leap(year):
-    "year -> 1 if leap year, else 0."
-    return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
-
-
-def _days_in_month(year, month):
-    "year, month -> number of days in that month in that year."
-    if month == 2 and _is_leap(year):
-        return 29
-    return _DAYS_IN_MONTH[month]
 
 
 class DateInputField(forms.MultiValueField):
@@ -209,12 +195,12 @@ class DateInputField(forms.MultiValueField):
         # relies on the fields being declared in the order day, month, year
         if len(clean_data) == 3:
             day, month, year = map(int, clean_data)
-            dim = _days_in_month(year, month)
-            if day > dim:
+            days_in_month = calendar.monthrange(year, month)[1]
+            if day > days_in_month:
                 error = _(
                     "Enter a day between 1 and %(dim)s for the month and year "
                     "you entered"
-                ) % {"dim": dim}
+                ) % {"dim": days_in_month}
                 errors.append(error)
                 self.fields[0].widget.errors.append(error)
 
