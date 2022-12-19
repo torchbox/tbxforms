@@ -190,9 +190,9 @@ class DateInputField(forms.MultiValueField):
             days_in_month = calendar.monthrange(year, month)[1]
             if day > days_in_month:
                 error = _(
-                    "Enter a day between 1 to %(dim)s for the month and year "
-                    "you entered"
-                ) % {"dim": days_in_month}
+                    "Enter a day from 1 to %(days_in_month)s for the month "
+                    "and year you entered"
+                ) % {"days_in_month": days_in_month}
                 errors.append(error)
                 self.fields[0].widget.errors.append(error)
 

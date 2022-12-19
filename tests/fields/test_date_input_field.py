@@ -142,7 +142,6 @@ def test_zero_value_day_field():
     field = DateInputField()
     with pytest.raises(ValidationError) as err:
         field.clean(["0", "2", "2006"])
-    print(err.value.args)
     error = err.value.args[0][0].args[0]
     assert error in field.fields[0].widget.errors
     assert error == field.fields[0].validators[1].message
@@ -195,7 +194,7 @@ def test_invalid_date_on_non_leap_year():
         field.clean(["29", "2", "2007"])
     error = err.value.args[0][0]
     assert error == (
-        "Enter a day between 1 to 28 for the month and year you entered"
+        "Enter a day from 1 to 28 for the month and year you entered"
     )
 
 
@@ -206,5 +205,5 @@ def test_invalid_date_on_30_day_month():
         field.clean(["31", "4", "2007"])
     error = err.value.args[0][0]
     assert error == (
-        "Enter a day between 1 to 30 for the month and year you entered"
+        "Enter a day from 1 to 30 for the month and year you entered"
     )
