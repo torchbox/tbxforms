@@ -135,7 +135,7 @@ def test_out_of_range_day_field():
     error = err.value.args[0][0]
     assert error == (
         "'32' is not a valid day for February 2006 - "
-        "please enter a value between 1 and 28"
+        "please enter a value between 1 and 28."
     )
 
 
@@ -197,7 +197,7 @@ def test_invalid_date_on_non_leap_year():
     error = err.value.args[0][0]
     assert error == (
         "'29' is not a valid day for February 2007 - "
-        "please enter a value between 1 and 28"
+        "please enter a value between 1 and 28."
     )
 
 
@@ -209,5 +209,5 @@ def test_invalid_date_on_30_day_month():
     error = err.value.args[0][0]
     assert error == (
         "'31' is not a valid day for April 2007 - "
-        "please enter a value between 1 and 30"
+        "please enter a value between 1 and 30."
     )

@@ -58,38 +58,42 @@ class DateInputField(forms.MultiValueField):
         fields = (
             forms.CharField(
                 label=_("Day"),
-                error_messages={"incomplete": _("Enter the day of the month")},
+                error_messages={
+                    "incomplete": _("Enter the day of the month.")
+                },
                 validators=[
-                    RegexValidator(r"^[0-9]+$", _("Enter a valid date")),
-                    StringMinValueValidator(1, _("Day must be 1 or more")),
-                    MaxLengthValidator(2, _("Day must be 2 digits or less")),
+                    RegexValidator(r"^[0-9]+$", _("Enter a valid date.")),
+                    StringMinValueValidator(1, _("Day must be 1 or more.")),
+                    MaxLengthValidator(2, _("Day must be 2 digits or less.")),
                 ],
             ),
             forms.CharField(
                 label=_("Month"),
-                error_messages={"incomplete": _("Enter the month")},
+                error_messages={"incomplete": _("Enter the month.")},
                 validators=[
-                    RegexValidator(r"^[0-9]+$", _("Enter a valid month")),
-                    StringMinValueValidator(1, _("Month must be 1 or more")),
-                    StringMaxValueValidator(12, _("Month must be 12 or less")),
+                    RegexValidator(r"^[0-9]+$", _("Enter a valid month.")),
+                    StringMinValueValidator(1, _("Month must be 1 or more.")),
+                    StringMaxValueValidator(
+                        12, _("Month must be 12 or less.")
+                    ),
                 ],
             ),
             forms.CharField(
                 label=_("Year"),
-                error_messages={"incomplete": _("Enter the year")},
+                error_messages={"incomplete": _("Enter the year.")},
                 validators=[
-                    RegexValidator(r"^[0-9]+$", _("Enter a valid year")),
+                    RegexValidator(r"^[0-9]+$", _("Enter a valid year.")),
                     StringMinValueValidator(
                         datetime.MINYEAR,
                         _(
-                            "Year must be %(min_year)d or more"
+                            "Year must be %(min_year)d or more."
                             % {"min_year": datetime.MINYEAR}
                         ),
                     ),
                     StringMaxValueValidator(
                         datetime.MAXYEAR,
                         _(
-                            "Year must be %(max_year)d or less"
+                            "Year must be %(max_year)d or less."
                             % {"max_year": datetime.MAXYEAR}
                         ),
                     ),
@@ -195,7 +199,7 @@ class DateInputField(forms.MultiValueField):
             if day > days_in_month:
                 error = _(
                     "'%(day)s' is not a valid day for %(month)s %(year)s - "
-                    "please enter a value between 1 and %(days_in_month)d"
+                    "please enter a value between 1 and %(days_in_month)d."
                 ) % {
                     "day": day,
                     "month": month_name,
