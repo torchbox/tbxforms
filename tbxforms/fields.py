@@ -3,7 +3,10 @@ import datetime
 
 from django import forms
 from django.core.exceptions import ValidationError
-from django.core.validators import RegexValidator
+from django.core.validators import (
+    MaxLengthValidator,
+    RegexValidator,
+)
 from django.utils.translation import gettext_lazy as _
 
 from tbxforms.validators import (
@@ -59,7 +62,7 @@ class DateInputField(forms.MultiValueField):
                 validators=[
                     RegexValidator(r"^[0-9]+$", _("Enter a valid date")),
                     StringMinValueValidator(1, _("Day must be 1 or more")),
-                    StringMaxValueValidator(31, _("Day must be 31 or less")),
+                    MaxLengthValidator(2, _("Day must be 2 digits or less")),
                 ],
             ),
             forms.CharField(
@@ -188,11 +191,17 @@ class DateInputField(forms.MultiValueField):
         if len(clean_data) == 3:
             day, month, year = map(int, clean_data)
             days_in_month = calendar.monthrange(year, month)[1]
+            month_name = calendar.month_name[month]
             if day > days_in_month:
                 error = _(
-                    "Enter a day from 1 to %(days_in_month)s for the month "
-                    "and year you entered"
-                ) % {"days_in_month": days_in_month}
+                    "'%(day)s' is not a valid day for %(month)s %(year)s - "
+                    "please enter a value between 1 and %(days_in_month)d"
+                ) % {
+                    "day": day,
+                    "month": month_name,
+                    "year": year,
+                    "days_in_month": days_in_month,
+                }
                 errors.append(error)
                 self.fields[0].widget.errors.append(error)
 
