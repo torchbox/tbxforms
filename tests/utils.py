@@ -10,9 +10,13 @@ from django.template import (
 )
 from django.test.html import parse_html
 
-from . import settings
+from bs4 import BeautifulSoup as soup
+from syrupy.extensions.single_file import (
+    SingleFileSnapshotExtension,
+    WriteMode,
+)
 
-TEST_DIR = os.path.dirname(os.path.abspath(__file__))
+from . import settings
 
 
 def configure_django(**kwargs):
@@ -38,11 +42,9 @@ def render_template(template, **kwargs):
     """
     Render a Django Template
     """
-    return Template(template).render(Context(kwargs))
-
-
-def parse_template(template, **kwargs):
-    return parse_html(render_template(template, **kwargs))
+    return soup(
+        Template(template).render(Context(kwargs)), "html.parser"
+    ).prettify(formatter="html")
 
 
 def render_form(form, **kwargs):
@@ -55,8 +57,16 @@ def render_form(form, **kwargs):
         {% load crispy_forms_tags %}
         {% crispy form %}
     """
-    return Template(tpl).render(context)
+    return soup(Template(tpl).render(context), "html.parser").prettify(
+        formatter="html"
+    )
 
 
-def parse_form(form):
-    return parse_html(render_form(form))
+class SingleHtmlFileExtension(SingleFileSnapshotExtension):
+    """
+    Custom syrupy snapshot extension that writes all snapshots to individual
+    HTML files
+    """
+
+    _write_mode = WriteMode.TEXT
+    _file_extension = "html"
