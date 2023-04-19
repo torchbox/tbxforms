@@ -4,16 +4,6 @@
 
 ## Unreleased
 
----
-
-## [vx.y.z](https://github.com/torchbox/tbxforms/releases/tag/x.y.z) (Template: https://keepachangelog.com/en/1.0.0/)
-
-### Added
-
 ### Changed
 
-### Fixed
-
-### Removed
-
-### How to upgrade
+-   Use snapshot testing plugin (syrupy) for component rendering tests instead of HTML fixtures

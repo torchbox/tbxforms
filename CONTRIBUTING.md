@@ -19,6 +19,12 @@ pre-commit install
 npm install
 ```
 
+### Python testing
+
+Run the Python tests with `poetry run pytest`.
+
+If your changes cause snapshot tests to fail, verify that the changes you have caused are expected. Update the snapshots with `poetry run pytest --snapshot-update`.
+
 ### Publishing
 
 1. `pre-commit` - run linters
