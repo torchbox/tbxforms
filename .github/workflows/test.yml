@@ -43,7 +43,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: .venv
-          key: ${{ runner.os }}-python-${{ env.PYTHON_VERSION }}-${{ hashFiles('**/poetry.lock') }}
+          key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
       - if: steps.poetry-cache.outputs.cache-hit != 'true'
         run: poetry install --no-interaction --no-root
       - run: poetry run flake8 tbxforms tests
