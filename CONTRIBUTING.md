@@ -13,7 +13,7 @@ With Python 3.8 or up, Node 16, and [pre-commit](https://pre-commit.com/),
 ```bash
 git clone git@github.com:torchbox/tbxforms.git
 cd tbxforms/
-pip install poetry==1.1.13
+pip install poetry==1.4.1
 poetry install
 pre-commit install
 npm install
