@@ -55,4 +55,5 @@ jobs:
       # Lint the project's templates
       - run: poetry run djlint tbxforms
       - run: poetry run pytest
+      - run: poetry run tox
       - run: poetry build
