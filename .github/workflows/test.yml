@@ -37,7 +37,7 @@ jobs:
       - uses: actions/setup-python@v2
         id: setup-python
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
+          python-version: ${{ matrix.python }}
       - uses: snok/install-poetry@v1
         with:
           version: '1.4.1'
@@ -47,7 +47,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: .venv
-          key: ${{ runner.os }}-python-${{ env.PYTHON_VERSION }}-${{ hashFiles('**/poetry.lock') }}
+          key: ${{ runner.os }}-python-${{ matrix.python }}-${{ hashFiles('**/poetry.lock') }}
       - if: steps.poetry-cache.outputs.cache-hit != 'true'
         run: poetry install --no-interaction --no-root
       - run: poetry run flake8 tbxforms tests
@@ -60,9 +60,3 @@ jobs:
       - run: poetry run pytest
       - run: poetry run tox
       - run: poetry build
-
-      - name: Test with tox
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python }}
-      - run: tox
