@@ -29,6 +29,9 @@ jobs:
       - run: npm run report:package
   test_python:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.8", "3.9", "3.10"]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v2
@@ -57,3 +60,9 @@ jobs:
       - run: poetry run pytest
       - run: poetry run tox
       - run: poetry build
+
+      - name: Test with tox
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+        run: tox
