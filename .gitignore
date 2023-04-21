@@ -29,6 +29,7 @@ pids
 *.pyc
 *.pyo
 *.pot
+.pytest_cache
 
 # -------------------------------------------------
 # Instrumentation and tooling
