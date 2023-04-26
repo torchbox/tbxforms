@@ -16,7 +16,7 @@ repos:
       - id: debug-statements
       - id: detect-private-key
   - repo: https://github.com/timothycrosley/isort
-    rev: 5.10.1
+    rev: 5.12.0
     hooks:
       - id: isort
   - repo: https://gitlab.com/pycqa/flake8
@@ -35,3 +35,15 @@ repos:
     rev: v2.3.2
     hooks:
       - id: prettier
+  - repo: local
+    hooks:
+      - id: djlint-templates
+        name: Lint project templates
+        language: python
+        files: tbxforms/.*\.html$
+        entry: djlint --profile django
+      - id: djlint-snapshots
+        name: Check snapshot formatting
+        language: python
+        files: tests/.*\.html$
+        entry: djlint --check --profile django
