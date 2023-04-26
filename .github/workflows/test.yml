@@ -32,6 +32,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v2
+        id: setup-python
         with:
           python-version: ${{ env.PYTHON_VERSION }}
       - uses: snok/install-poetry@v1
@@ -49,5 +50,9 @@ jobs:
       - run: poetry run flake8 tbxforms tests
       - run: poetry run isort tbxforms tests --check-only --diff
       - run: poetry run black tbxforms tests --check
+      # Enforce strict formatting on the snapshots
+      - run: poetry run djlint --check tests
+      # Lint the project's templates
+      - run: poetry run djlint tbxforms
       - run: poetry run pytest
       - run: poetry build
