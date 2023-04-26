@@ -1,49 +1,51 @@
 <form method="post">
- <div aria-labelledby="error-summary-title" class="tbxforms-error-summary" role="alert" tabindex="-1">
-  <h2 class="tbxforms-error-summary__title" id="error-summary-title">
-   There is a problem with your submission
-  </h2>
-  <div class="tbxforms-error-summary__body">
-   <ul class="tbxforms-list tbxforms-error-summary__list">
-    <li>
-     <a href="#div_id_method" title="Jump to the 'How would you like to be contacted?' field">
-      How would you like to be contacted?: Enter the ways to contact you
-     </a>
-    </li>
-   </ul>
-  </div>
- </div>
- <div class="tbxforms-form-group tbxforms-form-group--error" id="div_id_method">
-  <fieldset aria-describedby="id_method_1_error " class="tbxforms-fieldset">
-   <legend class="tbxforms-fieldset__legend">
-    How would you like to be contacted?
-   </legend>
-   <span class="tbxforms-error-message" id="id_method_1_error">
-    <span class="tbxforms-visually-hidden">
-     Error:
-    </span>
-    Enter the ways to contact you
-   </span>
-   <div class="tbxforms-checkboxes">
-    <div class="tbxforms-checkboxes__item">
-     <input class="tbxforms-checkboxes__input" id="id_method_1" name="method" type="checkbox" value="email"/>
-     <label class="tbxforms-label tbxforms-checkboxes__label" for="id_method_1">
-      Email
-     </label>
+    <div class="tbxforms-error-summary"
+         aria-labelledby="error-summary-title"
+         role="alert"
+         tabindex="-1">
+        <h2 class="tbxforms-error-summary__title" id="error-summary-title">There is a problem with your submission</h2>
+        <div class="tbxforms-error-summary__body">
+            <ul class="tbxforms-list tbxforms-error-summary__list">
+                <li>
+                    <a href="#div_id_method"
+                       title="Jump to the 'How would you like to be contacted?' field">How would you like to be contacted?: Enter the ways to contact you</a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="tbxforms-checkboxes__item">
-     <input class="tbxforms-checkboxes__input" id="id_method_2" name="method" type="checkbox" value="phone"/>
-     <label class="tbxforms-label tbxforms-checkboxes__label" for="id_method_2">
-      Phone
-     </label>
+    <div id="div_id_method"
+         class="tbxforms-form-group tbxforms-form-group--error">
+        <fieldset class="tbxforms-fieldset"  aria-describedby="id_method_1_error ">
+            <legend class="tbxforms-fieldset__legend">How would you like to be contacted?</legend>
+            <span id="id_method_1_error" class="tbxforms-error-message">
+                <span class="tbxforms-visually-hidden">Error:</span> Enter the ways to contact you
+            </span>
+            <div class="tbxforms-checkboxes">
+                <div class="tbxforms-checkboxes__item">
+                    <input type="checkbox"
+                           name="method"
+                           class="tbxforms-checkboxes__input"
+                           id="id_method_1"
+                           value="email">
+                    <label class="tbxforms-label tbxforms-checkboxes__label" for="id_method_1">Email</label>
+                </div>
+                <div class="tbxforms-checkboxes__item">
+                    <input type="checkbox"
+                           name="method"
+                           class="tbxforms-checkboxes__input"
+                           id="id_method_2"
+                           value="phone">
+                    <label class="tbxforms-label tbxforms-checkboxes__label" for="id_method_2">Phone</label>
+                </div>
+                <div class="tbxforms-checkboxes__item">
+                    <input type="checkbox"
+                           name="method"
+                           class="tbxforms-checkboxes__input"
+                           id="id_method_3"
+                           value="text">
+                    <label class="tbxforms-label tbxforms-checkboxes__label" for="id_method_3">Text message</label>
+                </div>
+            </div>
+        </fieldset>
     </div>
-    <div class="tbxforms-checkboxes__item">
-     <input class="tbxforms-checkboxes__input" id="id_method_3" name="method" type="checkbox" value="text"/>
-     <label class="tbxforms-label tbxforms-checkboxes__label" for="id_method_3">
-      Text message
-     </label>
-    </div>
-   </div>
-  </fieldset>
- </div>
 </form>

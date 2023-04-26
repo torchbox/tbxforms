@@ -10,13 +10,21 @@ from django.template import (
 )
 from django.test.html import parse_html
 
-from bs4 import BeautifulSoup as soup
+import djlint
+
 from syrupy.extensions.single_file import (
     SingleFileSnapshotExtension,
     WriteMode,
 )
 
 from . import settings
+
+DJLINT_CONF = djlint.settings.Config(
+    src="-",
+    configuration=(
+        os.path.abspath(os.path.join(__file__, "../pyproject.toml"))
+    ),
+)
 
 
 def configure_django(**kwargs):
@@ -42,9 +50,9 @@ def render_template(template, **kwargs):
     """
     Render a Django Template
     """
-    return soup(
-        Template(template).render(Context(kwargs)), "html.parser"
-    ).prettify(formatter="html")
+    return djlint.reformat.formatter(
+        DJLINT_CONF, Template(template).render(Context(kwargs))
+    )
 
 
 def render_form(form, **kwargs):
@@ -57,12 +65,12 @@ def render_form(form, **kwargs):
         {% load crispy_forms_tags %}
         {% crispy form %}
     """
-    return soup(Template(tpl).render(context), "html.parser").prettify(
-        formatter="html"
+    return djlint.reformat.formatter(
+        DJLINT_CONF, Template(tpl).render(context)
     )
 
 
-class SingleHtmlFileExtension(SingleFileSnapshotExtension):
+class SingleHTMLFileExtension(SingleFileSnapshotExtension):
     """
     Custom syrupy snapshot extension that writes all snapshots to individual
     HTML files

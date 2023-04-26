@@ -1,24 +1,15 @@
 <form method="post">
- <div class="tbxforms-form-group" id="div_id_method">
-  <label class="tbxforms-label" for="id_method">
-   How would you like to be contacted?
-  </label>
-  <span class="tbxforms-hint" id="id_method_hint">
-   Select the most convenient way to contact you.
-  </span>
-  <select aria-describedby="id_method_hint" class="tbxforms-select" id="id_method" name="method">
-   <option value="">
-    Choose
-   </option>
-   <option selected="" value="email">
-    Email
-   </option>
-   <option value="phone">
-    Phone
-   </option>
-   <option value="text">
-    Text message
-   </option>
-  </select>
- </div>
+    <div id="div_id_method" class="tbxforms-form-group">
+        <label for="id_method" class="tbxforms-label">How would you like to be contacted?</label>
+        <span id="id_method_hint" class="tbxforms-hint">Select the most convenient way to contact you.</span>
+        <select name="method"
+                aria-describedby="id_method_hint"
+                class="tbxforms-select"
+                id="id_method">
+            <option value="">Choose</option>
+            <option value="email" selected>Email</option>
+            <option value="phone">Phone</option>
+            <option value="text">Text message</option>
+        </select>
+    </div>
 </form>

@@ -1,11 +1,11 @@
-<form enctype="multipart/form-data" method="post">
- <div class="tbxforms-form-group" id="div_id_file">
-  <label class="tbxforms-label" for="id_file">
-   Upload a file
-  </label>
-  <span class="tbxforms-hint" id="id_file_hint">
-   Select the CSV file to upload.
-  </span>
-  <input aria-describedby="id_file_hint" class="tbxforms-file-upload" id="id_file" name="file" type="file"/>
- </div>
+<form method="post"  enctype="multipart/form-data">
+    <div id="div_id_file" class="tbxforms-form-group">
+        <label for="id_file" class="tbxforms-label">Upload a file</label>
+        <span id="id_file_hint" class="tbxforms-hint">Select the CSV file to upload.</span>
+        <input type="file"
+               name="file"
+               aria-describedby="id_file_hint"
+               class="tbxforms-file-upload"
+               id="id_file">
+    </div>
 </form>
