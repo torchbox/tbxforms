@@ -12,6 +12,7 @@ from django.test.html import parse_html
 
 import djlint
 
+from crispy_forms.utils import render_crispy_form
 from syrupy.extensions.single_file import (
     SingleFileSnapshotExtension,
     WriteMode,
@@ -57,16 +58,10 @@ def render_template(template, **kwargs):
 
 def render_form(form, **kwargs):
     """
-    Render a form using a Django Template
-    """
-    context = Context(kwargs)
-    context["form"] = form
-    tpl = """
-        {% load crispy_forms_tags %}
-        {% crispy form %}
+    Render a form as the `crispy' template tag does
     """
     return djlint.reformat.formatter(
-        DJLINT_CONF, Template(tpl).render(context)
+        DJLINT_CONF, render_crispy_form(form, context=kwargs)
     )
 
 
