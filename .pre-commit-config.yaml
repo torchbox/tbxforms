@@ -41,9 +41,9 @@ repos:
         name: Lint project templates
         language: python
         files: tbxforms/.*\.html$
-        entry: djlint --profile django
+        entry: djlint
       - id: djlint-snapshots
         name: Check snapshot formatting
         language: python
         files: tests/.*\.html$
-        entry: djlint --check --profile django
+        entry: djlint --check
