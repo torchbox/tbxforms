@@ -1,0 +1,24 @@
+<form method="post">
+    <div class="tbxforms-error-summary"
+         aria-labelledby="error-summary-title"
+         role="alert"
+         tabindex="-1">
+        <h2 class="tbxforms-error-summary__title" id="error-summary-title">There is a problem with your submission</h2>
+        <div class="tbxforms-error-summary__body">
+            <ul class="tbxforms-list tbxforms-error-summary__list">
+                <li>
+                    <a href="#div_id_description" title="Jump to the 'Description' field">Description: Required error message</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="div_id_description"
+         class="tbxforms-form-group tbxforms-form-group--error">
+        <label for="id_description" class="tbxforms-label">Description</label>
+        <span id="id_description_1_error" class="tbxforms-error-message">
+            <span class="tbxforms-visually-hidden">Error:</span> Required error message
+        </span>
+        <textarea name="description" cols="40" rows="10" aria-describedby="id_description_1_error" class="tbxforms-textarea tbxforms-input--error" id="id_description">
+</textarea>
+    </div>
+</form>

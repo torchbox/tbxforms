@@ -1,9 +1,6 @@
 """
 Tests to verify textareas are rendered correctly.
-
 """
-import os
-
 import pytest
 
 from tbxforms.helper import FormHelper
@@ -13,88 +10,76 @@ from tbxforms.layout import (
     Size,
 )
 from tests.forms import TextareaForm
-from tests.utils import (
-    TEST_DIR,
-    parse_contents,
-    parse_form,
-)
-
-RESULT_DIR = os.path.join(TEST_DIR, "layout", "results", "textarea")
+from tests.utils import render_form
 
 
-def test_initial_attributes():
+def test_initial_attributes(snapshot_html):
     """Verify all the gds attributes are displayed."""
     form = TextareaForm(initial={"description": "Field value"})
-    assert parse_form(form) == parse_contents(RESULT_DIR, "initial.html")
+    assert render_form(form) == snapshot_html
 
 
-def test_validation_error_attributes():
+def test_validation_error_attributes(snapshot_html):
     """Verify all the gds error attributes are displayed."""
     form = TextareaForm(data={"description": ""})
     assert not form.is_valid()
-    assert parse_form(form) == parse_contents(
-        RESULT_DIR, "validation_errors.html"
-    )
+    assert render_form(form) == snapshot_html
 
 
-def test_show_label_as_heading():
+def test_show_label_as_heading(snapshot_html):
     """Verify the field label can be displayed as the page heading."""
     form = TextareaForm()
     form.helper = FormHelper()
     form.helper.layout = Layout(
         Field("description", context={"label_tag": "h1"})
     )
-    assert parse_form(form) == parse_contents(RESULT_DIR, "label_heading.html")
+    assert render_form(form) == snapshot_html
 
 
-def test_change_label_size():
+def test_change_label_size(snapshot_html):
     """Verify size of the field label can be changed from the default."""
     form = TextareaForm()
     form.helper = FormHelper()
     form.helper.layout = Layout(
         Field("description", context={"label_size": Size.for_label("l")})
     )
-    assert parse_form(form) == parse_contents(RESULT_DIR, "label_size.html")
+    assert render_form(form) == snapshot_html
 
 
-def test_no_label():
+def test_no_label(snapshot_html):
     """Verify field is rendered correctly if no label is given."""
     form = TextareaForm()
     form.fields["description"].label = ""
-    assert parse_form(form) == parse_contents(RESULT_DIR, "no_label.html")
+    assert render_form(form) == snapshot_html
 
 
-def test_no_help_text():
+def test_no_help_text(snapshot_html):
     """Verify field is rendered correctly if no help text is given."""
     form = TextareaForm()
     form.fields["description"].help_text = ""
-    assert parse_form(form) == parse_contents(RESULT_DIR, "no_help_text.html")
+    assert render_form(form) == snapshot_html
 
 
-def test_no_help_text_errors():
+def test_no_help_text_errors(snapshot_html):
     """
     Verify all the gds error attributes are displayed if no help text is given.
     """
     form = TextareaForm(data={"description": ""})
     form.fields["description"].help_text = ""
-    assert parse_form(form) == parse_contents(
-        RESULT_DIR, "no_help_text_errors.html"
-    )
+    assert render_form(form) == snapshot_html
 
 
-def test_character_count():
+def test_character_count(snapshot_html):
     """Verify the field can show the maximum number of characters allowed."""
     form = TextareaForm(initial={"description": "Field value"})
     form.helper = FormHelper()
     form.helper.layout = Layout(
         Field.textarea("description", max_characters=100)
     )
-    assert parse_form(form) == parse_contents(
-        RESULT_DIR, "character_count.html"
-    )
+    assert render_form(form) == snapshot_html
 
 
-def test_character_and_word_count():
+def test_character_and_word_count(snapshot_html):
     """
     Verify an exception is raise if the character and words count is given.
     """
@@ -102,7 +87,7 @@ def test_character_and_word_count():
         Field.textarea("description", max_characters=100, max_words=50)
 
 
-def test_threshold():
+def test_threshold(snapshot_html):
     """
     Verify info is shown after a certain number of words has been entered.
     """
@@ -111,7 +96,7 @@ def test_threshold():
     form.helper.layout = Layout(
         Field.textarea("description", max_words=100, threshold=50)
     )
-    assert parse_form(form) == parse_contents(RESULT_DIR, "threshold.html")
+    assert render_form(form) == snapshot_html
 
 
 def test_character_threshold():

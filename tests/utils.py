@@ -10,9 +10,22 @@ from django.template import (
 )
 from django.test.html import parse_html
 
+import djlint
+
+from crispy_forms.utils import render_crispy_form
+from syrupy.extensions.single_file import (
+    SingleFileSnapshotExtension,
+    WriteMode,
+)
+
 from . import settings
 
-TEST_DIR = os.path.dirname(os.path.abspath(__file__))
+DJLINT_CONF = djlint.settings.Config(
+    src="-",
+    configuration=(
+        os.path.abspath(os.path.join(__file__, "../pyproject.toml"))
+    ),
+)
 
 
 def configure_django(**kwargs):
@@ -38,25 +51,25 @@ def render_template(template, **kwargs):
     """
     Render a Django Template
     """
-    return Template(template).render(Context(kwargs))
-
-
-def parse_template(template, **kwargs):
-    return parse_html(render_template(template, **kwargs))
+    return djlint.reformat.formatter(
+        DJLINT_CONF, Template(template).render(Context(kwargs))
+    )
 
 
 def render_form(form, **kwargs):
     """
-    Render a form using a Django Template
+    Render a form as the `crispy' template tag does
     """
-    context = Context(kwargs)
-    context["form"] = form
-    tpl = """
-        {% load crispy_forms_tags %}
-        {% crispy form %}
-    """
-    return Template(tpl).render(context)
+    return djlint.reformat.formatter(
+        DJLINT_CONF, render_crispy_form(form, context=kwargs)
+    )
 
 
-def parse_form(form):
-    return parse_html(render_form(form))
+class SingleHTMLFileExtension(SingleFileSnapshotExtension):
+    """
+    Custom syrupy snapshot extension that writes all snapshots to individual
+    HTML files
+    """
+
+    _write_mode = WriteMode.TEXT
+    _file_extension = "html"

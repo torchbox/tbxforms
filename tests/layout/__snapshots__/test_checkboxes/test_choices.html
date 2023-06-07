@@ -1,0 +1,40 @@
+<form method="post">
+    <div id="div_id_method" class="tbxforms-form-group">
+        <fieldset class="tbxforms-fieldset"  aria-describedby="id_method_hint">
+            <legend class="tbxforms-fieldset__legend">How would you like to be contacted?</legend>
+            <span id="id_method_hint" class="tbxforms-hint">Select all options that are relevant to you.</span>
+            <div class="tbxforms-checkboxes">
+                <div class="tbxforms-checkboxes__item">
+                    <input type="checkbox"
+                           name="method"
+                           class="tbxforms-checkboxes__input"
+                           id="id_method_1"
+                           value="email"
+                           checked="checked" />
+                    <label class="tbxforms-label tbxforms-checkboxes__label" for="id_method_1">Email</label>
+                </div>
+                <div class="tbxforms-checkboxes__item">
+                    <input type="checkbox"
+                           name="method"
+                           class="tbxforms-checkboxes__input"
+                           id="id_method_2"
+                           value="phone"
+                           aria-describedby="id_method_2_hint" />
+                    <label class="tbxforms-label tbxforms-checkboxes__label" for="id_method_2">Phone</label>
+                    <span id="id_method_2_hint" class="tbxforms-hint tbxforms-checkboxes__hint">
+                        Select this option only if you have a mobile phone
+                    </span>
+                </div>
+                <div class="tbxforms-checkboxes__item">
+                    <input type="checkbox"
+                           name="method"
+                           class="tbxforms-checkboxes__input"
+                           id="id_method_3"
+                           value="text"
+                           checked="checked" />
+                    <label class="tbxforms-label tbxforms-checkboxes__label" for="id_method_3">Text message</label>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</form>

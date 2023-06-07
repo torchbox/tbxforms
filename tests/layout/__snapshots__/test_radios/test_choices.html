@@ -1,0 +1,38 @@
+<form method="post">
+    <div id="div_id_method" class="tbxforms-form-group">
+        <fieldset class="tbxforms-fieldset"  aria-describedby="id_method_hint">
+            <legend class="tbxforms-fieldset__legend">How would you like to be contacted?</legend>
+            <span id="id_method_hint" class="tbxforms-hint">Select the most convenient way to contact you.</span>
+            <div class="tbxforms-radios">
+                <div class="tbxforms-radios__item">
+                    <input type="radio"
+                           name="method"
+                           class="tbxforms-radios__input"
+                           id="id_method_1"
+                           value="email"
+                           checked="checked"
+                           aria-describedby="id_method_1_hint" />
+                    <label class="tbxforms-label tbxforms-radios__label" for="id_method_1">Email</label>
+                    <span id="id_method_1_hint" class="tbxforms-hint tbxforms-radios__hint">Do not give a work email address</span>
+                </div>
+                <div class="tbxforms-radios__item">
+                    <input type="radio"
+                           name="method"
+                           class="tbxforms-radios__input"
+                           id="id_method_2"
+                           value="phone" />
+                    <label class="tbxforms-label tbxforms-radios__label" for="id_method_2">Phone</label>
+                </div>
+                <div class="tbxforms-radios__divider">Or</div>
+                <div class="tbxforms-radios__item">
+                    <input type="radio"
+                           name="method"
+                           class="tbxforms-radios__input"
+                           id="id_method_3"
+                           value="text" />
+                    <label class="tbxforms-label tbxforms-radios__label" for="id_method_3">Text message</label>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</form>
