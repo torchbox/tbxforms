@@ -8,12 +8,11 @@ We welcome all support, whether on bug reports, code, design, reviews, tests, do
 
 ### Installation
 
-With Python 3.8 or up, Node 16, and [pre-commit](https://pre-commit.com/),
+With Python 3.8 or up, Node 16, [pre-commit](https://pre-commit.com/) and [Poetry 1.4.1](https://python-poetry.org/docs/#installing-with-the-official-installer)
 
 ```bash
 git clone git@github.com:torchbox/tbxforms.git
 cd tbxforms/
-pip install poetry==1.4.1
 poetry install
 pre-commit install
 npm install

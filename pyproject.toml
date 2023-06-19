@@ -63,7 +63,7 @@ beautifulsoup4 = ">=4.8,<4.10.0"
 coverage = "6.1.1"
 pymdown-extensions = "9.0"
 syrupy = "4.0.1"
-poetry = ">1.0,<=1.4.1"
+poetry = ">1.4,<1.5"
 tox =  ">=4.4,<4.5"
 
 # Linters etc.

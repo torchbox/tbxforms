@@ -13,3 +13,4 @@
 -   Template linting to CI using `djlint`
 -   Snapshot formatting check to CI using `djlint`
 -   Autoformatting of snapshots using `djlint`
+-   Testing accross Django versions 2.2 - 4.0 and Python versions 3.8 - 3.11 using `tox`
