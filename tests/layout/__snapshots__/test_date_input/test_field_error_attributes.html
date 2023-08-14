@@ -1,4 +1,4 @@
-<form method="post">
+<form class="tbxforms" method="post">
     <div class="tbxforms-error-summary"
          aria-labelledby="error-summary-title"
          role="alert"
@@ -17,7 +17,7 @@
          class="tbxforms-form-group tbxforms-form-group--error">
         <fieldset class="tbxforms-fieldset"
                   aria-describedby="id_date_1_error id_date_hint">
-            <legend class="tbxforms-fieldset__legend">When was your passport issued?</legend>
+            <legend class="tbxforms-fieldset__legend tbxforms-fieldset__legend--m">When was your passport issued?</legend>
             <span id="id_date_1_error" class="tbxforms-error-message">
                 <span class="tbxforms-visually-hidden">Error:</span> Enter the day, month, and year.
             </span>
@@ -31,6 +31,7 @@
                                class="tbxforms-input tbxforms-input--text tbxforms-date-input__input tbxforms-input--width-2 tbxforms-input--error"
                                pattern="[0-9]*"
                                inputmode="numeric"
+                               required="required"
                                id="id_date_0">
                     </div>
                 </div>
@@ -42,6 +43,7 @@
                                class="tbxforms-input tbxforms-input--text tbxforms-date-input__input tbxforms-input--width-2 tbxforms-input--error"
                                pattern="[0-9]*"
                                inputmode="numeric"
+                               required="required"
                                id="id_date_1">
                     </div>
                 </div>
@@ -53,6 +55,7 @@
                                class="tbxforms-input tbxforms-input--text tbxforms-date-input__input tbxforms-input--width-4 tbxforms-input--error"
                                pattern="[0-9]*"
                                inputmode="numeric"
+                               required="required"
                                id="id_date_2">
                     </div>
                 </div>

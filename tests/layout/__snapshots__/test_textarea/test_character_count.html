@@ -1,15 +1,8 @@
-<form method="post">
-    <div class="tbxforms-character-count"
-         data-module="tbxforms-character-count"
-         data-maxlength="100">
-        <div id="div_id_description" class="tbxforms-form-group">
-            <label for="id_description" class="tbxforms-label">Description</label>
-            <span id="id_description_hint" class="tbxforms-hint">Help text</span>
-            <textarea name="description" cols="40" rows="10" class="tbxforms-textarea tbxforms-js-character-count" aria-describedby="id_description_hint id_description-info" id="id_description">
+<form class="tbxforms" method="post">
+    <div id="div_id_description" class="tbxforms-form-group">
+        <label for="id_description" class="tbxforms-label tbxforms-label--m">Description</label>
+        <span id="id_description_hint" class="tbxforms-hint">Help text</span>
+        <textarea name="description" cols="40" rows="10" aria-describedby="id_description_hint" class="tbxforms-textarea" required="required" id="id_description">
 Field value</textarea>
-            <span id="id_description-info"
-                  class="tbxforms-hint tbxforms-character-count__message"
-                  aria-live="polite">You can enter up to 100 characters</span>
-        </div>
     </div>
 </form>
