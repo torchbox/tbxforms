@@ -2,7 +2,6 @@
 Tests to verify a single (boolean) checkbox is rendered correctly.
 
 """
-from tbxforms.helper import FormHelper
 from tbxforms.layout import (
     Field,
     Layout,
@@ -27,7 +26,6 @@ def test_validation_error_attributes(snapshot_html):
 def test_checkbox_size(snapshot_html):
     """Verify size of the checkbox can be changed from the default."""
     form = CheckboxForm()
-    form.helper = FormHelper()
     form.helper.layout = Layout(
         Field("accept", context={"checkboxes_small": True})
     )

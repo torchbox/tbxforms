@@ -2,7 +2,6 @@
 Tests to verify checkboxes are rendered correctly.
 
 """
-from tbxforms.helper import FormHelper
 from tbxforms.layout import (
     Field,
     Layout,
@@ -18,7 +17,6 @@ from tests.utils import render_form
 def test_initial_attributes(snapshot_html):
     """Verify all the gds attributes are displayed."""
     form = CheckboxesForm(initial={"method": ["email", "text"]})
-    form.helper = FormHelper()
     form.helper.layout = Layout(Field.checkboxes("method"))
     assert render_form(form) == snapshot_html
 
@@ -33,7 +31,6 @@ def test_validation_error_attributes(snapshot_html):
 def test_choices(snapshot_html):
     """Verify that hints are displayed."""
     form = CheckboxesChoiceForm(initial={"method": ["email", "text"]})
-    form.helper = FormHelper()
     form.helper.layout = Layout(Field.checkboxes("method"))
     assert render_form(form) == snapshot_html
 
@@ -41,7 +38,6 @@ def test_choices(snapshot_html):
 def test_checkbox_size(snapshot_html):
     """Verify size of the checkbox can be changed from the default."""
     form = CheckboxesForm()
-    form.helper = FormHelper()
     form.helper.layout = Layout(
         Field("method", context={"checkboxes_small": True})
     )
@@ -51,7 +47,6 @@ def test_checkbox_size(snapshot_html):
 def test_show_legend_as_heading(snapshot_html):
     """Verify the field legend can be displayed as the page heading."""
     form = CheckboxesForm()
-    form.helper = FormHelper()
     form.helper.layout = Layout(Field("method", context={"legend_tag": "h1"}))
     assert render_form(form) == snapshot_html
 
@@ -59,7 +54,6 @@ def test_show_legend_as_heading(snapshot_html):
 def test_change_legend_size(snapshot_html):
     """Verify size of the field legend can be changed from the default."""
     form = CheckboxesForm()
-    form.helper = FormHelper()
     form.helper.layout = Layout(
         Field("method", context={"legend_size": Size.for_legend("l")})
     )

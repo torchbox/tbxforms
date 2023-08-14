@@ -119,12 +119,10 @@ from django import forms
 from tbxforms.forms import BaseForm as TbxFormsBaseForm
 
 class ExampleForm(TbxFormsBaseForm, forms.Form):
-    # < Your field definitions and helper property >
-
+    ...
 
 class ExampleModelForm(TbxFormsBaseForm, forms.ModelForm):
-    # < Your field definitions, ModelForm config, and helper property >
-
+    ...
 ```
 
 ### Wagtail forms
@@ -140,8 +138,7 @@ from wagtail.contrib.forms.forms import BaseForm as WagtailBaseForm
 from tbxforms.forms import BaseForm as TbxFormsBaseForm
 
 class ExampleWagtailForm(TbxFormsBaseForm, WagtailBaseForm):
-    # < Your helper property >
-
+    ...
 ```
 
 #### Instruct a Wagtail Page model to use your form
@@ -201,7 +198,6 @@ just like you would do with any other inherited class, e.g.:
 
 ```python
 from django import forms
-from wagtail.contrib.forms.forms import BaseForm as WagtailBaseForm
 from tbxforms.forms import BaseForm as TbxFormsBaseForm
 from tbxforms.layout import Button, Size
 
@@ -214,7 +210,7 @@ class YourSexyForm(TbxFormsBaseForm, forms.Form):
         # Override some settings
         fh.html5_required = False
         fh.label_size = Size.SMALL
-        fh.form_error_title = _("Something's wrong, yo.")
+        fh.form_error_title = "Something's wrong, yo."
 
         # Add a submit button
         fh.layout.extend([
@@ -253,6 +249,7 @@ as required, though will technically be `required=False`.
 
 ```python
 from django import forms
+from django.core.exceptions import ValidationError
 from tbxforms.choices import Choice
 from tbxforms.forms import BaseForm as TbxFormsBaseForm
 from tbxforms.layout import Field, Layout
@@ -314,7 +311,7 @@ class ExampleForm(TbxFormsBaseForm, forms.Form):
         if newsletter_signup == "yes" and not email:
             raise ValidationError(
                 {
-                    "email": _("This field is required."),
+                    "email": "This field is required.",
                 }
             )
         # The tbxforms JS will attempt to clear any redundant data upon submission,
@@ -333,7 +330,7 @@ can use the exact same `data_conditional` definition as above but on a `div` or
 `fieldset` element, e.g.:
 
 ```python
-from tbxforms.layout import HTML, Div, Field
+from tbxforms.layout import HTML, Div, Field, Layout
 
 Layout(
     Div(
