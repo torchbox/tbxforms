@@ -13,11 +13,12 @@ from tbxforms.fields import DateInputField
 
 def test_compress_invalid_fields():
     """Verify compress raises an error on an invalid date."""
-    date = datetime.date(year=2021, month=2, day=30)
+    day = 30
+    month = 2
+    year = 2021
     field = DateInputField()
-    with pytest.raises(ValidationError) as err:
-        field.compress([date.day, date.month, date.year])
-    assert err.message == "day is out of range for month"
+    with pytest.raises(ValidationError, match="day is out of range for month"):
+        field.compress([day, month, year])
 
 
 def test_compress_valid_fields():

@@ -14,3 +14,8 @@
 -   Snapshot formatting check to CI using `djlint`
 -   Autoformatting of snapshots using `djlint`
 -   Testing accross Django versions 2.2 - 4.0 and Python versions 3.8 - 3.11 using `tox`
+-   Support for dividers on checkbox fields
+
+### Fixed
+
+-   `DateInputField` raises a `ValidationError` (instead of `ValueError`) when given invalid input
