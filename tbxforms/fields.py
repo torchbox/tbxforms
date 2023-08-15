@@ -1,10 +1,18 @@
-from datetime import date
+import calendar
+import datetime
 
 from django import forms
 from django.core.exceptions import ValidationError
-from django.core.validators import RegexValidator
+from django.core.validators import (
+    MaxLengthValidator,
+    RegexValidator,
+)
 from django.utils.translation import gettext_lazy as _
 
+from tbxforms.validators import (
+    StringMaxValueValidator,
+    StringMinValueValidator,
+)
 from tbxforms.widgets import DateInputWidget
 
 
@@ -50,23 +58,45 @@ class DateInputField(forms.MultiValueField):
         fields = (
             forms.CharField(
                 label=_("Day"),
-                error_messages={"incomplete": _("Enter the day of the month")},
+                error_messages={
+                    "incomplete": _("Enter the day of the month.")
+                },
                 validators=[
-                    RegexValidator(r"^[0-9]+$", _("Enter a valid date"))
+                    RegexValidator(r"^[0-9]+$", _("Enter a valid date.")),
+                    StringMinValueValidator(1, _("Day must be 1 or more.")),
+                    MaxLengthValidator(2, _("Day must be 2 digits or less.")),
                 ],
             ),
             forms.CharField(
                 label=_("Month"),
-                error_messages={"incomplete": _("Enter the month")},
+                error_messages={"incomplete": _("Enter the month.")},
                 validators=[
-                    RegexValidator(r"^[0-9]+$", _("Enter a valid month"))
+                    RegexValidator(r"^[0-9]+$", _("Enter a valid month.")),
+                    StringMinValueValidator(1, _("Month must be 1 or more.")),
+                    StringMaxValueValidator(
+                        12, _("Month must be 12 or less.")
+                    ),
                 ],
             ),
             forms.CharField(
                 label=_("Year"),
-                error_messages={"incomplete": _("Enter the year")},
+                error_messages={"incomplete": _("Enter the year.")},
                 validators=[
-                    RegexValidator(r"^[0-9]+$", _("Enter a valid year"))
+                    RegexValidator(r"^[0-9]+$", _("Enter a valid year.")),
+                    StringMinValueValidator(
+                        datetime.MINYEAR,
+                        _(
+                            "Year must be %(min_year)d or more."
+                            % {"min_year": datetime.MINYEAR}
+                        ),
+                    ),
+                    StringMaxValueValidator(
+                        datetime.MAXYEAR,
+                        _(
+                            "Year must be %(max_year)d or less."
+                            % {"max_year": datetime.MAXYEAR}
+                        ),
+                    ),
                 ],
             ),
         )
@@ -159,6 +189,26 @@ class DateInputField(forms.MultiValueField):
                 field.widget.errors.extend(
                     m for m in e.messages if m not in field.widget.errors
                 )
+
+        # check if the given month and day are valid for the given year, this
+        # relies on the fields being declared in the order day, month, year
+        if len(clean_data) == 3:
+            day, month, year = map(int, clean_data)
+            days_in_month = calendar.monthrange(year, month)[1]
+            month_name = calendar.month_name[month]
+            if day > days_in_month:
+                error = _(
+                    "'%(day)s' is not a valid day for %(month)s %(year)s - "
+                    "please enter a value between 1 and %(days_in_month)d."
+                ) % {
+                    "day": day,
+                    "month": month_name,
+                    "year": year,
+                    "days_in_month": days_in_month,
+                }
+                errors.append(error)
+                self.fields[0].widget.errors.append(error)
+
         if errors:
             raise ValidationError(errors)
 
@@ -183,7 +233,9 @@ class DateInputField(forms.MultiValueField):
             day, month, year = data_list
             if day and month and year:
                 try:
-                    return date(day=int(day), month=int(month), year=int(year))
+                    return datetime.date(
+                        day=int(day), month=int(month), year=int(year)
+                    )
                 except ValueError as e:
                     raise ValidationError(str(e)) from e
 

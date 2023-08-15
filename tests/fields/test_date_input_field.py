@@ -135,3 +135,89 @@ def test_invalid_year_field():
     error = err.value.args[0][0].args[0]
     assert error in field.fields[2].widget.errors
     assert error == field.fields[2].validators[0].message
+
+
+def test_out_of_range_day_field():
+    """Verify an out of range day is not allowed."""
+    field = DateInputField()
+    with pytest.raises(ValidationError) as err:
+        field.clean(["32", "2", "2006"])
+    error = err.value.args[0][0]
+    assert error == (
+        "'32' is not a valid day for February 2006 - "
+        "please enter a value between 1 and 28."
+    )
+
+
+def test_zero_value_day_field():
+    """Verify a zero day is not allowed."""
+    field = DateInputField()
+    with pytest.raises(ValidationError) as err:
+        field.clean(["0", "2", "2006"])
+    error = err.value.args[0][0].args[0]
+    assert error in field.fields[0].widget.errors
+    assert error == field.fields[0].validators[1].message
+
+
+def test_out_of_range_month_field():
+    """Verify an out of range month is not allowed."""
+    field = DateInputField()
+    with pytest.raises(ValidationError) as err:
+        field.clean(["11", "13", "2007"])
+    error = err.value.args[0][0].args[0]
+    assert error in field.fields[1].widget.errors
+    assert error == field.fields[1].validators[2].message
+
+
+def test_zero_value_month_field():
+    """Verify a zero month is not allowed."""
+    field = DateInputField()
+    with pytest.raises(ValidationError) as err:
+        field.clean(["11", "0", "2007"])
+    error = err.value.args[0][0].args[0]
+    assert error in field.fields[1].widget.errors
+    assert error == field.fields[1].validators[1].message
+
+
+def test_out_of_range_year_field():
+    """Verify an out of range year is not allowed."""
+    field = DateInputField()
+    with pytest.raises(ValidationError) as err:
+        field.clean(["11", "12", "999999999"])
+    error = err.value.args[0][0].args[0]
+    assert error in field.fields[2].widget.errors
+    assert error == field.fields[2].validators[2].message
+
+
+def test_zero_value_year_field():
+    """Verify a zero year is not allowed."""
+    field = DateInputField()
+    with pytest.raises(ValidationError) as err:
+        field.clean(["11", "12", "0"])
+    error = err.value.args[0][0].args[0]
+    assert error in field.fields[2].widget.errors
+    assert error == field.fields[2].validators[1].message
+
+
+def test_invalid_date_on_non_leap_year():
+    """Verify an incorrect date on a non-leap year is not allowed."""
+    field = DateInputField()
+    with pytest.raises(ValidationError) as err:
+        field.clean(["29", "2", "2007"])
+    error = err.value.args[0][0]
+    assert error == (
+        "'29' is not a valid day for February 2007 - "
+        "please enter a value between 1 and 28."
+    )
+
+
+def test_invalid_date_on_30_day_month():
+    """Verify an incorrect date on a 30 day month is not allowed."""
+    field = DateInputField()
+    with pytest.raises(ValidationError) as err:
+        field.clean(["31", "4", "2007"])
+    error = err.value.args[0][0]
+    assert error == (
+        "'31' is not a valid day for April 2007 - "
+        "please enter a value between 1 and 30."
+    )
