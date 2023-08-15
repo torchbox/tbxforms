@@ -179,11 +179,12 @@ class DateInputField(forms.MultiValueField):
                 fields. If any of the field are blank then None is returned.
 
         """
-        day, month, year = data_list
-        if day and month and year:
-            try:
-                return date(day=int(day), month=int(month), year=int(year))
-            except ValueError as e:
-                raise ValidationError(str(e)) from e
-        else:
-            return None
+        if len(data_list) == 3:
+            day, month, year = data_list
+            if day and month and year:
+                try:
+                    return date(day=int(day), month=int(month), year=int(year))
+                except ValueError as e:
+                    raise ValidationError(str(e)) from e
+
+        return None

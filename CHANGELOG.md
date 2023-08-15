@@ -33,3 +33,4 @@
 
 -   `Field.select` label size and tag can be changed
 -   `DateInputField` raises a `ValidationError` (instead of `ValueError`) when given invalid input
+-   `DateInputField` with `required=False` no longer raises a `ValueError` when no values are passed

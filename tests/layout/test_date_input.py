@@ -38,3 +38,11 @@ def test_subfield_error_attributes(snapshot_html):
     form = DateInputForm(data={"date_0": "a", "date_1": "11", "date_2": ""})
     assert not form.is_valid()
     assert render_form(form) == snapshot_html
+
+
+def test_non_required_field_left_blank_does_not_raise_exception(snapshot_html):
+    """Verify all the gds attributes are displayed."""
+    form = DateInputForm(data={"date_0": "", "date_1": "", "date_2": ""})
+    form.fields["date"].required = False
+    assert form.is_valid()
+    assert render_form(form) == snapshot_html
