@@ -69,9 +69,7 @@ def test_no_help_text_errors(snapshot_html):
 def test_character_count(snapshot_html):
     """Verify the field can show the maximum number of characters allowed."""
     form = TextareaForm(initial={"description": "Field value"})
-    form.helper.layout = Layout(
-        Field.textarea("description", max_characters=100)
-    )
+    form.helper.layout = Layout(Field("description", max_characters=100))
     assert render_form(form) == snapshot_html
 
 
@@ -89,7 +87,7 @@ def test_threshold(snapshot_html):
     """
     form = TextareaForm(initial={"description": "Field value"})
     form.helper.layout = Layout(
-        Field.textarea("description", max_words=100, threshold=50)
+        Field("description", max_words=100, threshold=50)
     )
     assert render_form(form) == snapshot_html
 

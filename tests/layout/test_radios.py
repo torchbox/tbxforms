@@ -17,7 +17,6 @@ from tests.utils import render_form
 def test_initial_attributes(snapshot_html):
     """Verify all the gds attributes are displayed."""
     form = RadiosForm(initial={"method": "email"})
-    form.helper.layout = Layout(Field.radios("method"))
     assert render_form(form) == snapshot_html
 
 
@@ -31,7 +30,6 @@ def test_validation_error_attributes(snapshot_html):
 def test_choices(snapshot_html):
     """Verify hints and dividers are displayed."""
     form = RadiosChoiceForm(initial={"method": "email"})
-    form.helper.layout = Layout(Field.radios("method"))
     assert render_form(form) == snapshot_html
 
 

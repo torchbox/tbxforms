@@ -3,8 +3,8 @@ from django import forms
 from tbxforms.choices import Choice
 from tbxforms.fields import DateInputField
 from tbxforms.forms import BaseForm
-from tbxforms.helper import FormHelper
 from tbxforms.layout import (
+    Field,
     Fieldset,
     Layout,
 )
@@ -16,6 +16,12 @@ class CheckboxForm(BaseForm, forms.Form):
         help_text="Please read the terms of service.",
         error_messages={"required": "You must accept our terms of service"},
     )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper.layout = Layout(
+            Field("accept"),
+        )
 
 
 class CheckboxesForm(BaseForm, forms.Form):
@@ -30,6 +36,12 @@ class CheckboxesForm(BaseForm, forms.Form):
         help_text="Select all options that are relevant to you.",
         error_messages={"required": "Enter the ways to contact you"},
     )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper.layout = Layout(
+            Field("method"),
+        )
 
 
 class CheckboxesChoiceForm(BaseForm, forms.Form):
@@ -51,6 +63,12 @@ class CheckboxesChoiceForm(BaseForm, forms.Form):
         error_messages={"required": "Enter the ways to contact you"},
     )
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper.layout = Layout(
+            Field("method"),
+        )
+
 
 class DateInputForm(BaseForm, forms.Form):
     date = DateInputField(
@@ -58,6 +76,12 @@ class DateInputForm(BaseForm, forms.Form):
         help_text="For example, 12 11 2007",
         require_all_fields=False,
     )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper.layout = Layout(
+            Field("date"),
+        )
 
 
 class FileUploadForm(BaseForm, forms.Form):
@@ -68,6 +92,12 @@ class FileUploadForm(BaseForm, forms.Form):
             "required": "Select the CSV file you exported from the spreadsheet"
         },
     )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper.layout = Layout(
+            Field("file"),
+        )
 
 
 class RadiosForm(BaseForm, forms.Form):
@@ -82,6 +112,12 @@ class RadiosForm(BaseForm, forms.Form):
         help_text="Select the most convenient way to contact you.",
         error_messages={"required": "Enter the best way to contact you"},
     )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper.layout = Layout(
+            Field("method"),
+        )
 
 
 class RadiosChoiceForm(BaseForm, forms.Form):
@@ -99,6 +135,12 @@ class RadiosChoiceForm(BaseForm, forms.Form):
         error_messages={"required": "Enter the best way to contact you"},
     )
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper.layout = Layout(
+            Field("method"),
+        )
+
 
 class SelectForm(BaseForm, forms.Form):
     method = forms.ChoiceField(
@@ -114,6 +156,12 @@ class SelectForm(BaseForm, forms.Form):
         error_messages={"required": "Enter the best way to contact you"},
     )
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper.layout = Layout(
+            Field("method"),
+        )
+
 
 class TextInputForm(BaseForm, forms.Form):
     name = forms.CharField(
@@ -121,6 +169,12 @@ class TextInputForm(BaseForm, forms.Form):
         help_text="Help text",
         error_messages={"required": "Required error message"},
     )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper.layout = Layout(
+            Field("name"),
+        )
 
 
 class TextareaForm(BaseForm, forms.Form):
@@ -131,15 +185,19 @@ class TextareaForm(BaseForm, forms.Form):
         error_messages={"required": "Required error message"},
     )
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper.layout = Layout(
+            Field("description"),
+        )
+
 
 class FieldsetForm(BaseForm, forms.Form):
     name = forms.CharField(label="Name")
     email = forms.CharField(label="Email")
 
-    @property
-    def helper(self) -> FormHelper:
-        fh = super().helper
-        fh.layout = Layout(
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper.layout = Layout(
             Fieldset("name", "email", legend="Contact"),
         )
-        return fh

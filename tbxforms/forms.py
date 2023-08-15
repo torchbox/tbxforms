@@ -22,19 +22,14 @@ class BaseForm:
         """
         return []
 
-    @property
-    def helper(self) -> FormHelper:
-        fh = FormHelper(self)
-        fh.form_class = "tbxforms"  # Must include `tbxforms`.
-
-        # Define some defaults.
-        fh.html5_required = True
-        fh.label_size = Size.MEDIUM
-        fh.legend_size = Size.MEDIUM
-        return fh
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        self.helper = FormHelper(self)
+        self.helper.form_class = "tbxforms"  # Must include `tbxforms`.
+        self.helper.html5_required = True
+        self.helper.label_size = Size.MEDIUM
+        self.helper.legend_size = Size.MEDIUM
 
         # Escape HTML within `label` and `help_text` unless it's set to allow.
         # NB. Also see https://github.com/torchbox/tbxforms/blob/main/tbxforms/layout/buttons.py#L102  # noqa: E501

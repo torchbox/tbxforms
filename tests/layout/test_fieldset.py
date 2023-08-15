@@ -37,14 +37,14 @@ def test_change_legend_size(snapshot_html):
 def test_css_class(snapshot_html):
     """Verify an extra CSS class can be added to the fieldset."""
     form = FieldsetForm()
-    form.helper.layout = Layout(Fieldset(css_class="extra-css-class"))
+    form.helper[0].update_attributes(css_class="extra-css-class")
     assert render_form(form) == snapshot_html
 
 
 def test_css_id(snapshot_html):
     """Verify the id attribute can be set on the fieldset."""
     form = FieldsetForm()
-    form.helper.layout = Layout(Fieldset(css_id="new_id"))
+    form.helper[0].update_attributes(css_id="new_id")
     assert render_form(form) == snapshot_html
 
 

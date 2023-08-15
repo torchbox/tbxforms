@@ -17,7 +17,6 @@ from tests.utils import render_form
 def test_initial_attributes(snapshot_html):
     """Verify all the gds attributes are displayed."""
     form = CheckboxesForm(initial={"method": ["email", "text"]})
-    form.helper.layout = Layout(Field.checkboxes("method"))
     assert render_form(form) == snapshot_html
 
 
@@ -31,7 +30,6 @@ def test_validation_error_attributes(snapshot_html):
 def test_choices(snapshot_html):
     """Verify that hints are displayed."""
     form = CheckboxesChoiceForm(initial={"method": ["email", "text"]})
-    form.helper.layout = Layout(Field.checkboxes("method"))
     assert render_form(form) == snapshot_html
 
 
