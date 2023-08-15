@@ -9,11 +9,11 @@ Out of the box, forms created with `tbxforms` will look like the
 [GOV.UK Design System](https://design-system.service.gov.uk/), though many
 variables can be customised.
 
-## Key dependencies
+## Requirements
 
 -   Python `>=3.8.1,<4.0`
 -   Django (`>=2.2,<=4.0`)
--   Wagtail (`>=2.15`)
+-   Optional (if using `WagtailBaseForm`): Wagtail (`>=2.15`)
 
 ## Installation
 

@@ -35,7 +35,7 @@ def test_change_label_size(snapshot_html):
     """Verify size of the field label can be changed from the default."""
     form = FileUploadForm()
     form.helper.layout = Layout(
-        Field("file", context={"label_size": Size.for_label("l")})
+        Field("file", context={"label_size": Size.LARGE})
     )
     assert render_form(form) == snapshot_html
 

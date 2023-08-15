@@ -36,16 +36,14 @@ def test_choices(snapshot_html):
 def test_checkbox_size(snapshot_html):
     """Verify size of the checkbox can be changed from the default."""
     form = CheckboxesForm()
-    form.helper.layout = Layout(
-        Field("method", context={"checkboxes_small": True})
-    )
+    form.helper.layout = Layout(Field.checkboxes("method", small=True))
     assert render_form(form) == snapshot_html
 
 
 def test_show_legend_as_heading(snapshot_html):
     """Verify the field legend can be displayed as the page heading."""
     form = CheckboxesForm()
-    form.helper.layout = Layout(Field("method", context={"legend_tag": "h1"}))
+    form.helper.layout = Layout(Field.checkboxes("method", legend_tag="h1"))
     assert render_form(form) == snapshot_html
 
 
@@ -53,7 +51,7 @@ def test_change_legend_size(snapshot_html):
     """Verify size of the field legend can be changed from the default."""
     form = CheckboxesForm()
     form.helper.layout = Layout(
-        Field("method", context={"legend_size": Size.for_legend("l")})
+        Field.checkboxes("method", legend_size=Size.LARGE)
     )
     assert render_form(form) == snapshot_html
 

@@ -20,7 +20,7 @@ class CheckboxForm(BaseForm, forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper.layout = Layout(
-            Field("accept"),
+            Field.checkbox("accept"),
         )
 
 
@@ -40,7 +40,7 @@ class CheckboxesForm(BaseForm, forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper.layout = Layout(
-            Field("method"),
+            Field.checkboxes("method"),
         )
 
 
@@ -66,7 +66,7 @@ class CheckboxesChoiceForm(BaseForm, forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper.layout = Layout(
-            Field("method"),
+            Field.checkboxes("method"),
         )
 
 
@@ -116,7 +116,7 @@ class RadiosForm(BaseForm, forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper.layout = Layout(
-            Field("method"),
+            Field.radios("method"),
         )
 
 
@@ -138,7 +138,7 @@ class RadiosChoiceForm(BaseForm, forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper.layout = Layout(
-            Field("method"),
+            Field.radios("method"),
         )
 
 
@@ -159,7 +159,7 @@ class SelectForm(BaseForm, forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper.layout = Layout(
-            Field("method"),
+            Field.select("method"),
         )
 
 
@@ -173,7 +173,7 @@ class TextInputForm(BaseForm, forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper.layout = Layout(
-            Field("name"),
+            Field.text("name"),
         )
 
 
@@ -188,7 +188,7 @@ class TextareaForm(BaseForm, forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper.layout = Layout(
-            Field("description"),
+            Field.textarea("description"),
         )
 
 
