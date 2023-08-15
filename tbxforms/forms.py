@@ -11,7 +11,7 @@ if apps.is_installed("wagtail.contrib.forms"):
     from wagtail.contrib.forms.forms import FormBuilder
 
 
-class BaseForm:
+class TbxFormsMixin:
     @staticmethod
     def conditional_fields_to_show_as_required() -> []:
         """

@@ -106,16 +106,16 @@ You will need to write button styles for the following classes:
 
 ### Django forms
 
-All forms must inherit from `TbxFormsBaseForm` and a Django base form class.
+All forms must inherit the `TbxFormsMixin` mixin, as well as specifying a Django base form class (e.g. `forms.Form` or `forms.ModelForm`)
 
 ```python
 from django import forms
-from tbxforms.forms import BaseForm as TbxFormsBaseForm
+from tbxforms.forms import TbxFormsMixin
 
-class ExampleForm(TbxFormsBaseForm, forms.Form):
+class ExampleForm(TbxFormsMixin, forms.Form):
     ...
 
-class ExampleModelForm(TbxFormsBaseForm, forms.ModelForm):
+class ExampleModelForm(TbxFormsMixin, forms.ModelForm):
     ...
 ```
 
@@ -123,13 +123,13 @@ class ExampleModelForm(TbxFormsBaseForm, forms.ModelForm):
 
 #### Create or update a Wagtail form
 
-Wagtail forms must inherit from `TbxFormsBaseForm` and `WagtailBaseForm`.
+Wagtail forms must inherit from `TbxFormsMixin` and `WagtailBaseForm`.
 
 ```python
 from wagtail.contrib.forms.forms import BaseForm as WagtailBaseForm
-from tbxforms.forms import BaseForm as TbxFormsBaseForm
+from tbxforms.forms import TbxFormsMixin
 
-class ExampleWagtailForm(TbxFormsBaseForm, WagtailBaseForm):
+class ExampleWagtailForm(TbxFormsMixin, WagtailBaseForm):
     ...
 ```
 
@@ -177,7 +177,7 @@ Just like Django Crispy Forms, you need to pass your form object to the
 A [FormHelper](https://django-crispy-forms.readthedocs.io/en/latest/form_helper.html)
 allows you to alter the rendering behaviour of forms.
 
-Every form that inherits from `TbxFormsBaseForm` (i.e. every form within `tbxforms`)
+Every form that inherits from `TbxFormsMixin` (i.e. every form within `tbxforms`)
 will have a `FormHelper` with the following default attributes:
 
 -   `html5_required = True`
@@ -197,10 +197,10 @@ Extend during instantiation:
 
 ```python
 from django import forms
-from tbxforms.forms import BaseForm as TbxFormsBaseForm
+from tbxforms.forms import TbxFormsMixin
 from tbxforms.layout import Button
 
-class YourSexyForm(TbxFormsBaseForm, forms.Form):
+class YourSexyForm(TbxFormsMixin, forms.Form):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -246,10 +246,10 @@ as required, though will technically be `required=False`.
 from django import forms
 from django.core.exceptions import ValidationError
 from tbxforms.choices import Choice
-from tbxforms.forms import BaseForm as TbxFormsBaseForm
+from tbxforms.forms import TbxFormsMixin
 from tbxforms.layout import Field, Layout
 
-class ExampleForm(TbxFormsBaseForm, forms.Form):
+class ExampleForm(TbxFormsMixin, forms.Form):
     NEWSLETTER_CHOICES = (
         Choice("yes", "Yes please", hint="Receive occasional email newsletters."),
         Choice("no", "No thanks"),

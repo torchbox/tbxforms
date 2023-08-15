@@ -24,7 +24,8 @@
 ### Changed
 
 -   Use snapshot testing plugin (syrupy) for component rendering tests instead of HTML fixtures
--   form.helper (`FormHelper`) changed from a static `@property` to the form's `__init__` method to allow changes at runtime.
+-   form.helper (`FormHelper`) changed from a static `@property` to the form's `__init__` method to allow changes at runtime
+-   `BaseForm` renamed to `TbxFormsMixin` to more accurately convey what it is
 
 ### Fixed
 
