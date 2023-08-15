@@ -2,7 +2,6 @@
 Tests to verify radio buttons are rendered correctly.
 
 """
-from tbxforms.helper import FormHelper
 from tbxforms.layout import (
     Field,
     Layout,
@@ -18,8 +17,6 @@ from tests.utils import render_form
 def test_initial_attributes(snapshot_html):
     """Verify all the gds attributes are displayed."""
     form = RadiosForm(initial={"method": "email"})
-    form.helper = FormHelper()
-    form.helper.layout = Layout(Field.radios("method"))
     assert render_form(form) == snapshot_html
 
 
@@ -33,46 +30,34 @@ def test_validation_error_attributes(snapshot_html):
 def test_choices(snapshot_html):
     """Verify hints and dividers are displayed."""
     form = RadiosChoiceForm(initial={"method": "email"})
-    form.helper = FormHelper()
-    form.helper.layout = Layout(Field.radios("method"))
     assert render_form(form) == snapshot_html
 
 
 def test_small(snapshot_html):
     """Verify size of the radio buttons can be changed."""
     form = RadiosForm()
-    form.helper = FormHelper()
-    form.helper.layout = Layout(
-        Field("method", context={"radios_small": True})
-    )
+    form.helper.layout = Layout(Field.radios("method", small=True))
     assert render_form(form) == snapshot_html
 
 
 def test_inline(snapshot_html):
     """Verify radio buttons can be displayed in a row."""
     form = RadiosForm()
-    form.helper = FormHelper()
-    form.helper.layout = Layout(
-        Field("method", context={"radios_inline": True})
-    )
+    form.helper.layout = Layout(Field.radios("method", inline=True))
     assert render_form(form) == snapshot_html
 
 
 def test_show_legend_as_heading(snapshot_html):
     """Verify the field legend can be displayed as the page heading."""
     form = RadiosForm()
-    form.helper = FormHelper()
-    form.helper.layout = Layout(Field("method", context={"legend_tag": "h1"}))
+    form.helper.layout = Layout(Field.radios("method", legend_tag="h1"))
     assert render_form(form) == snapshot_html
 
 
 def test_change_legend_size(snapshot_html):
     """Verify size of the field legend can be changed from the default."""
     form = RadiosForm()
-    form.helper = FormHelper()
-    form.helper.layout = Layout(
-        Field("method", context={"legend_size": Size.for_legend("l")})
-    )
+    form.helper.layout = Layout(Field.radios("method", legend_size=Size.LARGE))
     assert render_form(form) == snapshot_html
 
 
