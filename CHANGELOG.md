@@ -28,6 +28,7 @@
 -   form.helper (`FormHelper`) changed from a static `@property` to the form's `__init__` method to allow changes at runtime
 -   Update documentation and examples to use `Field` classmethods (e.g. `Field.select`) to avoid passing `context` dictionary to `Field` (https://crispy-forms-gds.readthedocs.io/en/latest/reference/layout/field.html)
 -   `BaseForm` renamed to `TbxFormsMixin` to more accurately convey what it is
+-   Styles no longer depend on the form having the `.tbxforms` class
 
 ### Fixed
 
