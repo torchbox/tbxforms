@@ -52,7 +52,8 @@ class CheckboxesChoiceForm(BaseForm, forms.Form):
             "Phone",
             hint="Select this option only if you have a mobile phone",
         ),
-        Choice("text", "Text message"),
+        Choice("text", "Text message", divider="or"),
+        Choice("none", "None of the above"),
     )
 
     method = forms.ChoiceField(

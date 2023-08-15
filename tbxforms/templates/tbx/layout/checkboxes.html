@@ -45,6 +45,10 @@
                         {{ choice.hint }}
                     </span>
                 {% endif %}
+
+                {% if choice.divider %}
+                    <div class="tbxforms-checkboxes__divider">{{ choice.divider }}</div>
+                {% endif %}
             </div>
         {% endfor %}
     </div>
