@@ -2,7 +2,7 @@ from django import forms
 
 from tbxforms.choices import Choice
 from tbxforms.fields import DateInputField
-from tbxforms.forms import BaseForm
+from tbxforms.forms import TbxFormsMixin
 from tbxforms.layout import (
     Field,
     Fieldset,
@@ -10,7 +10,7 @@ from tbxforms.layout import (
 )
 
 
-class CheckboxForm(BaseForm, forms.Form):
+class CheckboxForm(TbxFormsMixin, forms.Form):
     accept = forms.BooleanField(
         label="I accept the terms of service",
         help_text="Please read the terms of service.",
@@ -24,7 +24,7 @@ class CheckboxForm(BaseForm, forms.Form):
         )
 
 
-class CheckboxesForm(BaseForm, forms.Form):
+class CheckboxesForm(TbxFormsMixin, forms.Form):
     method = forms.ChoiceField(
         choices=(
             ("email", "Email"),
@@ -44,7 +44,7 @@ class CheckboxesForm(BaseForm, forms.Form):
         )
 
 
-class CheckboxesChoiceForm(BaseForm, forms.Form):
+class CheckboxesChoiceForm(TbxFormsMixin, forms.Form):
     METHODS = (
         Choice("email", "Email"),
         Choice(
@@ -71,7 +71,7 @@ class CheckboxesChoiceForm(BaseForm, forms.Form):
         )
 
 
-class DateInputForm(BaseForm, forms.Form):
+class DateInputForm(TbxFormsMixin, forms.Form):
     date = DateInputField(
         label="When was your passport issued?",
         help_text="For example, 12 11 2007",
@@ -85,7 +85,7 @@ class DateInputForm(BaseForm, forms.Form):
         )
 
 
-class FileUploadForm(BaseForm, forms.Form):
+class FileUploadForm(TbxFormsMixin, forms.Form):
     file = forms.FileField(
         label="Upload a file",
         help_text="Select the CSV file to upload.",
@@ -101,7 +101,7 @@ class FileUploadForm(BaseForm, forms.Form):
         )
 
 
-class RadiosForm(BaseForm, forms.Form):
+class RadiosForm(TbxFormsMixin, forms.Form):
     method = forms.ChoiceField(
         choices=(
             ("email", "Email"),
@@ -121,7 +121,7 @@ class RadiosForm(BaseForm, forms.Form):
         )
 
 
-class RadiosChoiceForm(BaseForm, forms.Form):
+class RadiosChoiceForm(TbxFormsMixin, forms.Form):
     METHODS = (
         Choice("email", "Email", hint="Do not give a work email address"),
         Choice("phone", "Phone", divider="Or"),
@@ -143,7 +143,7 @@ class RadiosChoiceForm(BaseForm, forms.Form):
         )
 
 
-class SelectForm(BaseForm, forms.Form):
+class SelectForm(TbxFormsMixin, forms.Form):
     method = forms.ChoiceField(
         choices=(
             ("", "Choose"),
@@ -164,7 +164,7 @@ class SelectForm(BaseForm, forms.Form):
         )
 
 
-class TextInputForm(BaseForm, forms.Form):
+class TextInputForm(TbxFormsMixin, forms.Form):
     name = forms.CharField(
         label="Name",
         help_text="Help text",
@@ -178,7 +178,7 @@ class TextInputForm(BaseForm, forms.Form):
         )
 
 
-class TextareaForm(BaseForm, forms.Form):
+class TextareaForm(TbxFormsMixin, forms.Form):
     description = forms.CharField(
         label="Description",
         widget=forms.Textarea,
@@ -193,7 +193,7 @@ class TextareaForm(BaseForm, forms.Form):
         )
 
 
-class FieldsetForm(BaseForm, forms.Form):
+class FieldsetForm(TbxFormsMixin, forms.Form):
     name = forms.CharField(label="Name")
     email = forms.CharField(label="Email")
 

@@ -25,10 +25,11 @@
 ### Changed
 
 -   Use snapshot testing plugin (syrupy) for component rendering tests instead of HTML fixtures
--   form.helper (`FormHelper`) changed from a static `@property` to the form's `__init__` method to allow changes at runtime.
--   Update documentation and examples to use `Field` classmethods (e.g. `Field.select`) to avoid passing `context` dictionary to `Field` (https://crispy-forms-gds.readthedocs.io/en/latest/reference/layout/field.html).
+-   form.helper (`FormHelper`) changed from a static `@property` to the form's `__init__` method to allow changes at runtime
+-   Update documentation and examples to use `Field` classmethods (e.g. `Field.select`) to avoid passing `context` dictionary to `Field` (https://crispy-forms-gds.readthedocs.io/en/latest/reference/layout/field.html)
+-   `BaseForm` renamed to `TbxFormsMixin` to more accurately convey what it is
 
 ### Fixed
 
--   `Field.select` label size and tag can be changed.
+-   `Field.select` label size and tag can be changed
 -   `DateInputField` raises a `ValidationError` (instead of `ValueError`) when given invalid input
