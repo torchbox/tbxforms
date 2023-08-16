@@ -12,8 +12,8 @@ variables can be customised.
 ## Requirements
 
 -   Python `>=3.8.1,<4.0`
--   Django (`>=2.2,<=4.0`)
--   Optional (if using `WagtailBaseForm`): Wagtail (`>=2.15`)
+-   Django `>=2.2,<=4.0`
+-   Wagtail `>=2.15` (if using `WagtailBaseForm`)
 
 ## Installation
 
