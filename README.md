@@ -11,9 +11,10 @@ variables can be customised.
 
 ## Requirements
 
--   Python `>=3.8.1,<4.0`
--   Django `>=2.2,<=4.0`
--   Wagtail `>=2.15` (if using `WagtailBaseForm`)
+-   python `>=3.8.1,<4.0`
+-   Django `>=2.2`
+-   wagtail `>=2.15` if using `WagtailBaseForm`
+-   django-crispy-forms `>=1.13.0,<2.0`
 
 ## Installation
 
