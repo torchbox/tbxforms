@@ -3,7 +3,6 @@ Tests to verify textareas are rendered correctly.
 """
 import pytest
 
-from tbxforms.helper import FormHelper
 from tbxforms.layout import (
     Field,
     Layout,
@@ -29,19 +28,15 @@ def test_validation_error_attributes(snapshot_html):
 def test_show_label_as_heading(snapshot_html):
     """Verify the field label can be displayed as the page heading."""
     form = TextareaForm()
-    form.helper = FormHelper()
-    form.helper.layout = Layout(
-        Field("description", context={"label_tag": "h1"})
-    )
+    form.helper.layout = Layout(Field.textarea("description", label_tag="h1"))
     assert render_form(form) == snapshot_html
 
 
 def test_change_label_size(snapshot_html):
     """Verify size of the field label can be changed from the default."""
     form = TextareaForm()
-    form.helper = FormHelper()
     form.helper.layout = Layout(
-        Field("description", context={"label_size": Size.for_label("l")})
+        Field.textarea("description", label_size=Size.LARGE)
     )
     assert render_form(form) == snapshot_html
 
@@ -72,7 +67,6 @@ def test_no_help_text_errors(snapshot_html):
 def test_character_count(snapshot_html):
     """Verify the field can show the maximum number of characters allowed."""
     form = TextareaForm(initial={"description": "Field value"})
-    form.helper = FormHelper()
     form.helper.layout = Layout(
         Field.textarea("description", max_characters=100)
     )
@@ -92,7 +86,6 @@ def test_threshold(snapshot_html):
     Verify info is shown after a certain number of words has been entered.
     """
     form = TextareaForm(initial={"description": "Field value"})
-    form.helper = FormHelper()
     form.helper.layout = Layout(
         Field.textarea("description", max_words=100, threshold=50)
     )

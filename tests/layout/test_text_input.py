@@ -2,7 +2,6 @@
 Tests to verify text fields are rendered correctly.
 
 """
-from tbxforms.helper import FormHelper
 from tbxforms.layout import (
     Field,
     Layout,
@@ -28,18 +27,14 @@ def test_validation_error_attributes(snapshot_html):
 def test_show_label_as_heading(snapshot_html):
     """Verify the field label can be displayed as the page heading."""
     form = TextInputForm()
-    form.helper = FormHelper()
-    form.helper.layout = Layout(Field("name", context={"label_tag": "h1"}))
+    form.helper.layout = Layout(Field.text("name", label_tag="h1"))
     assert render_form(form) == snapshot_html
 
 
 def test_change_label_size(snapshot_html):
     """Verify size of the field label can be changed from the default."""
     form = TextInputForm()
-    form.helper = FormHelper()
-    form.helper.layout = Layout(
-        Field("name", context={"label_size": Size.for_label("l")})
-    )
+    form.helper.layout = Layout(Field.text("name", label_size=Size.LARGE))
     assert render_form(form) == snapshot_html
 
 

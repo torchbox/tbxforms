@@ -72,7 +72,12 @@ class Field(crispy_forms_layout.LayoutObject):
     template = "%s/field.html"
 
     @classmethod
-    def checkbox(cls, field, small=False, **kwargs):
+    def checkbox(
+        cls,
+        field,
+        small=False,
+        **kwargs,
+    ):
         """
         Create a field for displaying a single checkbox.
 
@@ -88,7 +93,12 @@ class Field(crispy_forms_layout.LayoutObject):
 
     @classmethod
     def checkboxes(
-        cls, field, legend_size=None, legend_tag=None, small=False, **kwargs
+        cls,
+        field,
+        legend_size=None,
+        legend_tag=None,
+        small=False,
+        **kwargs,
     ):
         """
         Create a field for displaying a set of checkboxes.
@@ -166,18 +176,24 @@ class Field(crispy_forms_layout.LayoutObject):
         return Field(field, context=context, **kwargs)
 
     @classmethod
-    def select(cls, field, legend_size=None, legend_tag=None, **kwargs):
+    def select(
+        cls,
+        field,
+        label_size=None,
+        label_tag=None,
+        **kwargs,
+    ):
         """
         Create a field for displaying a select drop-down.
 
         Args:
             field (str): the name of the field.
 
-            legend_size (str): the size of the legend. The default is None in
-                which case the legend will be rendered at the same size as
+            label_size (str): the size of the label. The default is None in
+                which case the label will be rendered at the same size as
                 regular text.
 
-            legend_tag (str): Wrap the field legend with this HTML tag.
+            label_tag (str): Wrap the field label with this HTML tag.
                 Default is None.
 
             **kwargs: Attributes to add to the <select> element when the field
@@ -186,17 +202,22 @@ class Field(crispy_forms_layout.LayoutObject):
         """
         context = {}
 
-        if legend_size:
-            context["legend_size"] = Size.for_legend(legend_size)
+        if label_size:
+            context["label_size"] = Size.for_label(label_size)
 
-        if legend_tag:
-            context["legend_tag"] = legend_tag
+        if label_tag:
+            context["label_tag"] = label_tag
 
         return Field(field, context=context, **kwargs)
 
     @classmethod
     def text(
-        cls, field, label_size=None, label_tag=None, field_width=None, **kwargs
+        cls,
+        field,
+        label_size=None,
+        label_tag=None,
+        field_width=None,
+        **kwargs,
     ):
         """
         Create a field for displaying a Text input.
@@ -318,7 +339,12 @@ class Field(crispy_forms_layout.LayoutObject):
         return Field(field, context=context, **kwargs)
 
     def __init__(
-        self, *fields, css_class=None, context=None, template=None, **kwargs
+        self,
+        *fields,
+        css_class=None,
+        context=None,
+        template=None,
+        **kwargs,
     ):
         self.fields = list(fields)
 
@@ -407,7 +433,12 @@ class Field(crispy_forms_layout.LayoutObject):
         )
 
     def render(
-        self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs
+        self,
+        form,
+        form_style,
+        context,
+        template_pack=TEMPLATE_PACK,
+        **kwargs,
     ):
         template = self.get_template_name(template_pack)
         return self.get_rendered_fields(
