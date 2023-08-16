@@ -13,8 +13,8 @@ variables can be customised.
 
 -   python `>=3.8.1,<4.0`
 -   Django `>=2.2`
--   wagtail `>=2.15` if using `WagtailBaseForm`
 -   django-crispy-forms `>=1.13.0,<2.0`
+-   wagtail `>=2.15` if using `WagtailBaseForm`
 
 ## Installation
 
