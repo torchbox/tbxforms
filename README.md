@@ -267,10 +267,10 @@ class ExampleForm(TbxFormsMixin, forms.Form):
         super().__init__(*args, **kwargs)
         self.helper.layout = Layout(
             # Add our newsletter sign-up field.
-            Field("newsletter_signup"),
+            Field.text("newsletter_signup"),
 
             # Add our email field and define the conditional logic.
-            Field(
+            Field.text(
                 "email",
                 data_conditional={
                     "field_name": "newsletter_signup", # Field to inspect.
@@ -322,8 +322,8 @@ from tbxforms.layout import HTML, Div, Field, Layout
 Layout(
     Div(
         HTML("<p>Some relevant text.</p>"),
-        Field("some_other_field"),
-        Field("email"),
+        Field.text("some_other_field"),
+        Field.text("email"),
         data_conditional={
             "field_name": "newsletter_signup",
             "values": ["yes"],
