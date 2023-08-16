@@ -74,7 +74,7 @@ Import the styles into your project...
 ...Either as CSS without any customisations:
 
 ```scss
-@use 'node_modules/tbxforms/style.css';
+@use 'node_modules/tbxforms/dist/style.css';
 ```
 
 ...Or as Sass to customise variables:

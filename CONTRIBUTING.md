@@ -24,14 +24,16 @@ Run the Python tests with `poetry run pytest`.
 
 If your changes cause snapshot tests to fail, verify that the changes you have caused are expected. Update the snapshots with `poetry run pytest --snapshot-update`.
 
-### Publishing
+## Publishing
 
 1. `pre-commit` - run linters
 2. `pytest` - run backend tests
 3. Bump project version in pyproject.toml and package.json
-4. `poetry lock --no-update` - Lock python packages
-5. `npm i --package-lock-only` - Lock javascript packages
-6. `npm run build` - build NPM package
-7. `poetry build` - build python package
-8. `npm publish` - publish package to npmjs.com
-9. `poetry publish` - publish package to pypi.org
+4. Update CHANGELOG headings (add a new heading beneath the "Unreleased" heading)
+5. `poetry lock --no-update` - Lock python packages
+6. `npm i --package-lock-only` - Lock javascript packages
+7. `npm run build` - build NPM package
+8. `poetry build` - build python package
+9. `npm publish` - publish package to npmjs.com
+10. `poetry publish` - publish package to pypi.org
+11. Create a [release](https://github.com/torchbox/tbxforms/releases) with relevant changelog entries and upgrade considerations

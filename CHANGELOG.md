@@ -14,6 +14,12 @@
 
 ## Unreleased
 
+### Fixed
+
+-   Documentation referencing an incorrect CSS import path
+
+## 1.1.0
+
 ### Added
 
 -   Template linting to CI using `djlint`
