@@ -26,7 +26,7 @@ class TbxFormsMixin:
         super().__init__(*args, **kwargs)
 
         self.helper = FormHelper(self)
-        self.helper.form_class = "tbxforms"  # Added for convenience only.
+        self.helper.form_class = "tbxforms"  # "form.tbxforms" is used by our JS to add conditional field logic.  # noqa: E501
         self.helper.html5_required = True
         self.helper.label_size = Size.MEDIUM
         self.helper.legend_size = Size.MEDIUM
