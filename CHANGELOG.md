@@ -22,19 +22,22 @@
 
 ### Added
 
--   Template linting to CI using `djlint`
--   Snapshot formatting check to CI using `djlint`
--   Autoformatting of snapshots using `djlint`
--   Testing across Django versions 2.2 - 4.0 and Python versions 3.8 - 3.11 using `tox`
 -   Support for dividers on checkbox fields
 
 ### Changed
 
--   Use snapshot testing plugin (syrupy) for component rendering tests instead of HTML fixtures
 -   form.helper (`FormHelper`) changed from a static `@property` to the form's `__init__` method to allow changes at runtime
--   Update documentation and examples to use `Field` classmethods (e.g. `Field.select`) to avoid passing `context` dictionary to `Field` (https://crispy-forms-gds.readthedocs.io/en/latest/reference/layout/field.html)
+-   Update documentation and examples to use `Field` subclass methods (e.g. `Field.select`) to avoid passing `context` dictionary to `Field` (https://crispy-forms-gds.readthedocs.io/en/latest/reference/layout/field.html)
 -   `BaseForm` renamed to `TbxFormsMixin` to more accurately convey what it is
 -   Styles no longer depend on the form having the `.tbxforms` class
+
+### Developer
+
+-   Template linting to CI using `djlint`
+-   Snapshot formatting check to CI using `djlint`
+-   Autoformatting of snapshots using `djlint`
+-   Testing across Django versions 2.2 - 4.0 and Python versions 3.8 - 3.11 using `tox`
+-   Use snapshot testing plugin (syrupy) for component rendering tests instead of HTML fixtures
 
 ### Fixed
 
