@@ -7,7 +7,7 @@
 -   `Added` for new features.
 -   `Changed` for changes in existing functionality.
 -   `Deprecated` for soon-to-be removed features.
--   `Dev` for changes to the developer experience.
+-   `Developer` for changes to the developer experience.
 -   `Fixed` for bug fixes.
 -   `Removed` for now removed features.
 -   `Security` in case of vulnerabilities.
