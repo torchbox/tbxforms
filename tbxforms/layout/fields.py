@@ -435,7 +435,6 @@ class Field(crispy_forms_layout.LayoutObject):
     def render(
         self,
         form,
-        form_style,
         context,
         template_pack=TEMPLATE_PACK,
         **kwargs,
@@ -443,7 +442,6 @@ class Field(crispy_forms_layout.LayoutObject):
         template = self.get_template_name(template_pack)
         return self.get_rendered_fields(
             form,
-            form_style,
             context,
             template_pack,
             template=template,
