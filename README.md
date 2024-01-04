@@ -15,6 +15,7 @@ variables can be customised.
 -   Django `>=2.2`
 -   django-crispy-forms `>=1.13.0,<2.0`
 -   wagtail `>=2.15` if using `WagtailBaseForm`
+-   sass `>=1.33.0` if building the sass yourself
 
 ## Installation
 

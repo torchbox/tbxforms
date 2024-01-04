@@ -9,4 +9,11 @@ module.exports = defineConfig({
       fileName: (format) => `tbxforms.${format}.js`,
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        fatalDeprecation: true,
+      },
+    },
+  },
 });
