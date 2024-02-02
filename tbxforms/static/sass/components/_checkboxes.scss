@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .tbxforms-checkboxes__item {
     @include tbxforms-font($size: 'default');
 
@@ -18,7 +20,10 @@
 }
 
 .tbxforms-checkboxes__input {
-    $input-offset: ($tbxforms-touch-target-size - $tbxforms-checkboxes-size) / 2;
+    $input-offset: math.div(
+        $tbxforms-touch-target-size - $tbxforms-checkboxes-size,
+        2
+    );
 
     cursor: pointer;
 
@@ -136,8 +141,9 @@
 // =========================================================
 
 .tbxforms-checkboxes--small {
-    $input-offset: (
-        ($tbxforms-touch-target-size - $tbxforms-small-checkboxes-size) / 2
+    $input-offset: math.div(
+        $tbxforms-touch-target-size - $tbxforms-small-checkboxes-size,
+        2
     );
     $label-offset: $tbxforms-touch-target-size - $input-offset;
 
