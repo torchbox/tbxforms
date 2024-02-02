@@ -4,10 +4,22 @@ from tbxforms.choices import Choice
 from tbxforms.fields import DateInputField
 from tbxforms.forms import TbxFormsMixin
 from tbxforms.layout import (
+    Button,
     Field,
     Fieldset,
     Layout,
 )
+
+
+class ButtonForm(TbxFormsMixin, forms.Form):
+    # A "([factory], [factory_args])" tuple specifies the button to display
+    button_spec = (Button.primary, ("name", "Title"))
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper.layout = Layout(
+            self.button_spec[0](*self.button_spec[1]),
+        )
 
 
 class CheckboxForm(TbxFormsMixin, forms.Form):

@@ -54,6 +54,7 @@ class Button(BaseInput):
 
     """
 
+    input_type = "button"
     template = "%s/layout/button.html"
 
     @classmethod

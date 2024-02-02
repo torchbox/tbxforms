@@ -141,16 +141,13 @@ class Fieldset(crispy_forms_layout.LayoutObject):
         self.template = kwargs.pop("template", self.template)
         self.flat_attrs = flatatt(kwargs)
 
-    def render(
-        self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs
-    ):
+    def render(self, form, context, template_pack=TEMPLATE_PACK, **kwargs):
         fields = self.get_rendered_fields(
-            form, form_style, context, template_pack, **kwargs
+            form, context, template_pack, **kwargs
         )
         context = {
             "fieldset": self,
             "fields": fields,
-            "form_style": form_style,
         }
         context.update(self.context)
         template = self.get_template_name(template_pack)

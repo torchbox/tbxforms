@@ -10,7 +10,7 @@
     {% if field.label %}
         <legend class="tbxforms-fieldset__legend{% if legend_size %} {{ legend_size }}{% endif %}">
             {% if legend_tag %}<{{ legend_tag }} class="tbxforms-fieldset__heading">{% endif %}
-            {{ field.label|safe }}
+            {{ field.label }}
             {% if not field|show_as_required %} <span>{% trans "(optional)" %}</span>{% endif %}
             {% if legend_tag %}</{{ legend_tag }}>{% endif %}
         </legend>
