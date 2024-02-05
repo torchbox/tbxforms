@@ -20,18 +20,18 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Added
 
--   Python support for 3.12 [!61]
--   Django support for 4.1 and 4.2 [!61]
+-   Python support for 3.12 [#61]
+-   Django support for 4.1 and 4.2 [#61]
 
 ### Changed
 
--   `django-crispy-forms` updated to 2.x [!61]
+-   `django-crispy-forms` updated to 2.x [#61]
 
 ### Deprecated
 
--   Django support for 2.2, 3.0, and 3.1 [!61]
--   `TBXFORMS_ALLOW_HTML_LABEL`, `TBXFORMS_ALLOW_HTML_HELP_TEXT`, and `TBXFORMS_ALLOW_HTML_BUTTON` settings (developers must now mark strings as safe to render markup) [!61] [!62]
--   `sass` support for <1.33.0 [!60]
+-   Django support for 2.2, 3.0, and 3.1 [#61]
+-   `TBXFORMS_ALLOW_HTML_LABEL`, `TBXFORMS_ALLOW_HTML_HELP_TEXT`, and `TBXFORMS_ALLOW_HTML_BUTTON` settings (developers must now mark strings as safe to render markup) [#61] [#62]
+-   `sass` support for <1.33.0 [#60]
 
 ### Fixed
 
@@ -39,7 +39,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Security
 
--   `|safe` is no longer applied within templates [!61]
+-   `|safe` is no longer applied within templates [#61]
 
 ## [1.1.0](https://github.com/torchbox/tbxforms/releases/tag/v1.1.0)
 
