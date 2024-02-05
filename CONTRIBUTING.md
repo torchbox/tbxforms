@@ -41,7 +41,7 @@ If your changes cause the snapshot tests to fail:
 
 ## Publishing
 
-1. `pre-commit` - run linters
+1. `pre-commit run --all-files` - run linters
 2. `poetry run tox` - run backend tests against our supported package matrix.
 3. Bump project version in pyproject.toml and package.json
 4. Update CHANGELOG headings (add a new heading beneath the "Unreleased" heading)
