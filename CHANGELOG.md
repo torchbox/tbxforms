@@ -20,7 +20,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Added
 
--   Python support for 3.11 and 3.12 [!61]
+-   Python support for 3.12 [!61]
 -   Django support for 4.1 and 4.2 [!61]
 
 ### Changed
