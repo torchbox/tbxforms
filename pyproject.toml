@@ -7,7 +7,6 @@ authors = [
 ]
 license = "BSD-2-Clause"
 readme = "README.md"
-homepage = ""
 repository = "https://github.com/torchbox/tbxforms/"
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -66,14 +65,14 @@ pre-commit = "2.15.0"
 beautifulsoup4 = ">=4.8,<4.10.0"
 coverage = "6.1.1"
 pymdown-extensions = "9.0"
-syrupy = "4.0.1"
+syrupy = "4.6.0"
 tox =  ">=4.4,<4.5"
 
 # Linters etc.
-black = "22.3.0"
+black = "22.3.0"  # Match version in .pre-commit-config
 detect-secrets = "~0.13"
-flake8 = "5.0.4"
-isort = "5.10.1"
+flake8 = "5.0.4"  # Match version in .pre-commit-config
+isort = "5.12.0"  # Match version in .pre-commit-config
 djlint = "1.23.3"
 
 # Testing
@@ -101,5 +100,5 @@ extension = "html"
 profile = "django"
 
 [build-system]
-requires = ["poetry-core==1.5.1"]
+requires = ["poetry-core==1.8.1"]
 build-backend = "poetry.core.masonry.api"
