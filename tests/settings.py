@@ -1,6 +1,5 @@
 """
 MVS (Minimalist Viable Settings) for running the tests.
-
 """
 
 INSTALLED_APPS = (

@@ -1,7 +1,7 @@
 """
 Tests to verify radio buttons are rendered correctly.
-
 """
+
 from tbxforms.layout import (
     Field,
     Layout,

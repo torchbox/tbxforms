@@ -1,7 +1,5 @@
 from django import forms as django_forms
 from django.apps import apps
-from django.conf import settings
-from django.utils.html import conditional_escape
 
 from tbxforms.fields import DateInputField
 from tbxforms.helper import FormHelper
@@ -30,27 +28,6 @@ class TbxFormsMixin:
         self.helper.html5_required = True
         self.helper.label_size = Size.MEDIUM
         self.helper.legend_size = Size.MEDIUM
-
-        # Escape HTML within `label` and `help_text` unless it's set to allow.
-        # NB. Also see https://github.com/torchbox/tbxforms/blob/main/tbxforms/layout/buttons.py#L102  # noqa: E501
-        for field_name, field in self.fields.items():
-            if all(
-                [
-                    field.label,
-                    not getattr(settings, "TBXFORMS_ALLOW_HTML_LABEL", False),
-                ]
-            ):
-                field.label = conditional_escape(field.label)
-
-            if all(
-                [
-                    field.help_text,
-                    not getattr(
-                        settings, "TBXFORMS_ALLOW_HTML_HELP_TEXT", False
-                    ),
-                ]
-            ):
-                field.help_text = conditional_escape(field.help_text)
 
 
 if "FormBuilder" in locals():
