@@ -1,6 +1,6 @@
 {
   "name": "tbxforms",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "main": "./dist/tbxforms.umd.js",
   "module": "./dist/tbxforms.es.js",
   "files": [
@@ -30,11 +30,11 @@
     "wagtail"
   ],
   "devDependencies": {
-    "autoprefixer": "^10.2.5",
-    "eslint": "^7.26.0",
+    "autoprefixer": "^10.4.2",
+    "eslint": "^7.32.0",
     "prettier": "^2.3.2",
     "sass": "^1.69.7",
-    "vite": "^2.2.3"
+    "vite": "^2.9.17"
   },
   "scripts": {
     "lint:js": "eslint --report-unused-disable-directives .",
