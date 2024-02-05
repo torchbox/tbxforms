@@ -4,25 +4,17 @@ from tbxforms.choices import Choice
 from tbxforms.fields import DateInputField
 from tbxforms.forms import TbxFormsMixin
 from tbxforms.layout import (
-    Button,
     Field,
     Fieldset,
     Layout,
 )
 
 
-class ButtonForm(TbxFormsMixin, forms.Form):
-    # A "([factory], [factory_args])" tuple specifies the button to display
-    button_spec = (Button.primary, ("name", "Title"))
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper.layout = Layout(
-            self.button_spec[0](*self.button_spec[1]),
-        )
+class BaseTestForm(TbxFormsMixin, forms.Form):
+    pass
 
 
-class CheckboxForm(TbxFormsMixin, forms.Form):
+class CheckboxForm(BaseTestForm):
     accept = forms.BooleanField(
         label="I accept the terms of service",
         help_text="Please read the terms of service.",
@@ -36,7 +28,7 @@ class CheckboxForm(TbxFormsMixin, forms.Form):
         )
 
 
-class CheckboxesForm(TbxFormsMixin, forms.Form):
+class CheckboxesForm(BaseTestForm):
     method = forms.ChoiceField(
         choices=(
             ("email", "Email"),
@@ -56,7 +48,7 @@ class CheckboxesForm(TbxFormsMixin, forms.Form):
         )
 
 
-class CheckboxesChoiceForm(TbxFormsMixin, forms.Form):
+class CheckboxesChoiceForm(BaseTestForm):
     METHODS = (
         Choice("email", "Email"),
         Choice(
@@ -83,7 +75,7 @@ class CheckboxesChoiceForm(TbxFormsMixin, forms.Form):
         )
 
 
-class DateInputForm(TbxFormsMixin, forms.Form):
+class DateInputForm(BaseTestForm):
     date = DateInputField(
         label="When was your passport issued?",
         help_text="For example, 12 11 2007",
@@ -97,7 +89,7 @@ class DateInputForm(TbxFormsMixin, forms.Form):
         )
 
 
-class FileUploadForm(TbxFormsMixin, forms.Form):
+class FileUploadForm(BaseTestForm):
     file = forms.FileField(
         label="Upload a file",
         help_text="Select the CSV file to upload.",
@@ -113,7 +105,7 @@ class FileUploadForm(TbxFormsMixin, forms.Form):
         )
 
 
-class RadiosForm(TbxFormsMixin, forms.Form):
+class RadiosForm(BaseTestForm):
     method = forms.ChoiceField(
         choices=(
             ("email", "Email"),
@@ -133,7 +125,7 @@ class RadiosForm(TbxFormsMixin, forms.Form):
         )
 
 
-class RadiosChoiceForm(TbxFormsMixin, forms.Form):
+class RadiosChoiceForm(BaseTestForm):
     METHODS = (
         Choice("email", "Email", hint="Do not give a work email address"),
         Choice("phone", "Phone", divider="Or"),
@@ -155,7 +147,7 @@ class RadiosChoiceForm(TbxFormsMixin, forms.Form):
         )
 
 
-class SelectForm(TbxFormsMixin, forms.Form):
+class SelectForm(BaseTestForm):
     method = forms.ChoiceField(
         choices=(
             ("", "Choose"),
@@ -176,7 +168,7 @@ class SelectForm(TbxFormsMixin, forms.Form):
         )
 
 
-class TextInputForm(TbxFormsMixin, forms.Form):
+class TextInputForm(BaseTestForm):
     name = forms.CharField(
         label="Name",
         help_text="Help text",
@@ -190,7 +182,7 @@ class TextInputForm(TbxFormsMixin, forms.Form):
         )
 
 
-class TextareaForm(TbxFormsMixin, forms.Form):
+class TextareaForm(BaseTestForm):
     description = forms.CharField(
         label="Description",
         widget=forms.Textarea,
@@ -205,7 +197,7 @@ class TextareaForm(TbxFormsMixin, forms.Form):
         )
 
 
-class FieldsetForm(TbxFormsMixin, forms.Form):
+class FieldsetForm(BaseTestForm):
     name = forms.CharField(label="Name")
     email = forms.CharField(label="Email")
 

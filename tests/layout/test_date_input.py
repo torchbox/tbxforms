@@ -1,7 +1,7 @@
 """
 Tests to verify date inputs are rendered correctly.
-
 """
+
 import datetime
 
 from tests.forms import DateInputForm

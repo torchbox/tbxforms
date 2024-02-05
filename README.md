@@ -336,17 +336,6 @@ Layout(
 
 ## Customising behaviour
 
-### Allow HTML markup within labels and help text
-
-Markup within labels and help text is disabled by default, though can be
-enabled via:
-
-```python
-TBXFORMS_ALLOW_HTML_LABEL = False
-TBXFORMS_ALLOW_HTML_HELP_TEXT = False
-TBXFORMS_ALLOW_HTML_BUTTON = False
-```
-
 ### Change the default label and legend classes
 
 Possible values for the `label_size` and `legend_size`:

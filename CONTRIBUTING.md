@@ -8,7 +8,7 @@ We welcome all support, whether on bug reports, code, design, reviews, tests, do
 
 ### Installation
 
-With Python 3.8 or up, Node 16, [pre-commit](https://pre-commit.com/) and [Poetry 1.4.1](https://python-poetry.org/docs/#installing-with-the-official-installer)
+With Python 3.8 or up, Node 20, [pre-commit](https://pre-commit.com/), and [Poetry 1.7.1](https://python-poetry.org/docs/#installing-with-the-official-installer)
 
 ```bash
 git clone git@github.com:torchbox/tbxforms.git
@@ -18,16 +18,31 @@ pre-commit install
 npm install
 ```
 
-### Python testing
+### Testing
 
-Run the Python tests with `poetry run pytest`.
+This project uses [pytest 7.0.x](https://docs.pytest.org/en/7.0.x/) and [tox](https://github.com/tox-dev/tox) for backend testing.
 
-If your changes cause snapshot tests to fail, verify that the changes you have caused are expected. Update the snapshots with `poetry run pytest --snapshot-update`.
+Generally you should use `tox`, though for quick testing during development you may want to just run `pytest` for ease.
+
+#### Run tests using single package versions
+
+`poetry run pytest` will run tests in whatever Python/package versions you have activated/installed.
+
+#### Run tests against all supported package versions
+
+`poetry run tox` will run tests against our supported package matrix.
+
+#### Updating snapshots
+
+If your changes cause the snapshot tests to fail:
+
+1. Verify that the changes you have caused are expected - don't just blindly update the snapshots, they're there for a reason.
+2. Run `poetry run pytest --snapshot-update` to update the snapshots.
 
 ## Publishing
 
 1. `pre-commit` - run linters
-2. `pytest` - run backend tests
+2. `poetry run tox` - run backend tests against our supported package matrix.
 3. Bump project version in pyproject.toml and package.json
 4. Update CHANGELOG headings (add a new heading beneath the "Unreleased" heading)
 5. `poetry lock --no-update` - Lock python packages

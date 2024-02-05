@@ -1,7 +1,7 @@
 """
 Tests to verify selects are rendered correctly.
-
 """
+
 from tbxforms.layout import (
     Field,
     Layout,

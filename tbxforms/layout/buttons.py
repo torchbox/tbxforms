@@ -1,6 +1,3 @@
-from django.conf import settings
-from django.utils.html import conditional_escape
-
 from crispy_forms.layout import BaseInput
 
 
@@ -97,21 +94,12 @@ class Button(BaseInput):
         )
 
     def __init__(self, name, value, disabled=False, css_class="", **kwargs):
+        self.css_class = css_class
+
         if disabled:
             kwargs["disabled"] = "disabled"
             kwargs["aria-disabled"] = "true"
 
-        # Escape HTML within button `value`'s unless it's set to allow.
-        # NB. Also see https://github.com/torchbox/tbxforms/blob/main/tbxforms/forms.py#L39  # noqa: E501
-        if all(
-            [
-                value,
-                not getattr(settings, "TBXFORMS_ALLOW_HTML_BUTTON", False),
-            ]
-        ):
-            value = conditional_escape(value)
-
-        self.css_class = css_class
         super().__init__(name, value, **kwargs)
 
 
