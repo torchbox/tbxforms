@@ -69,7 +69,7 @@ syrupy = "4.6.0"
 tox =  ">=4.4,<4.5"
 
 # Linters etc.
-black = "22.3.0"  # Match version in .pre-commit-config
+black = "24.3.0"  # Match version in .pre-commit-config
 detect-secrets = "~0.13"
 flake8 = "5.0.4"  # Match version in .pre-commit-config
 isort = "5.12.0"  # Match version in .pre-commit-config
