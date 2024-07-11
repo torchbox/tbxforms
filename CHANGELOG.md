@@ -18,7 +18,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Changed
 
--   Allow required fields to be highlighted instead of optional ones [!78]
+-   Allow required fields to be highlighted instead of optional ones [#78]
 
 ### Fixed
 
