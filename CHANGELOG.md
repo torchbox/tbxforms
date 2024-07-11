@@ -16,6 +16,10 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## Unreleased
 
+### Changed
+
+-   Allow required fields to be highlighted instead of optional ones [!78]
+
 ### Fixed
 
 -   Choice hints not showing on Django 5.x [#69]
