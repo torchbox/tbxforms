@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from crispy_forms import helper as crispy_forms_helper
 from crispy_forms.utils import TEMPLATE_PACK
 
@@ -72,6 +74,10 @@ class FormHelper(crispy_forms_helper.FormHelper):
             context["label_size"] = Size.for_label(self.label_size)
         if self.legend_size:
             context["legend_size"] = Size.for_legend(self.legend_size)
+
+        context["highlight_required_fields"] = getattr(
+            settings, "TBXFORMS_HIGHLIGHT_REQUIRED_FIELDS", False
+        )
 
         return super().render_layout(
             form, context, template_pack=template_pack
