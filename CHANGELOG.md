@@ -16,6 +16,10 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## Unreleased
 
+### Fixed
+
+-   Choice hints not showing on Django 5.x [#69]
+
 ## [2.0.1](https://github.com/torchbox/tbxforms/releases/tag/v2.0.1)
 
 ### Pinned packages updated
