@@ -38,11 +38,12 @@ if DJANGO_VERSION < (5, 0):
         pass
 
 else:
-    from django.utils import functional
 
     # Django 5+ internals changed the way the choices on a ChoiceField are
     # normalised. Changing the parent class to a Promise preserves the hint
     # and divider attributes so the field can be rendered.
+
+    from django.utils import functional
 
     class BaseChoice(functional.Promise):
         pass
