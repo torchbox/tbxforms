@@ -10,7 +10,7 @@ Examples: ::
 
     METHODS = (
         Choice("email", "Email"),
-        Choice("phone", "Phone", hint="Select this only if you have a mobile phone"),  # noqa
+        Choice("phone", "Phone", hint="Select this only if you have a phone."),
         Choice("text", "Text message"),
     )
 
@@ -27,9 +27,9 @@ Args:
 
     label (str): the label for the checkbox or radio button.
 
-    **kwargs: additional attributes to display for the checkbox or radio button.
-        Two attributes are supported: a `hint` that is displayed below the label
-        and a 'divider' that is displayed after the radio button.
+    **kwargs: additional attributes to display for the checkbox / radio button.
+        Two attributes are supported: a `hint` that is displayed below the
+        label and a 'divider' that is displayed after the radio button.
 """
 
 if DJANGO_VERSION < (5, 0):
