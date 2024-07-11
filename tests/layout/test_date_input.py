@@ -4,6 +4,8 @@ Tests to verify date inputs are rendered correctly.
 
 import datetime
 
+from django.test import override_settings
+
 from tests.forms import DateInputForm
 from tests.utils import render_form
 
@@ -57,7 +59,8 @@ def test_optional_field_highlighting(snapshot_html):
     assert render_form(form) == snapshot_html
 
 
-def test_required_field_highlighting(highlight_required_fields, snapshot_html):
+@override_settings(TBXFORMS_HIGHLIGHT_REQUIRED_FIELDS=True)
+def test_required_field_highlighting(snapshot_html):
     """
     Ensure fields can be marked with "*" instead of "(optional)".
     """

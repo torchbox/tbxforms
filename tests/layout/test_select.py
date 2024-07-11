@@ -2,6 +2,8 @@
 Tests to verify selects are rendered correctly.
 """
 
+from django.test import override_settings
+
 from tbxforms.layout import (
     Field,
     Layout,
@@ -70,7 +72,8 @@ def test_optional_field_highlighting(snapshot_html):
     assert render_form(form) == snapshot_html
 
 
-def test_required_field_highlighting(highlight_required_fields, snapshot_html):
+@override_settings(TBXFORMS_HIGHLIGHT_REQUIRED_FIELDS=True)
+def test_required_field_highlighting(snapshot_html):
     """
     Ensure fields can be marked with "*" instead of "(optional)".
     """
