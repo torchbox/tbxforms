@@ -25,7 +25,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Changed
 
--   `django-crispy-forms` updated to 2.x [#61]
+-   `django-crispy-forms` updated to 2.1.x [#61]
 
 ### Deprecated
 
