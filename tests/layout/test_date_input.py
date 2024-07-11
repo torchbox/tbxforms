@@ -46,3 +46,20 @@ def test_non_required_field_left_blank_does_not_raise_exception(snapshot_html):
     form.fields["date"].required = False
     assert form.is_valid()
     assert render_form(form) == snapshot_html
+
+
+def test_optional_field_highlighting(snapshot_html):
+    """
+    Ensure optional fields are marked with "(optional)" by default.
+    """
+    form = DateInputForm()
+    form.fields["date"].required = False
+    assert render_form(form) == snapshot_html
+
+
+def test_required_field_highlighting(highlight_required_fields, snapshot_html):
+    """
+    Ensure fields can be marked with "*" instead of "(optional)".
+    """
+    form = DateInputForm()
+    assert render_form(form) == snapshot_html

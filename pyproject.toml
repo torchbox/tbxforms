@@ -79,6 +79,7 @@ djlint = "1.23.3"
 # Testing
 pytest = "7.0.0"
 pytest-icdiff = "0.5"
+pytest-django = "4.8.0"
 
 [tool.isort]
 known_first_party = "tbxforms"

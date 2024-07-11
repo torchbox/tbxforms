@@ -97,3 +97,20 @@ def test_character_threshold():
     """Verify an exception is raise if the threshold is set with no limit."""
     with pytest.raises(ValueError):
         Field.textarea("description", threshold=50)
+
+
+def test_optional_field_highlighting(snapshot_html):
+    """
+    Ensure optional fields are marked with "(optional)" by default.
+    """
+    form = TextareaForm()
+    form.fields["description"].required = False
+    assert render_form(form) == snapshot_html
+
+
+def test_required_field_highlighting(highlight_required_fields, snapshot_html):
+    """
+    Ensure fields can be marked with "*" instead of "(optional)".
+    """
+    form = TextareaForm()
+    assert render_form(form) == snapshot_html

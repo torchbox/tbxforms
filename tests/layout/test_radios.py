@@ -82,3 +82,20 @@ def test_no_help_text_errors(snapshot_html):
     form = RadiosForm(data={"method": ""})
     form.fields["method"].help_text = ""
     assert render_form(form) == snapshot_html
+
+
+def test_optional_field_highlighting(snapshot_html):
+    """
+    Ensure optional fields are marked with "(optional)" by default.
+    """
+    form = RadiosForm()
+    form.fields["method"].required = False
+    assert render_form(form) == snapshot_html
+
+
+def test_required_field_highlighting(highlight_required_fields, snapshot_html):
+    """
+    Ensure fields can be marked with "*" instead of "(optional)".
+    """
+    form = RadiosForm()
+    assert render_form(form) == snapshot_html

@@ -13,3 +13,8 @@ def pytest_sessionstart(session):
 @pytest.fixture()
 def snapshot_html(snapshot):
     return snapshot.use_extension(SingleHTMLFileExtension)
+
+
+@pytest.fixture()
+def highlight_required_fields(settings):
+    settings.TBXFORMS_HIGHLIGHT_REQUIRED_FIELDS = True
