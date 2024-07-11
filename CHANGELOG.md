@@ -16,11 +16,13 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## Unreleased
 
+## [2.0.1](https://github.com/torchbox/tbxforms/releases/tag/v2.0.1)
+
 ### Pinned packages updated
 
--   `vite` from 2.9.17 to 2.9.18
--   `black` from 22.3.0 to 24.3.0
--   `poetry` from 1.7.1 to 1.8.3
+-   `vite` from 2.9.17 to 2.9.18 [#77]
+-   `black` from 22.3.0 to 24.3.0 [#77]
+-   `poetry` from 1.7.1 to 1.8.3 [#77]
 
 ## [2.0.0](https://github.com/torchbox/tbxforms/releases/tag/v2.0.0)
 
