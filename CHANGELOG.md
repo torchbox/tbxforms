@@ -11,10 +11,16 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 -   `Deprecated` for soon-to-be removed features.
 -   `Developer` for changes to the developer experience.
 -   `Fixed` for bug fixes.
+-   `Pinned packages updated` to list pinned packages that have been updated. Do not write changelog entries for third-party dependencies.
 -   `Removed` for now removed features.
--   `Security` in case of vulnerabilities.
 
 ## Unreleased
+
+### Pinned packages updated
+
+-   `vite` from 2.9.17 to 2.9.18
+-   `black` from 22.3.0 to 24.3.0
+-   `poetry` from 1.7.1 to 1.8.3
 
 ## [2.0.0](https://github.com/torchbox/tbxforms/releases/tag/v2.0.0)
 
@@ -25,9 +31,9 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Changed
 
--   `django-crispy-forms` updated to 2.1.x [#61]
+-   `|safe` is no longer applied within templates [#61]
 
-### Deprecated
+### Removed
 
 -   Django support for 2.2, 3.0, and 3.1 [#61]
 -   `TBXFORMS_ALLOW_HTML_LABEL`, `TBXFORMS_ALLOW_HTML_HELP_TEXT`, and `TBXFORMS_ALLOW_HTML_BUTTON` settings (developers must now mark strings as safe to render markup) [#61] [#62]
@@ -37,9 +43,11 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 -   Documentation referencing an incorrect CSS import path
 
-### Security
+### Pinned packages updated
 
--   `|safe` is no longer applied within templates [#61]
+-   `django` from 2.2.x to 3.2.x [#61]
+-   `django-crispy-forms` from 1.13.x to 2.1.x [#61]
+-   `flake8` from 4.0.1 to 5.0.4 [#61]
 
 ## [1.1.0](https://github.com/torchbox/tbxforms/releases/tag/v1.1.0)
 
