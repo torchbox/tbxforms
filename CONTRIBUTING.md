@@ -8,7 +8,7 @@ We welcome all support, whether on bug reports, code, design, reviews, tests, do
 
 ### Installation
 
-With Python 3.8 or up, Node 20, [pre-commit](https://pre-commit.com/), and [Poetry 1.7.1](https://python-poetry.org/docs/#installing-with-the-official-installer)
+With Python 3.8+, Node 20, and [Poetry 1.8.3](https://python-poetry.org/docs/#installing-with-the-official-installer) installed, run:
 
 ```bash
 git clone git@github.com:torchbox/tbxforms.git

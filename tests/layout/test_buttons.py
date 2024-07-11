@@ -2,7 +2,6 @@
 Tests to verify buttons are rendered correctly.
 """
 
-
 import pytest
 
 from tbxforms.layout import Button
