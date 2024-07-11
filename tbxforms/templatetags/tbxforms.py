@@ -296,9 +296,9 @@ class CrispyGDSFieldNode(template.Node):
                 conditional_attrs = ast.literal_eval(
                     html.unescape(widget.attrs.pop("data-conditional"))
                 )
-                widget.attrs[
-                    "data-conditional-field-name"
-                ] = conditional_attrs["field_name"]
+                widget.attrs["data-conditional-field-name"] = (
+                    conditional_attrs["field_name"]
+                )
                 widget.attrs["data-conditional-field-values"] = json.dumps(
                     conditional_attrs["values"]
                 )

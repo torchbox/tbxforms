@@ -1,7 +1,7 @@
 """
 Tests to verify the DateInputField.
-
 """
+
 import datetime
 
 from django.core.exceptions import ValidationError
