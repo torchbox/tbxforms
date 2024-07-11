@@ -336,6 +336,15 @@ Layout(
 
 ## Customising behaviour
 
+### Highlight required fields instead of optional ones
+
+If `TBXFORMS_HIGHLIGHT_REQUIRED_FIELDS=False` (or unset), optional fields will
+have "(optional)" appended to their labels. This is the default behaviour and
+recommended by GDS.
+
+If `TBXFORMS_HIGHLIGHT_REQUIRED_FIELDS=True`, required fields will have an
+asterisk appended to their labels and optional fields will not be highlighted.
+
 ### Change the default label and legend classes
 
 Possible values for the `label_size` and `legend_size`:
