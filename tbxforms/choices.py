@@ -1,4 +1,4 @@
-import django
+from django import VERSION as DJANGO_VERSION
 
 """
 Choice is used for the items in the choices attribute of a form field.
@@ -30,39 +30,33 @@ Args:
     **kwargs: additional attributes to display for the checkbox or radio button.
         Two attributes are supported: a `hint` that is displayed below the label
         and a 'divider' that is displayed after the radio button.
-
 """
 
-# Django 5+ internals changed the way the choices on a ChoiceField are
-# normalised. Changing the parent class to a Promise preserves the hint
-# and divider attributes so the field can be rendered.
+if DJANGO_VERSION < (5, 0):
 
-if django.VERSION[0] < 5:
-
-    class Choice:
-        def __init__(self, value, label, **kwargs):
-            self.value = value
-            self.label = label
-            for key, value in kwargs.items():
-                setattr(self, key, value)
-
-        def __iter__(self):
-            return iter((self.value, self.label))
-
-        def __getitem__(self, index):
-            return (self.value, self.label)[index]
+    class BaseChoice:
+        pass
 
 else:
+    from django.utils import functional
 
-    class Choice(django.utils.functional.Promise):
-        def __init__(self, value, label, **kwargs):
-            self.value = value
-            self.label = label
-            for key, value in kwargs.items():
-                setattr(self, key, value)
+    # Django 5+ internals changed the way the choices on a ChoiceField are
+    # normalised. Changing the parent class to a Promise preserves the hint
+    # and divider attributes so the field can be rendered.
 
-        def __iter__(self):
-            return iter((self.value, self.label))
+    class BaseChoice(functional.Promise):
+        pass
 
-        def __getitem__(self, index):
-            return (self.value, self.label)[index]
+
+class Choice(BaseChoice):
+    def __init__(self, value, label, **kwargs):
+        self.value = value
+        self.label = label
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
+    def __iter__(self):
+        return iter((self.value, self.label))
+
+    def __getitem__(self, index):
+        return (self.value, self.label)[index]
