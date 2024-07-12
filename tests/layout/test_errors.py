@@ -52,6 +52,7 @@ def test_custom_form_error_title(form, snapshot_html):
 
     rendered_form = render_form(form)
     assert rendered_form == snapshot_html
+    assert "There is a problem with your submission" not in rendered_form
     assert "Uh-oh!" in rendered_form
 
 
