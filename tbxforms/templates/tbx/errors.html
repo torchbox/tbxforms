@@ -13,11 +13,11 @@
         <div class="tbxforms-error-summary__body">
             <ul class="tbxforms-list tbxforms-error-summary__list">
                 {% for error in form.non_field_errors %}
-                    <li>{{ error|striptags }}</li>
+                    <li>{{ error }}</li>
                 {% endfor %}
 
                 {% for error in formset.non_field_errors %}
-                    <li>{{ error|striptags }}</li>
+                    <li>{{ error }}</li>
                 {% endfor %}
 
                 {% for field in form %}
