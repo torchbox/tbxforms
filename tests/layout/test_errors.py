@@ -23,7 +23,7 @@ def test_no_error(self, form, snapshot_html):
     Test default form used for tests is valid.
     """
 
-    assert form.is_valid() is True
+    assert form.is_valid()
     assert render_form(form) == snapshot_html
 
 
