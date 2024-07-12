@@ -11,7 +11,11 @@
         <legend class="tbxforms-fieldset__legend{% if legend_size %} {{ legend_size }}{% endif %}">
             {% if legend_tag %}<{{ legend_tag }} class="tbxforms-fieldset__heading">{% endif %}
             {{ field.label }}
-            {% if not field|show_as_required %} <span>{% trans "(optional)" %}</span>{% endif %}
+            {% if highlight_required_fields %}
+                {% if field|show_as_required %} {# djlint:off #}<span class="tbxforms-field_marker--required" title="{% trans '(required)' %}">*</span>{# djlint:on #}{% endif %}
+            {% else %}
+                {% if not field|show_as_required %} <span class="tbxforms-field_marker--optional">{% trans "(optional)" %}</span>{% endif %}
+            {% endif %}
             {% if legend_tag %}</{{ legend_tag }}>{% endif %}
         </legend>
     {% endif %}

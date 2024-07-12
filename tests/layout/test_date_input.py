@@ -4,6 +4,8 @@ Tests to verify date inputs are rendered correctly.
 
 import datetime
 
+from django.test import override_settings
+
 from tests.forms import DateInputForm
 from tests.utils import render_form
 
@@ -45,4 +47,22 @@ def test_non_required_field_left_blank_does_not_raise_exception(snapshot_html):
     form = DateInputForm(data={"date_0": "", "date_1": "", "date_2": ""})
     form.fields["date"].required = False
     assert form.is_valid()
+    assert render_form(form) == snapshot_html
+
+
+def test_optional_field_highlighting(snapshot_html):
+    """
+    Ensure optional fields are marked with "(optional)" by default.
+    """
+    form = DateInputForm()
+    form.fields["date"].required = False
+    assert render_form(form) == snapshot_html
+
+
+@override_settings(TBXFORMS_HIGHLIGHT_REQUIRED_FIELDS=True)
+def test_required_field_highlighting(snapshot_html):
+    """
+    Ensure fields can be marked with "*" instead of "(optional)".
+    """
+    form = DateInputForm()
     assert render_form(form) == snapshot_html

@@ -2,6 +2,8 @@
 Tests to verify textareas are rendered correctly.
 """
 
+from django.test import override_settings
+
 import pytest
 
 from tbxforms.layout import (
@@ -97,3 +99,21 @@ def test_character_threshold():
     """Verify an exception is raise if the threshold is set with no limit."""
     with pytest.raises(ValueError):
         Field.textarea("description", threshold=50)
+
+
+def test_optional_field_highlighting(snapshot_html):
+    """
+    Ensure optional fields are marked with "(optional)" by default.
+    """
+    form = TextareaForm()
+    form.fields["description"].required = False
+    assert render_form(form) == snapshot_html
+
+
+@override_settings(TBXFORMS_HIGHLIGHT_REQUIRED_FIELDS=True)
+def test_required_field_highlighting(snapshot_html):
+    """
+    Ensure fields can be marked with "*" instead of "(optional)".
+    """
+    form = TextareaForm()
+    assert render_form(form) == snapshot_html

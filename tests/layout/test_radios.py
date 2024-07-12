@@ -2,6 +2,8 @@
 Tests to verify radio buttons are rendered correctly.
 """
 
+from django.test import override_settings
+
 from tbxforms.layout import (
     Field,
     Layout,
@@ -81,4 +83,22 @@ def test_no_help_text_errors(snapshot_html):
     """
     form = RadiosForm(data={"method": ""})
     form.fields["method"].help_text = ""
+    assert render_form(form) == snapshot_html
+
+
+def test_optional_field_highlighting(snapshot_html):
+    """
+    Ensure optional fields are marked with "(optional)" by default.
+    """
+    form = RadiosForm()
+    form.fields["method"].required = False
+    assert render_form(form) == snapshot_html
+
+
+@override_settings(TBXFORMS_HIGHLIGHT_REQUIRED_FIELDS=True)
+def test_required_field_highlighting(snapshot_html):
+    """
+    Ensure fields can be marked with "*" instead of "(optional)".
+    """
+    form = RadiosForm()
     assert render_form(form) == snapshot_html

@@ -26,7 +26,11 @@
             {% if label_tag %}<{{ label_tag }} class="tbxforms-label-wrapper">{% endif %}
             <label for="{{ field.id_for_label }}" class="tbxforms-label{% if label_size %} {{ label_size }}{% endif %}">
                 {{ field.label }}
-                {% if not field|show_as_required %} <span>{% trans "(optional)" %}</span>{% endif %}
+                {% if highlight_required_fields %}
+                    {% if field|show_as_required %} {# djlint:off #}<span class="tbxforms-field_marker--required" title="{% trans '(required)' %}">*</span>{# djlint:on #}{% endif %}
+                {% else %}
+                    {% if not field|show_as_required %} <span class="tbxforms-field_marker--optional">{% trans "(optional)" %}</span>{% endif %}
+                {% endif %}
             </label>
             {% if label_tag %}</{{ label_tag }}>{% endif %}
         {% endif %}
