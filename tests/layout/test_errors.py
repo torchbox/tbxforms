@@ -66,6 +66,7 @@ def test_safe_markup_in_non_field_error(form, snapshot_html):
     rendered_form = render_form(form)
     assert rendered_form == snapshot_html
     assert "<i>with markup</i>" in rendered_form
+    assert "&lt;i&gt;with markup&lt;/i&gt;" not in rendered_form
 
 
 def test_unsafe_markup_in_non_field_error(form, snapshot_html):
@@ -79,6 +80,7 @@ def test_unsafe_markup_in_non_field_error(form, snapshot_html):
     rendered_form = render_form(form)
     assert rendered_form == snapshot_html
     assert "<i>with markup</i>" not in rendered_form
+    assert "&lt;i&gt;with markup&lt;/i&gt;" in rendered_form
 
 
 def test_safe_markup_in_field_error(form, snapshot_html):
@@ -91,6 +93,7 @@ def test_safe_markup_in_field_error(form, snapshot_html):
     rendered_form = render_form(form)
     assert rendered_form == snapshot_html
     assert "<i>with markup</i>" in rendered_form
+    assert "&lt;i&gt;with markup&lt;/i&gt;" not in rendered_form
 
 
 def test_unsafe_markup_in_field_error(form, snapshot_html):
@@ -104,3 +107,4 @@ def test_unsafe_markup_in_field_error(form, snapshot_html):
     rendered_form = render_form(form)
     assert rendered_form == snapshot_html
     assert "<i>with markup</i>" not in rendered_form
+    assert "&lt;i&gt;with markup&lt;/i&gt;" in rendered_form
