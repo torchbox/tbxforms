@@ -56,9 +56,9 @@ def test_custom_form_error_title(form, snapshot_html):
     assert "Uh-oh!" in rendered_form
 
 
-def test_markup_allowed_in_non_field_error(form, snapshot_html):
+def test_safe_markup_in_non_field_error(form, snapshot_html):
     """
-    Test markup is rendered for non-field errors.
+    Test safe markup is rendered for non-field errors.
     """
     form.add_error(None, mark_safe("Non-field error <i>with markup</i>."))
     assert not form.is_valid()
@@ -68,9 +68,22 @@ def test_markup_allowed_in_non_field_error(form, snapshot_html):
     assert "<i>with markup</i>" in rendered_form
 
 
-def test_markup_allowed_in_field_error(form, snapshot_html):
+def test_unsafe_markup_in_non_field_error(form, snapshot_html):
     """
-    Test markup is rendered for non-field errors.
+    Test unsafe markup does not get automatically marked as safe for non-field
+    errors.
+    """
+    form.add_error(None, "Non-field error <i>with markup</i>.")
+    assert not form.is_valid()
+
+    rendered_form = render_form(form)
+    assert rendered_form == snapshot_html
+    assert "<i>with markup</i>" not in rendered_form
+
+
+def test_safe_markup_in_field_error(form, snapshot_html):
+    """
+    Test markup is rendered for field errors.
     """
     form.add_error("accept", mark_safe("Field error <i>with markup</i>."))
     assert not form.is_valid()
@@ -78,3 +91,16 @@ def test_markup_allowed_in_field_error(form, snapshot_html):
     rendered_form = render_form(form)
     assert rendered_form == snapshot_html
     assert "<i>with markup</i>" in rendered_form
+
+
+def test_unsafe_markup_in_field_error(form, snapshot_html):
+    """
+    Test unsafe markup does not get automatically marked as safe for field
+    errors.
+    """
+    form.add_error("accept", "Field error <i>with markup</i>.")
+    assert not form.is_valid()
+
+    rendered_form = render_form(form)
+    assert rendered_form == snapshot_html
+    assert "<i>with markup</i>" not in rendered_form
