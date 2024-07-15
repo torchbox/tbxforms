@@ -17,6 +17,18 @@ variables can be customised.
 -   wagtail `>=2.15` if using `WagtailBaseForm`
 -   sass `>=1.33.0` if building the sass yourself
 
+> [!NOTE] > **[govuk-frontend](https://github.com/alphagov/govuk-frontend) will
+> not, and does not need to, be installed to use this package.**
+>
+> All form-related styles from `govuk-frontend==5.4.1` have been
+> copied into this project with the prepended "govuk-" replaced with
+> "tbxforms-", e.g. `.govuk-button` to `.tbxforms-button` and
+> `@mixin govuk-clearfix` to `@mixin tbxforms-clearfix`.
+
+Installing the complete GOV.UK Frontend increases the bundle size, which is
+unnecessary for most projects. While this increases the bundle size for
+government projects, the former outweighs the latter.
+
 ## Installation
 
 You must install both the Python package and the NPM package.
@@ -82,13 +94,10 @@ Import the styles into your project...
 
 ```scss
 @use 'node_modules/tbxforms/tbxforms.scss' with (
-    $tbxforms-error-colour: #f00,
     $tbxforms-text-colour: #000,
+    $tbxforms-error-colour: #f00,
 );
 ```
-
-Alternatively, variables can be defined in a centralised variables SCSS
-such as [tbxforms/static/sass/abstracts/\_variables.scss](https://github.com/torchbox/tbxforms/blob/main/tbxforms/static/sass/abstracts/_variables.scss).
 
 #### Add button styles
 

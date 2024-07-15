@@ -1,0 +1,165 @@
+@import "../error-message/index";
+@import "../hint/index";
+@import "../label/index";
+
+@include tbxforms-exports("govuk/component/input") {
+  .tbxforms-input {
+    @include tbxforms-font($size: 19);
+
+    box-sizing: border-box;
+    width: 100%;
+    height: tbxforms-px-to-rem(40px);
+    margin-top: 0;
+    padding: tbxforms-spacing(1);
+    // Setting any background-color makes text invisible when changing colours
+    // to dark backgrounds in Firefox (https://bugzil.la/1335476). As
+    // background-color and color need to always be set together, color should
+    // not be set either
+    border: $tbxforms-border-width-form-element solid $tbxforms-input-border-colour;
+    border-radius: 0;
+
+    // Disable inner shadow and remove rounded corners
+    appearance: none;
+
+    &:focus {
+      outline: $tbxforms-focus-width solid $tbxforms-focus-colour;
+      // Ensure outline appears outside of the element
+      outline-offset: 0;
+      // Double the border by adding its width again. Use `box-shadow` for this
+      // instead of changing `border-width` - this is for consistency with
+      // components such as textarea where we avoid changing `border-width` as
+      // it will change the element size. Also, `outline` cannot be utilised
+      // here as it is already used for the yellow focus state.
+      box-shadow: inset 0 0 0 $tbxforms-border-width-form-element;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      color: inherit;
+      background-color: transparent;
+      cursor: not-allowed;
+    }
+  }
+
+  .tbxforms-input::-webkit-outer-spin-button,
+  .tbxforms-input::-webkit-inner-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+  }
+
+  .tbxforms-input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  .tbxforms-input--error {
+    border-color: $tbxforms-error-colour;
+
+    &:focus {
+      border-color: $tbxforms-input-border-colour;
+    }
+  }
+
+  .tbxforms-input--extra-letter-spacing {
+    @include tbxforms-font-tabular-numbers;
+    letter-spacing: 0.05em;
+  }
+
+  // em measurements are based on the point size of the typeface
+  // Extra space is added on the right to allow for the Safari prefill icon
+
+  .tbxforms-input--width-30 {
+    max-width: 29.5em;
+  }
+
+  .tbxforms-input--width-20 {
+    max-width: 20.5em;
+  }
+
+  .tbxforms-input--width-10 {
+    max-width: 11.5em;
+  }
+
+  .tbxforms-input--width-5 {
+    max-width: 5.5em;
+  }
+
+  .tbxforms-input--width-4 {
+    max-width: 4.5em;
+  }
+
+  .tbxforms-input--width-3 {
+    max-width: 3.75em;
+  }
+
+  .tbxforms-input--width-2 {
+    max-width: 2.75em;
+  }
+
+  .tbxforms-input__wrapper {
+    display: flex;
+
+    .tbxforms-input {
+      flex: 0 1 auto;
+    }
+
+    .tbxforms-input:focus {
+      // Hack to stop focus style being overlapped by the suffix
+      z-index: 1;
+    }
+
+    // Split prefix/suffix onto separate lines on narrow screens
+    @include tbxforms-media-query($until: mobile) {
+      display: block;
+
+      .tbxforms-input {
+        // Set max-width to override potential width override class on the input
+        max-width: 100%;
+      }
+    }
+  }
+
+  .tbxforms-input__prefix,
+  .tbxforms-input__suffix {
+    @include tbxforms-font($size: 19);
+    box-sizing: border-box;
+    // Use flexbox to align text within the prefix and suffix
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: tbxforms-px-to-rem(40px);
+    height: tbxforms-px-to-rem(40px);
+    padding: tbxforms-spacing(1);
+    border: $tbxforms-border-width-form-element solid $tbxforms-input-border-colour;
+    background-color: tbxforms-colour("light-grey");
+    text-align: center;
+    white-space: nowrap;
+    // Emphasise non-editable status of prefixes and suffixes
+    cursor: default;
+    flex: 0 0 auto;
+    // Split prefix/suffix onto separate lines on narrow screens
+    @include tbxforms-media-query($until: mobile) {
+      display: block;
+      height: 100%;
+      white-space: normal;
+    }
+  }
+
+  .tbxforms-input__prefix {
+    @include tbxforms-media-query($until: mobile) {
+      border-bottom: 0;
+    }
+    @include tbxforms-media-query($from: mobile) {
+      border-right: 0;
+    }
+  }
+
+  // Split prefix/suffix onto separate lines on narrow screens
+  .tbxforms-input__suffix {
+    @include tbxforms-media-query($until: mobile) {
+      border-top: 0;
+    }
+    @include tbxforms-media-query($from: mobile) {
+      border-left: 0;
+    }
+  }
+}

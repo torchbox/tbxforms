@@ -1,0 +1,105 @@
+////
+/// @group settings/layout
+////
+
+// =========================================================
+// Page layout
+// =========================================================
+
+/// Width of main container
+///
+/// @type Number
+/// @access public
+
+$tbxforms-page-width: 960px !default;
+
+/// Map of grid column widths
+///
+/// @type Map
+/// @access public
+
+$tbxforms-grid-widths: (
+  one-quarter: (
+    calc(100% / 4)
+  ),
+  one-third: (
+    calc(100% / 3)
+  ),
+  one-half: (
+    calc(100% / 2)
+  ),
+  two-thirds: (
+    calc(200% / 3)
+  ),
+  three-quarters: (
+    calc(300% / 4)
+  ),
+  full: 100%
+) !default;
+
+/// Width of gutter between grid columns
+///
+/// @type Number
+/// @access public
+
+$tbxforms-gutter: 30px !default;
+
+/// Width of half the gutter between grid columns
+///
+/// @type Number
+/// @access public
+
+$tbxforms-gutter-half: calc($tbxforms-gutter / 2);
+
+// =========================================================
+// Borders
+// =========================================================
+
+/// Standard border width
+///
+/// @type Number
+/// @access public
+
+$tbxforms-border-width: 5px !default;
+
+/// Wide border width
+///
+/// @type Number
+/// @access public
+
+$tbxforms-border-width-wide: 10px !default;
+
+/// Narrow border width
+///
+/// @type Number
+/// @access public
+
+$tbxforms-border-width-narrow: 4px !default;
+
+/// Form control border width
+///
+/// @type Number
+/// @access public
+
+$tbxforms-border-width-form-element: 2px !default;
+
+/// Form group border width when in error state
+///
+/// @type Number
+/// @access public
+
+$tbxforms-border-width-form-group-error: $tbxforms-border-width !default;
+
+/// Border width of focus outline
+///
+/// @type Number
+/// @access public
+
+$tbxforms-focus-width: 3px !default;
+
+/// Hover width for form controls with a hover state
+///
+/// @type Number
+/// @access public
+
+$tbxforms-hover-width: 10px !default;

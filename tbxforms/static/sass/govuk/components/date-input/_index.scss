@@ -1,0 +1,25 @@
+@import "../error-message/index";
+@import "../input/index";
+@import "../hint/index";
+@import "../label/index";
+
+@include tbxforms-exports("govuk/component/date-input") {
+  .tbxforms-date-input {
+    @include tbxforms-clearfix;
+    font-size: 0; // removes whitespace caused by inline-block
+  }
+
+  .tbxforms-date-input__item {
+    display: inline-block;
+    margin-right: tbxforms-spacing(4);
+    margin-bottom: 0;
+  }
+
+  .tbxforms-date-input__label {
+    display: block;
+  }
+
+  .tbxforms-date-input__input {
+    margin-bottom: 0;
+  }
+}

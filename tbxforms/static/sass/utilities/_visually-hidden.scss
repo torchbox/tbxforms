@@ -1,9 +1,0 @@
-@import '../helpers/visually-hidden';
-
-.tbxforms-visually-hidden {
-    @include tbxforms-visually-hidden();
-}
-
-.tbxforms-visually-hidden-focusable {
-    @include tbxforms-visually-hidden-focusable();
-}

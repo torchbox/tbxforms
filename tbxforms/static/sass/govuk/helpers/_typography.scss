@@ -1,0 +1,269 @@
+////
+/// @group helpers/typography
+////
+
+@import "../tools/px-to-rem";
+
+/// 'Common typography' helper
+///
+/// Sets the font family and associated properties, such as font smoothing. Also
+/// overrides the font for print.
+///
+/// @param {List} $font-family [$tbxforms-font-family] Font family to use
+/// @access public
+
+@mixin tbxforms-typography-common($font-family: $tbxforms-font-family) {
+  font-family: $font-family;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  // If the user is using the default GDS Transport font we need to include
+  // the font-face declarations.
+  @if $tbxforms-include-default-font-face {
+    @include _tbxforms-font-face-gds-transport;
+  }
+
+  @include tbxforms-media-query($media-type: print) {
+    font-family: $tbxforms-font-family-print;
+  }
+}
+
+/// Text colour helper
+///
+/// Sets the text colour, including a suitable override for print.
+///
+/// @access public
+
+@mixin tbxforms-text-colour {
+  color: $tbxforms-text-colour;
+
+  @include tbxforms-media-query($media-type: print) {
+    color: $tbxforms-print-text-colour;
+  }
+}
+
+/// Regular font weight helper
+///
+/// @param {Boolean} $important [false] - Whether to mark declarations as
+///   `!important`. Generally Used to create override classes.
+/// @access public
+
+@mixin tbxforms-typography-weight-regular($important: false) {
+  font-weight: $tbxforms-font-weight-regular if($important, !important, null);
+}
+
+/// Bold font weight helper
+///
+/// @param {Boolean} $important [false] - Whether to mark declarations as
+///   `!important`. Generally Used to create override classes.
+/// @access public
+
+@mixin tbxforms-typography-weight-bold($important: false) {
+  font-weight: $tbxforms-font-weight-bold if($important, !important, null);
+}
+
+/// Tabular number helper
+///
+/// Switches numerical glyphs (0–9) to use alternative forms with a
+/// monospaced bounding box. This ensures that columns of numbers, such
+/// as those in tables, remain horizontally aligned with one another.
+/// This also has the useful side effect of making numbers more legible
+/// in some situations, such as reference codes, as the numbers are more
+/// distinct and visually separated from one another.
+///
+/// @param {Boolean} $important [false] - Whether to mark declarations as
+///   `!important`. Generally Used to create override classes.
+/// @access public
+
+@mixin tbxforms-font-tabular-numbers($important: false) {
+  font-variant-numeric: tabular-nums if($important, !important, null);
+}
+
+/// Convert line-heights specified in pixels into a relative value, unless
+/// they are already unit-less (and thus already treated as relative values)
+/// or the units do not match the units used for the font size.
+///
+/// @param {Number} $line-height Line height
+/// @param {Number} $font-size Font size
+/// @return {Number} The line height as either a relative value or unmodified
+///
+/// @access private
+
+@function _tbxforms-line-height($line-height, $font-size) {
+  @if not unitless($line-height) and unit($line-height) == unit($font-size) {
+    $line-height: calc($line-height / $font-size);
+  }
+
+  @return $line-height;
+}
+
+/// Font size and line height helper
+///
+/// @param {Number} $size - Point from the type scale (the size as it would
+///   appear on tablet and above)
+/// @param {Number} $override-line-height [false] - Non responsive custom line
+///   height. Omit to use the line height from the font map.
+/// @param {Boolean} $important [false] - Whether to mark declarations as
+///   `!important`.
+///
+/// @throw if `$size` is not a valid point from the type scale
+///
+/// @access public
+///
+/// @alias tbxforms-font-size
+/// @deprecated Use `tbxforms-font-size` instead
+
+@mixin tbxforms-typography-responsive($size, $override-line-height: false, $important: false) {
+  @include _warning(
+    "tbxforms-typography-responsive",
+    "tbxforms-typography-responsive is deprecated. Use tbxforms-font-size instead."
+  );
+  @include tbxforms-font-size($size, $override-line-height, $important);
+}
+
+/// Font size and line height helper
+///
+/// Takes a point from the responsive 'font map' as an argument (the size as it
+/// would appear on tablet and above), and uses it to create font-size and
+/// line-height declarations for different breakpoints, and print.
+///
+/// Example font map:
+///
+/// ```scss
+/// 19: (
+///   null: (
+///     font-size: 16px,
+///     line-height: 20px
+///   ),
+///   tablet: (
+///     font-size: 19px,
+///     line-height: 25px
+///   ),
+///   print: (
+///     font-size: 14pt,
+///     line-height: 1.15
+///   )
+/// );
+/// ```
+///
+/// @param {Number | String} $size - Point from the type scale (the size as
+///   it would appear on tablet and above)
+/// @param {Number} $line-height [false] - Non responsive custom line
+///   height. Omit to use the line height from the font map.
+/// @param {Boolean} $important [false] - Whether to mark declarations as
+///   `!important`.
+///
+/// @throw if `$size` is not a valid point from the type scale
+///
+/// @access public
+
+@mixin tbxforms-font-size($size, $line-height: false, $important: false) {
+  // Flag font sizes that start with underscores so we can suppress warnings on
+  // deprecated sizes used internally, for example `tbxforms-font($size: "_14")`
+  $size-internal-use-only: str-slice(#{$size}, 1, 1) == "_";
+
+  // Remove underscore from font sizes flagged for internal use
+  @if $size-internal-use-only {
+    $size: str-slice(#{$size}, 2);
+  }
+
+  // Check for a font map exactly matching the given size
+  $font-map: map-get($tbxforms-typography-scale, $size);
+
+  // No match? Try with string type (e.g. $size: "16" not 16)
+  @if not $font-map {
+    @each $font-size in map-keys($tbxforms-typography-scale) {
+      @if not $font-map and #{$font-size} == #{$size} {
+        $font-map: map-get($tbxforms-typography-scale, $font-size);
+      }
+    }
+  }
+
+  // Still no match? Throw error
+  @if not $font-map {
+    @error "Unknown font size `#{$size}` - expected a point from the type scale.";
+  }
+
+  // Check for a deprecation within the type scale
+  $deprecation: map-get($font-map, "deprecation");
+
+  @if $deprecation {
+    // Warn on deprecated font sizes unless flagged for internal use
+    @if not $size-internal-use-only {
+      @include _warning(map-get($deprecation, "key"), map-get($deprecation, "message"));
+    }
+
+    // remove the deprecation map keys so they do not break the breakpoint loop
+    $font-map: map-remove($font-map, "deprecation");
+  }
+
+  @each $breakpoint, $breakpoint-map in $font-map {
+    $font-size: map-get($breakpoint-map, "font-size");
+    $font-size-rem: tbxforms-px-to-rem($font-size);
+
+    // $calculated-line-height is a separate variable from $line-height,
+    // as otherwise the value would get redefined with each loop and
+    // eventually break _tbxforms-line-height.
+    //
+    // We continue to call the param $line-height to stay consistent with the
+    // naming with tbxforms-font.
+    $calculated-line-height: _tbxforms-line-height(
+      $line-height: if($line-height, $line-height, map-get($breakpoint-map, "line-height")),
+      $font-size: $font-size
+    );
+
+    // Mark rules as !important if $important is true - this will result in
+    // these variables becoming strings, so this needs to happen *after* they
+    // are used in calculations
+    $font-size: $font-size if($important, !important, null);
+    $font-size-rem: $font-size-rem if($important, !important, null);
+    $calculated-line-height: $calculated-line-height if($important, !important, null);
+
+    @if not $breakpoint {
+      font-size: $font-size-rem;
+      line-height: $calculated-line-height;
+    } @else if $breakpoint == "print" {
+      @include tbxforms-media-query($media-type: print) {
+        font-size: $font-size;
+        line-height: $calculated-line-height;
+      }
+    } @else {
+      @include tbxforms-media-query($from: $breakpoint) {
+        font-size: $font-size-rem;
+        line-height: $calculated-line-height;
+      }
+    }
+  }
+}
+
+/// Font helper
+///
+/// @param {Number | Boolean | String} $size Point from the type scale (the
+///   size as it would appear on tablet and above). Use `false` to avoid setting
+///   a size.
+/// @param {String} $weight [regular] - Weight: `bold` or `regular`
+/// @param {Boolean} $tabular [false] - Whether to use tabular numbers or not
+/// @param {Number} $line-height [false] - Line-height, if overriding the
+///   default
+///
+/// @throw if `$size` is not a valid point from the type scale (or false)
+///
+/// @access public
+
+@mixin tbxforms-font($size, $weight: regular, $tabular: false, $line-height: false) {
+  @include tbxforms-typography-common;
+
+  @if $tabular {
+    @include tbxforms-font-tabular-numbers;
+  }
+
+  @if $weight == regular {
+    @include tbxforms-typography-weight-regular;
+  } @else if $weight == bold {
+    @include tbxforms-typography-weight-bold;
+  }
+
+  @if $size {
+    @include tbxforms-font-size($size, $line-height);
+  }
+}

@@ -52,3 +52,16 @@ If your changes cause the snapshot tests to fail:
 9. `npm publish` - publish package to npmjs.com
 10. `poetry publish` - publish package to pypi.org
 11. Create a [release](https://github.com/torchbox/tbxforms/releases) with relevant changelog entries and upgrade considerations
+
+## Common tasks
+
+### Updating govuk-frontend
+
+Everything within the `sass/govuk` directory is mostly unmodified, except that:
+
+1. all instances of "govuk-" have been replaced with "tbxforms-"
+2. unused .scss files have been removed
+3. imports to unused .scss files have been commented out (not removed to make tracing changes easier)
+4. all other file types (e.g. .js, .md, .njk) have been deleted
+
+This list also acts as a checklist for updating `govuk-frontend` in the future.

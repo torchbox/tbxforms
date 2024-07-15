@@ -45,9 +45,9 @@
                 </label>
 
                 {% if choice.hint %}
-                    <span id="id_{{ field.html_name }}_{{ forloop.counter }}_hint" class="tbxforms-hint tbxforms-checkboxes__hint">
+                    <p id="id_{{ field.html_name }}_{{ forloop.counter }}_hint" class="tbxforms-hint tbxforms-checkboxes__hint">
                         {{ choice.hint }}
-                    </span>
+                    </p>
                 {% endif %}
 
                 {% if choice.divider %}
