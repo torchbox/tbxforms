@@ -51,11 +51,11 @@
                     </p>
                 {% endif %}
             </div>
-        {% endfor %}
 
-        {% if choice.divider %}
-            <div class="tbxforms-radios__divider">{{ choice.divider }}</div>
-        {% endif %}
+            {% if choice.divider %}
+                <div class="tbxforms-radios__divider">{{ choice.divider }}</div>
+            {% endif %}
+        {% endfor %}
     </div>
 
 </fieldset>
