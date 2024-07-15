@@ -32,7 +32,7 @@
                     id="id_{{ field.html_name }}_{{ forloop.counter }}"
                     value="{{ choice.0|unlocalize }}"
 
-                    {% if choice.0 in field.value or choice.0|stringformat:"s" in field.value or choice.0|stringformat:"s" == field.value|stringformat:"s" %}
+                    {% if choice.0|stringformat:"s" == field.value|stringformat:"s" %}
                         checked="checked"
                     {% endif %}
 
@@ -51,11 +51,11 @@
                     </p>
                 {% endif %}
             </div>
-
-            {% if choice.divider %}
-                <div class="tbxforms-radios__divider">{{ choice.divider }}</div>
-            {% endif %}
         {% endfor %}
+
+        {% if choice.divider %}
+            <div class="tbxforms-radios__divider">{{ choice.divider }}</div>
+        {% endif %}
     </div>
 
 </fieldset>
