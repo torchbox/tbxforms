@@ -16,6 +16,16 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## Unreleased
 
+## [3.0.0](https://github.com/torchbox/tbxforms/releases/tag/v3.0.0)
+
+### Developer
+
+-   Guidance on how to update `govuk-frontend` [#80]
+
+### Pinned packages updated
+
+-   `govuk-frontend` from ? to 5.4.1 [#80]
+
 ## [2.1.0](https://github.com/torchbox/tbxforms/releases/tag/v2.1.0)
 
 ### Changed
