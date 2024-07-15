@@ -12,8 +12,8 @@ variables can be customised.
 ## Requirements
 
 -   python `>=3.8.1,<4.0`
--   Django `>=2.2`
--   django-crispy-forms `>=1.13.0,<2.0`
+-   Django `>=3.2`
+-   django-crispy-forms `>=2.1,<3.0`
 -   wagtail `>=2.15` if using `WagtailBaseForm`
 -   sass `>=1.33.0` if building the sass yourself
 
@@ -25,9 +25,12 @@ variables can be customised.
 > "tbxforms-", e.g. `.govuk-button` to `.tbxforms-button` and
 > `@mixin govuk-clearfix` to `@mixin tbxforms-clearfix`.
 
-Installing the complete GOV.UK Frontend increases the bundle size, which is
-unnecessary for most projects. While this increases the bundle size for
-government projects, the former outweighs the latter.
+For non-government projects, installing the complete GOV.UK Frontend package
+unnecessarily increases the bundle size as we only need form-related styles.
+
+For government projects, this increases the bundle size as both `tbxforms` and
+`govuk-frontend` must be installed. However, these projects are less common, so
+they are not prioritised.
 
 ## Installation
 
