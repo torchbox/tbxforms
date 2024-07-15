@@ -57,11 +57,14 @@ If your changes cause the snapshot tests to fail:
 
 ### Updating govuk-frontend
 
-Everything within the `sass/govuk` directory is mostly unmodified, except that:
+Everything within the `/static/sass/govuk/` directory is mostly unmodified,
+except that:
 
 1. all instances of "govuk-" have been replaced with "tbxforms-"
-2. unused .scss files have been removed
-3. imports to unused .scss files have been commented out (not removed to make tracing changes easier)
-4. all other file types (e.g. .js, .md, .njk) have been deleted
+2. unused .scss files and all other file types (.js, .md, .njk) have been deleted
+3. imports to unused .scss files have been commented-out (not removed, to make tracing changes easier)
+4. added `calc()` to equations to avoid Dart Sass 2.0.0 deprecation warning
+
+There's also some overrides in `/static/sass/govuk-overrides/` to be aware of.
 
 This list also acts as a checklist for updating `govuk-frontend` in the future.
