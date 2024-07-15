@@ -1,7 +1,7 @@
 {% load i18n %}
 
 {% for error in field.errors %}
-    <span id="{{ field.auto_id }}_{{ forloop.counter }}_error" class="tbxforms-error-message">
+    <p id="{{ field.auto_id }}_{{ forloop.counter }}_error" class="tbxforms-error-message">
         <span class="tbxforms-visually-hidden">{% translate "Error:" %}</span> {{ error }}
-    </span>
+    </p>
 {% endfor %}
