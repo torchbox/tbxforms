@@ -1,21 +1,8 @@
-// ----------------------------------------------------------------------------
 // First import our overridden settings.
-
 @import 'govuk-overrides/settings';
 
-// ----------------------------------------------------------------------------
-// Then import the core GDS stuff.
-
+// Then import GDS stuff.
 @import 'govuk/base';
-
-// ----------------------------------------------------------------------------
-// Then import our overridden mixins to replace ones defined by GDS.
-
-@import 'govuk-overrides/mixins';
-
-// ----------------------------------------------------------------------------
-// Then import all the components we're using.
-
 // @import "accordion/index";
 // @import "back-link/index";
 // @import "breadcrumbs/index";
@@ -51,3 +38,6 @@
 // @import "task-list/index";
 @import 'govuk/components/textarea/index';
 // @import "warning-text/index";
+
+// Finally, import our additional styles.
+@import 'govuk-overrides/components';

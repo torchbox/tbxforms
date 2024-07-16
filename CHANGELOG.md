@@ -24,7 +24,31 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Pinned packages updated
 
--   `govuk-frontend` from ? to 5.4.1 [#80]
+-   `govuk-frontend` from 3.13.0 (possibly) to 5.4.1 [#80]
+
+### Removed
+
+Several CSS classes/mixins have been removed/renamed in this release, some of
+which are vendor changes in `govuk-frontend`.
+
+Unfortunately, the initial release of tbxforms customised the styles from
+`govuk-frontend` without documentation - including which version was used as a
+base. As a result, it's hard to distinguish between variables/mixins we
+added which have now been removed and those which GDS have removed over time.
+
+However, variables which have now been removed from our \_variables.scss are:
+
+-   `$tbxforms-border-colour-conditional` (no longer configurable; now using GDS' `mid-grey` (#b1b4b6)) [#80]
+-   `$tbxforms-border-width-conditional` (no longer configurable; now using GDS' `$tbxforms-border-width`) [#80]
+-   `$tbxforms-weight--bold` (use `$tbxforms-font-weight-bold` instead) [#80]
+-   `$tbxforms-weight--normal` (use `$tbxforms-font-weight-regular` instead) [#80]
+-   `$tbxforms-grid` (no longer configurable; now using GDS' default spacing) [#80]
+-   `$tbxforms-spacer` (no longer configurable; now using GDS' default spacing) [#80]
+-   `$tbxforms-in-field-spacer` (no longer configurable; now using GDS' default spacing) [#80]
+-   `$tbxforms-form-group-spacer` (no longer configurable; now using GDS' default spacing) [#80]
+-   `$tbxforms-base-font-size` (use `$tbxforms-typography-scale` instead) [#80]
+-   `$tbxforms-base-line-height` (use `$tbxforms-typography-scale` instead) [#80]
+-   `$tbxforms-font-sizes` (use `$tbxforms-typography-scale` instead) [#80]
 
 ## [2.1.0](https://github.com/torchbox/tbxforms/releases/tag/v2.1.0)
 
