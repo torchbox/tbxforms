@@ -17,13 +17,16 @@ variables can be customised.
 -   wagtail `>=2.15` if using `WagtailBaseForm`
 -   sass `>=1.33.0` if building the sass yourself
 
-> [!NOTE] > **[govuk-frontend](https://github.com/alphagov/govuk-frontend) will
+<!-- prettier-ignore-start -->
+> [!NOTE]
+> **[govuk-frontend](https://github.com/alphagov/govuk-frontend) will
 > not, and does not need to, be installed to use this package.**
 >
 > All form-related styles from `govuk-frontend==5.4.1` have been
 > copied into this project with the prepended "govuk-" replaced with
 > "tbxforms-", e.g. `.govuk-button` to `.tbxforms-button` and
 > `@mixin govuk-clearfix` to `@mixin tbxforms-clearfix`.
+<!-- prettier-ignore-end -->
 
 For non-government projects, installing the complete GOV.UK Frontend package
 unnecessarily increases the bundle size as we only need form-related styles.
