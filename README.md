@@ -12,10 +12,25 @@ variables can be customised.
 ## Requirements
 
 -   python `>=3.8.1,<4.0`
--   Django `>=2.2`
--   django-crispy-forms `>=1.13.0,<2.0`
+-   Django `>=3.2`
+-   django-crispy-forms `>=2.1,<3.0`
 -   wagtail `>=2.15` if using `WagtailBaseForm`
 -   sass `>=1.33.0` if building the sass yourself
+
+> [!NOTE] > **[govuk-frontend](https://github.com/alphagov/govuk-frontend) will
+> not, and does not need to, be installed to use this package.**
+>
+> All form-related styles from `govuk-frontend==5.4.1` have been
+> copied into this project with the prepended "govuk-" replaced with
+> "tbxforms-", e.g. `.govuk-button` to `.tbxforms-button` and
+> `@mixin govuk-clearfix` to `@mixin tbxforms-clearfix`.
+
+For non-government projects, installing the complete GOV.UK Frontend package
+unnecessarily increases the bundle size as we only need form-related styles.
+
+For government projects, this increases the bundle size as both `tbxforms` and
+`govuk-frontend` must be installed. However, these projects are less common, so
+they are not prioritised.
 
 ## Installation
 
@@ -82,13 +97,10 @@ Import the styles into your project...
 
 ```scss
 @use 'node_modules/tbxforms/tbxforms.scss' with (
-    $tbxforms-error-colour: #f00,
     $tbxforms-text-colour: #000,
+    $tbxforms-error-colour: #f00,
 );
 ```
-
-Alternatively, variables can be defined in a centralised variables SCSS
-such as [tbxforms/static/sass/abstracts/\_variables.scss](https://github.com/torchbox/tbxforms/blob/main/tbxforms/static/sass/abstracts/_variables.scss).
 
 #### Add button styles
 

@@ -52,3 +52,19 @@ If your changes cause the snapshot tests to fail:
 9. `npm publish` - publish package to npmjs.com
 10. `poetry publish` - publish package to pypi.org
 11. Create a [release](https://github.com/torchbox/tbxforms/releases) with relevant changelog entries and upgrade considerations
+
+## Common tasks
+
+### Updating govuk-frontend
+
+Everything within the `/static/sass/govuk/` directory is mostly unmodified,
+except that:
+
+1. all instances of "govuk-" have been replaced with "tbxforms-"
+2. unused .scss files and all other file types (.js, .md, .njk) have been deleted
+3. imports to unused .scss files have been commented-out (not removed, to make tracing changes easier)
+4. added `calc()` to equations to avoid Dart Sass 2.0.0 deprecation warning
+
+There's also some overrides in `/static/sass/govuk-overrides/` to be aware of.
+
+This list also acts as a checklist for updating [govuk-frontend](https://github.com/alphagov/govuk-frontend) in the future.

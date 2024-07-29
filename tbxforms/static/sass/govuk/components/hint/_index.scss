@@ -1,0 +1,43 @@
+@include tbxforms-exports("govuk/component/hint") {
+  .tbxforms-hint {
+    @include tbxforms-font($size: 19);
+
+    margin-bottom: tbxforms-spacing(3);
+
+    color: $tbxforms-secondary-text-colour;
+  }
+
+  // Reduces margin-bottom of hint when used after the default label (no class)
+  // or tbxforms-label--s for better vertical alignment.
+
+  // This adjustment will not work when the label is inside the <h1>, however it
+  // is unlikely that the default or tbxforms-label--s class would be used in this
+  // case.
+
+  // This adjustment will not work in browsers that do not support :not().
+  // Users with these browsers will see the default size margin (5px larger).
+
+  .tbxforms-label:not(.tbxforms-label--m):not(.tbxforms-label--l):not(.tbxforms-label--xl) + .tbxforms-hint {
+    margin-bottom: tbxforms-spacing(2);
+  }
+
+  // Reduces margin-bottom of hint when used after the default legend (no class)
+  // or tbxforms-fieldset__legend--s for better vertical alignment.
+
+  // This adjustment will not work when the legend is outside the <h1>, however
+  // it is unlikely that the default or tbxforms-fieldset__legend--s class would be
+  // used in this case.
+
+  // This adjustment will not work in browsers that do not support :not().
+  // Users with these browsers will see the default size margin (5px larger).
+
+  // prettier-ignore
+  .tbxforms-fieldset__legend:not(.tbxforms-fieldset__legend--m):not(.tbxforms-fieldset__legend--l):not(.tbxforms-fieldset__legend--xl) + .tbxforms-hint {
+    margin-bottom: tbxforms-spacing(2);
+  }
+
+  // Reduces visual spacing of legend when there is a hint
+  .tbxforms-fieldset__legend + .tbxforms-hint {
+    margin-top: tbxforms-spacing(-1);
+  }
+}

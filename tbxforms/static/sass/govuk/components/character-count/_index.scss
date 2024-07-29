@@ -1,0 +1,34 @@
+@import "../error-message/index";
+@import "../hint/index";
+@import "../label/index";
+@import "../textarea/index";
+
+@include tbxforms-exports("govuk/component/character-count") {
+  .tbxforms-character-count {
+    @include tbxforms-responsive-margin(6, "bottom");
+
+    .tbxforms-form-group,
+    .tbxforms-textarea {
+      margin-bottom: tbxforms-spacing(1);
+    }
+  }
+
+  .tbxforms-character-count__message {
+    @include tbxforms-font-tabular-numbers;
+    margin-top: 0;
+    margin-bottom: 0;
+
+    &::after {
+      // Zero-width space that will reserve vertical space when no hint is
+      // provided as:
+      // - setting a min-height is not possible without a magic number because
+      //   the line-height is set by the `tbxforms-font` call above
+      // - using `:empty` is not possible as the hint macro outputs line breaks
+      content: "\200B";
+    }
+  }
+
+  .tbxforms-character-count__message--disabled {
+    visibility: hidden;
+  }
+}

@@ -32,7 +32,7 @@
                     id="id_{{ field.html_name }}_{{ forloop.counter }}"
                     value="{{ choice.0|unlocalize }}"
 
-                    {% if choice.0 in field.value or choice.0|stringformat:"s" in field.value or choice.0|stringformat:"s" == field.value|stringformat:"s" %}
+                    {% if choice.0|stringformat:"s" == field.value|stringformat:"s" %}
                         checked="checked"
                     {% endif %}
 
@@ -46,9 +46,9 @@
                 </label>
 
                 {% if choice.hint %}
-                    <span id="id_{{ field.html_name }}_{{ forloop.counter }}_hint" class="tbxforms-hint tbxforms-radios__hint">
+                    <p id="id_{{ field.html_name }}_{{ forloop.counter }}_hint" class="tbxforms-hint tbxforms-radios__hint">
                         {{ choice.hint }}
-                    </span>
+                    </p>
                 {% endif %}
             </div>
 

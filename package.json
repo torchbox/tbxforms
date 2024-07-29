@@ -1,6 +1,6 @@
 {
   "name": "tbxforms",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "main": "./dist/tbxforms.umd.js",
   "module": "./dist/tbxforms.es.js",
   "files": [
@@ -9,7 +9,7 @@
     "dist/**/*.scss"
   ],
   "description": "A Torchbox-flavoured template pack for django-crispy-forms, adapted from crispy-forms-gds",
-  "author": "Kyle Bayliss",
+  "author": "Kyle Bayliss <kyle.bayliss@torchbox.com>",
   "private": false,
   "license": "BSD-2-Clause",
   "repository": {

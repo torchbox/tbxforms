@@ -1,0 +1,54 @@
+@import "../../core/lists";
+
+@include tbxforms-exports("govuk/component/error-summary") {
+  .tbxforms-error-summary {
+    @include tbxforms-font($size: 19);
+    @include tbxforms-text-colour;
+    @include tbxforms-responsive-padding(4);
+    @include tbxforms-responsive-margin(8, "bottom");
+
+    border: $tbxforms-border-width solid $tbxforms-error-colour;
+
+    &:focus {
+      outline: $tbxforms-focus-width solid $tbxforms-focus-colour;
+    }
+  }
+
+  .tbxforms-error-summary__title {
+    @include tbxforms-font-size($size: 24);
+    @include tbxforms-typography-weight-bold;
+
+    margin-top: 0;
+    @include tbxforms-responsive-margin(4, "bottom");
+  }
+
+  .tbxforms-error-summary__body {
+    p {
+      margin-bottom: 0;
+    }
+
+    > * + * {
+      @include tbxforms-responsive-margin(4, "top");
+    }
+
+    > :last-child {
+      @include tbxforms-responsive-margin(1, "bottom");
+    }
+  }
+
+  // Cross-component class - adjusts styling of list component
+  .tbxforms-error-summary__list {
+    margin-bottom: 0;
+  }
+
+  // Remove the bottom margin from the last list item
+  .tbxforms-error-summary__list li:last-child {
+    margin-bottom: 0;
+  }
+
+  .tbxforms-error-summary__list a {
+    @include tbxforms-typography-weight-bold;
+    @include tbxforms-link-common;
+    @include tbxforms-link-style-error;
+  }
+}

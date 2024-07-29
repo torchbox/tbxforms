@@ -13,17 +13,17 @@
         <div class="tbxforms-error-summary__body">
             <ul class="tbxforms-list tbxforms-error-summary__list">
                 {% for error in form.non_field_errors %}
-                    <li>{{ error }}</li>
+                    <li class="tbxforms-error-summary__list__item">{{ error }}</li>
                 {% endfor %}
 
                 {% for error in formset.non_field_errors %}
-                    <li>{{ error }}</li>
+                    <li class="tbxforms-error-summary__list__item">{{ error }}</li>
                 {% endfor %}
 
                 {% for field in form %}
                     {% if field != "__all__" and field.errors and not field.is_hidden %}
                         {% for error in field.errors %}
-                            <li><a href="#div_id_{% if form.prefix %}{{ form.prefix }}-{% endif %}{{ field.name }}" title="{% blocktranslate with field_label=field.label %}Jump to the '{{ field_label }}' field{% endblocktranslate %}">{{ field.label|striptags }}: {{ error }}</a></li>
+                            <li class="tbxforms-error-summary__list__item"><a href="#div_id_{% if form.prefix %}{{ form.prefix }}-{% endif %}{{ field.name }}" title="{% blocktranslate with field_label=field.label %}Jump to the '{{ field_label }}' field{% endblocktranslate %}">{{ field.label|striptags }}: {{ error }}</a></li>
                         {% endfor %}
                     {% endif %}
                 {% endfor %}
@@ -31,7 +31,7 @@
                 {% for field in formset %}
                     {% if field != "__all__" and field.errors and not field.is_hidden %}
                         {% for error in field.errors %}
-                            <li><a href="#div_id_{% if formset.prefix %}{{ formset.prefix }}-{% endif %}{{ field.name }}" title="{% blocktranslate with field_label=field.label %}Jump to the '{{ field_label }}' field{% endblocktranslate %}">{{ field.label|striptags }}: {{ error }}</a></li>
+                            <li class="tbxforms-error-summary__list__item"><a href="#div_id_{% if formset.prefix %}{{ formset.prefix }}-{% endif %}{{ field.name }}" title="{% blocktranslate with field_label=field.label %}Jump to the '{{ field_label }}' field{% endblocktranslate %}">{{ field.label|striptags }}: {{ error }}</a></li>
                         {% endfor %}
                     {% endif %}
                 {% endfor %}

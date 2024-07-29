@@ -1,0 +1,326 @@
+@import "../error-message/index";
+@import "../fieldset/index";
+@import "../hint/index";
+@import "../label/index";
+
+@include tbxforms-exports("govuk/component/radios") {
+  $tbxforms-touch-target-gutter: 4px;
+  $tbxforms-radios-size: 40px;
+  $tbxforms-touch-target-size: calc($tbxforms-radios-size + $tbxforms-touch-target-gutter);
+  $tbxforms-small-radios-size: 24px;
+  $tbxforms-radios-label-padding-left-right: tbxforms-spacing(3);
+  // When the default focus width is used on a curved edge it looks visually
+  // smaller. So for the circular radios we bump the default to make it look
+  // visually consistent.
+  $tbxforms-radios-focus-width: $tbxforms-focus-width + 1px;
+
+  .tbxforms-radios__item {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    margin-bottom: tbxforms-spacing(2);
+  }
+
+  .tbxforms-radios__item:last-child,
+  .tbxforms-radios__item:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .tbxforms-radios__input {
+    // Allow the input to sit above the label, enabling its proper detection
+    // when exploring by touch or using automation tools like Selenium
+    z-index: 1;
+    width: $tbxforms-touch-target-size;
+    height: $tbxforms-touch-target-size;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .tbxforms-radios__label {
+    align-self: center;
+
+    // Ensure that the width of the label is never more than the width of the
+    // container minus the input width minus the padding on either side of
+    // the label. This prevents the label from going onto the next line due to
+    // __item using flex-wrap because we want hints on a separate line
+    max-width: calc(100% - #{($tbxforms-radios-label-padding-left-right + $tbxforms-touch-target-size + tbxforms-spacing(3))});
+    margin-bottom: 0;
+    padding: (tbxforms-spacing(1) + $tbxforms-border-width-form-element) tbxforms-spacing(3);
+    cursor: pointer;
+    // remove 300ms pause on mobile
+    touch-action: manipulation;
+  }
+
+  // ( ) Radio ring
+  .tbxforms-radios__label::before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    top: calc($tbxforms-touch-target-gutter / 2);
+    left: calc($tbxforms-touch-target-gutter / 2);
+    width: $tbxforms-radios-size;
+    height: $tbxforms-radios-size;
+    border: $tbxforms-border-width-form-element solid currentcolor;
+    border-radius: 50%;
+    background: transparent;
+  }
+
+  //  •  Radio button
+  //
+  // We create the 'button' entirely out of 'border' so that they remain
+  // 'filled' even when colours are overridden in the browser.
+  .tbxforms-radios__label::after {
+    $radio-button-size: tbxforms-spacing(2);
+
+    content: "";
+    position: absolute;
+
+    // Positioned by getting half the touch target, so we have the centre of the
+    // input, and then moving back by the button's border width, thus positioning
+    // the centre of the button in the centre of the input.
+    top: calc(calc($tbxforms-touch-target-size / 2) - $radio-button-size);
+    left: calc(calc($tbxforms-touch-target-size / 2) - $radio-button-size);
+    width: 0;
+    height: 0;
+    border: $radio-button-size solid currentcolor;
+    border-radius: 50%;
+    opacity: 0;
+    background: currentcolor;
+  }
+
+  .tbxforms-radios__hint {
+    display: block;
+    width: 100%;
+    margin-top: tbxforms-spacing(-1);
+    padding-right: $tbxforms-radios-label-padding-left-right;
+    padding-left: calc($tbxforms-radios-label-padding-left-right + $tbxforms-touch-target-size);
+  }
+
+  // This is to bypass tbxforms-hint's specificity on hints following labels having
+  // a margin bottom of 10px (tbxforms-spacing(2)). Because radios are flexbox,
+  // the margin doesn't collapse so we have to do this manually.
+  .tbxforms-label:not(.tbxforms-label--m):not(.tbxforms-label--l):not(.tbxforms-label--xl) + .tbxforms-radios__hint {
+    margin-bottom: 0;
+  }
+
+  // Focused state
+  .tbxforms-radios__input:focus + .tbxforms-radios__label::before {
+    border-width: 4px;
+
+    // When colours are overridden, the yellow box-shadow becomes invisible
+    // which means the focus state is less obvious. By adding a transparent
+    // outline, which becomes solid (text-coloured) in that context, we ensure
+    // the focus remains clearly visible.
+    outline: $tbxforms-focus-width solid transparent;
+    outline-offset: 1px;
+
+    // When in an explicit forced-color mode, we can use the Highlight system
+    // color for the outline to better match focus states of native controls
+    @media screen and (forced-colors: active), (-ms-high-contrast: active) {
+      outline-color: Highlight;
+    }
+
+    box-shadow: 0 0 0 $tbxforms-radios-focus-width $tbxforms-focus-colour;
+  }
+
+  // Selected state
+  .tbxforms-radios__input:checked + .tbxforms-radios__label::after {
+    opacity: 1;
+  }
+
+  // Disabled state
+  .tbxforms-radios__input:disabled,
+  .tbxforms-radios__input:disabled + .tbxforms-radios__label {
+    cursor: not-allowed;
+  }
+
+  .tbxforms-radios__input:disabled + .tbxforms-radios__label,
+  .tbxforms-radios__input:disabled ~ .tbxforms-hint {
+    opacity: 0.5;
+  }
+
+  // =========================================================
+  // Inline radios
+  // =========================================================
+
+  .tbxforms-radios--inline {
+    @include tbxforms-media-query($from: tablet) {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+
+      .tbxforms-radios__item {
+        margin-right: tbxforms-spacing(4);
+      }
+    }
+  }
+
+  // =========================================================
+  // Dividers ('or')
+  // =========================================================
+
+  .tbxforms-radios__divider {
+    @include tbxforms-font($size: 19);
+    @include tbxforms-text-colour;
+    $tbxforms-divider-size: $tbxforms-radios-size !default;
+    width: $tbxforms-divider-size;
+    margin-bottom: tbxforms-spacing(2);
+    text-align: center;
+  }
+
+  // =========================================================
+  // Conditional reveals
+  // =========================================================
+
+  // The narrow border is used in the conditional reveals because the border has
+  // to be an even number in order to be centred under the 40px checkbox radio.
+  $conditional-border-width: $tbxforms-border-width-narrow;
+  // Calculate the amount of padding needed to keep the border centered against
+  // the radios.
+  $conditional-border-padding: calc(calc($tbxforms-touch-target-size / 2) - calc($conditional-border-width / 2));
+  // Move the border centered with the radios
+  $conditional-margin-left: $conditional-border-padding;
+  // Move the contents of the conditional inline with the label
+  $conditional-padding-left: $conditional-border-padding + $tbxforms-radios-label-padding-left-right;
+
+  .tbxforms-radios__conditional {
+    @include tbxforms-responsive-margin(4, "bottom");
+    margin-left: $conditional-margin-left;
+    padding-left: $conditional-padding-left;
+    border-left: $conditional-border-width solid $tbxforms-border-colour;
+
+    .tbxforms-frontend-supported &--hidden {
+      display: none;
+    }
+
+    & > :last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // =========================================================
+  // Small checkboxes
+  // =========================================================
+
+  .tbxforms-radios--small {
+    $input-offset: calc(calc($tbxforms-touch-target-size - $tbxforms-small-radios-size) / 2);
+
+    .tbxforms-radios__item {
+      margin-bottom: 0;
+    }
+
+    // Shift the touch target into the left margin so that the visible edge of
+    // the control is aligned
+    //
+    //   ┆Which colour is your favourite?
+    //  ┌┆───┐
+    //  │┆() │ Purple
+    //  └┆▲──┘
+    //  ▲┆└─ Radio pseudo element, aligned with margin
+    //  └─── Touch target (invisible input), shifted into the margin
+    .tbxforms-radios__input {
+      margin-left: $input-offset * -1;
+    }
+
+    .tbxforms-radios__label {
+      // Create a tiny space between the small radio hover state so that it
+      // doesn't clash with the label
+      padding-left: 1px;
+    }
+
+    // ( ) Radio ring
+    //
+    // Reduce the size of the control [1], vertically centering it within the
+    // touch target [2]
+    // Left here is 0 because we've shifted the input into the left margin
+    .tbxforms-radios__label::before {
+      top: $input-offset; // 2
+      left: 0;
+      width: $tbxforms-small-radios-size; // 1
+      height: $tbxforms-small-radios-size; // 1
+    }
+
+    //  •  Radio button
+    //
+    // Reduce the size of the 'button' and center it within the ring
+    .tbxforms-radios__label::after {
+      $radio-button-size: tbxforms-spacing(1);
+
+      // The same calculation as normal radio buttons but reduce the border width
+      top: calc(calc($tbxforms-touch-target-size / 2) - $radio-button-size);
+      left: calc(calc(calc($tbxforms-touch-target-size / 2) - $radio-button-size) - $input-offset);
+      border-width: $radio-button-size;
+    }
+
+    // Fix position of hint with small radios
+    //
+    // Do not use hints with small radios – because they're within the input
+    // wrapper they trigger the hover state, but clicking them doesn't actually
+    // activate the control.
+    //
+    // (If you do use them, they won't look completely broken... but seriously,
+    // don't use them)
+    .tbxforms-radios__hint {
+      padding-left: calc($tbxforms-small-radios-size + $input-offset);
+    }
+
+    // Align conditional reveals with small radios
+    .tbxforms-radios__conditional {
+      $margin-left: calc(calc($tbxforms-small-radios-size / 2) - calc($conditional-border-width / 2));
+      margin-left: $margin-left;
+      padding-left: calc(calc($tbxforms-touch-target-size - $input-offset) - calc($margin-left + $conditional-border-width));
+    }
+
+    .tbxforms-radios__divider {
+      width: $tbxforms-small-radios-size;
+      margin-bottom: tbxforms-spacing(1);
+    }
+
+    // Hover state for small radios.
+    //
+    // We use a hover state for small radios because the touch target size
+    // is so much larger than their visible size, and so we need to provide
+    // feedback to the user as to which radio they will select when their
+    // cursor is outside of the visible area.
+    .tbxforms-radios__item:hover .tbxforms-radios__input:not(:disabled) + .tbxforms-radios__label::before {
+      // Forced colours modes tend to ignore box-shadow.
+      // Apply an outline for those modes to use instead.
+      outline: $tbxforms-radios-focus-width dashed transparent;
+      outline-offset: 1px;
+      box-shadow: 0 0 0 $tbxforms-hover-width $tbxforms-hover-colour;
+    }
+
+    // Because we've overridden the border-shadow provided by the focus state,
+    // we need to redefine that too.
+    //
+    // We use two box shadows, one that restores the original focus state [1]
+    // and another that then applies the hover state [2].
+    .tbxforms-radios__item:hover .tbxforms-radios__input:focus + .tbxforms-radios__label::before {
+      // Set different HCM colour when we have both hover/focus applied at once
+      @media screen and (forced-colors: active), (-ms-high-contrast: active) {
+        outline-color: Highlight;
+      }
+      // prettier-ignore
+      box-shadow:
+        0 0 0 $tbxforms-radios-focus-width $tbxforms-focus-colour // 1,
+        0 0 0 $tbxforms-hover-width $tbxforms-hover-colour; // 2
+    }
+
+    // For devices that explicitly don't support hover, don't provide a hover
+    // state (e.g. on touch devices like iOS).
+    //
+    // We can't use `@media (hover: hover)` because we wouldn't get the hover
+    // state in browsers that don't support `@media (hover)` (like Internet
+    // Explorer) – so we have to 'undo' the hover state instead.
+    @media (hover: none), (pointer: coarse) {
+      .tbxforms-radios__item:hover .tbxforms-radios__input:not(:disabled) + .tbxforms-radios__label::before {
+        box-shadow: initial;
+      }
+
+      .tbxforms-radios__item:hover .tbxforms-radios__input:focus + .tbxforms-radios__label::before {
+        box-shadow: 0 0 0 $tbxforms-radios-focus-width $tbxforms-focus-colour;
+      }
+    }
+  }
+}

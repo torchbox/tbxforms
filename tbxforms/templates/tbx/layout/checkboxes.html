@@ -32,7 +32,7 @@
                     class="tbxforms-checkboxes__input"
                     id="id_{{ field.html_name }}_{{ forloop.counter }}"
                     value="{{ choice.0|unlocalize }}"
-                    {% if choice.0 in field.value or choice.0|stringformat:"s" in field.value or choice.0|stringformat:"s" == field.value|stringformat:"s" %}
+                    {% if choice.0 in field.value or choice.0|stringformat:"s" in field.value %}
                         checked="checked"
                     {% endif %}
                     {% if choice.hint %}
@@ -45,15 +45,15 @@
                 </label>
 
                 {% if choice.hint %}
-                    <span id="id_{{ field.html_name }}_{{ forloop.counter }}_hint" class="tbxforms-hint tbxforms-checkboxes__hint">
+                    <p id="id_{{ field.html_name }}_{{ forloop.counter }}_hint" class="tbxforms-hint tbxforms-checkboxes__hint">
                         {{ choice.hint }}
-                    </span>
-                {% endif %}
-
-                {% if choice.divider %}
-                    <div class="tbxforms-checkboxes__divider">{{ choice.divider }}</div>
+                    </p>
                 {% endif %}
             </div>
+
+            {% if choice.divider %}
+                <div class="tbxforms-checkboxes__divider">{{ choice.divider }}</div>
+            {% endif %}
         {% endfor %}
     </div>
 

@@ -1,18 +1,43 @@
-@import 'abstracts/_variables.scss';
-@import 'abstracts/_mixins.scss';
-@import 'utilities/_clearfix.scss';
-@import 'utilities/_visually-hidden.scss';
-@import 'components/_checkboxes.scss';
-@import 'components/_conditional.scss';
-@import 'components/_date-input.scss';
-@import 'components/_error-message.scss';
-@import 'components/_error-summary.scss';
-@import 'components/_form-group.scss';
-@import 'components/_fieldset.scss';
-@import 'components/_file-upload.scss';
-@import 'components/_hint.scss';
-@import 'components/_input.scss';
-@import 'components/_label.scss';
-@import 'components/_radios.scss';
-@import 'components/_select.scss';
-@import 'components/_textarea.scss';
+// First import our overridden settings.
+@import 'govuk-overrides/settings';
+
+// Then import GDS stuff.
+@import 'govuk/base';
+// @import "accordion/index";
+// @import "back-link/index";
+// @import "breadcrumbs/index";
+// @import "govuk/components/button/index";
+@import 'govuk/components/character-count/index';
+@import 'govuk/components/checkboxes/index';
+// @import "cookie-banner/index";
+@import 'govuk/components/date-input/index';
+// @import "details/index";
+@import 'govuk/components/error-message/index';
+@import 'govuk/components/error-summary/index';
+// @import "exit-this-page/index";
+@import 'govuk/components/fieldset/index';
+@import 'govuk/components/file-upload/index';
+// @import "footer/index";
+// @import "header/index";
+@import 'govuk/components/hint/index';
+@import 'govuk/components/input/index';
+// @import "inset-text/index";
+@import 'govuk/components/label/index';
+// @import "notification-banner/index";
+// @import "pagination/index";
+// @import "panel/index";
+@import 'govuk/components/password-input/index';
+// @import "phase-banner/index";
+@import 'govuk/components/radios/index';
+@import 'govuk/components/select/index';
+// @import "skip-link/index";
+// @import "summary-list/index";
+// @import "table/index";
+// @import "tabs/index";
+// @import "tag/index";
+// @import "task-list/index";
+@import 'govuk/components/textarea/index';
+// @import "warning-text/index";
+
+// Finally, import our additional styles.
+@import 'govuk-overrides/components';

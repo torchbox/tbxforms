@@ -1,0 +1,8 @@
+/*
+    Additional styles for our conditionally-required fields.
+*/
+
+.tbxforms-conditional {
+    border-left: $tbxforms-border-width solid $tbxforms-border-colour;
+    padding-left: $tbxforms-gutter-half;
+}

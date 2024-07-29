@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tbxforms"
-version = "2.1.0"
+version = "3.0.0"
 description = "A Torchbox-flavoured template pack for django-crispy-forms, adapted from crispy-forms-gds"
 authors = [
     "Kyle Bayliss <kyle.bayliss@torchbox.com>"

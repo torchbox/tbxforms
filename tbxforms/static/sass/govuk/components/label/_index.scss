@@ -1,0 +1,44 @@
+@include tbxforms-exports("govuk/component/label") {
+  .tbxforms-label {
+    @include tbxforms-font($size: 19);
+    @include tbxforms-text-colour;
+
+    display: block;
+
+    margin-bottom: tbxforms-spacing(1);
+  }
+
+  // Modifiers that make labels look more like their equivalent headings
+  .tbxforms-label--xl,
+  .tbxforms-label--l,
+  .tbxforms-label--m {
+    @include tbxforms-typography-weight-bold;
+    margin-bottom: tbxforms-spacing(3);
+  }
+
+  .tbxforms-label--xl {
+    @include tbxforms-font-size($size: 48);
+  }
+
+  .tbxforms-label--l {
+    @include tbxforms-font-size($size: 36);
+  }
+
+  .tbxforms-label--m {
+    @include tbxforms-font-size($size: 24);
+  }
+
+  .tbxforms-label--s {
+    @include tbxforms-typography-weight-bold;
+  }
+
+  // When the label is nested inside a heading, override the heading so that it
+  // does not have a margin. Effectively we want to be able to treat the heading
+  // as if it is not there.
+  //
+  // This breaks BEM conventions because it exists as a parent of the 'block',
+  // so we can't really consider an element.
+  .tbxforms-label-wrapper {
+    margin: 0;
+  }
+}

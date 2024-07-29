@@ -1,0 +1,65 @@
+@include tbxforms-exports("govuk/core/lists") {
+  %tbxforms-list {
+    @include tbxforms-font($size: 19);
+    @include tbxforms-text-colour;
+    margin-top: 0;
+    @include tbxforms-responsive-margin(4, "bottom");
+    padding-left: 0;
+    list-style-type: none;
+
+    // Add a top margin for nested lists
+    %tbxforms-list {
+      margin-top: tbxforms-spacing(2);
+    }
+  }
+
+  %tbxforms-list > li {
+    // Lists without numbers or bullets should always have extra space between
+    // list items. Lists with numbers or bullets only have this extra space on
+    // tablet and above
+    margin-bottom: tbxforms-spacing(1);
+  }
+
+  .tbxforms-list {
+    @extend %tbxforms-list;
+  }
+
+  %tbxforms-list--bullet {
+    padding-left: tbxforms-spacing(4);
+    list-style-type: disc;
+  }
+
+  %tbxforms-list--number {
+    padding-left: tbxforms-spacing(4);
+    list-style-type: decimal;
+  }
+
+  %tbxforms-list--bullet > li,
+  %tbxforms-list--number > li {
+    margin-bottom: 0;
+
+    @include tbxforms-media-query($from: tablet) {
+      margin-bottom: tbxforms-spacing(1);
+    }
+  }
+
+  %tbxforms-list--spaced > li {
+    margin-bottom: tbxforms-spacing(2);
+
+    @include tbxforms-media-query($from: tablet) {
+      margin-bottom: tbxforms-spacing(3);
+    }
+  }
+
+  .tbxforms-list--bullet {
+    @extend %tbxforms-list--bullet;
+  }
+
+  .tbxforms-list--number {
+    @extend %tbxforms-list--number;
+  }
+
+  .tbxforms-list--spaced {
+    @extend %tbxforms-list--spaced;
+  }
+}

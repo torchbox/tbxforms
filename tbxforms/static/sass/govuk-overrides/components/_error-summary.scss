@@ -1,0 +1,7 @@
+@import '../../govuk/core/lists';
+
+// Apply summary error styles to non-field errors too.
+.tbxforms-error-summary__list li {
+    @include tbxforms-typography-weight-bold;
+    color: $tbxforms-error-colour;
+}

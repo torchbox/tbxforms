@@ -49,7 +49,7 @@
             {% include "tbx/layout/help_text_and_errors.html" %}
             {% crispy_tbx_field field %}
             {% if max_characters or max_words %}
-                <span id="{{ field.id_for_label }}-info" class="tbxforms-hint tbxforms-character-count__message" aria-live="polite">
+                <p id="{{ field.id_for_label }}-info" class="tbxforms-hint tbxforms-character-count__message" aria-live="polite">
                     {% if max_characters %}
                         {% blocktrans %}
                             You can enter up to {{ max_characters }} characters
@@ -59,7 +59,7 @@
                             You can enter up to {{ max_words }} words
                         {% endblocktrans %}
                     {% endif %}
-                </span>
+                </p>
             {% endif %}
         {% endif %}
     {% endif %}
