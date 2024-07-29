@@ -67,4 +67,4 @@ except that:
 
 There's also some overrides in `/static/sass/govuk-overrides/` to be aware of.
 
-This list also acts as a checklist for updating `govuk-frontend` in the future.
+This list also acts as a checklist for updating [govuk-frontend](https://github.com/alphagov/govuk-frontend) in the future.
