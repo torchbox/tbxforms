@@ -3,6 +3,6 @@
 */
 
 .tbxforms-conditional {
-    border-left: $tbxforms-border-width solid tbxforms-colour('mid-grey');
+    border-left: $tbxforms-border-width solid $tbxforms-border-colour;
     padding-left: $tbxforms-gutter-half;
 }

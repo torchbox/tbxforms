@@ -38,7 +38,7 @@ added which have now been removed and those which GDS have removed over time.
 
 However, variables which have now been removed from our \_variables.scss are:
 
--   `$tbxforms-border-colour-conditional` (no longer configurable; now using GDS' `mid-grey` (#b1b4b6)) [#80]
+-   `$tbxforms-border-colour-conditional` (no longer configurable; now using GDS' `$tbxforms-border-colour`) [#80]
 -   `$tbxforms-border-width-conditional` (no longer configurable; now using GDS' `$tbxforms-border-width`) [#80]
 -   `$tbxforms-weight--bold` (use `$tbxforms-font-weight-bold` instead) [#80]
 -   `$tbxforms-weight--normal` (use `$tbxforms-font-weight-regular` instead) [#80]
