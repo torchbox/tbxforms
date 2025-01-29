@@ -16,6 +16,8 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## Unreleased
 
+## [4.0.0](https://github.com/torchbox/tbxforms/releases/tag/v4.0.0)
+
 ### Changed
 
 -   Renamed `tbx` template directory and crispy forms template pack to `tbxforms` [#92]
