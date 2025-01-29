@@ -16,6 +16,10 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## Unreleased
 
+### Changed
+
+-   `tbx` directory and crispy forms template pack renamed to `tbxforms` [#92]
+
 ### Fixed
 
 -   Conditional fields not working properly when there are multiple elements inspecting the same driving field [#91]
