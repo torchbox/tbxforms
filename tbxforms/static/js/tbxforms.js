@@ -1,31 +1,48 @@
 import '../sass/tbxforms.scss';
 
 /**
- * CustomEvent polyfill for IE11.
- * https://stackoverflow.com/a/26596324/1798491
+ * Updates the visibility of a form element based on conditional field values
+ * @param {HTMLElement} container - The container element to show/hide
+ * @param {NodeList} drivingFieldNodeList - List of form fields that control visibility
+ * @param {Array} conditionalValuesForElement - Values that should trigger showing the container
  */
-(function () {
-  if (typeof window.CustomEvent === 'function') return false; //If not IE
+function updateVisibility(
+  container,
+  drivingFieldNodeList,
+  conditionalValuesForElement
+) {
+  let shouldShow = false;
 
-  function CustomEvent(event, params) {
-    params = params || { bubbles: false, cancelable: false, detail: undefined };
-    var evt = document.createEvent('CustomEvent');
-    evt.initCustomEvent(
-      event,
-      params.bubbles,
-      params.cancelable,
-      params.detail
-    );
-    return evt;
+  if (drivingFieldNodeList.length > 1) {
+    // For checkboxes/radios, check if any are checked with matching values
+    drivingFieldNodeList.forEach(function (field) {
+      if (field.checked && conditionalValuesForElement.includes(field.value)) {
+        shouldShow = true;
+      }
+    });
+  } else {
+    // For single fields, check the value directly
+    const field = drivingFieldNodeList.item(0);
+    shouldShow =
+      conditionalValuesForElement.includes(field.value) ||
+      conditionalValuesForElement.includes(Number(field.value));
   }
 
-  CustomEvent.prototype = window.Event.prototype;
+  // Update visibility and aria states
+  container.hidden = !shouldShow;
+  drivingFieldNodeList.forEach((field) =>
+    field.setAttribute('aria-expanded', shouldShow.toString())
+  );
+}
 
-  window.CustomEvent = CustomEvent;
-})();
-
+/**
+ * Initializes form functionality with conditional field visibility
+ * @param {HTMLFormElement} form - The form element to initialize
+ * @constructor
+ */
 function TbxForms(form) {
-  this.form = form;
+  this.form = form; // Stash the TbxForms DOM element.
+  const self = this; // Stash the TbxForms instance.
 
   // Loop through all elements within the given form (e.g. inputs, divs, fieldsets).
   form.querySelectorAll('*').forEach(function (formElement) {
@@ -42,7 +59,6 @@ function TbxForms(form) {
       );
       let conditionalValuesForElement;
 
-      // Try to parse the JSON containing required field mapping.
       try {
         conditionalValuesForElement = JSON.parse(
           formElement.dataset.conditionalFieldValues
@@ -53,47 +69,23 @@ function TbxForms(form) {
 
       container.classList.add('tbxforms-conditional');
 
-      if (drivingFieldNodeList.length > 1) {
-        // We're dealing with radios or checkboxes.
-
-        drivingFieldNodeList.forEach(function (option_node) {
-          option_node.addEventListener('change', function () {
-            if (
-              option_node.checked &&
-              conditionalValuesForElement.includes(option_node.value)
-            ) {
-              option_node.setAttribute('aria-expanded', 'true');
-              container.hidden = false;
-            } else {
-              option_node.setAttribute('aria-expanded', 'false');
-              container.hidden = true;
-            }
-          });
-
-          // Trigger above event listener to correct presentation.
-          option_node.dispatchEvent(new CustomEvent('change'));
+      // Set up change listeners
+      drivingFieldNodeList.forEach(function (field) {
+        field.addEventListener('change', function () {
+          updateVisibility(
+            container,
+            drivingFieldNodeList,
+            conditionalValuesForElement
+          );
         });
-      } else {
-        // We're dealing with a single field.
+      });
 
-        const drivingField = drivingFieldNodeList.item(0);
-
-        drivingField.addEventListener('change', function () {
-          if (
-            conditionalValuesForElement.includes(drivingField.value) ||
-            conditionalValuesForElement.includes(Number(drivingField.value))
-          ) {
-            drivingField.setAttribute('aria-expanded', 'true');
-            container.hidden = false;
-          } else {
-            drivingField.setAttribute('aria-expanded', 'false');
-            container.hidden = true;
-          }
-        });
-
-        // Trigger above event listener to correct presentation.
-        drivingField.dispatchEvent(new CustomEvent('change'));
-      }
+      // Check initial state
+      updateVisibility(
+        container,
+        drivingFieldNodeList,
+        conditionalValuesForElement
+      );
     }
   });
 
@@ -101,7 +93,7 @@ function TbxForms(form) {
   // NB. We don't use `form.elements.('[hidden]')` to include divs.
   form.addEventListener('submit', function () {
     form.querySelectorAll('[hidden]').forEach(function (hiddenFormElement) {
-      form.clearInput(hiddenFormElement);
+      self.clearInput(hiddenFormElement);
     });
   });
 }
@@ -144,10 +136,8 @@ TbxForms.prototype.clearInput = function (node) {
           break;
 
         default:
-          console.error(
-            "Unexpected node.type '" +
-              node.type +
-              "' found while trying to clearInput."
+          console.debug(
+            `Skipping unsupported node.type '${node.type}' while trying to clearInput().`
           );
       }
       break;
@@ -160,8 +150,7 @@ TbxForms.prototype.clearInput = function (node) {
       node.selectedIndex = -1;
       break;
 
-    // If this is a container element run again for child elements.
-    // NB. maybe a `default` case would be better here.
+    // If this is a container element, run again for child elements.
     case 'DIV':
     case 'FIELDSET':
       node.querySelectorAll('*').forEach(function (formElement) {
@@ -170,10 +159,8 @@ TbxForms.prototype.clearInput = function (node) {
       break;
 
     default:
-      console.error(
-        "Unexpected node.tagName '" +
-          node.tagName +
-          "' found while trying to clearInput."
+      console.debug(
+        `Skipping unsupported node.tagName '${node.tagName}' while trying to clearInput().`
       );
   }
 };
