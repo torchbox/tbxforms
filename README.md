@@ -60,8 +60,8 @@ INSTALLED_APPS = [
 Now add the following settings to tell `django-crispy-forms` to use `tbxforms`:
 
 ```python
-CRISPY_ALLOWED_TEMPLATE_PACKS = ["tbx"]
-CRISPY_TEMPLATE_PACK = "tbx"
+CRISPY_ALLOWED_TEMPLATE_PACKS = ["tbxforms"]
+CRISPY_TEMPLATE_PACK = "tbxforms"
 ```
 
 ### Install the NPM package

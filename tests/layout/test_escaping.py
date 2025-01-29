@@ -46,7 +46,7 @@ class TestButtonEscaping:
     be marked as safe.
     """
 
-    TEMPLATE = '{% include "tbx/layout/button.html" %}'
+    TEMPLATE = '{% include "tbxforms/layout/button.html" %}'
 
     def test_unsafe_markup_escaped(self, button_factory, snapshot_html):
         """
