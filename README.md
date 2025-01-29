@@ -245,19 +245,83 @@ form.helper.layout.extend([
 ])
 ```
 
-### Conditionally-required fields
+### Conditionally show/hide fields
 
 `tbxforms` can show/hide parts of the `layout` depending on a given value. For
-example, you could show (and require) an email address field only when the user
+example, you could show an email address field only when the user
 chooses to sign up to a newsletter (examples below).
 
 You can apply this logic to `field`, `div`, and `fieldset` elements.
 
-Note: any field names included within the
-`conditional_fields_to_show_as_required()` method will appear on the frontend
-as required, though will technically be `required=False`.
-
 **Field example:**
+
+```python
+from django import forms
+from django.core.exceptions import ValidationError
+from tbxforms.choices import Choice
+from tbxforms.forms import TbxFormsMixin
+from tbxforms.layout import Field, Layout
+
+class ExampleForm(TbxFormsMixin, forms.Form):
+    NEWSLETTER_CHOICES = (
+        Choice("yes", "Yes please", hint="Receive occasional email newsletters."),
+        Choice("no", "No thanks"),
+    )
+
+    newsletter_signup = forms.ChoiceField(
+        choices=NEWSLETTER_CHOICES
+    )
+
+    email = forms.EmailField(
+        widget=forms.EmailInput(required=False)
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper.layout = Layout(
+            # Add our newsletter sign-up field.
+            Field.text("newsletter_signup"),
+
+            # Add our email field and define the conditional logic.
+            Field.text(
+                "email",
+                data_conditional={
+                    "field_name": "newsletter_signup", # Field to inspect.
+                    "values": ["yes"], # Value(s) to cause this field to show.
+                },
+            ),
+        )
+
+```
+
+**Container example:**
+
+When you have multiple fields/elements that you want to show/hide together, you
+can use the exact same `data_conditional` definition as above but on a `div` or
+`fieldset` element, e.g.:
+
+```python
+from tbxforms.layout import HTML, Div, Field, Layout
+
+Layout(
+    Div(
+        HTML("<p>Some relevant text.</p>"),
+        Field.text("some_other_field"),
+        Field.text("email"),
+        data_conditional={
+            "field_name": "newsletter_signup",
+            "values": ["yes"],
+        },
+    ),
+)
+```
+
+#### Show conditional fields as required
+
+Conditional fields must be optional (`required=False`) as they are not always
+visible, but it can be useful to show them as required to the user.
+
+To do this, use the `conditional_fields_to_show_as_required()` method:
 
 ```python
 from django import forms
@@ -309,44 +373,17 @@ class ExampleForm(TbxFormsMixin, forms.Form):
         email = cleaned_data.get("email")
 
         # Fields included within `conditional_fields_to_show_as_required()` will
-        # be shown as required but not enforced - i.e. they will not have the
-        # HTML5 `required` attribute set.
-        # Thus we need to write our own check to enforce the value exists.
+        # be shown as required but not marked as required. Therefore, we need to
+        # write our own check to enforce the value exists.
         if newsletter_signup == "yes" and not email:
             raise ValidationError(
                 {
                     "email": "This field is required.",
                 }
             )
-        # The tbxforms JS will attempt to clear any redundant data upon submission,
-        # though it is recommended to also handle this in your clean() method.
-        elif newsletter_signup == "no" and email:
-            del cleaned_data['email']
 
         return cleaned_data
 
-```
-
-**Container example:**
-
-When you have multiple fields/elements that you want to show/hide together, you
-can use the exact same `data_conditional` definition as above but on a `div` or
-`fieldset` element, e.g.:
-
-```python
-from tbxforms.layout import HTML, Div, Field, Layout
-
-Layout(
-    Div(
-        HTML("<p>Some relevant text.</p>"),
-        Field.text("some_other_field"),
-        Field.text("email"),
-        data_conditional={
-            "field_name": "newsletter_signup",
-            "values": ["yes"],
-        },
-    ),
-)
 ```
 
 ## Customising behaviour
