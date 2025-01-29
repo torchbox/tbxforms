@@ -18,7 +18,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Fixed
 
--   Conditional fields not working properly when there are multiple elements inspecting the same driving field [#90]
+-   Conditional fields not working properly when there are multiple elements inspecting the same driving field [#91]
 
 ## [3.0.0](https://github.com/torchbox/tbxforms/releases/tag/v3.0.0)
 
