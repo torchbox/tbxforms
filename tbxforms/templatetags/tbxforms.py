@@ -172,7 +172,7 @@ class CrispyGDSFieldNode(template.Node):
             [getattr(field.field.widget, "widget", field.field.widget)],
         )
 
-        if template_pack == "tbx":
+        if template_pack == "tbxforms":
             if is_multivalue(field):
                 error_widgets = [field.widget for field in field.field.fields]
                 error_count = sum(
@@ -215,7 +215,7 @@ class CrispyGDSFieldNode(template.Node):
 
             css_class = " ".join(css_class)
 
-            if template_pack == "tbx":
+            if template_pack == "tbxforms":
                 # The ability to override input_type was added to
                 # avoid having to create new widgets. However, as a
                 # result, the browser validates the field and displays
@@ -342,7 +342,7 @@ def crispy_tbx_field(parser, token):
     ``django-crispy-forms``. Any additions are clearly marked with a
     check to see if the 'gds' template pack is being used.
 
-    This template tag is only used within the tbx/field.html template
+    This template tag is only used within the tbxforms/field.html template
     and you almost certainly will not have to deal with it, even if
     you are laying out a form explicitly.
 

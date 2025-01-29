@@ -17,7 +17,7 @@ from tests.utils import render_template
     ),
 )
 class TestButtons:
-    TEMPLATE = '{% include "tbx/layout/button.html" %}'
+    TEMPLATE = '{% include "tbxforms/layout/button.html" %}'
 
     def test_button(self, button_factory, snapshot_html):
         button = button_factory("name", "Title")

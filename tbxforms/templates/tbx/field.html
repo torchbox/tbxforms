@@ -10,15 +10,15 @@
     <{% if tag %}{{ tag }}{% else %}div{% endif %} id="div_{{ field.auto_id }}" class="tbxforms-form-group{% if field.errors %} tbxforms-form-group--error{% endif %}{% if wrapper_class %} {{ wrapper_class }}{% endif %}{% if field.css_classes %} {{ field.css_classes }}{% endif %}">
 
     {% if field|is_checkboxes %}
-        {% include "tbx/layout/checkboxes.html" %}
+        {% include "tbxforms/layout/checkboxes.html" %}
     {% endif %}
 
     {% if field|is_radios %}
-        {% include "tbx/layout/radios.html" %}
+        {% include "tbxforms/layout/radios.html" %}
     {% endif %}
 
     {% if field|is_multivalue %}
-        {% include "tbx/layout/multifield.html" %}
+        {% include "tbxforms/layout/multifield.html" %}
     {% endif %}
 
     {% if not field|is_checkboxes and not field|is_radios and not field|is_multivalue %}
@@ -36,7 +36,7 @@
         {% endif %}
 
         {% if field|is_checkbox and form_show_labels %}
-            {% include "tbx/layout/help_text_and_errors.html" %}
+            {% include "tbxforms/layout/help_text_and_errors.html" %}
             <div class="tbxforms-checkboxes{% if checkboxes_small %} tbxforms-checkboxes--small{% endif %}">
                 <div class="tbxforms-checkboxes__item">
                     {% crispy_tbx_field field %}
@@ -46,7 +46,7 @@
                 </div>
             </div>
         {% else %}
-            {% include "tbx/layout/help_text_and_errors.html" %}
+            {% include "tbxforms/layout/help_text_and_errors.html" %}
             {% crispy_tbx_field field %}
             {% if max_characters or max_words %}
                 <p id="{{ field.id_for_label }}-info" class="tbxforms-hint tbxforms-character-count__message" aria-live="polite">

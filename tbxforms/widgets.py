@@ -18,7 +18,7 @@ class DateInputWidget(forms.MultiWidget):
 
     """
 
-    template_name = "tbx/widgets/date.html"
+    template_name = "tbxforms/widgets/date.html"
 
     def __init__(self, *args, **kwargs):
         widgets = [
