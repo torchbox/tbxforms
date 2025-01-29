@@ -20,6 +20,10 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 -   Conditional fields not working properly when there are multiple elements inspecting the same driving field [#91]
 
+### Removed
+
+-   IE11 support [#91]
+
 ## [3.0.0](https://github.com/torchbox/tbxforms/releases/tag/v3.0.0)
 
 ### Developer
