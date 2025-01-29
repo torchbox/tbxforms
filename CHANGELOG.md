@@ -18,7 +18,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Changed
 
--   `tbx` directory and crispy forms template pack renamed to `tbxforms` [#92]
+-   Renamed `tbx` template directory and crispy forms template pack to `tbxforms` [#92]
 
 ### Fixed
 
