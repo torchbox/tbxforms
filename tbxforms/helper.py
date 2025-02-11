@@ -57,6 +57,7 @@ class FormHelper(crispy_forms_helper.FormHelper):
 
     label_size = ""
     legend_size = ""
+    show_error_summary = True
 
     def render_layout(self, form, context, template_pack=TEMPLATE_PACK):
         """

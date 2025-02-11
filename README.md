@@ -404,12 +404,45 @@ You can also style these markers by targeting these CSS classes:
 
 ### Change the default label and legend classes
 
+Label and legend sizes can be changed through the form's helper, e.g.:
+
+```python
+    from tbxforms.layout import Size
+
+    class ExampleForm(...):
+        ...
+
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.helper.label_size = Size.LARGE
+            self.helper.legend_size = Size.LARGE
+```
+
 Possible values for the `label_size` and `legend_size`:
 
 1. `SMALL`
 2. `MEDIUM` (default)
 3. `LARGE`
 4. `EXTRA_LARGE`
+
+### Disable error summary
+
+You can disable the [error summary](https://design-system.service.gov.uk/components/error-summary/)
+by setting `show_error_summary=False` in the form's helper, e.g.:
+
+```python
+    class ExampleForm(...):
+        ...
+
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.helper.show_error_summary = False
+```
+
+This is useful if your form has a complex setup and you need complete control
+over the error summary - e.g. if the form also contains a formset. In this
+instance, you would want to create your own error summary template and include
+it in your template.
 
 # Further reading
 

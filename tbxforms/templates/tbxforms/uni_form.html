@@ -1,6 +1,8 @@
 {% if include_media %}{{ form.media }}{% endif %}
 
-{% include "tbxforms/errors.html" %}
+{% if form.helper.show_error_summary %}
+    {% include "tbxforms/errors.html" %}
+{% endif %}
 
 {% for field in form %}
     {% include field_template %}
