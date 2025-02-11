@@ -1,6 +1,10 @@
 {% if form.form_html %}
     {% if include_media %}{{ form.media }}{% endif %}
-    {% include "tbxforms/errors.html" %}
+
+    {% if show_error_summary %}
+        {% include "tbxforms/errors.html" %}
+    {% endif %}
+
     {{ form.form_html }}
 {% else %}
     {% include "tbxforms/uni_form.html" %}
