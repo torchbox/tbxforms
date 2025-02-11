@@ -16,6 +16,16 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## Unreleased
 
+## [4.1.0](https://github.com/torchbox/tbxforms/releases/tag/v4.1.0)
+
+### Added
+
+-   Error summary can be hidden [#93]
+
+### Changed
+
+-   Small tweak to fieldset styles [#93]
+
 ## [4.0.0](https://github.com/torchbox/tbxforms/releases/tag/v4.0.0)
 
 ### Changed
