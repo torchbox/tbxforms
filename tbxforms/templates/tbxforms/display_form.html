@@ -1,7 +1,7 @@
 {% if form.form_html %}
     {% if include_media %}{{ form.media }}{% endif %}
 
-    {% if show_error_summary %}
+    {% if form.helper.show_error_summary %}
         {% include "tbxforms/errors.html" %}
     {% endif %}
 

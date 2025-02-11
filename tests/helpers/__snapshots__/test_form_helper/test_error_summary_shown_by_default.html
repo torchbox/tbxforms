@@ -1,0 +1,28 @@
+<form class="tbxforms" method="post">
+    <div class="tbxforms-error-summary"
+         aria-labelledby="error-summary-title"
+         role="alert"
+         tabindex="-1">
+        <h2 class="tbxforms-error-summary__title" id="error-summary-title">There is a problem with your submission</h2>
+        <div class="tbxforms-error-summary__body">
+            <ul class="tbxforms-list tbxforms-error-summary__list">
+                <li class="tbxforms-error-summary__list__item">An example non-field error.</li>
+            </ul>
+        </div>
+    </div>
+    <div id="div_id_accept" class="tbxforms-form-group">
+        <p id="id_accept_hint" class="tbxforms-hint">Please read the terms of service.</p>
+        <div class="tbxforms-checkboxes">
+            <div class="tbxforms-checkboxes__item">
+                <input type="checkbox"
+                       name="accept"
+                       aria-describedby="id_accept_hint"
+                       class="tbxforms-checkboxes__input"
+                       required="required"
+                       id="id_accept"
+                       checked>
+                <label class="tbxforms-label tbxforms-checkboxes__label" for="id_accept">I accept the terms of service</label>
+            </div>
+        </div>
+    </div>
+</form>
