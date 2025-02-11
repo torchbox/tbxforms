@@ -409,7 +409,7 @@ Label and legend sizes can be changed through the form's helper, e.g.:
 ```python
     from tbxforms.layout import Size
 
-    class ExampleForm(TbxFormsMixin, forms.Form):
+    class ExampleForm(...):
         ...
 
         def __init__(self, *args, **kwargs):
@@ -431,7 +431,7 @@ You can disable the [error summary](https://design-system.service.gov.uk/compone
 by setting `show_error_summary=False` in the form's helper, e.g.:
 
 ```python
-    class ExampleForm(TbxFormsMixin, forms.Form):
+    class ExampleForm(...):
         ...
 
         def __init__(self, *args, **kwargs):
