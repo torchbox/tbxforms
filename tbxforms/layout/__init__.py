@@ -1,4 +1,7 @@
-from .base import Layout
+from .base import (
+    Layout,
+    setup_conditional_attrs,
+)
 from .buttons import (
     Button,
     Submit,
@@ -30,4 +33,5 @@ __all__ = [
     "Layout",
     "Size",
     "Submit",
+    "setup_conditional_attrs",
 ]

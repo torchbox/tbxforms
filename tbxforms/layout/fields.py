@@ -7,6 +7,7 @@ from tbxforms.layout import (
     Fixed,
     Fluid,
     Size,
+    setup_conditional_attrs,
 )
 
 
@@ -421,16 +422,20 @@ class Field(crispy_forms_layout.LayoutObject):
 
         Args:
             **kwargs: keyword arguments that will be added as HTML attributes.
-
-        Returns:
-
         """
-        self.attrs.update(
-            {
-                k.replace("_", "-"): conditional_escape(v)
-                for k, v in kwargs.items()
-            }
-        )
+        kwargs = setup_conditional_attrs(kwargs=kwargs)
+
+        for k, v in kwargs.items():
+            # Don't escape values that are already JSON encoded
+            if k in [
+                "data_conditional_field_name",
+                "data_conditional_field_values",
+            ]:
+                value = v
+            else:
+                value = conditional_escape(v)
+
+            self.attrs.update({k.replace("_", "-"): value})
 
     def render(
         self,

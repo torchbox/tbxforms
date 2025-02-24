@@ -1,0 +1,28 @@
+<form class="tbxforms" method="post">
+    <div id="div_id_trigger_field" class="tbxforms-form-group">
+        <div class="tbxforms-checkboxes">
+            <div class="tbxforms-checkboxes__item">
+                <input type="checkbox"
+                       name="trigger_field"
+                       class="tbxforms-checkboxes__input"
+                       required="required"
+                       id="id_trigger_field">
+                <label class="tbxforms-label tbxforms-checkboxes__label"
+                       for="id_trigger_field">Trigger field</label>
+            </div>
+        </div>
+    </div>
+    <div id="div_id_dependent_field" class="tbxforms-form-group">
+        <label for="id_dependent_field" class="tbxforms-label tbxforms-label--m">
+            Dependent field
+            <span class="tbxforms-field_marker--optional">(optional)</span>
+        </label>
+        <input type="text"
+               name="dependent_field"
+               rows="10"
+               data-conditional-field-name="trigger_field"
+               data-conditional-field-values="[true]"
+               class="tbxforms-input tbxforms-input--text"
+               id="id_dependent_field">
+    </div>
+</form>
