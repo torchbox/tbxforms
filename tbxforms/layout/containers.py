@@ -48,7 +48,8 @@ class Div(crispy_forms_layout.Div):
     """
 
     def __init__(self, *fields, **kwargs):
-        kwargs = setup_conditional_attrs(kwargs=kwargs)
+        # Setup conditional attributes.
+        kwargs = setup_conditional_attrs(attrs=kwargs)
         super().__init__(*fields, **kwargs)
 
 
@@ -122,7 +123,8 @@ class Fieldset(crispy_forms_layout.LayoutObject):
         if not hasattr(self, "css_class"):
             self.css_class = kwargs.pop("css_class", None)
 
-        kwargs = setup_conditional_attrs(kwargs=kwargs)
+        # Setup conditional attributes.
+        kwargs = setup_conditional_attrs(attrs=kwargs)
 
         self.css_id = kwargs.pop("css_id", None)
         self.template = kwargs.pop("template", self.template)

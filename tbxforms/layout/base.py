@@ -7,21 +7,28 @@ class Layout(crispy_forms_layout.Layout):
     pass
 
 
-def setup_conditional_attrs(kwargs: dict):
+def setup_conditional_attrs(attrs: dict):
     """
-    Set up our flat attributes to handle conditional field/container logic.
+    Converts a `data_conditional` or `data-conditional` dict to two separate
+    JS-friendly variables to handle conditional field/container logic.
 
-    As an example, this will transform:
-        { "data_conditional": { "field_name": "trigger_field", "values": ["yes", "no"] } }
-    to:
-        { "data_conditional_field_name": "trigger_field", "data_conditional_field_values": "[\"yes\", \"no\"]" }
+    As an example, these examples:
+        * { "data_conditional": { "field_name": "trigger_field", "values": ["yes", "no"] } }
+        * { "data-conditional": { "field-name": "trigger_field", "values": ["yes", "no"] } }
+
+    will be transformed into:
+        { "data-conditional-field-name": "trigger_field", "data-conditional-field-values": "[\"yes\", \"no\"]" }
     """  # noqa: E501
 
-    conditional_attrs = kwargs.pop("data_conditional", None)
+    conditional_attrs = attrs.pop("data_conditional", None) or attrs.pop(
+        "data-conditional", None
+    )
     if conditional_attrs:
-        kwargs["data_conditional_field_name"] = conditional_attrs["field_name"]
-        kwargs["data_conditional_field_values"] = json.dumps(
+        attrs["data-conditional-field-name"] = (
+            conditional_attrs["field_name"] or conditional_attrs["field-name"]
+        )
+        attrs["data-conditional-field-values"] = json.dumps(
             conditional_attrs["values"]
         )
 
-    return kwargs
+    return attrs

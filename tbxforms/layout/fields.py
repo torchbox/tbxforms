@@ -423,19 +423,23 @@ class Field(crispy_forms_layout.LayoutObject):
         Args:
             **kwargs: keyword arguments that will be added as HTML attributes.
         """
-        kwargs = setup_conditional_attrs(kwargs=kwargs)
+
+        # Setup conditional attributes.
+        kwargs = setup_conditional_attrs(attrs=kwargs)
 
         for k, v in kwargs.items():
+            key = k.replace("_", "-")
+
             # Don't escape values that are already JSON encoded
             if k in [
-                "data_conditional_field_name",
-                "data_conditional_field_values",
+                "data-conditional-field-name",
+                "data-conditional-field-values",
             ]:
                 value = v
             else:
                 value = conditional_escape(v)
 
-            self.attrs.update({k.replace("_", "-"): value})
+            self.attrs.update({key: value})
 
     def render(
         self,
