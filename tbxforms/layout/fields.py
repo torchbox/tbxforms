@@ -1,5 +1,3 @@
-from django.utils.html import conditional_escape
-
 from crispy_forms import layout as crispy_forms_layout
 from crispy_forms.utils import (
     TEMPLATE_PACK,
@@ -430,20 +428,7 @@ class Field(crispy_forms_layout.LayoutObject):
         # Setup conditional attributes.
         kwargs = setup_conditional_attrs(attrs=kwargs)
 
-        for k, v in kwargs.items():
-            key = k.replace("_", "-")
-
-            # Don't escape values that are already JSON encoded
-            if k in [
-                "data-conditional-field-name",
-                "data-conditional-field-values",
-            ]:
-                value = v
-            else:
-                value = conditional_escape(v)
-
-            self.attrs.update({key: value})
-
+        self.attrs.update(kwargs)
         self.flat_attrs = flatatt(self.attrs)
 
     def render(
