@@ -1,7 +1,10 @@
 from django.utils.html import conditional_escape
 
 from crispy_forms import layout as crispy_forms_layout
-from crispy_forms.utils import TEMPLATE_PACK
+from crispy_forms.utils import (
+    TEMPLATE_PACK,
+    flatatt,
+)
 
 from tbxforms.layout import (
     Fixed,
@@ -440,6 +443,8 @@ class Field(crispy_forms_layout.LayoutObject):
                 value = conditional_escape(v)
 
             self.attrs.update({key: value})
+
+        self.flat_attrs = flatatt(self.attrs)
 
     def render(
         self,

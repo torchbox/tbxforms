@@ -30,7 +30,8 @@ FIELD_TYPES = {
             "choices": (
                 Choice("yes", "Yes"),
                 Choice("no", "No"),
-            )
+            ),
+            "widget": forms.CheckboxSelectMultiple,
         },
     },
     "radios": {
@@ -41,7 +42,8 @@ FIELD_TYPES = {
             "choices": (
                 Choice("yes", "Yes"),
                 Choice("no", "No"),
-            )
+            ),
+            "widget": forms.RadioSelect,
         },
     },
     "select": {
@@ -52,7 +54,8 @@ FIELD_TYPES = {
             "choices": (
                 Choice("yes", "Yes"),
                 Choice("no", "No"),
-            )
+            ),
+            "widget": forms.Select,
         },
     },
     "text": {

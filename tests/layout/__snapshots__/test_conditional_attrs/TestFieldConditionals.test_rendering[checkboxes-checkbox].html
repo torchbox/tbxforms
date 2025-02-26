@@ -1,14 +1,28 @@
 <form class="tbxforms" method="post">
     <div id="div_id_trigger_field" class="tbxforms-form-group">
-        <label for="id_trigger_field" class="tbxforms-label tbxforms-label--m">Trigger field</label>
-        <select name="trigger_field"
-                class="selectmultiple"
-                required="required"
-                id="id_trigger_field"
-                multiple>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-        </select>
+        <fieldset class="tbxforms-fieldset">
+            <legend class="tbxforms-fieldset__legend tbxforms-fieldset__legend--m">Trigger field</legend>
+            <div class="tbxforms-checkboxes">
+                <div class="tbxforms-checkboxes__item">
+                    <input type="checkbox"
+                           name="trigger_field"
+                           class="tbxforms-checkboxes__input"
+                           id="id_trigger_field_1"
+                           value="yes" />
+                    <label class="tbxforms-label tbxforms-checkboxes__label"
+                           for="id_trigger_field_1">Yes</label>
+                </div>
+                <div class="tbxforms-checkboxes__item">
+                    <input type="checkbox"
+                           name="trigger_field"
+                           class="tbxforms-checkboxes__input"
+                           id="id_trigger_field_2"
+                           value="no" />
+                    <label class="tbxforms-label tbxforms-checkboxes__label"
+                           for="id_trigger_field_2">No</label>
+                </div>
+            </div>
+        </fieldset>
     </div>
     <div id="div_id_dependent_field" class="tbxforms-form-group">
         <div class="tbxforms-checkboxes">

@@ -6,8 +6,6 @@ from django.conf import settings
 
 from crispy_forms.utils import TEMPLATE_PACK
 
-from tbxforms.layout import setup_conditional_attrs
-
 register = template.Library()
 
 
@@ -288,11 +286,6 @@ class CrispyGDSFieldNode(template.Node):
                     )
 
             widget.attrs["class"] = css_class
-
-            # Setup conditional attributes.
-            widget.attrs.update(
-                {**setup_conditional_attrs(attrs=widget.attrs)}
-            )
 
             # HTML5 required attribute
             if (
