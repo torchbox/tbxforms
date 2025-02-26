@@ -1,0 +1,40 @@
+<form class="tbxforms" method="post">
+    <div id="div_id_trigger_field" class="tbxforms-form-group">
+        <fieldset class="tbxforms-fieldset">
+            <legend class="tbxforms-fieldset__legend tbxforms-fieldset__legend--m">Trigger field</legend>
+            <div class="tbxforms-radios">
+                <div class="tbxforms-radios__item">
+                    <input type="radio"
+                           name="trigger_field"
+                           class="tbxforms-radios__input"
+                           id="id_trigger_field_1"
+                           value="yes" />
+                    <label class="tbxforms-label tbxforms-radios__label"
+                           for="id_trigger_field_1">Yes</label>
+                </div>
+                <div class="tbxforms-radios__item">
+                    <input type="radio"
+                           name="trigger_field"
+                           class="tbxforms-radios__input"
+                           id="id_trigger_field_2"
+                           value="no" />
+                    <label class="tbxforms-label tbxforms-radios__label"
+                           for="id_trigger_field_2">No</label>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div id="div_id_dependent_field" class="tbxforms-form-group">
+        <label for="id_dependent_field" class="tbxforms-label tbxforms-label--m">
+            Dependent field
+            <span class="tbxforms-field_marker--optional">(optional)</span>
+        </label>
+        <input type="text"
+               name="dependent_field"
+               rows="10"
+               data-conditional-field-name="trigger_field"
+               data-conditional-field-values="[&quot;yes&quot;]"
+               class="tbxforms-input tbxforms-input--text"
+               id="id_dependent_field">
+    </div>
+</form>

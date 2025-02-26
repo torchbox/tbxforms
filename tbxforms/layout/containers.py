@@ -1,5 +1,3 @@
-import json
-
 from django.template.loader import render_to_string
 
 from crispy_forms import layout as crispy_forms_layout
@@ -8,7 +6,10 @@ from crispy_forms.utils import (
     flatatt,
 )
 
-from tbxforms.layout import Size
+from tbxforms.layout import (
+    Size,
+    setup_conditional_attrs,
+)
 
 
 class Div(crispy_forms_layout.Div):
@@ -47,14 +48,8 @@ class Div(crispy_forms_layout.Div):
     """
 
     def __init__(self, *fields, **kwargs):
-        if "data_conditional" in kwargs:
-            conditional_attrs = kwargs.pop("data_conditional")
-            kwargs["data_conditional_field_name"] = conditional_attrs[
-                "field_name"
-            ]
-            kwargs["data_conditional_field_values"] = json.dumps(
-                conditional_attrs["values"]
-            )
+        # Setup conditional attributes.
+        kwargs = setup_conditional_attrs(attrs=kwargs)
         super().__init__(*fields, **kwargs)
 
 
@@ -128,14 +123,8 @@ class Fieldset(crispy_forms_layout.LayoutObject):
         if not hasattr(self, "css_class"):
             self.css_class = kwargs.pop("css_class", None)
 
-        if "data_conditional" in kwargs:
-            conditional_attrs = kwargs.pop("data_conditional")
-            kwargs["data_conditional_field_name"] = conditional_attrs[
-                "field_name"
-            ]
-            kwargs["data_conditional_field_values"] = json.dumps(
-                conditional_attrs["values"]
-            )
+        # Setup conditional attributes.
+        kwargs = setup_conditional_attrs(attrs=kwargs)
 
         self.css_id = kwargs.pop("css_id", None)
         self.template = kwargs.pop("template", self.template)

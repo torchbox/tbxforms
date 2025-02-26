@@ -1,0 +1,23 @@
+<form class="tbxforms" method="post">
+    <div id="div_id_trigger_field" class="tbxforms-form-group">
+        <label for="id_trigger_field" class="tbxforms-label tbxforms-label--m">Trigger field</label>
+        <input type="text"
+               name="trigger_field"
+               rows="10"
+               class="tbxforms-input tbxforms-input--text"
+               required="required"
+               id="id_trigger_field">
+    </div>
+    <div id="div_id_dependent_field" class="tbxforms-form-group">
+        <label for="id_dependent_field" class="tbxforms-label tbxforms-label--m">
+            Dependent field
+            <span class="tbxforms-field_marker--optional">(optional)</span>
+        </label>
+        <input type="text"
+               name="dependent_field"
+               data-conditional-field-name="trigger_field"
+               data-conditional-field-values="[&quot;yes&quot;]"
+               class="tbxforms-input tbxforms-input--text"
+               id="id_dependent_field">
+    </div>
+</form>

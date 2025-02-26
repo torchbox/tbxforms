@@ -5,6 +5,7 @@
     {% if field.help_text or field.errors %}
         aria-describedby="{% for error in field.errors %}{{ field.auto_id }}_{{ forloop.counter }}_error {% endfor %}{% if field.help_text %}{{ field.auto_id }}_hint{% endif %}"
     {% endif %}
+    {{ flat_attrs }}
 >
 
     {% if field.label %}
@@ -25,7 +26,6 @@
     <div class="tbxforms-checkboxes{% if inline %}--inline{% endif %}{% if checkboxes_small %} tbxforms-checkboxes--small{% endif %}">
         {% for choice in field.field.choices %}
             <div class="tbxforms-checkboxes__item">
-
                 <input
                     type="checkbox"
                     name="{{ field.html_name }}"

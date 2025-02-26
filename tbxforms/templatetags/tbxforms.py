@@ -1,7 +1,3 @@
-import ast
-import html
-import json
-
 from django import (
     forms,
     template,
@@ -290,18 +286,6 @@ class CrispyGDSFieldNode(template.Node):
                     )
 
             widget.attrs["class"] = css_class
-
-            # Convert conditional dict to two separate JS-friendly variables.
-            if "data-conditional" in widget.attrs:
-                conditional_attrs = ast.literal_eval(
-                    html.unescape(widget.attrs.pop("data-conditional"))
-                )
-                widget.attrs["data-conditional-field-name"] = (
-                    conditional_attrs["field_name"]
-                )
-                widget.attrs["data-conditional-field-values"] = json.dumps(
-                    conditional_attrs["values"]
-                )
 
             # HTML5 required attribute
             if (

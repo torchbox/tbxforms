@@ -1,12 +1,14 @@
-from django.utils.html import conditional_escape
-
 from crispy_forms import layout as crispy_forms_layout
-from crispy_forms.utils import TEMPLATE_PACK
+from crispy_forms.utils import (
+    TEMPLATE_PACK,
+    flatatt,
+)
 
 from tbxforms.layout import (
     Fixed,
     Fluid,
     Size,
+    setup_conditional_attrs,
 )
 
 
@@ -421,16 +423,13 @@ class Field(crispy_forms_layout.LayoutObject):
 
         Args:
             **kwargs: keyword arguments that will be added as HTML attributes.
-
-        Returns:
-
         """
-        self.attrs.update(
-            {
-                k.replace("_", "-"): conditional_escape(v)
-                for k, v in kwargs.items()
-            }
-        )
+
+        # Setup conditional attributes.
+        kwargs = setup_conditional_attrs(attrs=kwargs)
+
+        self.attrs.update(kwargs)
+        self.flat_attrs = flatatt(self.attrs)
 
     def render(
         self,
