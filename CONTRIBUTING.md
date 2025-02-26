@@ -39,6 +39,32 @@ If your changes cause the snapshot tests to fail:
 1. Verify that the changes you have caused are expected - don't just blindly update the snapshots, they're there for a reason.
 2. Run `poetry run pytest --snapshot-update` to update the snapshots.
 
+#### Testing `tbxforms` in a real-world project
+
+`tbxforms` can also be published to https://test.pypi.org/project/tbxforms/ to
+make it easier to test changes to the package within a real-world project.
+
+##### Publishing to test.pypi
+
+To publish a new version of `tbxforms` to test.pypi:
+
+1. Set an alpha version in `pyproject.toml` (e.g. `version = "4.3.0-alpha.1"`)
+2. Run `poetry publish --repository testpypi` to push the new version to test.pypi
+
+##### Installing the alpha/test version
+
+To install the alpha/test version of `tbxforms`, run:
+
+```bash
+# Using poetry
+poetry add tbxforms --index-url https://test.pypi.org/simple/
+
+# Using pip
+pip install --index-url https://test.pypi.org/simple/ --no-deps tbxforms
+```
+
+(note, you may need to clear your project's poetry cache if Poetry cannot find the latest version: `poetry cache clear --all .`)
+
 ## Publishing
 
 1. `pre-commit run --all-files` - run linters
@@ -47,11 +73,14 @@ If your changes cause the snapshot tests to fail:
 4. Update CHANGELOG headings (add a new heading beneath the "Unreleased" heading)
 5. `poetry lock --no-update` - Lock python packages
 6. `npm i --package-lock-only` - Lock javascript packages
-7. `npm run build` - build NPM package
-8. `poetry build` - build python package
-9. `npm publish` - publish package to npmjs.com
-10. `poetry publish` - publish package to pypi.org
-11. Create a [release](https://github.com/torchbox/tbxforms/releases) with relevant changelog entries and upgrade considerations
+7. Commit changes to `main`
+8. Tag release commit (e.g. `v4.2.0`)
+9. Push changes and tag to `main`
+10. `npm run build` - build NPM package
+11. `poetry build` - build python package
+12. `npm publish` - publish package to npmjs.com
+13. `poetry publish` - publish package to pypi.org
+14. Create a [release](https://github.com/torchbox/tbxforms/releases) with relevant changelog entries and upgrade considerations
 
 ## Common tasks
 
