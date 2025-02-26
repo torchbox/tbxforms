@@ -20,7 +20,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Fixed
 
--   Conditional fields not working when applied to field objects (e.g. `Field.text`, `Field.checkoxes`) instead of container objects (e.g. `Div`, `Fieldset`) [#95]
+-   Conditional fields not working when applied to field objects (e.g. `Field.text`, `Field.checkboxes`) instead of container objects (e.g. `Div`, `Fieldset`) [#95]
 
 ## [4.1.0](https://github.com/torchbox/tbxforms/releases/tag/v4.1.0)
 
