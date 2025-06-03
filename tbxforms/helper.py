@@ -16,6 +16,11 @@ class FormHelper(crispy_forms_helper.FormHelper):
     adding the following attributes to control how the form is rendered.
 
     Attributes:
+        highlight_required_fields (:obj:`bool`, optional): whether to highlight
+            required fields or optional fields. If not set on the form, the
+            `TBXFORMS_HIGHLIGHT_REQUIRED_FIELDS` setting will be used, falling
+            to `False` if that setting is not set.
+
         label_size (:obj:`str`, optional): set the default size used for all
             field labels. The default value of None renders labels with the
             same font size as body text. To change the font size and weight
@@ -55,6 +60,7 @@ class FormHelper(crispy_forms_helper.FormHelper):
 
     """
 
+    highlight_required_fields = None
     label_size = ""
     legend_size = ""
     show_error_summary = True
@@ -76,9 +82,14 @@ class FormHelper(crispy_forms_helper.FormHelper):
         if self.legend_size:
             context["legend_size"] = Size.for_legend(self.legend_size)
 
-        context["highlight_required_fields"] = getattr(
-            settings, "TBXFORMS_HIGHLIGHT_REQUIRED_FIELDS", False
-        )
+        if self.highlight_required_fields is not None:
+            context["highlight_required_fields"] = (
+                self.highlight_required_fields
+            )
+        else:
+            context["highlight_required_fields"] = getattr(
+                settings, "TBXFORMS_HIGHLIGHT_REQUIRED_FIELDS", False
+            )
 
         return super().render_layout(
             form, context, template_pack=template_pack
