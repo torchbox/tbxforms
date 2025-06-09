@@ -197,6 +197,7 @@ allows you to alter the rendering behaviour of forms.
 Every form that inherits from `TbxFormsMixin` (i.e. every form within `tbxforms`)
 will have a `FormHelper` with the following default attributes:
 
+-   `highlight_required_fields`: see [later section on highlighting required fields](#highlight-required-fields-instead-of-optional-ones)
 -   `html5_required = True`
 -   `label_size = Size.MEDIUM`
 -   `legend_size = Size.MEDIUM`
@@ -396,6 +397,21 @@ recommended by GDS.
 
 If `TBXFORMS_HIGHLIGHT_REQUIRED_FIELDS=True`, required fields will have an
 asterisk appended to their labels and optional fields will not be highlighted.
+
+This setting can be changed on a per-form basis by setting the form helper's
+`highlight_required_fields` attribute:
+
+```python
+from django import forms
+from tbxforms.forms import TbxFormsMixin
+
+
+class ExampleForm(TbxFormsMixin, forms.Form):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Highlight required fields regardless of settings.TBXFORMS_HIGHLIGHT_REQUIRED_FIELDS
+        self.helper.highlight_required_fields = True
+```
 
 You can also style these markers by targeting these CSS classes:
 

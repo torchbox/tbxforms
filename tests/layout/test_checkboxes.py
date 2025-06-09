@@ -97,3 +97,21 @@ def test_required_field_highlighting(snapshot_html):
     """
     form = CheckboxesForm()
     assert render_form(form) == snapshot_html
+
+
+@override_settings(TBXFORMS_HIGHLIGHT_REQUIRED_FIELDS=True)
+def test_required_field_highlighting_disabled_per_form(snapshot_html):
+    """
+    Ensure that required field highlighting can be turned off per-form.
+    """
+    form = CheckboxesForm()
+    form.helper.highlight_required_fields = False
+    form.fields["method"].required = False
+    assert render_form(form) == snapshot_html
+
+
+@override_settings(TBXFORMS_HIGHLIGHT_REQUIRED_FIELDS=False)
+def test_required_field_highlighting_enabled_per_form(snapshot_html):
+    form = CheckboxesForm()
+    form.helper.highlight_required_fields = True
+    assert render_form(form) == snapshot_html
