@@ -16,6 +16,12 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## Unreleased
 
+## [4.3.0](https://github.com/torchbox/tbxforms/releases/tag/v4.3.0)
+
+### Added
+
+-   Allow per-form override of `settings.TBXFORMS_HIGHLIGHT_REQUIRED_FIELDS` [#97]
+
 ## [4.2.0](https://github.com/torchbox/tbxforms/releases/tag/v4.2.0)
 
 ### Fixed
