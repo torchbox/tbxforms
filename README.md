@@ -400,6 +400,7 @@ asterisk appended to their labels and optional fields will not be highlighted.
 
 This setting can be changed on a per-form basis by setting the form helper's
 `highlight_required_fields` attribute:
+
 ```python
 from django import forms
 from tbxforms.forms import TbxFormsMixin
