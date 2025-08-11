@@ -88,7 +88,8 @@ def test_no_help_text_errors(snapshot_html):
 
 def test_optional_field_highlighting(snapshot_html):
     """
-    Ensure optional fields are marked with "(optional)" by default.
+    Ensure optional fields are marked with "(optional)" by default
+    and ensure it does not render the `required` attribute.
     """
     form = RadiosForm()
     form.fields["method"].required = False

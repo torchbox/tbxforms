@@ -33,6 +33,10 @@
                     id="id_{{ field.html_name }}_{{ forloop.counter }}"
                     value="{{ choice.0|unlocalize }}"
 
+                    {% if field.field.required and forloop.first %}
+                        required
+                    {% endif %}
+
                     {% if choice.0|stringformat:"s" == field.value|stringformat:"s" %}
                         checked="checked"
                     {% endif %}
