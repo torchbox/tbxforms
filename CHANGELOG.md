@@ -16,6 +16,12 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## Unreleased
 
+## [4.3.1](https://github.com/torchbox/tbxforms/releases/tag/v4.3.1)
+
+### Fixed
+
+-   Radio fields not being marked as `required` when set to be [#98]
+
 ## [4.3.0](https://github.com/torchbox/tbxforms/releases/tag/v4.3.0)
 
 ### Added
