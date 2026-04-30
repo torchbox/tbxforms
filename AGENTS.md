@@ -14,15 +14,15 @@ packaged static assets.
 
 Use Poetry for Python environment management in this repository.
 
-- `poetry install` installs Python dependencies.
-- `npm install` installs frontend build and lint dependencies.
-- `poetry run pytest` runs the test suite against the active environment.
-- `poetry run tox` runs the supported Python/Django matrix from `tox.ini`.
-- `poetry run pytest --snapshot-update` updates Syrupy snapshots after checking
-  the rendered HTML change is intentional.
-- `pre-commit run --all-files` runs Python, template, JS, and formatting checks.
-- `npm run lint` runs ESLint and Prettier checks.
-- `npm run build` builds the Vite bundle and copies Sass into `dist/`.
+-   `poetry install` installs Python dependencies.
+-   `npm install` installs frontend build and lint dependencies.
+-   `poetry run pytest` runs the test suite against the active environment.
+-   `poetry run tox` runs the supported Python/Django matrix from `tox.ini`.
+-   `poetry run pytest --snapshot-update` updates Syrupy snapshots after checking
+    the rendered HTML change is intentional.
+-   `pre-commit run --all-files` runs Python, template, JS, and formatting checks.
+-   `npm run lint` runs ESLint and Prettier checks.
+-   `npm run build` builds the Vite bundle and copies Sass into `dist/`.
 
 ## Coding Style & Naming Conventions
 
@@ -45,8 +45,7 @@ changes.
 ## Commit & Pull Request Guidelines
 
 Recent history uses short, imperative commit subjects, often with GitHub PR
-numbers, for example `Fix radios not including 'required' attribute when set as
-required (#98)`. Keep commits focused. Pull requests should describe the change,
+numbers, for example `Fix radios not including 'required' attribute when set as required (#98)`. Keep commits focused. Pull requests should describe the change,
 link the related issue when available, mention snapshot or visual changes, and
 list the checks run. Include screenshots or rendered HTML examples when form
 markup or styling changes.
