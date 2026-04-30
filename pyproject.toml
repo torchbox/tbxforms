@@ -16,22 +16,19 @@ classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Framework :: Django",
-    "Framework :: Django :: 3.2",
-    "Framework :: Django :: 4.0",
-    "Framework :: Django :: 4.1",
     "Framework :: Django :: 4.2",
-    "Framework :: Django :: 5.0",
+    "Framework :: Django :: 5.2",
+    "Framework :: Django :: 6.0",
     "Framework :: Wagtail",
-    "Framework :: Wagtail :: 2",
-    "Framework :: Wagtail :: 3",
-    "Framework :: Wagtail :: 4",
-    "Framework :: Wagtail :: 5",
+    "Framework :: Wagtail :: 6",
+    "Framework :: Wagtail :: 7",
 ]
 packages = [
     { include = "tbxforms" },
@@ -56,8 +53,8 @@ keywords = [
   ]
 
 [tool.poetry.dependencies]
-python = ">=3.8.1,<4.0"  # Cannot remove upper-bound as isort needs >=3.6.1,<4.0
-Django = ">=3.2"
+python = ">=3.9,<4.0"  # Cannot remove upper-bound as isort needs >=3.6.1,<4.0
+Django = ">=4.2"
 django-crispy-forms = ">=2.1,<3.0"
 
 [tool.poetry.group.dev.dependencies]

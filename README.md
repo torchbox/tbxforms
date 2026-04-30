@@ -11,8 +11,8 @@ variables can be customised.
 
 ## Requirements
 
--   python `>=3.8.1,<4.0`
--   Django `>=3.2`
+-   python `>=3.9,<4.0`
+-   Django `>=4.2`
 -   django-crispy-forms `>=2.1,<3.0`
 -   wagtail `>=2.15` if using `WagtailBaseForm`
 -   sass `>=1.33.0` if building the sass yourself
