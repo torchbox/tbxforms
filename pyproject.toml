@@ -69,7 +69,7 @@ pip = "24.1.2"
 # Linters etc.
 black = "24.3.0"  # Match version in .pre-commit-config
 detect-secrets = "~0.13"
-flake8 = "5.0.4"  # Match version in .pre-commit-config
+flake8 = "7.3.0"  # Match version in .pre-commit-config
 isort = "5.12.0"  # Match version in .pre-commit-config
 djlint = "1.23.3"
 
