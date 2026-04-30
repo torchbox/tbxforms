@@ -14,15 +14,15 @@ packaged static assets.
 
 Use Poetry for Python environment management in this repository.
 
--   `poetry install` installs Python dependencies.
--   `npm install` installs frontend build and lint dependencies.
--   `poetry run pytest` runs the test suite against the active environment.
--   `poetry run tox` runs the supported Python/Django matrix from `tox.ini`.
--   `poetry run pytest --snapshot-update` updates Syrupy snapshots after checking
-    the rendered HTML change is intentional.
--   `pre-commit run --all-files` runs Python, template, JS, and formatting checks.
--   `npm run lint` runs ESLint and Prettier checks.
--   `npm run build` builds the Vite bundle and copies Sass into `dist/`.
+- `poetry install` installs Python dependencies.
+- `npm install` installs frontend build and lint dependencies.
+- `poetry run pytest` runs the test suite against the active environment.
+- `poetry run tox` runs the supported Python/Django matrix from `tox.ini`.
+- `poetry run pytest --snapshot-update` updates Syrupy snapshots after checking
+  the rendered HTML change is intentional.
+- `pre-commit run --all-files` runs Python, template, JS, and formatting checks.
+- `npm run lint` runs ESLint and Prettier checks.
+- `npm run build` builds the Vite bundle and copies Sass into `dist/`.
 
 ## Coding Style & Naming Conventions
 
