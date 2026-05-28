@@ -11,11 +11,11 @@ variables can be customised.
 
 ## Requirements
 
--   python `>=3.8.1,<4.0`
--   Django `>=3.2`
--   django-crispy-forms `>=2.1,<3.0`
--   wagtail `>=2.15` if using `WagtailBaseForm`
--   sass `>=1.33.0` if building the sass yourself
+- python `>=3.9,<4.0`
+- Django `>=4.2`
+- django-crispy-forms `>=2.1,<3.0`
+- wagtail `>=2.15` if using `WagtailBaseForm`
+- sass `>=1.33.0` if building the sass yourself
 
 <!-- prettier-ignore-start -->
 > [!NOTE]
@@ -101,7 +101,7 @@ Import the styles into your project...
 ```scss
 @use 'node_modules/tbxforms/tbxforms.scss' with (
     $tbxforms-text-colour: #000,
-    $tbxforms-error-colour: #f00,
+    $tbxforms-error-colour: #f00
 );
 ```
 
@@ -197,12 +197,12 @@ allows you to alter the rendering behaviour of forms.
 Every form that inherits from `TbxFormsMixin` (i.e. every form within `tbxforms`)
 will have a `FormHelper` with the following default attributes:
 
--   `highlight_required_fields`: see [later section on highlighting required fields](#highlight-required-fields-instead-of-optional-ones)
--   `html5_required = True`
--   `label_size = Size.MEDIUM`
--   `legend_size = Size.MEDIUM`
--   `form_error_title = _("There is a problem with your submission")`
--   Plus everything from [django-crispy-forms' default attributes](https://django-crispy-forms.readthedocs.io/en/latest/form_helper.html).
+- `highlight_required_fields`: see [later section on highlighting required fields](#highlight-required-fields-instead-of-optional-ones)
+- `html5_required = True`
+- `label_size = Size.MEDIUM`
+- `legend_size = Size.MEDIUM`
+- `form_error_title = _("There is a problem with your submission")`
+- Plus everything from [django-crispy-forms' default attributes](https://django-crispy-forms.readthedocs.io/en/latest/form_helper.html).
 
 These can be changed during instantiation or [on the go](https://django-crispy-forms.readthedocs.io/en/latest/dynamic_layouts.html) - examples below.
 
@@ -415,8 +415,8 @@ class ExampleForm(TbxFormsMixin, forms.Form):
 
 You can also style these markers by targeting these CSS classes:
 
--   `.tbxforms-field_marker--required`
--   `.tbxforms-field_marker--optional`
+- `.tbxforms-field_marker--required`
+- `.tbxforms-field_marker--optional`
 
 ### Change the default label and legend classes
 
@@ -462,8 +462,8 @@ it in your template.
 
 # Further reading
 
--   Download the [PyPI package](http://pypi.python.org/pypi/tbxforms)
--   Download the [NPM package](https://www.npmjs.com/package/tbxforms)
--   Learn more about [Django Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/)
--   Learn more about [Crispy Forms GDS](https://github.com/wildfish/crispy-forms-gds)
--   Learn more about [GOV.UK Design System](https://design-system.service.gov.uk/)
+- Download the [PyPI package](http://pypi.python.org/pypi/tbxforms)
+- Download the [NPM package](https://www.npmjs.com/package/tbxforms)
+- Learn more about [Django Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/)
+- Learn more about [Crispy Forms GDS](https://github.com/wildfish/crispy-forms-gds)
+- Learn more about [GOV.UK Design System](https://design-system.service.gov.uk/)

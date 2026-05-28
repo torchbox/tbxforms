@@ -310,7 +310,7 @@ class CrispyGDSFieldNode(template.Node):
                         attribute
                     ).resolve(context)
 
-        return str(field)
+        return str(field).replace(' aria-invalid="true"', "")
 
 
 @register.tag(name="crispy_tbx_field")

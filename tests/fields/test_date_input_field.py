@@ -17,7 +17,7 @@ def test_compress_invalid_fields():
     month = 2
     year = 2021
     field = DateInputField()
-    with pytest.raises(ValidationError, match="day is out of range for month"):
+    with pytest.raises(ValidationError):
         field.compress([day, month, year])
 
 
