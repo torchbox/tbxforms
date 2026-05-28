@@ -2,6 +2,8 @@
 /// @group helpers/accessibility
 ////
 
+@use "../tools/if" as *;
+
 /// Helper function containing the common code for the following two mixins
 ///
 /// @link https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
@@ -14,27 +16,27 @@
 /// @access private
 
 @mixin _tbxforms-visually-hide-content($important: true) {
-  position: absolute if($important, !important, null);
+  position: absolute tbxforms-if($important, !important);
 
-  width: 1px if($important, !important, null);
-  height: 1px if($important, !important, null);
+  width: 1px tbxforms-if($important, !important);
+  height: 1px tbxforms-if($important, !important);
   // If margin is set to a negative value it can cause text to be announced in
   // the wrong order in VoiceOver for OSX
-  margin: 0 if($important, !important, null);
-  padding: 0 if($important, !important, null);
+  margin: 0 tbxforms-if($important, !important);
+  padding: 0 tbxforms-if($important, !important);
 
-  overflow: hidden if($important, !important, null);
+  overflow: hidden tbxforms-if($important, !important);
 
   // `clip` is needed for IE11 support
-  clip: rect(0 0 0 0) if($important, !important, null);
-  clip-path: inset(50%) if($important, !important, null);
+  clip: rect(0 0 0 0) tbxforms-if($important, !important);
+  clip-path: inset(50%) tbxforms-if($important, !important);
 
-  border: 0 if($important, !important, null);
+  border: 0 tbxforms-if($important, !important);
 
   // For long content, line feeds are not interpreted as spaces and small width
   // causes content to wrap 1 word per line:
   // https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
-  white-space: nowrap if($important, !important, null);
+  white-space: nowrap tbxforms-if($important, !important);
 
   // Prevent users from selecting or copying visually-hidden text. This prevents
   // a user unintentionally copying more text than they intended and needing to
@@ -74,7 +76,10 @@
 
 @mixin tbxforms-visually-hidden-focusable($important: true) {
   // IE 11 doesn't support the combined `:not(:active, :focus)` syntax.
-  &:not(:active):not(:focus) {
+  // Also allows for ':focus' companion classes from postcss-pseudo-classes
+  // which the plugin unfortunately doesn't handle automatically.
+  // stylelint-disable-next-line selector-class-pattern
+  &:not(:active):not(:focus):not(.\:focus) {
     @include _tbxforms-visually-hide-content($important: $important);
   }
 }

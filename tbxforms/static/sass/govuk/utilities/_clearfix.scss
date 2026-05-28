@@ -1,5 +1,3 @@
-@include tbxforms-exports("govuk/utilities/clearfix") {
-  .tbxforms-clearfix {
-    @include tbxforms-clearfix;
-  }
-}
+@use "clearfix.mixin" as clearfix;
+
+@include clearfix.styles;

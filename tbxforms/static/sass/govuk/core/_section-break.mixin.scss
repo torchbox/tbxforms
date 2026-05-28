@@ -1,0 +1,53 @@
+@use "../base";
+
+/// @access private
+@mixin styles {
+  %tbxforms-section-break {
+    margin: 0;
+    border: 0;
+  }
+
+  .tbxforms-section-break {
+    @extend %tbxforms-section-break;
+  }
+
+  // Sizes
+
+  %tbxforms-section-break--xl {
+    @include base.tbxforms-responsive-margin(8, "top");
+    @include base.tbxforms-responsive-margin(8, "bottom");
+  }
+
+  .tbxforms-section-break--xl {
+    @extend %tbxforms-section-break--xl;
+  }
+
+  %tbxforms-section-break--l {
+    @include base.tbxforms-responsive-margin(6, "top");
+    @include base.tbxforms-responsive-margin(6, "bottom");
+  }
+
+  .tbxforms-section-break--l {
+    @extend %tbxforms-section-break--l;
+  }
+
+  %tbxforms-section-break--m {
+    @include base.tbxforms-responsive-margin(4, "top");
+    @include base.tbxforms-responsive-margin(4, "bottom");
+  }
+
+  .tbxforms-section-break--m {
+    @extend %tbxforms-section-break--m;
+  }
+
+  // Visible variant
+
+  %tbxforms-section-break--visible {
+    border-bottom: 1px solid;
+    border-bottom-color: base.tbxforms-functional-colour(border);
+  }
+
+  .tbxforms-section-break--visible {
+    @extend %tbxforms-section-break--visible;
+  }
+}

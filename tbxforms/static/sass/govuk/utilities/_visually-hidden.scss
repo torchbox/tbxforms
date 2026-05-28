@@ -1,9 +1,3 @@
-@include tbxforms-exports("govuk/utilities/visually-hidden") {
-  .tbxforms-visually-hidden {
-    @include tbxforms-visually-hidden;
-  }
+@use "visually-hidden.mixin" as visually-hidden;
 
-  .tbxforms-visually-hidden-focusable {
-    @include tbxforms-visually-hidden-focusable;
-  }
-}
+@include visually-hidden.styles;

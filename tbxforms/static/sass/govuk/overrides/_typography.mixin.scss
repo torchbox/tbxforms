@@ -1,0 +1,42 @@
+@use "sass:map";
+@use "../base";
+
+/// @access private
+@mixin styles {
+  // Font size and line height
+
+  // Generate typography override classes for each responsive font map in the
+  // typography scale eg .tbxforms-\!-font-size-80
+  @each $size, $font-map in base.$tbxforms-typography-scale {
+    .tbxforms-\!-font-size-#{$size} {
+      $font-map: map.get(base.$tbxforms-typography-scale, $size);
+
+      // Add underscore to deprecated typography scale keys
+      @if map.has-key($font-map, "deprecation") {
+        $size: _#{$size};
+      }
+
+      @include base.tbxforms-font-size($size, $important: true);
+    }
+  }
+
+  // Weights
+
+  .tbxforms-\!-font-weight-regular {
+    @include base.tbxforms-typography-weight-regular($important: true);
+  }
+
+  .tbxforms-\!-font-weight-bold {
+    @include base.tbxforms-typography-weight-bold($important: true);
+  }
+
+  // Typography helpers
+
+  .tbxforms-\!-font-tabular-numbers {
+    @include base.tbxforms-font-tabular-numbers($important: true);
+  }
+
+  .tbxforms-\!-text-break-word {
+    @include base.tbxforms-text-break-word($important: true);
+  }
+}

@@ -1,0 +1,18 @@
+@use "../base";
+
+@mixin tbxforms-global-styles {
+  a {
+    @extend %tbxforms-link;
+  }
+
+  p {
+    @extend %tbxforms-body-m;
+  }
+}
+
+/// @access private
+@mixin styles {
+  @if base.$tbxforms-global-styles == true {
+    @include tbxforms-global-styles;
+  }
+}

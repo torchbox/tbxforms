@@ -2,6 +2,12 @@
 /// @group helpers/links
 ////
 
+@use "../settings/links" as *;
+@use "../settings/measurements" as *;
+@use "colour" as *;
+@use "focused" as *;
+@use "typography" as *;
+
 /// Common link styles
 ///
 /// Provides the typography and focus state, regardless of link style.
@@ -74,25 +80,25 @@
 
 @mixin tbxforms-link-style-default {
   &:link {
-    color: $tbxforms-link-colour;
+    color: tbxforms-functional-colour(link);
   }
 
   &:visited {
-    color: $tbxforms-link-visited-colour;
+    color: tbxforms-functional-colour(link-visited);
   }
 
   &:hover {
-    color: $tbxforms-link-hover-colour;
+    color: tbxforms-functional-colour(link-hover);
   }
 
   &:active {
-    color: $tbxforms-link-active-colour;
+    color: tbxforms-functional-colour(link-active);
   }
 
   // When focussed, the text colour needs to be darker to ensure that colour
   // contrast is still acceptable
   &:focus {
-    color: $tbxforms-focus-text-colour;
+    color: tbxforms-functional-colour(focus-text);
   }
 }
 
@@ -115,21 +121,21 @@
 @mixin tbxforms-link-style-error {
   &:link,
   &:visited {
-    color: $tbxforms-error-colour;
+    color: tbxforms-functional-colour(error);
   }
 
   &:hover {
-    color: scale-color($tbxforms-error-colour, $lightness: -30%);
+    color: tbxforms-colour("red", $variant: "shade-50");
   }
 
   &:active {
-    color: $tbxforms-error-colour;
+    color: tbxforms-functional-colour(error);
   }
 
   // When focussed, the text colour needs to be darker to ensure that colour
   // contrast is still acceptable
   &:focus {
-    color: $tbxforms-focus-text-colour;
+    color: tbxforms-functional-colour(focus-text);
   }
 }
 
@@ -152,21 +158,21 @@
 @mixin tbxforms-link-style-success {
   &:link,
   &:visited {
-    color: $tbxforms-success-colour;
+    color: tbxforms-functional-colour(success);
   }
 
   &:hover {
-    color: scale-color($tbxforms-success-colour, $lightness: -30%);
+    color: tbxforms-colour("green", $variant: "shade-50");
   }
 
   &:active {
-    color: $tbxforms-success-colour;
+    color: tbxforms-functional-colour(success);
   }
 
   // When focussed, the text colour needs to be darker to ensure that colour
   // contrast is still acceptable
   &:focus {
-    color: $tbxforms-focus-text-colour;
+    color: tbxforms-functional-colour(focus-text);
   }
 }
 
@@ -189,18 +195,18 @@
 @mixin tbxforms-link-style-muted {
   &:link,
   &:visited {
-    color: $tbxforms-secondary-text-colour;
+    color: tbxforms-functional-colour(secondary-text);
   }
 
   &:hover,
   &:active {
-    color: $tbxforms-text-colour;
+    color: tbxforms-functional-colour(text);
   }
 
   // When focussed, the text colour needs to be darker to ensure that colour
   // contrast is still acceptable
   &:focus {
-    color: $tbxforms-focus-text-colour;
+    color: tbxforms-functional-colour(focus-text);
   }
 }
 
@@ -222,21 +228,13 @@
 
 @mixin tbxforms-link-style-text {
   &:link,
-  &:visited {
-    @include tbxforms-text-colour;
+  &:visited,
+  &:active {
+    color: tbxforms-functional-colour(text);
   }
 
-  // Force a colour change on hover to work around a bug in Safari
-  // https://webkit.org/b/224483
-  &:hover {
-    @if type-of($tbxforms-text-colour) == color {
-      color: rgba($tbxforms-text-colour, 0.99);
-    }
-  }
-
-  &:active,
   &:focus {
-    @include tbxforms-text-colour;
+    color: tbxforms-functional-colour(focus-text);
   }
 }
 
@@ -262,15 +260,8 @@
     color: tbxforms-colour("white");
   }
 
-  // Force a colour change on hover to work around a bug in Safari
-  // https://webkit.org/b/224483
-  &:hover,
-  &:active {
-    color: rgba(tbxforms-colour("white"), 0.99);
-  }
-
   &:focus {
-    color: $tbxforms-focus-text-colour;
+    color: tbxforms-functional-colour(focus-text);
   }
 }
 
@@ -296,25 +287,25 @@
 
 @mixin tbxforms-link-style-no-visited-state {
   &:link {
-    color: $tbxforms-link-colour;
+    color: tbxforms-functional-colour(link);
   }
 
   &:visited {
-    color: $tbxforms-link-colour;
+    color: tbxforms-functional-colour(link);
   }
 
   &:hover {
-    color: $tbxforms-link-hover-colour;
+    color: tbxforms-functional-colour(link-hover);
   }
 
   &:active {
-    color: $tbxforms-link-active-colour;
+    color: tbxforms-functional-colour(link-active);
   }
 
   // When focussed, the text colour needs to be darker to ensure that colour
   // contrast is still acceptable
   &:focus {
-    color: $tbxforms-focus-text-colour;
+    color: tbxforms-functional-colour(focus-text);
   }
 }
 
@@ -346,11 +337,10 @@
 /// @access public
 
 @mixin tbxforms-link-print-friendly {
-  @include tbxforms-media-query($media-type: print) {
+  @media print {
     &[href^="/"],
     &[href^="http://"],
-    &[href^="https://"]
-    {
+    &[href^="https://"] {
       &::after {
         content: " (" attr(href) ")";
         font-size: 90%;

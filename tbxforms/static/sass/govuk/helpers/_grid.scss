@@ -1,0 +1,65 @@
+////
+/// @group helpers/layout
+////
+@use "sass:map";
+
+@use "../settings/measurements" as *;
+@use "media-queries" as *;
+
+/// Grid width percentage
+///
+/// @param {String} $key - Name of grid width (e.g. two-thirds)
+/// @return {Number} Percentage width
+/// @throw if `$key` is not a valid grid width
+/// @access public
+
+@function tbxforms-grid-width($key) {
+  @if map.has-key($tbxforms-grid-widths, $key) {
+    @return map.get($tbxforms-grid-widths, $key);
+  }
+
+  @error "Unknown grid width `#{$key}`";
+}
+
+/// Generate grid column styles
+///
+/// Creates a grid column with standard gutter between the columns.
+///
+/// Grid widths are defined in the `$tbxforms-grid-widths` map.
+///
+/// By default the column width changes from 100% to specified width at the
+/// 'tablet' breakpoint, but other breakpoints can be specified using the `$at`
+/// parameter.
+///
+/// @param {String} $width [full] name of a grid width from $tbxforms-grid-widths
+/// @param {String} $float [left] left | right
+/// @param {String} $at [tablet] - mobile | tablet | desktop | any custom breakpoint
+///
+/// @example scss - Default
+///   .tbxforms-grid-column-two-thirds {
+///     @include tbxforms-grid-column(two-thirds)
+///   }
+///
+/// @example scss - Customising the breakpoint where width percentage is applied
+///   .tbxforms-grid-column-one-half-from-desktop {
+///     @include tbxforms-grid-column(one-half, $at: desktop);
+///   }
+///
+/// @example scss - Customising the float direction
+///   .tbxforms-grid-column-one-half-right {
+///     @include tbxforms-grid-column(two-thirds, $float: right);
+///   }
+///
+/// @access public
+
+@mixin tbxforms-grid-column($width: full, $float: left, $at: tablet) {
+  box-sizing: border-box;
+  @if $at != desktop {
+    width: 100%;
+  }
+  padding: 0 $tbxforms-gutter-half;
+  @media #{tbxforms-from-breakpoint($at)} {
+    width: tbxforms-grid-width($width);
+    float: $float;
+  }
+}

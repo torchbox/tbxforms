@@ -1,0 +1,47 @@
+@use "../../base";
+
+/// @access private
+@mixin styles {
+  .tbxforms-label {
+    @include base.tbxforms-font($size: 19);
+
+    display: block;
+
+    margin-bottom: base.tbxforms-spacing(1);
+    color: base.tbxforms-functional-colour(text);
+  }
+
+  // Modifiers that make labels look more like their equivalent headings
+  .tbxforms-label--xl,
+  .tbxforms-label--l,
+  .tbxforms-label--m {
+    @include base.tbxforms-typography-weight-bold;
+    margin-bottom: base.tbxforms-spacing(3);
+  }
+
+  .tbxforms-label--xl {
+    @include base.tbxforms-font-size($size: 48);
+  }
+
+  .tbxforms-label--l {
+    @include base.tbxforms-font-size($size: 36);
+  }
+
+  .tbxforms-label--m {
+    @include base.tbxforms-font-size($size: 24);
+  }
+
+  .tbxforms-label--s {
+    @include base.tbxforms-typography-weight-bold;
+  }
+
+  // When the label is nested inside a heading, override the heading so that it
+  // does not have a margin. Effectively we want to be able to treat the heading
+  // as if it is not there.
+  //
+  // This breaks BEM conventions because it exists as a parent of the 'block',
+  // so we can't really consider an element.
+  .tbxforms-label-wrapper {
+    margin: 0;
+  }
+}

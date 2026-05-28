@@ -1,0 +1,51 @@
+@use "../../base";
+
+/// @access private
+@mixin styles {
+  .tbxforms-select {
+    @include base.tbxforms-font($size: 19, $line-height: 1.25);
+
+    box-sizing: border-box;
+
+    // This min-width was chosen because:
+    // - it makes the Select wider than it is tall (which is what users expect)
+    // - 11.5em matches the 'length-10' variant of the input component
+    // - it fits comfortably on screens as narrow as 240px wide
+    min-width: 11.5em;
+    max-width: 100%;
+    height: base.tbxforms-px-to-rem(40px);
+    padding: base.tbxforms-spacing(1);
+    border: base.$tbxforms-border-width-form-element solid;
+    border-color: base.tbxforms-functional-colour(input-border);
+
+    // Default user agent colours for selects can have low contrast,
+    // and may look disabled (#2435)
+    color: base.tbxforms-functional-colour(text);
+    background-color: base.tbxforms-colour("white");
+
+    &:focus {
+      @include base.tbxforms-focused-form-input;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      color: inherit;
+      cursor: not-allowed;
+    }
+  }
+
+  .tbxforms-select option:active,
+  .tbxforms-select option:checked,
+  .tbxforms-select:focus::-ms-value {
+    color: base.tbxforms-colour("white");
+    background-color: base.tbxforms-colour("blue");
+  }
+
+  .tbxforms-select--error {
+    border-color: base.tbxforms-functional-colour(error);
+
+    &:focus {
+      border-color: base.tbxforms-functional-colour(input-border);
+    }
+  }
+}

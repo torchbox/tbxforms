@@ -1,0 +1,25 @@
+// stylelint-disable declaration-no-important
+/// @access private
+@mixin styles {
+  .tbxforms-\!-display-inline {
+    display: inline !important;
+  }
+
+  .tbxforms-\!-display-inline-block {
+    display: inline-block !important;
+  }
+
+  .tbxforms-\!-display-block {
+    display: block !important;
+  }
+
+  .tbxforms-\!-display-none {
+    display: none !important;
+  }
+
+  @media print {
+    .tbxforms-\!-display-none-print {
+      display: none !important;
+    }
+  }
+}
