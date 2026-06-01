@@ -1,8 +1,0 @@
-@use "../base";
-
-/// @access private
-@mixin styles {
-  .tbxforms-width-container {
-    @include base.tbxforms-width-container;
-  }
-}
