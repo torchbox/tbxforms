@@ -1,7 +1,7 @@
-const path = require('path');
-const { defineConfig } = require('vite');
+import path from 'path';
+import { defineConfig } from 'vite';
 
-module.exports = defineConfig({
+export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, 'tbxforms/static/js/tbxforms.js'),
@@ -12,6 +12,7 @@ module.exports = defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
+        api: 'modern',
         fatalDeprecation: true,
       },
     },

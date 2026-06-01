@@ -1,6 +1,8 @@
 ////
 /// @group settings/typography
 ////
+@use "sass:list";
+@use "sass:meta";
 
 // =========================================================
 // Font families
@@ -31,7 +33,7 @@ $tbxforms-font-family-print: sans-serif !default;
 /// @type Boolean
 /// @access public
 
-$tbxforms-include-default-font-face: if(index($tbxforms-font-family, "GDS Transport"), true, false) !default;
+$tbxforms-include-default-font-face: (list.index($tbxforms-font-family, "GDS Transport") != null) !default;
 
 // =========================================================
 // Font weights

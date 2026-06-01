@@ -1,0 +1,14 @@
+@use "../settings/custom-properties" as *;
+@use "../settings/media-queries" as *;
+@use "../tools/px-to-rem" as *;
+
+/// @access private
+@mixin styles {
+  :root {
+    @if $tbxforms-output-custom-properties {
+      @each $name, $value in $tbxforms-breakpoints {
+        --tbxforms-breakpoint-#{$name}: #{tbxforms-px-to-rem($value)};
+      }
+    }
+  }
+}

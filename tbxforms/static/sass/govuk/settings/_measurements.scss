@@ -1,3 +1,5 @@
+@use "sass:math";
+
 ////
 /// @group settings/layout
 ////
@@ -19,21 +21,11 @@ $tbxforms-page-width: 960px !default;
 /// @access public
 
 $tbxforms-grid-widths: (
-  one-quarter: (
-    calc(100% / 4)
-  ),
-  one-third: (
-    calc(100% / 3)
-  ),
-  one-half: (
-    calc(100% / 2)
-  ),
-  two-thirds: (
-    calc(200% / 3)
-  ),
-  three-quarters: (
-    calc(300% / 4)
-  ),
+  one-quarter: math.div(100%, 4),
+  one-third: math.div(100%, 3),
+  one-half: math.div(100%, 2),
+  two-thirds: math.div(200%, 3),
+  three-quarters: math.div(300%, 4),
   full: 100%
 ) !default;
 
@@ -49,7 +41,7 @@ $tbxforms-gutter: 30px !default;
 /// @type Number
 /// @access public
 
-$tbxforms-gutter-half: calc($tbxforms-gutter / 2);
+$tbxforms-gutter-half: math.div($tbxforms-gutter, 2);
 
 // =========================================================
 // Borders

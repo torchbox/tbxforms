@@ -1,0 +1,112 @@
+////
+/// @group settings/assets
+////
+
+/// Path to the assets directory, with trailing slash.
+///
+/// This is the directory where the images and fonts subdirectories live. You
+/// will need to make this directory available via your application – see the
+/// README for details.
+///
+/// @type String
+/// @access public
+
+$tbxforms-assets-path: "/assets/" !default;
+
+/// Path to the images folder, with trailing slash.
+///
+/// @type String
+/// @access public
+
+$tbxforms-images-path: "#{$tbxforms-assets-path}images/" !default;
+
+/// Path to the fonts folder, with trailing slash.
+///
+/// @type String
+/// @access public
+
+$tbxforms-fonts-path: "#{$tbxforms-assets-path}fonts/" !default;
+
+/// Custom image URL function
+///
+/// If you need more control than $tbxforms-images-path provides, you can use a
+/// function to resolve image filenames to URLs.
+///
+/// The function should accept a filename and return the URL as a string,
+/// wrapped with `url()`.
+///
+/// Passing the name of a function as a string is deprecated.
+///
+/// @type Function | String | null
+///
+/// @example scss - Passing a function
+///
+///   @use "sass:meta";
+///   // Include the module containing the handler function
+///   @use "url-handlers";
+///
+///   // Then pass the handler function using `meta.get-function`
+///   @use "node_modules/tbxforms-frontend/dist/govuk" as * with (
+///     $tbxforms-image-url-function: meta.get-function("image-url", $module: "url-handlers")
+///   )
+///
+/// @example scss - Passing the name of a function (deprecated)
+///
+///   // This is only available if you still use `@import`
+///   @function my-url-handler($filename) {
+///     // Some custom URL handling
+///     @return url('example.jpg');
+///   }
+///
+///   $tbxforms-image-url-function: 'my-url-handler';
+///
+///   @import "node_modules/tbxforms-frontend/dist/govuk";
+///
+/// @see $tbxforms-images-path
+/// @see {function} tbxforms-image-url
+///
+/// @access public
+
+$tbxforms-image-url-function: null !default;
+
+/// Custom font URL function
+///
+/// If you need more control than $tbxforms-fonts-path provides, you can use a
+/// function to resolve font filenames to URLs.
+///
+/// The function should accept a filename and return the URL as a string,
+/// wrapped with `url()`.
+///
+/// Passing the name of a function as a string is deprecated.
+///
+/// @type Function | String | null
+///
+/// @example scss - Passing a function
+///
+///   @use "sass:meta";
+///   // Include the module containing the handler function
+///   @use "url-handlers";
+///
+///   // Then pass the handler function using `meta.get-function`
+///   @use "node_modules/tbxforms-frontend/dist/govuk" as * with (
+///     $tbxforms-font-url-function: meta.get-function("font-url", $module: "url-handlers")
+///   )
+///
+/// @example scss - Passing the name of a function (deprecated)
+///
+///   // This is only available if you still use `@import`
+///   @function my-url-handler($filename) {
+///     // Some custom URL handling
+///     @return url('example.woff');
+///   }
+///
+///   $tbxforms-font-url-function: 'my-url-handler';
+///
+///   @import "node_modules/tbxforms-frontend/dist/govuk";
+///
+/// @see $tbxforms-fonts-path
+/// @see {function} tbxforms-font-url
+///
+/// @access public
+
+$tbxforms-font-url-function: null !default;

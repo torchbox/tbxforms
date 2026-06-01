@@ -1,12 +1,4 @@
-@include tbxforms-exports("govuk/component/error-message") {
-  .tbxforms-error-message {
-    @include tbxforms-font($size: 19, $weight: bold);
+@use "../../custom-properties";
+@use "mixin";
 
-    display: block;
-    margin-top: 0; // Reset any default browser margins for paragraphs
-    margin-bottom: tbxforms-spacing(3);
-    clear: both;
-
-    color: $tbxforms-error-colour;
-  }
-}
+@include mixin.styles;

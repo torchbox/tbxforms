@@ -1,0 +1,57 @@
+@use "../../base";
+
+/// @access private
+@mixin styles {
+  .tbxforms-error-summary {
+    @include base.tbxforms-font($size: 19);
+    @include base.tbxforms-responsive-padding(4);
+    @include base.tbxforms-responsive-margin(8, "bottom");
+
+    border: base.$tbxforms-border-width solid;
+    border-color: base.tbxforms-functional-colour(error);
+    color: base.tbxforms-functional-colour(text);
+
+    &:focus {
+      outline: base.$tbxforms-focus-width solid;
+      outline-color: base.tbxforms-functional-colour(focus);
+    }
+  }
+
+  .tbxforms-error-summary__title {
+    @include base.tbxforms-font-size($size: 24);
+    @include base.tbxforms-typography-weight-bold;
+
+    margin-top: 0;
+    @include base.tbxforms-responsive-margin(4, "bottom");
+  }
+
+  .tbxforms-error-summary__body {
+    p {
+      margin-bottom: 0;
+    }
+
+    > * + * {
+      @include base.tbxforms-responsive-margin(4, "top");
+    }
+
+    > :last-child {
+      @include base.tbxforms-responsive-margin(1, "bottom");
+    }
+  }
+
+  // Cross-component class - adjusts styling of list component
+  .tbxforms-error-summary__list {
+    margin-bottom: 0;
+  }
+
+  // Remove the bottom margin from the last list item
+  .tbxforms-error-summary__list li:last-child {
+    margin-bottom: 0;
+  }
+
+  .tbxforms-error-summary__list a {
+    @include base.tbxforms-typography-weight-bold;
+    @include base.tbxforms-link-common;
+    @include base.tbxforms-link-style-error;
+  }
+}

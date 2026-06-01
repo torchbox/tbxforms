@@ -1,0 +1,187 @@
+////
+/// @group settings/colours
+////
+@use "../helpers/colour" as *;
+// =============================================================================
+// Legacy variables
+//
+// To help migrate to `tbxforms-functional-colour`, we're keeping the variables
+// which were previously storing the functional colours. This should reduce
+// breakage as teams upgrade
+// =============================================================================
+
+/// Brand colour
+///
+/// @type Colour
+/// @access public
+/// @deprecated
+///   Variables for applied colours are deprecated. Please use the `tbxforms-functional-colour`
+///   function instead: `tbxforms-functional-colour(brand)`.
+$tbxforms-brand-colour: tbxforms-functional-colour(brand);
+
+/// Text colour
+///
+/// @type Colour
+/// @access public
+/// @deprecated
+///   Variables for applied colours are deprecated. Please use the `tbxforms-functional-colour`
+///   function instead: `tbxforms-functional-colour(text)`.
+$tbxforms-text-colour: tbxforms-functional-colour(text);
+
+/// Template background colour
+///
+/// Used by components that want to give the illusion of extending
+/// the template background (such as the footer and cookie banner).
+///
+/// @type Colour
+/// @access public
+/// @deprecated
+///   Variables for applied colours are deprecated. Please use the `tbxforms-functional-colour`
+///   function instead: `tbxforms-functional-colour(template-background)`.
+$tbxforms-template-background-colour: tbxforms-functional-colour(template-background);
+
+/// Body background colour
+///
+/// @type Colour
+/// @access public
+/// @deprecated
+///   Variables for applied colours are deprecated. Please use the `tbxforms-functional-colour`
+///   function instead: `tbxforms-functional-colour(body-background)`.
+$tbxforms-body-background-colour: tbxforms-functional-colour(body-background);
+
+/// Text colour for print media
+///
+/// Use 'true black' to avoid printers using colour ink to print body text
+///
+/// @type Colour
+/// @access public
+/// @deprecated
+///   Variables for applied colours are deprecated. Please use the `tbxforms-functional-colour`
+///   function instead: `tbxforms-functional-colour(print-text)`.
+$tbxforms-print-text-colour: tbxforms-functional-colour(print-text);
+
+/// Secondary text colour
+///
+/// Used in for example 'muted' text and help text.
+///
+/// @type Colour
+/// @access public
+/// @deprecated
+///   Variables for applied colours are deprecated. Please use the `tbxforms-functional-colour`
+///   function instead: `tbxforms-functional-colour(secondary-text)`.
+$tbxforms-secondary-text-colour: tbxforms-functional-colour(secondary-text);
+
+/// Focus colour
+///
+/// Used for outline (and background, where appropriate) when interactive
+/// elements (links, form controls) have keyboard focus.
+///
+/// @type Colour
+/// @access public
+/// @deprecated
+///   Variables for applied colours are deprecated. Please use the `tbxforms-functional-colour`
+///   function instead: `tbxforms-functional-colour(focus)`.
+$tbxforms-focus-colour: tbxforms-functional-colour(focus);
+
+/// Focused text colour
+///
+/// Ensure that the contrast between the text and background colour passes
+/// WCAG Level AA contrast requirements.
+///
+/// @type Colour
+/// @access public
+/// @deprecated
+///   Variables for applied colours are deprecated. Please use the `tbxforms-functional-colour`
+///   function instead: `tbxforms-functional-colour(focus-text)`.
+$tbxforms-focus-text-colour: tbxforms-functional-colour(focus-text);
+
+/// Error colour
+///
+/// Used to highlight error messages and form controls in an error state
+///
+/// @type Colour
+/// @access public
+/// @deprecated
+///   Variables for applied colours are deprecated. Please use the `tbxforms-functional-colour`
+///   function instead: `tbxforms-functional-colour(error)`.
+$tbxforms-error-colour: tbxforms-functional-colour(error);
+
+/// Success colour
+///
+/// Used to highlight success messages and banners
+///
+/// @type Colour
+/// @access public
+/// @deprecated
+///   Variables for applied colours are deprecated. Please use the `tbxforms-functional-colour`
+///   function instead: `tbxforms-functional-colour(error)`.
+$tbxforms-success-colour: tbxforms-functional-colour(success);
+
+/// Border colour
+///
+/// Used in for example borders, separators, rules and keylines.
+///
+/// @type Colour
+/// @access public
+/// @deprecated
+///   Variables for applied colours are deprecated. Please use the `tbxforms-functional-colour`
+///   function instead: `tbxforms-functional-colour(border)`.
+$tbxforms-border-colour: tbxforms-functional-colour(border);
+
+/// Input border colour
+///
+/// Used for form inputs and controls
+///
+/// @type Colour
+/// @access public
+/// @deprecated
+///   Variables for applied colours are deprecated. Please use the `tbxforms-functional-colour`
+///   function instead: `tbxforms-functional-colour(input-border)`.
+$tbxforms-input-border-colour: tbxforms-functional-colour(input-border);
+
+/// Input hover colour
+///
+/// Used for hover states on form controls
+///
+/// @type Colour
+/// @access public
+/// @deprecated
+///   Variables for applied colours are deprecated. Please use the `tbxforms-functional-colour`
+///   function instead: `tbxforms-functional-colour(hover)`.
+$tbxforms-hover-colour: tbxforms-functional-colour(hover);
+
+/// Link colour
+///
+/// @type Colour
+/// @access public
+/// @deprecated
+///   Variables for applied colours are deprecated. Please use the `tbxforms-functional-colour`
+///   function instead: `tbxforms-functional-colour(link)`.
+$tbxforms-link-colour: tbxforms-functional-colour(link);
+
+/// Visited link colour
+///
+/// @type Colour
+/// @access public
+/// @deprecated
+///   Variables for applied colours are deprecated. Please use the `tbxforms-functional-colour`
+///   function instead: `tbxforms-functional-colour(link-visited)`.
+$tbxforms-link-visited-colour: tbxforms-functional-colour(link-visited);
+
+/// Link hover colour
+///
+/// @type Colour
+/// @access public
+/// @deprecated
+///   Variables for applied colours are deprecated. Please use the `tbxforms-functional-colour`
+///   function instead: `tbxforms-functional-colour(link-hover)`.
+$tbxforms-link-hover-colour: tbxforms-functional-colour(link-hover);
+
+/// Active link colour
+///
+/// @type Colour
+/// @access public
+/// @deprecated
+///   Variables for applied colours are deprecated. Please use the `tbxforms-functional-colour`
+///   function instead: `tbxforms-functional-colour(link-active)`.
+$tbxforms-link-active-colour: tbxforms-functional-colour(link-active);
