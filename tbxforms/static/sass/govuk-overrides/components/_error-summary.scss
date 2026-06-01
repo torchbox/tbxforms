@@ -1,5 +1,5 @@
-@use "../../govuk/helpers";
-@use "../../govuk/settings/colours-legacy-functional";
+@use '../../govuk/helpers';
+@use '../../govuk/settings/colours-legacy-functional';
 
 // Apply summary error styles to non-field errors too.
 .tbxforms-error-summary__list li {
