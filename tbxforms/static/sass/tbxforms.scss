@@ -39,5 +39,9 @@
 @use 'govuk/components/textarea';
 // @use "warning-text";
 
+@use 'govuk/core/lists';
+@use 'govuk/objects/form-group';
+@use 'govuk/utilities/visually-hidden';
+
 // Finally, import our additional styles.
 @use 'govuk-overrides/components';
